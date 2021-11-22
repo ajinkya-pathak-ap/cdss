@@ -1,3 +1,6 @@
 export const userActions = {
-  GET_USER_DETAILS: "GET_USER_DETAILS",
+  LOGIN: "LOGIN",
+  LOGOUT: "LOGOUT",
+  ALL_USERS: "ALL_USERS",
+  USER_DETAILS: "USER_DETAILS",
 };
