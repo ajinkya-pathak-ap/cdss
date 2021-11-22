@@ -1,8 +1,8 @@
 import appState from "../appState";
-import * as actions from "../actions/userActions";
+import { userActions } from "../actions/actions";
 
 function LoginReducer(state = appState, action) {
-  if (action.type === actions.LOGIN || action.type === actions.LOGOUT) {
+  if (action.type === userActions.LOGIN || action.type === userActions.LOGOUT) {
     return {
       globalmessage: action.payload.globalmessage,
       isLoggedIn: action.payload.isLoggedIn,
