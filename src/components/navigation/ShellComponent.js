@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import ModalPopup from "../../shared/dialog/ModalPopup";
+import RiskScoreAmi from "../ami/RiskScoreAmi";
+import Notification from "../../shared/notification/Notification";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -9,38 +11,52 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ShellComponent(props) {
+  /***********states/effects************/
   const classes = useStyles();
   const [openPopup, setOpenPopup] = useState(false);
 
+  /************globals*************/
+
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
+
+  const showSnacksBar = (_object) => {
+    setNotify({
+      isOpen: true,
+      message: _object.message,
+      type: _object.type,
+    });
+  };
+
+  const modalPopup = (
+    <>
+      <Notification notify={notify} setNotify={setNotify} />
+      {/* <ComponentName flashNotification={showSnacksBar} /> */}
+      <button onClick={handleAdminNotification}>Open Dialog</button>
+      <ModalPopup
+        title="Title Goes Here"
+        openPopup={openPopup}
+        setOpenPopup={setOpenPopup}
+      >
+        <h1>Modal Popup Data Here...</h1>
+      </ModalPopup>
+    </>
+  );
+
+  /************Methods***********/
   function handleAdminNotification() {
     setOpenPopup(true);
   }
 
   return (
     <div className="top_mt_100">
-      <h1>Shell component</h1>
-      <h1>Shell component</h1>
-      <h1>Shell component</h1>
-      <h1>Shell component</h1>
-      <h1>Shell component</h1>
-      <h1>Shell component</h1>
-      <h1>Shell component</h1>
-      <button onClick={handleAdminNotification}>Open Dialog</button>
-      <ModalPopup
-        title="User Requests"
-        openPopup={openPopup}
-        setOpenPopup={setOpenPopup}
-      >
-        <h1>ChildrenElements</h1>
-        <h1>ChildrenElements</h1>
-      </ModalPopup>
+      <RiskScoreAmi />
+      {/* {modalPopup} */}
     </div>
   );
 }
 
 export default ShellComponent;
-// export default connect(mapStateToProps, mapDispatchToProps)(ShellComponent);
-
-/* <Route path="/about" component={About} />
-          <Route path="/services" component={Services} />
-          <Route path="/contact-us" component={Contact} /> */

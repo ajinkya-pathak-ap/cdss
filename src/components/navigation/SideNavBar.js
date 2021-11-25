@@ -15,7 +15,7 @@ import {
 
 import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
-import "./navigation.css";
+import "./styles/Navigation.css";
 import {
   LineStyle,
   PermIdentity,

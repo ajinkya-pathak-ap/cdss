@@ -41,7 +41,7 @@ function ModalPopup(props) {
     >
       <DialogContent>{children}</DialogContent>
       <DialogActions className={classes.dialogAction}>
-        {/* <DialogTitle className={classes.dialogTitle}>{title}</DialogTitle> */}
+        <DialogTitle className={classes.dialogTitle}>{title}</DialogTitle>
         <Button
           size="small"
           variant="contained"

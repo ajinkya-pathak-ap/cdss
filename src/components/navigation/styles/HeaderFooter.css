@@ -1,0 +1,19 @@
+/***********Header**********/
+
+.MuiAppBar-colorPrimary {
+  color: #282c34;
+  background-color: #ffffff;
+}
+
+/***********Footer**********/
+.main-footer {
+  color: white;
+  background-color: #494a4d;
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+}
+.logo{
+  float: left;
+  margin-top: 0;
+}

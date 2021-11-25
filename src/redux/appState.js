@@ -4,8 +4,10 @@ let appState = {
   authToken: "",
   globalmessage: "",
   role: "",
-  loggedUserInfo: {},
-  userDetails: {},
+  patientDetails: {},
+  patientVitals: {},
+  riskScore: {},
+  patientDemographics: {},
 };
 
 export default appState;
