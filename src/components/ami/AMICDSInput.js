@@ -11,6 +11,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
 // import CustomizedInputs from "./form";
 import Button from "@mui/material/Button";
+
 // import BasicTextFields from "../AMI/form";
 import { blue, red } from "@material-ui/core/colors";
 import Stack from "@mui/material/Stack";
@@ -24,7 +25,15 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: "#6D7F9B",
-    padding: "16px",
+    padding: "30px",
+    margin: "4%",
+  },
+
+  secondform: {
+    "& .MuiFormControl-root": {
+      width: "70%",
+      margin: theme.spacing(1),
+    },
   },
 
   formgrop: {
@@ -51,7 +60,66 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#414BB2",
     },
   },
+  textFieldColor: {
+    backgroundColor: "white",
+    border: "solid 1px red",
+  },
 }));
+
+const Gender = [
+  {
+    value: "1",
+    label: "male",
+  },
+  {
+    value: "2",
+    label: "female",
+  },
+];
+
+const riskFactor = [
+  {
+    value: "1",
+    label: "prior AMI",
+  },
+  {
+    value: "2",
+    label: "prior AMI2l",
+  },
+];
+
+const Race = [
+  {
+    value: "3",
+    label: "Asian",
+  },
+  {
+    value: "4",
+    label: "South",
+  },
+];
+
+const symptoms = [
+  {
+    value: "5",
+    label: "Left Hand Pain",
+  },
+  {
+    value: "6",
+    label: "Chest Pain",
+  },
+];
+
+const time = [
+  {
+    value: "7",
+    label: "tttttttt",
+  },
+  {
+    value: "8",
+    label: "tttttttt",
+  },
+];
 
 export default function AMICSInput() {
   const [checked, setChecked] = React.useState(true);
@@ -73,119 +141,107 @@ export default function AMICSInput() {
     setAge(event.target.value);
   };
 
+  // const handleChange1 = (event) => {
+  //   setCurrency(event.target.value);
+  // };
   return (
     <div className={classes.root}>
       <Grid container spacing={2}>
         <Grid item container xs={6} spacing={2}>
-          <Grid item xs={12}>
-            <FormGroup className={classes.formgrop}>
-              <Typography className={classes.typo}>Patient History</Typography>
-              <br></br>
-              <Typography style={{ fontSize: "12px", alignItems: "center" }}>
-                Demographics Information pulled from EHR
+          <Grid item xs={12} className={classes.formgrop}>
+            <form className={classes.secondform}>
+              <Typography style={{ textAlign: "left" }}>
+                Patient History
               </Typography>
-              <br></br>
+              <Grid container>
+                <Grid item xs={12}>
+                  <h5>Demographics Information pulled from EHR</h5>
 
-              <TextField
-                sx={{ m: 1, minWidth: 80 }}
-                style={{ width: "95%", backgroundColor: "white" }}
-                onChange={onTextChange}
-                value={textValue}
-                label={"Patient Age"} //optional
-              />
+                  <Box
+                    component="form"
+                    sx={{
+                      "& > :not(style)": { m: 1, width: "25ch" },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                  >
+                    <TextField
+                      className={classes.textFieldColor}
+                      id="age"
+                      label="Age"
+                      variant="outlined"
+                    />
 
-              <FormControl
-                sx={{ m: 1, minWidth: 120 }}
-                style={{ backgroundColor: "white" }}
-              >
-                <InputLabel id="demo-simple-select-autowidth-label">
-                  Gender
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-autowidth-label"
-                  id="demo-simple-select-autowidth"
-                  value={age}
-                  onChange={handleChangeSelect}
-                  autoWidth
-                  label="Gender"
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Male</MenuItem>
-                  <MenuItem value={21}>Female</MenuItem>
-                </Select>
-              </FormControl>
+                    <TextField
+                      className={classes.textFieldColor}
+                      id="gender"
+                      select
+                      label="Gender"
+                      // onChange={handleChange1}
+                    >
+                      {Gender.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
 
-              <FormControl
-                sx={{ m: 1, minWidth: 120 }}
-                style={{ backgroundColor: "white" }}
-              >
-                <InputLabel id="demo-simple-select-autowidth-label">
-                  Race
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-autowidth-label"
-                  id="demo-simple-select-autowidth"
-                  value={age}
-                  onChange={handleChangeSelect}
-                  autoWidth
-                  label="Racer"
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Race</MenuItem>
-                  <MenuItem value={21}>Race2</MenuItem>
-                </Select>
-              </FormControl>
-
-              <FormControl
-                sx={{ m: 1, minWidth: 120 }}
-                style={{ backgroundColor: "white" }}
-              >
-                <InputLabel id="demo-simple-select-autowidth-label">
-                  Presenting Sym
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-autowidth-label"
-                  id="demo-simple-select-autowidth"
-                  value={age}
-                  onChange={handleChangeSelect}
-                  autoWidth
-                  label="Chest Pain +2"
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Chest Pain +2</MenuItem>
-                  <MenuItem value={21}>Chest Pain +3</MenuItem>
-                </Select>
-              </FormControl>
-
-              <FormControl
-                sx={{ m: 1, minWidth: 120 }}
-                style={{ backgroundColor: "white" }}
-              >
-                <InputLabel id="demo-simple-select-autowidth-label">
-                  Time Since symptom onset
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-autowidth-label"
-                  id="demo-simple-select-autowidth"
-                  value={age}
-                  onChange={handleChangeSelect}
-                  autoWidth
-                  label="Select"
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Chest Pain +2</MenuItem>
-                  <MenuItem value={21}>Chest Pain +3</MenuItem>
-                </Select>
-              </FormControl>
-            </FormGroup>
+                    <TextField
+                      className={classes.textFieldColor}
+                      id="Race"
+                      select
+                      label="Race"
+                      // onChange={handleChange1}
+                    >
+                      {Race.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                    <TextField
+                      className={classes.textFieldColor}
+                      id="symptoms"
+                      select
+                      label="Presenting Symptoms"
+                      // onChange={handleChange1}
+                    >
+                      {symptoms.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                    <TextField
+                      className={classes.textFieldColor}
+                      id="time"
+                      select
+                      label="Time since symptom onset"
+                      // onChange={handleChange1}
+                    >
+                      {time.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                    <TextField
+                      className={classes.textFieldColor}
+                      id="risk factors"
+                      select
+                      label="Risk Factors"
+                      // onChange={handleChange1}
+                    >
+                      {riskFactor.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  </Box>
+                </Grid>
+              </Grid>
+            </form>
           </Grid>
         </Grid>
 
@@ -229,68 +285,89 @@ export default function AMICSInput() {
           {/* ***************** end of first Box *********************** */}
 
           {/* ***************** start of second Box *********************** */}
-          {/* <Grid item xs={12}>
-            <Paper className={classes.paper}>1</Paper>
-          </Grid> */}
+          <form className={classes.secondform}>
+            <Grid container className={classes.formgrop}>
+              <Grid item xs={6}>
+                <Box
+                  component="form"
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "25ch" },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <h4>HsTnl Results</h4>
 
-          <Grid item xs={12}>
-            <FormGroup className={classes.formgrop}>
-              <Typography className={classes.typo}>
-                EKG Findings(Select One)
-              </Typography>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    {...label}
-                    sx={{
-                      color: "#fff",
-                      "&.Mui-checked": {
-                        color: "#fff",
-                      },
-                    }}
+                  <TextField
+                    className={classes.textFieldColor}
+                    id="25 ng/L"
+                    label="25 ng/L"
+                    variant="outlined"
                   />
-                }
-                label="No ST deviation, but LBBB, LVH, repolarization changes "
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    {...label}
-                    sx={{
-                      color: "#fff",
-                      "&.Mui-checked": {
-                        color: "#fff",
-                      },
-                    }}
+
+                  <TextField
+                    className={classes.textFieldColor}
+                    id="35 ng/L"
+                    label="35 ng/L"
+                    variant="outlined"
                   />
-                }
-                label="ST deviation, but LBBB, LVH, repolarization changes"
-              />
-            </FormGroup>
-          </Grid>
+
+                  <TextField
+                    className={classes.textFieldColor}
+                    id=" ng/L"
+                    label="ng/L"
+                    variant="outlined"
+                  />
+                </Box>
+              </Grid>
+
+              <Grid item xs={6}>
+                <h4>Draw Time</h4>
+                <TextField
+                  className={classes.textFieldColor}
+                  id="date1"
+                  label="10/26/2021,20:40"
+                  variant="outlined"
+                />
+
+                <TextField
+                  className={classes.textFieldColor}
+                  id="date2"
+                  label="10/26/2021,23:10"
+                  variant="outlined"
+                />
+                <TextField
+                  className={classes.textFieldColor}
+                  id="date3"
+                  label="mm:hh:yyyy"
+                  variant="outlined"
+                />
+              </Grid>
+            </Grid>
+          </form>
           {/* ***************** end of second Box *********************** */}
 
           {/* *****************  start third Box *********************** */}
-          <Grid item xs={12} container justifyContent="center">
+          <Grid item xs={12}>
             {/* <Paper className={classes.paper}>1</Paper> */}
-            <Stack xs={6} direction="row" spacing={2}>
+            <Stack xs={12} direction="row" justifyContent="center" spacing={2}>
               <Button
                 className={classes.buttonColor}
                 variant="contained"
-                style={{ textTransform: "none" }}
+                style={{ textTransform: "none", backgroundColor: "#414BB2" }}
               >
                 Exit
               </Button>
               <Button
                 className={classes.buttonColor}
                 variant="contained"
-                style={{ textTransform: "none" }}
+                style={{ textTransform: "none", backgroundColor: "#414BB2" }}
               >
                 Reset
               </Button>
               <Button
                 className={classes.buttonColor}
-                style={{ textTransform: "none" }}
+                style={{ textTransform: "none", backgroundColor: "#414BB2" }}
                 variant="contained"
                 href="#contained-buttons"
               >

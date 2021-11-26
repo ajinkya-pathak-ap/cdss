@@ -4,6 +4,7 @@ import ModalPopup from "../../shared/dialog/ModalPopup";
 import RiskScoreAmi from "../ami/RiskScoreAmi";
 import AMICSInput from "../ami/AMICDSInput";
 import Notification from "../../shared/notification/Notification";
+import Configurations from "../ami/Configurations";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -55,7 +56,8 @@ function ShellComponent(props) {
   return (
     <div className="top_mt_100">
       {/* <RiskScoreAmi /> */}
-      <AMICSInput />
+      {/* <AMICSInput /> */}
+      <Configurations />
       {/* {modalPopup} */}
     </div>
   );
