@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import ModalPopup from "../../shared/dialog/ModalPopup";
 import RiskScoreAmi from "../ami/RiskScoreAmi";
+import AMICSInput from "../ami/AMICDSInput";
 import Notification from "../../shared/notification/Notification";
 
 const useStyles = makeStyles((theme) => ({
@@ -53,7 +54,8 @@ function ShellComponent(props) {
 
   return (
     <div className="top_mt_100">
-      <RiskScoreAmi />
+      {/* <RiskScoreAmi /> */}
+      <AMICSInput />
       {/* {modalPopup} */}
     </div>
   );
