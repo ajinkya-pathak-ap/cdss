@@ -171,18 +171,16 @@ export default function AMICSInput() {
                       label="Age"
                       variant="outlined"
                     />
-
                     <TextField
                       className={classes.textFieldColor}
                       id="gender"
+                      variant="outlined"
                       select
                       label="Gender"
                       // onChange={handleChange1}
                     >
                       {Gender.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label}
-                        </MenuItem>
+                        <MenuItem value={option.value}>{option.label}</MenuItem>
                       ))}
                     </TextField>
 
@@ -199,6 +197,7 @@ export default function AMICSInput() {
                         </MenuItem>
                       ))}
                     </TextField>
+
                     <TextField
                       className={classes.textFieldColor}
                       id="symptoms"
@@ -212,6 +211,7 @@ export default function AMICSInput() {
                         </MenuItem>
                       ))}
                     </TextField>
+
                     <TextField
                       className={classes.textFieldColor}
                       id="time"
@@ -225,6 +225,7 @@ export default function AMICSInput() {
                         </MenuItem>
                       ))}
                     </TextField>
+
                     <TextField
                       className={classes.textFieldColor}
                       id="risk factors"

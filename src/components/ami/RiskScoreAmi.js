@@ -4,10 +4,8 @@ import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Button from "@material-ui/core/Button";
 import ModalPopup from "../../shared/dialog/ModalPopup";
-
 import { green, lightBlue, purple } from "@material-ui/core/colors";
 import RiskScoreCalculator from "./RiskScoreCalculator";
 
@@ -83,7 +81,7 @@ export default function RiskScoreAmi() {
       <Grid container spacing={4}>
         <Grid item sm={12} xs={12} marginTop={10}>
           <Box
-            sx={{ bgcolor: "#6D7F9B", height: "55vh" }}
+            sx={{ bgcolor: "#6D7F9B" }}
             margin={10}
             paddingLeft={4}
             paddingRight={4}
