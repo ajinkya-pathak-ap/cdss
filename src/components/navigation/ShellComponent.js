@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core";
+import Notification from "../../shared/notification/Notification";
 import ModalPopup from "../../shared/dialog/ModalPopup";
 import RiskScoreAmi from "../ami/RiskScoreAmi";
-import AMICSInput from "../ami/AMICDSInput";
-import Notification from "../../shared/notification/Notification";
+import AMICDSInput from "../ami/AMICDSInput";
+import AMIConfiguration from "../ami/AMIConfiguraton";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -32,31 +33,16 @@ function ShellComponent(props) {
     });
   };
 
-  const modalPopup = (
-    <>
-      <Notification notify={notify} setNotify={setNotify} />
-      {/* <ComponentName flashNotification={showSnacksBar} /> */}
-      <button onClick={handleAdminNotification}>Open Dialog</button>
-      <ModalPopup
-        title="Title Goes Here"
-        openPopup={openPopup}
-        setOpenPopup={setOpenPopup}
-      >
-        <h1>Modal Popup Data Here...</h1>
-      </ModalPopup>
-    </>
-  );
-
   /************Methods***********/
-  function handleAdminNotification() {
+  function handlePopup() {
     setOpenPopup(true);
   }
 
   return (
     <div className="top_mt_100">
-      {/* <RiskScoreAmi /> */}
-      <AMICSInput />
-      {/* {modalPopup} */}
+      <RiskScoreAmi />
+      <AMICDSInput />
+      <AMIConfiguration />
     </div>
   );
 }
