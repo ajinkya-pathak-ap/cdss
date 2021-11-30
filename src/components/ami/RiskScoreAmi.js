@@ -5,9 +5,12 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
-import ModalPopup from "../../shared/dialog/ModalPopup";
+import { MoreInfoModal } from "../../shared/dialog/ModalPopup";
+import { ChestFlowchartModal } from "../../shared/dialog/ModalPopup";
+
 import { green, lightBlue, purple } from "@material-ui/core/colors";
-import RiskScoreCalculator from "./RiskScoreCalculator";
+import RiskScoreContributors from "./RiskScoreContributors";
+import ChestPainFlowchart from "./ChestPainFlowchart";
 
 import {
   Card,
@@ -68,12 +71,15 @@ const commonStyles = {
 export default function RiskScoreAmi() {
   const classes = useStyles();
 
-  /** globals */
   const [openPopup, setOpenPopup] = useState(false);
+  const [chestPopupOpen, setChestPopupOpen] = useState(false);
 
-  /****************methods**************/
-  const openMoreInfoPopup = () => {
+  const moreInfoPopup = () => {
     setOpenPopup(true);
+  };
+
+  const chestPainFlowChartPopup = () => {
+    setChestPopupOpen(true);
   };
 
   return (
@@ -83,43 +89,9 @@ export default function RiskScoreAmi() {
       container
       spacing={4}
       style={{
-        // paddingLeft: "40",
-        // paddingRight: "4",
-
         backgroundColor: "#6D7F9B",
       }}
     >
-      {/* <Grid container spacing={4}> */}
-      {/* <Grid
-        item
-        sm={12}
-        xs={12}
-        marginTop={10}
-        sx={{ bgcolor: "#6D7F9B" }}
-        margin={10}
-        paddingLeft={4}
-        paddingRight={4}
-        paddingTop={5}
-      > */}
-      {/* <Box */}
-      {/* // sx={{ bgcolor: "#6D7F9B" }}
-      // margin={10}
-      // paddingLeft={4}
-      // paddingRight={4}
-      // paddingTop={5}
-      > */}
-      {/* <Grid */}
-      {/* container
-          item
-          xs={12}
-          spacing={2}
-          style={{
-            paddingLeft: "4",
-            paddingRight: "4",
-            paddingTop: "5",
-            backgroundColor: "#6D7F9B",
-          }}
-        > */}
       {/* *****************First container***************** */}
       <Grid container item xs={12} style={{ margin: "10" }}>
         <Grid item xs={10} className={classes.gridcontainer1}>
@@ -197,7 +169,7 @@ export default function RiskScoreAmi() {
             size="small"
             variant="contained"
             className={classes.buttonColor}
-            onClick={openMoreInfoPopup}
+            onClick={moreInfoPopup}
             style={{ textTransform: "none", marginRight: "5" }}
           >
             More Info
@@ -221,9 +193,14 @@ export default function RiskScoreAmi() {
               Refer patient for Cardiology Consult
             </Typography>
             <Typography style={{ fontSize: "12px" }}>
-              <Link className={classes.hyperLink}>Click here</Link> to view
-              patient's position odf your Institution's Chest Pain Management
-              Care Flowchart
+              <span
+                className={classes.hyperLink}
+                onClick={chestPainFlowChartPopup}
+              >
+                Click here
+              </span>
+              &nbsp; to view patient's position of your institution's Chest Pain
+              Management Care Flowchart
             </Typography>
           </CardContent>
         </Card>
@@ -240,17 +217,20 @@ export default function RiskScoreAmi() {
           <span style={{ textTransform: "none" }}>Acknowledge Only</span>
         </Button>
       </Grid>
-      {/* </Grid>
-      </Box> */}
-      {/* </Grid> */}
-      {/* </Grid> */}
-      <ModalPopup
+      <MoreInfoModal
         title="Risk Score Calculator"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >
-        <RiskScoreCalculator />
-      </ModalPopup>
+        <RiskScoreContributors />
+      </MoreInfoModal>
+      <ChestFlowchartModal
+        title="Chest Pain Flow Chart"
+        chestPopupOpen={chestPopupOpen}
+        setChestPopupOpen={setChestPopupOpen}
+      >
+        <ChestPainFlowchart />
+      </ChestFlowchartModal>
     </Grid>
   );
 }

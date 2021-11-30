@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ModalPopup(props) {
+export function MoreInfoModal(props) {
   const { title, children, openPopup, setOpenPopup } = props;
   const classes = useStyles();
 
@@ -54,4 +54,31 @@ function ModalPopup(props) {
   );
 }
 
-export default ModalPopup;
+export function ChestFlowchartModal(props) {
+  const { title, children, chestPopupOpen, setChestPopupOpen } = props;
+  const classes = useStyles();
+
+  return (
+    <Dialog
+      open={chestPopupOpen}
+      // maxWidth="md"
+      // scroll="paper"
+      // aria-labelledby="scroll-dialog-title"
+      // aria-describedby="scroll-dialog-description"
+      classes={{ paper: classes.dialogWrapper }}
+    >
+      <DialogTitle className={classes.dialogTitle}>{title}</DialogTitle>
+      <DialogContent>{children}</DialogContent>
+      <DialogActions className={classes.dialogAction}>
+        <Button
+          size="small"
+          variant="contained"
+          color="primary"
+          onClick={() => setChestPopupOpen(false)}
+        >
+          Ok
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+}

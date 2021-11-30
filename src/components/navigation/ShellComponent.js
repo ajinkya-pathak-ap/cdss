@@ -13,11 +13,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ShellComponent(props) {
-  /***********states/effects************/
   const classes = useStyles();
   const [openPopup, setOpenPopup] = useState(false);
-
-  /************globals*************/
 
   const [notify, setNotify] = useState({
     isOpen: false,
@@ -33,7 +30,6 @@ function ShellComponent(props) {
     });
   };
 
-  /************Methods***********/
   function handlePopup() {
     setOpenPopup(true);
   }
@@ -41,7 +37,7 @@ function ShellComponent(props) {
   return (
     <div className="top_mt_100">
       <RiskScoreAmi />
-      {/* <AMICDSInput /> */}
+      <AMICDSInput />
       <AMIConfiguration />
     </div>
   );
