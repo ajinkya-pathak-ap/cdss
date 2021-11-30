@@ -66,7 +66,7 @@ const commonStyles = {
   height: "5rem",
 };
 
-export default function RiskScoreCalculator() {
+export default function RiskScoreContributors() {
   const classes = useStyles();
 
   /** globals */

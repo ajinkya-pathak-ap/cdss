@@ -5,9 +5,12 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
-import ModalPopup from "../../shared/dialog/ModalPopup";
+import { MoreInfoModal } from "../../shared/dialog/ModalPopup";
+import { ChestFlowchartModal } from "../../shared/dialog/ModalPopup";
+
 import { green, lightBlue, purple } from "@material-ui/core/colors";
-import RiskScoreCalculator from "./RiskScoreCalculator";
+import RiskScoreContributors from "./RiskScoreContributors";
+import ChestPainFlowchart from "./ChestPainFlowchart";
 
 import {
   Card,
@@ -68,12 +71,15 @@ const commonStyles = {
 export default function RiskScoreAmi() {
   const classes = useStyles();
 
-  /** globals */
   const [openPopup, setOpenPopup] = useState(false);
+  const [chestPopupOpen, setChestPopupOpen] = useState(false);
 
-  /****************methods**************/
-  const openMoreInfoPopup = () => {
+  const moreInfoPopup = () => {
     setOpenPopup(true);
+  };
+
+  const chestPainFlowChartPopup = () => {
+    setChestPopupOpen(true);
   };
 
   return (
@@ -93,7 +99,11 @@ export default function RiskScoreAmi() {
                 <Grid item xs={10} className={classes.gridcontainer1}>
                   <Card className={classes.gridcontainer}>
                     <CardContent>
-                      <Typography variant="subtitle1" className="fw-bold">
+                      <Typography
+                        variant="subtitle1"
+                        className="fw-bold"
+                        style={{ fontSize: "18px" }}
+                      >
                         Risk Score
                       </Typography>
                       <Typography variant="subtitle1" className="fw-bold">
@@ -139,8 +149,12 @@ export default function RiskScoreAmi() {
                 <Grid item xs={10} className={classes.gridcontainer1}>
                   <Card className={classes.gridcontainer}>
                     <CardContent>
-                      <Typography variant="subtitle1" className="fw-bold">
-                        Risk Score
+                      <Typography
+                        variant="subtitle1"
+                        className="fw-bold"
+                        style={{ fontSize: "18px" }}
+                      >
+                        Risk Score Contributors
                       </Typography>
                       <Typography style={{ fontSize: "12px" }}>
                         The following are the top 3 contributors to the risk
@@ -151,10 +165,10 @@ export default function RiskScoreAmi() {
                         after symptom onset
                       </Typography>
                       <Typography style={{ fontSize: "12px" }}>
-                        2.History of Hypertension
+                        2.History of hypertension
                       </Typography>
                       <Typography style={{ fontSize: "12px" }}>
-                        3.Prior Cardiac History
+                        3.Prior cardiac history
                       </Typography>
                     </CardContent>
                   </Card>
@@ -170,7 +184,7 @@ export default function RiskScoreAmi() {
                   <Button
                     variant="contained"
                     className={classes.buttonColor}
-                    onClick={openMoreInfoPopup}
+                    onClick={moreInfoPopup}
                   >
                     <span style={{ textTransform: "none" }}>More Info</span>
                   </Button>
@@ -181,11 +195,15 @@ export default function RiskScoreAmi() {
               <Grid item xs={12}>
                 <Card className={classes.gridcontainer}>
                   <CardContent>
-                    <Typography variant="subtitle1" className="fw-bold">
+                    <Typography
+                      variant="subtitle1"
+                      className="fw-bold"
+                      style={{ fontSize: "18px" }}
+                    >
                       Guidance
                     </Typography>
                     <Typography style={{ fontSize: "12px" }}>
-                      Based on the patient's risk score and the care path way at
+                      Based on the patient's risk score and the care pathway at
                       your institution, the following course of action is
                       recommended
                     </Typography>
@@ -194,9 +212,14 @@ export default function RiskScoreAmi() {
                       Refer patient for Cardiology Consult
                     </Typography>
                     <Typography style={{ fontSize: "12px" }}>
-                      <Link className={classes.hyperLink}>Click here</Link> to
-                      view patient's position odf your Institution's Chest Pain
-                      Management Care Flowchart
+                      <span
+                        className={classes.hyperLink}
+                        onClick={chestPainFlowChartPopup}
+                      >
+                        Click here
+                      </span>
+                      &nbsp; to view patient's position of your institution's
+                      Chest Pain Management Care Flowchart
                     </Typography>
                   </CardContent>
                 </Card>
@@ -219,13 +242,20 @@ export default function RiskScoreAmi() {
           </Box>
         </Grid>
       </Grid>
-      <ModalPopup
+      <MoreInfoModal
         title="Risk Score Calculator"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >
-        <RiskScoreCalculator />
-      </ModalPopup>
+        <RiskScoreContributors />
+      </MoreInfoModal>
+      <ChestFlowchartModal
+        title="Chest Pain Flow Chart"
+        chestPopupOpen={chestPopupOpen}
+        setChestPopupOpen={setChestPopupOpen}
+      >
+        <ChestPainFlowchart />
+      </ChestFlowchartModal>
     </Container>
   );
 }

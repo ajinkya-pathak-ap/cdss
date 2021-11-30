@@ -63,17 +63,20 @@ const useStyles = makeStyles((theme) => ({
   textFieldColor: {
     backgroundColor: "white",
     border: "solid 1px red",
+    "& .MuiInputLabel-root.Mui-focused": {
+      color: "red",
+    },
   },
 }));
 
 const Gender = [
   {
     value: "1",
-    label: "male",
+    label: "Male",
   },
   {
     value: "2",
-    label: "female",
+    label: "Female",
   },
 ];
 
@@ -168,19 +171,31 @@ export default function AMICSInput() {
                     <TextField
                       className={classes.textFieldColor}
                       id="age"
-                      label="Age"
-                      variant="outlined"
+                      label="Patient's Age"
+                      variant="standard"
+                      value="55"
                     />
+
                     <TextField
                       className={classes.textFieldColor}
                       id="gender"
                       variant="outlined"
-                      select                     
+                      select={true}
+                      fullWidth
+                      SelectProps={{
+                        MenuProps: {
+                          anchorOrigin: {
+                            vertical: "bottom",
+                            horizontal: "center",
+                          },
+                          getContentAnchorEl: null,
+                        },
+                      }}
                       label="Gender"
                       // onChange={handleChange1}
                     >
                       {Gender.map((option) => (
-                        <MenuItem value={option.value}>
+                        <MenuItem key={option.value} value={option.value}>
                           {option.label}
                         </MenuItem>
                       ))}
@@ -189,7 +204,7 @@ export default function AMICSInput() {
                     <TextField
                       className={classes.textFieldColor}
                       id="Race"
-                      select
+                      select={true}
                       label="Race"
                       // onChange={handleChange1}
                     >
@@ -285,7 +300,6 @@ export default function AMICSInput() {
               />
             </FormGroup>
           </Grid>
-          {/* ***************** end of first Box *********************** */}
 
           {/* ***************** start of second Box *********************** */}
           <form className={classes.secondform}>
@@ -299,7 +313,7 @@ export default function AMICSInput() {
                   noValidate
                   autoComplete="off"
                 >
-                  <h4>HsTnl Results</h4>
+                  <h4>hsTnl Results</h4>
 
                   <TextField
                     className={classes.textFieldColor}
@@ -348,7 +362,6 @@ export default function AMICSInput() {
               </Grid>
             </Grid>
           </form>
-          {/* ***************** end of second Box *********************** */}
 
           {/* *****************  start third Box *********************** */}
           <Grid item xs={12}>
@@ -378,7 +391,6 @@ export default function AMICSInput() {
               </Button>
             </Stack>
           </Grid>
-          {/* ***************** end of third Box *********************** */}
         </Grid>
       </Grid>
     </div>

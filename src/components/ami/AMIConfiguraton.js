@@ -143,34 +143,34 @@ export default function AMIConfiguration() {
                             type="text"
                             id="pin"
                             name="pin"
-                            maxlength="4"
+                            maxLength="4"
                             maxheight="2"
                             size="4"
                           />
-                          <label for="pin">AND</label>
+                          <label htmlFor="pin">AND</label>
                           <input
                             type="text"
                             id="pin"
                             name="pin"
-                            maxlength="4"
+                            maxLength="4"
                             maxheight="2"
                             size="4"
                           />
-                          <label for="pin">AND</label>
+                          <label htmlFor="pin">AND</label>
                           <input
                             type="text"
                             id="pin"
                             name="pin"
-                            maxlength="4"
+                            maxLength="4"
                             maxheight="2"
                             size="4"
                           />
-                          <label for="pin">AND</label>
+                          <label htmlFor="pin">AND</label>
                           <input
                             type="text"
                             id="pin"
                             name="pin"
-                            maxlength="4"
+                            maxLength="4"
                             maxheight="2"
                             size="4"
                           />
@@ -206,34 +206,34 @@ export default function AMIConfiguration() {
                             type="text"
                             id="pin"
                             name="pin"
-                            maxlength="4"
+                            maxLength="4"
                             maxheight="2"
                             size="4"
                           />
-                          <label for="pin">AND</label>
+                          <label htmlFor="pin">AND</label>
                           <input
                             type="text"
                             id="pin"
                             name="pin"
-                            maxlength="4"
+                            maxLength="4"
                             maxheight="2"
                             size="4"
                           />
-                          <label for="pin">AND</label>
+                          <label htmlFor="pin">AND</label>
                           <input
                             type="text"
                             id="pin"
                             name="pin"
-                            maxlength="4"
+                            maxLength="4"
                             maxheight="2"
                             size="4"
                           />
-                          <label for="pin">AND</label>
+                          <label htmlFor="pin">AND</label>
                           <input
                             type="text"
                             id="pin"
                             name="pin"
-                            maxlength="4"
+                            maxLength="4"
                             maxheight="2"
                             size="4"
                           />
@@ -301,30 +301,32 @@ export default function AMIConfiguration() {
                       <br></br>
                       <Grid item xs={12}>
                         <Stack xs={12} direction="row" spacing={2}>
-                          <label for="pin">BETWEEN</label>
+                          <label htmlFor="pin">BETWEEN</label>
                           <input
                             type="text"
                             id="pin"
                             name="pin"
-                            maxlength="4"
+                            maxLength="4"
                             maxheight="2"
                             size="4"
                           />
-                          <label for="pin">And</label>
+                          <label htmlFor="pin">And</label>
                           <input
                             type="text"
                             id="pin"
                             name="pin"
-                            maxlength="4"
+                            maxLength="4"
                             maxheight="2"
                             size="4"
                           />
-                          <label for="pin">risk of MACE within 30 days</label>
+                          <label htmlFor="pin">
+                            risk of MACE within 30 days
+                          </label>
                           <input
                             type="text"
                             id="pin"
                             name="pin"
-                            maxlength="4"
+                            maxLength="4"
                             maxheight="2"
                             size="4"
                           />
@@ -341,30 +343,32 @@ export default function AMIConfiguration() {
                       </Typography>
                       <Grid item xs={12}>
                         <Stack xs={12} direction="row" spacing={2}>
-                          <label for="pin">BETWEEN</label>
+                          <label htmlFor="pin">BETWEEN</label>
                           <input
                             type="text"
                             id="pin"
                             name="pin"
-                            maxlength="4"
+                            maxLength="4"
                             maxheight="2"
                             size="4"
                           />
-                          <label for="pin">And</label>
+                          <label htmlFor="pin">And</label>
                           <input
                             type="text"
                             id="pin"
                             name="pin"
-                            maxlength="4"
+                            maxLength="4"
                             maxheight="2"
                             size="4"
                           />
-                          <label for="pin">risk of MACE within 30 days</label>
+                          <label htmlFor="pin">
+                            risk of MACE within 30 days
+                          </label>
                           <input
                             type="text"
                             id="pin"
                             name="pin"
-                            maxlength="4"
+                            maxLength="4"
                             maxheight="2"
                             size="4"
                           />
