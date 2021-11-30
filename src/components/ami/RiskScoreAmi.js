@@ -206,16 +206,20 @@ export default function RiskScoreAmi() {
         </Card>
       </Grid>
 
-      <Grid item xs={12}>
-        <Button variant="contained" className={classes.buttonColor}>
-          <span style={{ textTransform: "none" }}>
-            Acknowledge and Document
-          </span>
-        </Button>
-        &nbsp;&nbsp;
-        <Button variant="contained" className={classes.buttonColor}>
-          <span style={{ textTransform: "none" }}>Acknowledge Only</span>
-        </Button>
+      <Grid item container spacing={1} md={12}>
+        <Grid item container md={6} xs={12} justify="flex-end">
+          <Button variant="contained" className={classes.buttonColor}>
+            <span style={{ textTransform: "none" }}>
+              Acknowledge and Document
+            </span>
+          </Button>
+        </Grid>
+
+        <Grid item container md={6} xs={12} justify="flex-start">
+          <Button variant="contained" className={classes.buttonColor}>
+            <span style={{ textTransform: "none" }}>Acknowledge only</span>
+          </Button>
+        </Grid>
       </Grid>
       <MoreInfoModal
         title="Risk Score Calculator"

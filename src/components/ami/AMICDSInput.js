@@ -138,7 +138,7 @@ export default function AMICSInput() {
       container
       spacing={4}
       className={classes.root}
-      style={{ backgroundColor: "#6D7F9B", padding: "30px" }}
+      style={{ backgroundColor: "#6D7F9B", padding: "30px", marginTop: "40px" }}
     >
       <Grid
         item
@@ -300,7 +300,7 @@ export default function AMICSInput() {
           <Grid
             container
             className={classes.formgrop}
-            style={{ paddingLeft: "16px" }}
+            style={{ paddingLeft: "16px", marginTop: "14px" }}
           >
             <Grid item xs={6}>
               <Box

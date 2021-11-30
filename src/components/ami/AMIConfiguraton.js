@@ -3,15 +3,16 @@ import { styled } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
-import CssBaseline from "@material-ui/core/CssBaseline";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import ListSubheader from "@mui/material/ListSubheader";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 import Button from "@material-ui/core/Button";
-import ModalPopup from "../../shared/dialog/ModalPopup";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Stack from "@mui/material/Stack";
 import FormGroup from "@mui/material/FormGroup";
-import { green, lightBlue, purple } from "@material-ui/core/colors";
 import TextField from "@mui/material/TextField";
 
 import {
@@ -20,9 +21,6 @@ import {
   makeStyles,
   Typography,
   Link,
-  AppBar,
-  Toolbar,
-  Avatar,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -77,6 +75,7 @@ const commonStyles = {
 
 export default function AMIConfiguration() {
   const [checked, setChecked] = React.useState(true);
+
   /******methods of checkbox********/
   const label = {
     inputProps: { "aria-label": "Checkbox demo" },
@@ -85,10 +84,6 @@ export default function AMIConfiguration() {
     setChecked(event.target.checked);
   };
   const classes = useStyles();
-
-  /** globals */
-
-  /****************methods**************/
 
   return (
     <Grid container item xs={12} spacing={4}>
@@ -103,7 +98,7 @@ export default function AMIConfiguration() {
           <Grid container item xs={12} spacing={2}>
             {/* *****************First container***************** */}
             <Grid container item xs={12}>
-              <Grid item xs={10} className={classes.gridcontainer1}>
+              <Grid item xs={12} className={classes.gridcontainer1}>
                 <Card className={classes.gridcontainer}>
                   <CardContent>
                     <Typography variant="subtitle1" className="fw-bold">
@@ -123,8 +118,15 @@ export default function AMIConfiguration() {
                       }
                       label="All ED admits > 18 years with at least one hsTnl test result  "
                     />
+                    <Button
+                      variant="contained"
+                      className={classes.buttonColor}
+                      style={{ textTransform: "none", marginLeft: "47%" }}
+                    >
+                      Apply
+                    </Button>
                     <Typography
-                      style={{ fontSize: "16px", paddingLeft: "10%" }}
+                      style={{ fontSize: "19px", paddingLeft: "10%" }}
                     >
                       Or
                     </Typography>
@@ -137,59 +139,136 @@ export default function AMIConfiguration() {
                       User defined Rule1
                     </Typography>
                     <Grid item xs={12}>
-                      <Stack xs={12} direction="row" spacing={2}>
-                        <input
-                          type="text"
-                          id="pin"
-                          name="pin"
-                          maxlength="4"
-                          maxheight="2"
-                          size="4"
-                        />
-                        <label for="pin">AND</label>
-                        <input
-                          type="text"
-                          id="pin"
-                          name="pin"
-                          maxlength="4"
-                          maxheight="2"
-                          size="4"
-                        />
-                        <label for="pin">AND</label>
-                        <input
-                          type="text"
-                          id="pin"
-                          name="pin"
-                          maxlength="4"
-                          maxheight="2"
-                          size="4"
-                        />
-                        <label for="pin">AND</label>
-                        <input
-                          type="text"
-                          id="pin"
-                          name="pin"
-                          maxlength="4"
-                          maxheight="2"
-                          size="4"
-                        />
-
-                        <Button
-                          className={classes.buttonColor}
-                          variant="contained"
+                      <FormControl sx={{ m: 1, minWidth: 120, minHeight: 20 }}>
+                        <Select
+                          native
+                          defaultValue="65 years"
+                          id="Age"
+                          label="Age"
                           style={{
-                            textTransform: "none",
-                            backgroundColor: "#414BB2",
-                            alignItems: "right",
+                            backgroundColor: "#fff",
+                            height: "26px",
+                            fontSize: "13px",
                           }}
                         >
-                          Add criteria
-                        </Button>
-                      </Stack>
+                          <option value={1}>Age >=65 years</option>
+                          <option value={2}>Age 18-65 years</option>
+                          <option value={3}>none</option>
+                        </Select>
+                      </FormControl>
+                      <label for="">AND</label>
+                      <FormControl sx={{ m: 1, minWidth: 120, height: "26px" }}>
+                        <Select
+                          native
+                          defaultValue="65 years"
+                          id="Age"
+                          label="Age"
+                          style={{
+                            backgroundColor: "#fff",
+                            height: "26px",
+                            fontSize: "13px",
+                          }}
+                        >
+                          <option value={1}>First hnTnl >5 ng/L</option>
+                          <option value={2}>First hnTnl >20 ng/L</option>
+                          <option value={3}>First hnTnl >10 ng/L</option>
+                        </Select>
+                      </FormControl>
+                      <label for="">AND</label>
+                      <FormControl sx={{ m: 1, minWidth: 120, minHeight: 20 }}>
+                        <Select
+                          native
+                          defaultValue="65 years"
+                          id="Age"
+                          label="Age"
+                          style={{
+                            backgroundColor: "#fff",
+                            height: "26px",
+                            fontSize: "13px",
+                          }}
+                        >
+                          <option value={1}>First hnTnl 50 ng/L</option>
+                          <option value={2}>First hnTnl 50 ng/L</option>
+                        </Select>
+                      </FormControl>
+                      <label for="">AND</label>
+                      <FormControl sx={{ m: 1, minWidth: 120 }}>
+                        <Select
+                          native
+                          defaultValue="65 years"
+                          id="Age"
+                          label="Age"
+                          style={{
+                            backgroundColor: "#fff",
+                            height: "26px",
+                            fontSize: "13px",
+                          }}
+                        >
+                          <option value={1}>symptoms onset > 3 hours</option>
+                          <option value={2}>symptoms onset > 4 hours</option>
+                          <option value={2}>symptoms onset > 5 hours</option>
+                        </Select>
+                      </FormControl>
+
+                      {/* <Stack xs={12} direction="row" spacing={2}> */}
+                      {/* <input
+                          type="text"
+                          id="pin"
+                          name="pin"
+                          maxlength="4"
+                          maxheight="2"
+                          size="4"
+                        />
+                        <label for="pin">AND</label>
+                        <input
+                          type="text"
+                          id="pin"
+                          name="pin"
+                          maxlength="4"
+                          maxheight="2"
+                          size="4"
+                        />
+                        <label for="pin">AND</label>
+                        <input
+                          type="text"
+                          id="pin"
+                          name="pin"
+                          maxlength="4"
+                          maxheight="2"
+                          size="4"
+                        />
+                        <label for="pin">AND</label>
+                        <input
+                          type="text"
+                          id="pin"
+                          name="pin"
+                          maxlength="4"
+                          maxheight="2"
+                          size="4"
+                        /> */}
+                      <Button
+                        className={classes.buttonColor}
+                        variant="contained"
+                        style={{
+                          textTransform: "none",
+                          backgroundColor: "#414BB2",
+                          alignItems: "right",
+                        }}
+                      >
+                        Add criteria
+                      </Button>
+                      <Button
+                        variant="contained"
+                        className={classes.buttonColor}
+                        style={{ textTransform: "none", marginLeft: "4%" }}
+                      >
+                        Apply
+                      </Button>
+                      {/* </Stack> */}
                     </Grid>
                     <Typography
                       style={{
-                        fontSize: "16px",
+                        fontSize: "19px",
                         paddingLeft: "10%",
                         justifyContent: "left",
                       }}
@@ -200,55 +279,92 @@ export default function AMIConfiguration() {
                       User defined Rule2
                     </Typography>
                     <Grid item xs={12}>
-                      <Stack xs={12} direction="row" spacing={2}>
-                        <input
-                          type="text"
-                          id="pin"
-                          name="pin"
-                          maxlength="4"
-                          maxheight="2"
-                          size="4"
-                        />
-                        <label for="pin">AND</label>
-                        <input
-                          type="text"
-                          id="pin"
-                          name="pin"
-                          maxlength="4"
-                          maxheight="2"
-                          size="4"
-                        />
-                        <label for="pin">AND</label>
-                        <input
-                          type="text"
-                          id="pin"
-                          name="pin"
-                          maxlength="4"
-                          maxheight="2"
-                          size="4"
-                        />
-                        <label for="pin">AND</label>
-                        <input
-                          type="text"
-                          id="pin"
-                          name="pin"
-                          maxlength="4"
-                          maxheight="2"
-                          size="4"
-                        />
-
-                        <Button
-                          className={classes.buttonColor}
-                          variant="contained"
+                      <FormControl sx={{ m: 1, minWidth: 120, minHeight: 20 }}>
+                        <Select
+                          native
+                          defaultValue="65 years"
+                          id="Age"
+                          label="Age"
                           style={{
-                            textTransform: "none",
-                            backgroundColor: "#414BB2",
-                            alignItems: "right",
+                            backgroundColor: "#fff",
+                            height: "26px",
+                            fontSize: "13px",
                           }}
                         >
-                          Add criteria
-                        </Button>
-                      </Stack>
+                          <option value={1}>Age >=65 years</option>
+                          <option value={2}>Age 18-65 years</option>
+                        </Select>
+                      </FormControl>
+                      <label for="">AND</label>
+                      <FormControl sx={{ m: 1, minWidth: 120, height: "26px" }}>
+                        <Select
+                          native
+                          defaultValue="65 years"
+                          id="Age"
+                          label="Age"
+                          style={{
+                            backgroundColor: "#fff",
+                            height: "26px",
+                            fontSize: "13px",
+                          }}
+                        >
+                          <option value={1}>First hnTnl >5 ng/L</option>
+                          <option value={2}>First hnTnl >20 ng/L</option>
+                        </Select>
+                      </FormControl>
+                      <label for="">AND</label>
+                      <FormControl sx={{ m: 1, minWidth: 120, minHeight: 20 }}>
+                        <Select
+                          native
+                          defaultValue="65 years"
+                          id="Age"
+                          label="Age"
+                          style={{
+                            backgroundColor: "#fff",
+                            height: "26px",
+                            fontSize: "13px",
+                          }}
+                        >
+                          <option value={1}>First hnTnl 50 ng/L</option>
+                          <option value={2}>First hnTnl 50 ng/L</option>
+                        </Select>
+                      </FormControl>
+                      <label for="">AND</label>
+                      <FormControl sx={{ m: 1, minWidth: 120 }}>
+                        <Select
+                          native
+                          defaultValue="65 years"
+                          id="Age"
+                          label="Age"
+                          style={{
+                            backgroundColor: "#fff",
+                            height: "26px",
+                            fontSize: "13px",
+                          }}
+                        >
+                          <option value={1}>symptoms onset > 3 hours</option>
+                          <option value={2}>symptoms onset > 4 hours</option>
+                          <option value={2}>symptoms onset > 5 hours</option>
+                        </Select>
+                      </FormControl>
+                      <Button
+                        className={classes.buttonColor}
+                        variant="contained"
+                        style={{
+                          textTransform: "none",
+                          backgroundColor: "#414BB2",
+                          alignItems: "right",
+                        }}
+                      >
+                        Add criteria
+                      </Button>
+                      <Button
+                        variant="contained"
+                        className={classes.buttonColor}
+                        style={{ textTransform: "none", marginLeft: "4%" }}
+                      >
+                        Apply
+                      </Button>
                     </Grid>
                     <br></br>
                     <Button
@@ -260,37 +376,19 @@ export default function AMIConfiguration() {
                         alignItems: "right",
                       }}
                     >
-                      Add
+                      Create new user defined rule
                     </Button>
                   </CardContent>
                 </Card>
               </Grid>
 
               {/* ***************** end of User defined rule2 code  ***************** */}
-
-              <Grid
-                container
-                item
-                xs={2}
-                className={classes.gridcontainer1}
-                alignItems="center"
-              >
-                <Button variant="contained" className={classes.buttonColor}>
-                  <span style={{ textTransform: "none" }}>More Info</span>
-                </Button>
-                <Button variant="contained" className={classes.buttonColor}>
-                  <span style={{ textTransform: "none" }}>More Info</span>
-                </Button>
-                <Button variant="contained" className={classes.buttonColor}>
-                  <span style={{ textTransform: "none" }}>More Info</span>
-                </Button>
-              </Grid>
             </Grid>
-            {/* ***************** AND ***************** */}
+            {/* ***************** End of first container ***************** */}
 
             {/* *****************Second container***************** */}
             <Grid container item xs={12}>
-              <Grid item xs={10} className={classes.gridcontainer1}>
+              <Grid item xs={12} className={classes.gridcontainer1}>
                 <Card className={classes.gridcontainer}>
                   <CardContent>
                     <Typography variant="subtitle1" className="fw-bold">
@@ -300,33 +398,38 @@ export default function AMIConfiguration() {
                     <br></br>
                     <Grid item xs={12}>
                       <Stack xs={12} direction="row" spacing={2}>
-                        <label for="pin">BETWEEN</label>
-                        <input
-                          type="text"
-                          id="pin"
-                          name="pin"
-                          maxlength="4"
-                          maxheight="2"
-                          size="4"
+                        <label for="">BETWEEN</label>
+                        <TextField
+                          id="outlined-basic"
+                          variant="standard"
+                          style={{
+                            backgroundColor: "#fff",
+                            height: "26px",
+                            fontSize: "13px",
+                          }}
                         />
-                        <label for="pin">And</label>
-                        <input
-                          type="text"
-                          id="pin"
-                          name="pin"
-                          maxlength="4"
-                          maxheight="2"
-                          size="4"
+                        <label for="">And</label>
+                        <TextField
+                          id="outlined-basic"
+                          variant="standard"
+                          style={{
+                            backgroundColor: "#fff",
+                            height: "26px",
+                            fontSize: "13px",
+                          }}
                         />
-                        <label for="pin">risk of MACE within 30 days</label>
-                        <input
-                          type="text"
-                          id="pin"
-                          name="pin"
-                          maxlength="4"
-                          maxheight="2"
-                          size="4"
-                        />
+                        <label for="">risk of MACE within 30 days</label>
+
+                        <Button
+                          variant="contained"
+                          className={classes.buttonColor}
+                          style={{
+                            textTransform: "none",
+                            marginLeft: "258px",
+                          }}
+                        >
+                          Apply
+                        </Button>
                       </Stack>
                     </Grid>
                     <Typography
@@ -341,32 +444,35 @@ export default function AMIConfiguration() {
                     <Grid item xs={12}>
                       <Stack xs={12} direction="row" spacing={2}>
                         <label for="pin">BETWEEN</label>
-                        <input
-                          type="text"
-                          id="pin"
-                          name="pin"
-                          maxlength="4"
-                          maxheight="2"
-                          size="4"
+                        <TextField
+                          id="1"
+                          variant="standard"
+                          style={{
+                            backgroundColor: "#fff",
+                            height: "26px",
+                            fontSize: "13px",
+                          }}
                         />
                         <label for="pin">And</label>
-                        <input
-                          type="text"
-                          id="pin"
-                          name="pin"
-                          maxlength="4"
-                          maxheight="2"
-                          size="4"
+                        <TextField
+                          id="2"
+                          variant="standard"
+                          style={{
+                            backgroundColor: "#fff",
+                            height: "26px",
+                            fontSize: "13px",
+                          }}
                         />
                         <label for="pin">risk of MACE within 30 days</label>
-                        <input
-                          type="text"
-                          id="pin"
-                          name="pin"
-                          maxlength="4"
-                          maxheight="2"
-                          size="4"
-                        />
+
+                        <Button
+                          variant="contained"
+                          alignItems="end"
+                          className={classes.buttonColor}
+                          style={{ textTransform: "none", marginLeft: "258px" }}
+                        >
+                          Apply
+                        </Button>
                       </Stack>
                     </Grid>
                   </CardContent>
@@ -374,40 +480,17 @@ export default function AMIConfiguration() {
               </Grid>
 
               {/* ***************** end of User defined rule2 code  ***************** */}
-
-              <Grid
-                container
-                item
-                xs={2}
-                className={classes.gridcontainer1}
-                alignItems="center"
-                direction="column"
-              >
-                <Button
-                  variant="contained"
-                  className={classes.buttonColor}
-                  style={{ textTransform: "none", marginTop: "20px" }}
-                >
-                  Apply
-                </Button>
-                <br></br>
-                <Button
-                  variant="contained"
-                  className={classes.buttonColor}
-                  style={{ textTransform: "none" }}
-                >
-                  Apply
-                </Button>
-              </Grid>
             </Grid>
             {/* *****************end of Second container***************** */}
 
+            {/* *****************third container***************** */}
             <Grid item xs={12}>
               <Card className={classes.gridcontainer}>
                 <CardContent>
                   <Typography variant="subtitle1" className="fw-bold">
                     Other Settings
                   </Typography>
+
                   <FormGroup className={classes.formgrop}>
                     <FormControlLabel
                       control={
@@ -448,15 +531,24 @@ export default function AMIConfiguration() {
                 </CardContent>
               </Card>
             </Grid>
+            {/* *****************end of third container***************** */}
+            <Grid item xs={12} container justify="flex-end">
+              <div justifyContent="flex-end">
+                <Button
+                  variant="contained"
+                  style={{
+                    textTransform: "none",
 
-            <Grid item xs={12}>
-              <Button
-                variant="contained"
-                className={classes.buttonColor}
-                style={{ textTransform: "none", justifyItems: "right" }}
-              >
-                More Info
-              </Button>
+                    backgroundColor: "#414BB2",
+                    color: "#fff",
+                    "&:hover": {
+                      backgroundColor: "#414BB2",
+                    },
+                  }}
+                >
+                  Close
+                </Button>
+              </div>
             </Grid>
           </Grid>
         </Box>
