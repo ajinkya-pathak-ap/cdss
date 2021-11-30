@@ -36,9 +36,9 @@ function ShellComponent(props) {
 
   return (
     <div className="top_mt_100">
-      {/* <RiskScoreAmi /> */}
+      <RiskScoreAmi />
       <AMICDSInput />
-      {/* <AMIConfiguration /> */}
+      <AMIConfiguration />
     </div>
   );
 }

@@ -83,164 +83,139 @@ export default function RiskScoreAmi() {
   };
 
   return (
-    <Container>
-      <Grid container spacing={4}>
-        <Grid item sm={12} xs={12} marginTop={10}>
-          <Box
-            sx={{ bgcolor: "#6D7F9B" }}
-            margin={10}
-            paddingLeft={4}
-            paddingRight={4}
-            paddingTop={5}
-          >
-            <Grid container item xs={12} spacing={2}>
-              {/* *****************First container***************** */}
-              <Grid container item xs={12}>
-                <Grid item xs={10} className={classes.gridcontainer1}>
-                  <Card className={classes.gridcontainer}>
-                    <CardContent>
-                      <Typography
-                        variant="subtitle1"
-                        className="fw-bold"
-                        style={{ fontSize: "18px" }}
-                      >
-                        Risk Score
-                      </Typography>
-                      <Typography variant="subtitle1" className="fw-bold">
-                        Patient's Risk of Major Adverse Cardiac Event within 30
-                        days
-                      </Typography>
-                      <Typography style={{ fontSize: "12px" }}>
-                        MACE includes death, AMI, stroke, urgent
-                        re-vascularization
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
+    <Grid
+      lg={12}
+      item
+      container
+      spacing={4}
+      style={{
+        backgroundColor: "#6D7F9B",
+      }}
+    >
+      {/* *****************First container***************** */}
+      <Grid container item xs={12} style={{ margin: "10" }}>
+        <Grid item xs={10} className={classes.gridcontainer1}>
+          <Card className={classes.gridcontainer}>
+            <CardContent>
+              <Typography variant="subtitle1" className="fw-bold">
+                Risk Score
+              </Typography>
+              <Typography variant="subtitle1" className="fw-bold">
+                Patient's Risk of Major Adverse Cardiac Event within 30 days
+              </Typography>
+              <Typography style={{ fontSize: "12px" }}>
+                MACE includes death, AMI, stroke, urgent re-vascularization
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
 
-                <Grid
-                  container
-                  item
-                  xs={2}
-                  className={classes.gridcontainer1}
-                  alignItems="center"
-                >
-                  <Box
-                    sx={{ ...commonStyles, borderRadius: "50%" }}
-                    textAlign="center"
-                  >
-                    <Typography
-                      alignItems="center"
-                      style={{
-                        fontSize: "22px",
-                        lineHeight: "3.5",
-                        fontWeight: "bold",
-                        color: "black",
-                      }}
-                    >
-                      92%
-                    </Typography>
-                  </Box>
-                </Grid>
-              </Grid>
-
-              {/* *****************Second container***************** */}
-              <Grid container item xs={12}>
-                <Grid item xs={10} className={classes.gridcontainer1}>
-                  <Card className={classes.gridcontainer}>
-                    <CardContent>
-                      <Typography
-                        variant="subtitle1"
-                        className="fw-bold"
-                        style={{ fontSize: "18px" }}
-                      >
-                        Risk Score Contributors
-                      </Typography>
-                      <Typography style={{ fontSize: "12px" }}>
-                        The following are the top 3 contributors to the risk
-                        score
-                      </Typography>
-                      <Typography style={{ fontSize: "12px" }}>
-                        1.Troponin change of X ng/L/hour between 0 and 1 hours
-                        after symptom onset
-                      </Typography>
-                      <Typography style={{ fontSize: "12px" }}>
-                        2.History of hypertension
-                      </Typography>
-                      <Typography style={{ fontSize: "12px" }}>
-                        3.Prior cardiac history
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-
-                <Grid
-                  container
-                  item
-                  xs={2}
-                  className={classes.gridcontainer1}
-                  alignItems="center"
-                >
-                  <Button
-                    variant="contained"
-                    className={classes.buttonColor}
-                    onClick={moreInfoPopup}
-                  >
-                    <span style={{ textTransform: "none" }}>More Info</span>
-                  </Button>
-                </Grid>
-              </Grid>
-              {/* *****************Second container***************** */}
-
-              <Grid item xs={12}>
-                <Card className={classes.gridcontainer}>
-                  <CardContent>
-                    <Typography
-                      variant="subtitle1"
-                      className="fw-bold"
-                      style={{ fontSize: "18px" }}
-                    >
-                      Guidance
-                    </Typography>
-                    <Typography style={{ fontSize: "12px" }}>
-                      Based on the patient's risk score and the care pathway at
-                      your institution, the following course of action is
-                      recommended
-                    </Typography>
-
-                    <Typography className={classes.typo}>
-                      Refer patient for Cardiology Consult
-                    </Typography>
-                    <Typography style={{ fontSize: "12px" }}>
-                      <span
-                        className={classes.hyperLink}
-                        onClick={chestPainFlowChartPopup}
-                      >
-                        Click here
-                      </span>
-                      &nbsp; to view patient's position of your institution's
-                      Chest Pain Management Care Flowchart
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-
-              <Grid item xs={12}>
-                <Button variant="contained" className={classes.buttonColor}>
-                  <span style={{ textTransform: "none" }}>
-                    Acknowledge and Document
-                  </span>
-                </Button>
-                &nbsp;&nbsp;
-                <Button variant="contained" className={classes.buttonColor}>
-                  <span style={{ textTransform: "none" }}>
-                    Acknowledge Only
-                  </span>
-                </Button>
-              </Grid>
-            </Grid>
+        <Grid
+          container
+          item
+          xs={2}
+          className={classes.gridcontainer1}
+          alignItems="center"
+        >
+          <Box sx={{ ...commonStyles, borderRadius: "50%" }} textAlign="center">
+            <Typography
+              alignItems="center"
+              style={{
+                fontSize: "22px",
+                lineHeight: "3.5",
+                fontWeight: "bold",
+                color: "black",
+              }}
+            >
+              92%
+            </Typography>
           </Box>
         </Grid>
+      </Grid>
+
+      {/* *****************Second container***************** */}
+      <Grid container item xs={12}>
+        <Grid item xs={10} className={classes.gridcontainer1}>
+          <Card className={classes.gridcontainer}>
+            <CardContent>
+              <Typography variant="subtitle1" className="fw-bold">
+                Risk Score
+              </Typography>
+              <Typography style={{ fontSize: "12px" }}>
+                The following are the top 3 contributors to the risk score
+              </Typography>
+              <Typography style={{ fontSize: "12px" }}>
+                1.Troponin change of X ng/L/hour between 0 and 1 hours after
+                symptom onset
+              </Typography>
+              <Typography style={{ fontSize: "12px" }}>
+                2.History of Hypertension
+              </Typography>
+              <Typography style={{ fontSize: "12px" }}>
+                3.Prior Cardiac History
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid
+          container
+          item
+          xs={2}
+          className={classes.gridcontainer1}
+          alignItems="center"
+        >
+          <Button
+            size="small"
+            variant="contained"
+            className={classes.buttonColor}
+            onClick={moreInfoPopup}
+            style={{ textTransform: "none", marginRight: "5" }}
+          >
+            More Info
+          </Button>
+        </Grid>
+      </Grid>
+      {/* *****************Second container***************** */}
+
+      <Grid item xs={12}>
+        <Card className={classes.gridcontainer}>
+          <CardContent>
+            <Typography variant="subtitle1" className="fw-bold">
+              Guidance
+            </Typography>
+            <Typography style={{ fontSize: "12px" }}>
+              Based on the patient's risk score and the care path way at your
+              institution, the following course of action is recommended
+            </Typography>
+
+            <Typography className={classes.typo}>
+              Refer patient for Cardiology Consult
+            </Typography>
+            <Typography style={{ fontSize: "12px" }}>
+              <span
+                className={classes.hyperLink}
+                onClick={chestPainFlowChartPopup}
+              >
+                Click here
+              </span>
+              &nbsp; to view patient's position of your institution's Chest Pain
+              Management Care Flowchart
+            </Typography>
+          </CardContent>
+        </Card>
+      </Grid>
+
+      <Grid item xs={12}>
+        <Button variant="contained" className={classes.buttonColor}>
+          <span style={{ textTransform: "none" }}>
+            Acknowledge and Document
+          </span>
+        </Button>
+        &nbsp;&nbsp;
+        <Button variant="contained" className={classes.buttonColor}>
+          <span style={{ textTransform: "none" }}>Acknowledge Only</span>
+        </Button>
       </Grid>
       <MoreInfoModal
         title="Risk Score Calculator"
@@ -256,6 +231,6 @@ export default function RiskScoreAmi() {
       >
         <ChestPainFlowchart />
       </ChestFlowchartModal>
-    </Container>
+    </Grid>
   );
 }

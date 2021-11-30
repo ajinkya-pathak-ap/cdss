@@ -91,303 +91,353 @@ export default function AMIConfiguration() {
   /****************methods**************/
 
   return (
-    <Container>
-      <Grid container spacing={4}>
-        <Grid item sm={12} xs={12}>
-          <Box
-            sx={{ bgcolor: "#6D7F9B" }}
-            marginTop={3}
-            paddingLeft={4}
-            paddingRight={4}
-            paddingTop={5}
-          >
-            <Grid container item xs={12} spacing={2}>
-              {/* *****************First container***************** */}
-              <Grid container item xs={12}>
-                <Grid item xs={10} className={classes.gridcontainer1}>
-                  <Card className={classes.gridcontainer}>
-                    <CardContent>
-                      <Typography variant="subtitle1" className="fw-bold">
-                        Generate Risk Score for only Patients meeting criteria
-                      </Typography>
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            {...label}
-                            sx={{
+    <Grid container item xs={12} spacing={4}>
+      <Grid item sm={12} xs={12}>
+        <Box
+          sx={{ bgcolor: "#6D7F9B" }}
+          marginTop={3}
+          paddingLeft={4}
+          paddingRight={4}
+          paddingTop={5}
+        >
+          <Grid container item xs={12} spacing={2}>
+            {/* *****************First container***************** */}
+            <Grid container item xs={12}>
+              <Grid item xs={10} className={classes.gridcontainer1}>
+                <Card className={classes.gridcontainer}>
+                  <CardContent>
+                    <Typography variant="subtitle1" className="fw-bold">
+                      Generate Risk Score for only Patients meeting criteria
+                    </Typography>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          {...label}
+                          sx={{
+                            color: "#fff",
+                            "&.Mui-checked": {
                               color: "#fff",
-                              "&.Mui-checked": {
-                                color: "#fff",
-                              },
-                            }}
-                          />
-                        }
-                        label="All ED admits > 18 years with at least one hsTnl test result  "
-                      />
-                      <Typography
-                        style={{ fontSize: "16px", paddingLeft: "10%" }}
-                      >
-                        Or
-                      </Typography>
-                      <Typography
-                        style={{
-                          fontSize: "10px",
-                          textAlign: "left",
-                        }}
-                      >
-                        User defined Rule1
-                      </Typography>
-                      <Grid item xs={12}>
-                        <Stack xs={12} direction="row" spacing={2}>
-                          <input
-                            type="text"
-                            id="pin"
-                            name="pin"
-                            maxLength="4"
-                            maxheight="2"
-                            size="4"
-                          />
-                          <label htmlFor="pin">AND</label>
-                          <input
-                            type="text"
-                            id="pin"
-                            name="pin"
-                            maxLength="4"
-                            maxheight="2"
-                            size="4"
-                          />
-                          <label htmlFor="pin">AND</label>
-                          <input
-                            type="text"
-                            id="pin"
-                            name="pin"
-                            maxLength="4"
-                            maxheight="2"
-                            size="4"
-                          />
-                          <label htmlFor="pin">AND</label>
-                          <input
-                            type="text"
-                            id="pin"
-                            name="pin"
-                            maxLength="4"
-                            maxheight="2"
-                            size="4"
-                          />
+                            },
+                          }}
+                        />
+                      }
+                      label="All ED admits > 18 years with at least one hsTnl test result  "
+                    />
+                    <Typography
+                      style={{ fontSize: "16px", paddingLeft: "10%" }}
+                    >
+                      Or
+                    </Typography>
+                    <Typography
+                      style={{
+                        fontSize: "10px",
+                        textAlign: "left",
+                      }}
+                    >
+                      User defined Rule1
+                    </Typography>
+                    <Grid item xs={12}>
+                      <Stack xs={12} direction="row" spacing={2}>
+                        <input
+                          type="text"
+                          id="pin"
+                          name="pin"
+                          maxlength="4"
+                          maxheight="2"
+                          size="4"
+                        />
+                        <label for="pin">AND</label>
+                        <input
+                          type="text"
+                          id="pin"
+                          name="pin"
+                          maxlength="4"
+                          maxheight="2"
+                          size="4"
+                        />
+                        <label for="pin">AND</label>
+                        <input
+                          type="text"
+                          id="pin"
+                          name="pin"
+                          maxlength="4"
+                          maxheight="2"
+                          size="4"
+                        />
+                        <label for="pin">AND</label>
+                        <input
+                          type="text"
+                          id="pin"
+                          name="pin"
+                          maxlength="4"
+                          maxheight="2"
+                          size="4"
+                        />
 
-                          <Button
-                            className={classes.buttonColor}
-                            variant="contained"
-                            style={{
-                              textTransform: "none",
-                              backgroundColor: "#414BB2",
-                              alignItems: "right",
-                            }}
-                          >
-                            Add criteria
-                          </Button>
-                        </Stack>
-                      </Grid>
-                      <Typography
-                        style={{
-                          fontSize: "16px",
-                          paddingLeft: "10%",
-                          justifyContent: "left",
-                        }}
-                      >
-                        And
-                      </Typography>
-                      <Typography style={{ fontSize: "10px" }}>
-                        User defined Rule2
-                      </Typography>
-                      <Grid item xs={12}>
-                        <Stack xs={12} direction="row" spacing={2}>
-                          <input
-                            type="text"
-                            id="pin"
-                            name="pin"
-                            maxLength="4"
-                            maxheight="2"
-                            size="4"
-                          />
-                          <label htmlFor="pin">AND</label>
-                          <input
-                            type="text"
-                            id="pin"
-                            name="pin"
-                            maxLength="4"
-                            maxheight="2"
-                            size="4"
-                          />
-                          <label htmlFor="pin">AND</label>
-                          <input
-                            type="text"
-                            id="pin"
-                            name="pin"
-                            maxLength="4"
-                            maxheight="2"
-                            size="4"
-                          />
-                          <label htmlFor="pin">AND</label>
-                          <input
-                            type="text"
-                            id="pin"
-                            name="pin"
-                            maxLength="4"
-                            maxheight="2"
-                            size="4"
-                          />
+                        <Button
+                          className={classes.buttonColor}
+                          variant="contained"
+                          style={{
+                            textTransform: "none",
+                            backgroundColor: "#414BB2",
+                            alignItems: "right",
+                          }}
+                        >
+                          Add criteria
+                        </Button>
+                      </Stack>
+                    </Grid>
+                    <Typography
+                      style={{
+                        fontSize: "16px",
+                        paddingLeft: "10%",
+                        justifyContent: "left",
+                      }}
+                    >
+                      And
+                    </Typography>
+                    <Typography style={{ fontSize: "10px" }}>
+                      User defined Rule2
+                    </Typography>
+                    <Grid item xs={12}>
+                      <Stack xs={12} direction="row" spacing={2}>
+                        <input
+                          type="text"
+                          id="pin"
+                          name="pin"
+                          maxlength="4"
+                          maxheight="2"
+                          size="4"
+                        />
+                        <label for="pin">AND</label>
+                        <input
+                          type="text"
+                          id="pin"
+                          name="pin"
+                          maxlength="4"
+                          maxheight="2"
+                          size="4"
+                        />
+                        <label for="pin">AND</label>
+                        <input
+                          type="text"
+                          id="pin"
+                          name="pin"
+                          maxlength="4"
+                          maxheight="2"
+                          size="4"
+                        />
+                        <label for="pin">AND</label>
+                        <input
+                          type="text"
+                          id="pin"
+                          name="pin"
+                          maxlength="4"
+                          maxheight="2"
+                          size="4"
+                        />
 
-                          <Button
-                            className={classes.buttonColor}
-                            variant="contained"
-                            style={{
-                              textTransform: "none",
-                              backgroundColor: "#414BB2",
-                              alignItems: "right",
-                            }}
-                          >
-                            Add criteria
-                          </Button>
-                        </Stack>
-                      </Grid>
-                      <br></br>
-                      <Button
-                        className={classes.buttonColor}
-                        variant="contained"
-                        style={{
-                          textTransform: "none",
-                          backgroundColor: "#414BB2",
-                          alignItems: "right",
-                        }}
-                      >
-                        Add
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </Grid>
-
-                {/* ***************** end of User defined rule2 code  ***************** */}
-
-                <Grid
-                  container
-                  item
-                  xs={2}
-                  className={classes.gridcontainer1}
-                  alignItems="center"
-                >
-                  <Button variant="contained" className={classes.buttonColor}>
-                    <span style={{ textTransform: "none" }}>More Info</span>
-                  </Button>
-                  <Button variant="contained" className={classes.buttonColor}>
-                    <span style={{ textTransform: "none" }}>More Info</span>
-                  </Button>
-                  <Button variant="contained" className={classes.buttonColor}>
-                    <span style={{ textTransform: "none" }}>More Info</span>
-                  </Button>
-                </Grid>
+                        <Button
+                          className={classes.buttonColor}
+                          variant="contained"
+                          style={{
+                            textTransform: "none",
+                            backgroundColor: "#414BB2",
+                            alignItems: "right",
+                          }}
+                        >
+                          Add criteria
+                        </Button>
+                      </Stack>
+                    </Grid>
+                    <br></br>
+                    <Button
+                      className={classes.buttonColor}
+                      variant="contained"
+                      style={{
+                        textTransform: "none",
+                        backgroundColor: "#414BB2",
+                        alignItems: "right",
+                      }}
+                    >
+                      Add
+                    </Button>
+                  </CardContent>
+                </Card>
               </Grid>
-              {/* ***************** AND ***************** */}
 
-              {/* *****************Second container***************** */}
-              <Grid container item xs={12}>
-                <Grid item xs={10} className={classes.gridcontainer1}>
-                  <Card className={classes.gridcontainer}>
-                    <CardContent>
-                      <Typography variant="subtitle1" className="fw-bold">
-                        Display Risk Score for only Patients meeting the
-                        following criteria
-                      </Typography>
-                      <br></br>
-                      <Grid item xs={12}>
-                        <Stack xs={12} direction="row" spacing={2}>
-                          <label htmlFor="pin">BETWEEN</label>
-                          <input
-                            type="text"
-                            id="pin"
-                            name="pin"
-                            maxLength="4"
-                            maxheight="2"
-                            size="4"
-                          />
-                          <label htmlFor="pin">And</label>
-                          <input
-                            type="text"
-                            id="pin"
-                            name="pin"
-                            maxLength="4"
-                            maxheight="2"
-                            size="4"
-                          />
-                          <label htmlFor="pin">
-                            risk of MACE within 30 days
-                          </label>
-                          <input
-                            type="text"
-                            id="pin"
-                            name="pin"
-                            maxLength="4"
-                            maxheight="2"
-                            size="4"
-                          />
-                        </Stack>
-                      </Grid>
-                      <Typography
-                        style={{
-                          fontSize: "16px",
-                          paddingLeft: "10%",
-                          justifyContent: "left",
-                        }}
-                      >
-                        And
-                      </Typography>
-                      <Grid item xs={12}>
-                        <Stack xs={12} direction="row" spacing={2}>
-                          <label htmlFor="pin">BETWEEN</label>
-                          <input
-                            type="text"
-                            id="pin"
-                            name="pin"
-                            maxLength="4"
-                            maxheight="2"
-                            size="4"
-                          />
-                          <label htmlFor="pin">And</label>
-                          <input
-                            type="text"
-                            id="pin"
-                            name="pin"
-                            maxLength="4"
-                            maxheight="2"
-                            size="4"
-                          />
-                          <label htmlFor="pin">
-                            risk of MACE within 30 days
-                          </label>
-                          <input
-                            type="text"
-                            id="pin"
-                            name="pin"
-                            maxLength="4"
-                            maxheight="2"
-                            size="4"
-                          />
-                        </Stack>
-                      </Grid>
-                    </CardContent>
-                  </Card>
-                </Grid>
+              {/* ***************** end of User defined rule2 code  ***************** */}
 
-                {/* ***************** end of User defined rule2 code  ***************** */}
+              <Grid
+                container
+                item
+                xs={2}
+                className={classes.gridcontainer1}
+                alignItems="center"
+              >
+                <Button variant="contained" className={classes.buttonColor}>
+                  <span style={{ textTransform: "none" }}>More Info</span>
+                </Button>
+                <Button variant="contained" className={classes.buttonColor}>
+                  <span style={{ textTransform: "none" }}>More Info</span>
+                </Button>
+                <Button variant="contained" className={classes.buttonColor}>
+                  <span style={{ textTransform: "none" }}>More Info</span>
+                </Button>
+              </Grid>
+            </Grid>
+            {/* ***************** AND ***************** */}
 
-                <Grid
-                  container
-                  item
-                  xs={2}
-                  className={classes.gridcontainer1}
-                  alignItems="center"
-                  direction="column"
+            {/* *****************Second container***************** */}
+            <Grid container item xs={12}>
+              <Grid item xs={10} className={classes.gridcontainer1}>
+                <Card className={classes.gridcontainer}>
+                  <CardContent>
+                    <Typography variant="subtitle1" className="fw-bold">
+                      Display Risk Score for only Patients meeting the following
+                      criteria
+                    </Typography>
+                    <br></br>
+                    <Grid item xs={12}>
+                      <Stack xs={12} direction="row" spacing={2}>
+                        <label for="pin">BETWEEN</label>
+                        <input
+                          type="text"
+                          id="pin"
+                          name="pin"
+                          maxlength="4"
+                          maxheight="2"
+                          size="4"
+                        />
+                        <label for="pin">And</label>
+                        <input
+                          type="text"
+                          id="pin"
+                          name="pin"
+                          maxlength="4"
+                          maxheight="2"
+                          size="4"
+                        />
+                        <label for="pin">risk of MACE within 30 days</label>
+                        <input
+                          type="text"
+                          id="pin"
+                          name="pin"
+                          maxlength="4"
+                          maxheight="2"
+                          size="4"
+                        />
+                      </Stack>
+                    </Grid>
+                    <Typography
+                      style={{
+                        fontSize: "16px",
+                        paddingLeft: "10%",
+                        justifyContent: "left",
+                      }}
+                    >
+                      And
+                    </Typography>
+                    <Grid item xs={12}>
+                      <Stack xs={12} direction="row" spacing={2}>
+                        <label for="pin">BETWEEN</label>
+                        <input
+                          type="text"
+                          id="pin"
+                          name="pin"
+                          maxlength="4"
+                          maxheight="2"
+                          size="4"
+                        />
+                        <label for="pin">And</label>
+                        <input
+                          type="text"
+                          id="pin"
+                          name="pin"
+                          maxlength="4"
+                          maxheight="2"
+                          size="4"
+                        />
+                        <label for="pin">risk of MACE within 30 days</label>
+                        <input
+                          type="text"
+                          id="pin"
+                          name="pin"
+                          maxlength="4"
+                          maxheight="2"
+                          size="4"
+                        />
+                      </Stack>
+                    </Grid>
+                  </CardContent>
+                </Card>
+              </Grid>
+
+              {/* ***************** end of User defined rule2 code  ***************** */}
+
+              <Grid
+                container
+                item
+                xs={2}
+                className={classes.gridcontainer1}
+                alignItems="center"
+                direction="column"
+              >
+                <Button
+                  variant="contained"
+                  className={classes.buttonColor}
+                  style={{ textTransform: "none", marginTop: "20px" }}
                 >
+                  Apply
+                </Button>
+                <br></br>
+                <Button
+                  variant="contained"
+                  className={classes.buttonColor}
+                  style={{ textTransform: "none" }}
+                >
+                  Apply
+                </Button>
+              </Grid>
+            </Grid>
+            {/* *****************end of Second container***************** */}
+
+            <Grid item xs={12}>
+              <Card className={classes.gridcontainer}>
+                <CardContent>
+                  <Typography variant="subtitle1" className="fw-bold">
+                    Other Settings
+                  </Typography>
+                  <FormGroup className={classes.formgrop}>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          {...label}
+                          sx={{
+                            color: "#fff",
+                            "&.Mui-checked": {
+                              color: "#fff",
+                            },
+                          }}
+                        />
+                      }
+                      label="Document risk score and contributors in EMR  "
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          {...label}
+                          sx={{
+                            color: "#fff",
+                            "&.Mui-checked": {
+                              color: "#fff",
+                            },
+                          }}
+                        />
+                      }
+                      label="Share de-identified data and results with Beckman Coulter "
+                    />
+                  </FormGroup>
                   <Button
                     variant="contained"
                     className={classes.buttonColor}
@@ -395,78 +445,22 @@ export default function AMIConfiguration() {
                   >
                     Apply
                   </Button>
-                  <br></br>
-                  <Button
-                    variant="contained"
-                    className={classes.buttonColor}
-                    style={{ textTransform: "none" }}
-                  >
-                    Apply
-                  </Button>
-                </Grid>
-              </Grid>
-              {/* *****************end of Second container***************** */}
-
-              <Grid item xs={12}>
-                <Card className={classes.gridcontainer}>
-                  <CardContent>
-                    <Typography variant="subtitle1" className="fw-bold">
-                      Other Settings
-                    </Typography>
-                    <FormGroup className={classes.formgrop}>
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            {...label}
-                            sx={{
-                              color: "#fff",
-                              "&.Mui-checked": {
-                                color: "#fff",
-                              },
-                            }}
-                          />
-                        }
-                        label="Document risk score and contributors in EMR  "
-                      />
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            {...label}
-                            sx={{
-                              color: "#fff",
-                              "&.Mui-checked": {
-                                color: "#fff",
-                              },
-                            }}
-                          />
-                        }
-                        label="Share de-identified data and results with Beckman Coulter "
-                      />
-                    </FormGroup>
-                    <Button
-                      variant="contained"
-                      className={classes.buttonColor}
-                      style={{ textTransform: "none", marginTop: "20px" }}
-                    >
-                      Apply
-                    </Button>
-                  </CardContent>
-                </Card>
-              </Grid>
-
-              <Grid item xs={12}>
-                <Button
-                  variant="contained"
-                  className={classes.buttonColor}
-                  style={{ textTransform: "none", justifyItems: "right" }}
-                >
-                  More Info
-                </Button>
-              </Grid>
+                </CardContent>
+              </Card>
             </Grid>
-          </Box>
-        </Grid>
+
+            <Grid item xs={12}>
+              <Button
+                variant="contained"
+                className={classes.buttonColor}
+                style={{ textTransform: "none", justifyItems: "right" }}
+              >
+                More Info
+              </Button>
+            </Grid>
+          </Grid>
+        </Box>
       </Grid>
-    </Container>
+    </Grid>
   );
 }

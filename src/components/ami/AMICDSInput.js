@@ -131,7 +131,6 @@ export default function AMICSInput() {
 
   const onTextChange = () => setTextValue();
 
-  /******methods of checkbox********/
   const label = {
     inputProps: { "aria-label": "Checkbox demo" },
   };
@@ -144,9 +143,6 @@ export default function AMICSInput() {
     setAge(event.target.value);
   };
 
-  // const handleChange1 = (event) => {
-  //   setCurrency(event.target.value);
-  // };
   return (
     <div className={classes.root}>
       <Grid container spacing={2}>
