@@ -266,7 +266,7 @@ export default function Configurations() {
                           alignItems: "right",
                         }}
                       >
-                        Add Add Add Add Add
+                        Add
                       </Button>
                     </CardContent>
                   </Card>
@@ -476,7 +476,7 @@ export default function Configurations() {
                   className={classes.buttonColor}
                   style={{ textTransform: "none", justifyItems: "right" }}
                 >
-                  More Info
+                  Close
                 </Button>
               </Grid>
             </Grid>

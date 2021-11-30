@@ -41,7 +41,7 @@ function ShellComponent(props) {
   return (
     <div className="top_mt_100">
       <RiskScoreAmi />
-      <AMICDSInput />
+      {/* <AMICDSInput /> */}
       <AMIConfiguration />
     </div>
   );
