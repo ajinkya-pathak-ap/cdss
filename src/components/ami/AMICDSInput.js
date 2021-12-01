@@ -166,7 +166,9 @@ export default function AMICSInput() {
             // onChange={handleChange1}
           >
             {Gender.map((option) => (
-              <MenuItem value={option.value}>{option.label}</MenuItem>
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
             ))}
           </TextField>
 
@@ -364,7 +366,7 @@ export default function AMICSInput() {
         {/* *****************  start third Box *********************** */}
         <Grid item xs={12}>
           {/* <Paper className={classes.paper}>1</Paper> */}
-          <Stack xs={12} direction="row" justifyContent="center" spacing={2}>
+          <Stack xs={12} direction="row" justifycontent="center" spacing={2}>
             <Button
               className={classes.buttonColor}
               variant="contained"

@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: "#414BB2",
     },
-    justifyContent: "left",
+    justifycontent: "left",
   },
   hyperLink: {
     color: "white",
@@ -72,6 +72,8 @@ const commonStyles = {
   width: "5rem",
   height: "5rem",
 };
+
+const greaterThanSign = `>`;
 
 export default function AMIConfiguration() {
   const [checked, setChecked] = React.useState(true);
@@ -151,12 +153,14 @@ export default function AMIConfiguration() {
                             fontSize: "13px",
                           }}
                         >
-                          <option value={1}>Age >=65 years</option>
+                          <option value={1}>
+                            Age {greaterThanSign}=65 years
+                          </option>
                           <option value={2}>Age 18-65 years</option>
                           <option value={3}>none</option>
                         </Select>
                       </FormControl>
-                      <label for="">AND</label>
+                      <label htmlFor="">AND</label>
                       <FormControl sx={{ m: 1, minWidth: 120, height: "26px" }}>
                         <Select
                           native
@@ -169,12 +173,18 @@ export default function AMIConfiguration() {
                             fontSize: "13px",
                           }}
                         >
-                          <option value={1}>First hnTnl >5 ng/L</option>
-                          <option value={2}>First hnTnl >20 ng/L</option>
-                          <option value={3}>First hnTnl >10 ng/L</option>
+                          <option value={1}>
+                            First hnTnl {greaterThanSign}5 ng/L
+                          </option>
+                          <option value={2}>
+                            First hnTnl {greaterThanSign}20 ng/L
+                          </option>
+                          <option value={3}>
+                            First hnTnl {greaterThanSign}10 ng/L
+                          </option>
                         </Select>
                       </FormControl>
-                      <label for="">AND</label>
+                      <label htmlFor="">AND</label>
                       <FormControl sx={{ m: 1, minWidth: 120, minHeight: 20 }}>
                         <Select
                           native
@@ -191,7 +201,7 @@ export default function AMIConfiguration() {
                           <option value={2}>First hnTnl 50 ng/L</option>
                         </Select>
                       </FormControl>
-                      <label for="">AND</label>
+                      <label htmlFor="">AND</label>
                       <FormControl sx={{ m: 1, minWidth: 120 }}>
                         <Select
                           native
@@ -204,9 +214,15 @@ export default function AMIConfiguration() {
                             fontSize: "13px",
                           }}
                         >
-                          <option value={1}>symptoms onset > 3 hours</option>
-                          <option value={2}>symptoms onset > 4 hours</option>
-                          <option value={2}>symptoms onset > 5 hours</option>
+                          <option value={1}>
+                            symptoms onset {greaterThanSign} 3 hours
+                          </option>
+                          <option value={2}>
+                            symptoms onset {greaterThanSign} 4 hours
+                          </option>
+                          <option value={2}>
+                            symptoms onset {greaterThanSign} 5 hours
+                          </option>
                         </Select>
                       </FormControl>
 
@@ -219,7 +235,7 @@ export default function AMIConfiguration() {
                           maxheight="2"
                           size="4"
                         />
-                        <label for="pin">AND</label>
+                        <label hhtmlFor="pin">AND</label>
                         <input
                           type="text"
                           id="pin"
@@ -228,7 +244,7 @@ export default function AMIConfiguration() {
                           maxheight="2"
                           size="4"
                         />
-                        <label for="pin">AND</label>
+                        <label hhtmlFor="pin">AND</label>
                         <input
                           type="text"
                           id="pin"
@@ -237,7 +253,7 @@ export default function AMIConfiguration() {
                           maxheight="2"
                           size="4"
                         />
-                        <label for="pin">AND</label>
+                        <label hhtmlFor="pin">AND</label>
                         <input
                           type="text"
                           id="pin"
@@ -270,7 +286,7 @@ export default function AMIConfiguration() {
                       style={{
                         fontSize: "19px",
                         paddingLeft: "10%",
-                        justifyContent: "left",
+                        justifycontent: "left",
                       }}
                     >
                       And
@@ -291,11 +307,13 @@ export default function AMIConfiguration() {
                             fontSize: "13px",
                           }}
                         >
-                          <option value={1}>Age >=65 years</option>
+                          <option value={1}>
+                            Age {greaterThanSign}=65 years
+                          </option>
                           <option value={2}>Age 18-65 years</option>
                         </Select>
                       </FormControl>
-                      <label for="">AND</label>
+                      <label htmlFor="">AND</label>
                       <FormControl sx={{ m: 1, minWidth: 120, height: "26px" }}>
                         <Select
                           native
@@ -308,11 +326,15 @@ export default function AMIConfiguration() {
                             fontSize: "13px",
                           }}
                         >
-                          <option value={1}>First hnTnl >5 ng/L</option>
-                          <option value={2}>First hnTnl >20 ng/L</option>
+                          <option value={1}>
+                            First hnTnl {greaterThanSign}5 ng/L
+                          </option>
+                          <option value={2}>
+                            First hnTnl {greaterThanSign}20 ng/L
+                          </option>
                         </Select>
                       </FormControl>
-                      <label for="">AND</label>
+                      <label htmlFor="">AND</label>
                       <FormControl sx={{ m: 1, minWidth: 120, minHeight: 20 }}>
                         <Select
                           native
@@ -329,7 +351,7 @@ export default function AMIConfiguration() {
                           <option value={2}>First hnTnl 50 ng/L</option>
                         </Select>
                       </FormControl>
-                      <label for="">AND</label>
+                      <label htmlFor="">AND</label>
                       <FormControl sx={{ m: 1, minWidth: 120 }}>
                         <Select
                           native
@@ -342,9 +364,15 @@ export default function AMIConfiguration() {
                             fontSize: "13px",
                           }}
                         >
-                          <option value={1}>symptoms onset > 3 hours</option>
-                          <option value={2}>symptoms onset > 4 hours</option>
-                          <option value={2}>symptoms onset > 5 hours</option>
+                          <option value={1}>
+                            symptoms onset {greaterThanSign} 3 hours
+                          </option>
+                          <option value={2}>
+                            symptoms onset {greaterThanSign} 4 hours
+                          </option>
+                          <option value={2}>
+                            symptoms onset {greaterThanSign} 5 hours
+                          </option>
                         </Select>
                       </FormControl>
                       <Button
@@ -398,7 +426,7 @@ export default function AMIConfiguration() {
                     <br></br>
                     <Grid item xs={12}>
                       <Stack xs={12} direction="row" spacing={2}>
-                        <label for="">BETWEEN</label>
+                        <label htmlFor="">BETWEEN</label>
                         <TextField
                           id="outlined-basic"
                           variant="standard"
@@ -408,7 +436,7 @@ export default function AMIConfiguration() {
                             fontSize: "13px",
                           }}
                         />
-                        <label for="">And</label>
+                        <label htmlFor="">And</label>
                         <TextField
                           id="outlined-basic"
                           variant="standard"
@@ -418,7 +446,7 @@ export default function AMIConfiguration() {
                             fontSize: "13px",
                           }}
                         />
-                        <label for="">risk of MACE within 30 days</label>
+                        <label htmlFor="">risk of MACE within 30 days</label>
 
                         <Button
                           variant="contained"
@@ -436,14 +464,14 @@ export default function AMIConfiguration() {
                       style={{
                         fontSize: "16px",
                         paddingLeft: "10%",
-                        justifyContent: "left",
+                        justifycontent: "left",
                       }}
                     >
                       And
                     </Typography>
                     <Grid item xs={12}>
                       <Stack xs={12} direction="row" spacing={2}>
-                        <label for="pin">BETWEEN</label>
+                        <label htmlFor="pin">BETWEEN</label>
                         <TextField
                           id="1"
                           variant="standard"
@@ -453,7 +481,7 @@ export default function AMIConfiguration() {
                             fontSize: "13px",
                           }}
                         />
-                        <label for="pin">And</label>
+                        <label hhtmlFor="pin">And</label>
                         <TextField
                           id="2"
                           variant="standard"
@@ -463,7 +491,9 @@ export default function AMIConfiguration() {
                             fontSize: "13px",
                           }}
                         />
-                        <label for="pin">risk of MACE within 30 days</label>
+                        <label hhtmlFor="pin">
+                          risk of MACE within 30 days
+                        </label>
 
                         <Button
                           variant="contained"
@@ -533,7 +563,7 @@ export default function AMIConfiguration() {
             </Grid>
             {/* *****************end of third container***************** */}
             <Grid item xs={12} container justify="flex-end">
-              <div justifyContent="flex-end">
+              <div justifycontent="flex-end">
                 <Button
                   variant="contained"
                   style={{
