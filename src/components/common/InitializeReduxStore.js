@@ -26,3 +26,4 @@ const InitializeReduxStore = () => {
 //   mapDispatchToProps
 // )(InitializeReduxStore);
 export default InitializeReduxStore;
+

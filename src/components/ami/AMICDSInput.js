@@ -9,10 +9,7 @@ import Checkbox from "@mui/material/Checkbox";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
-// import CustomizedInputs from "./form";
 import Button from "@mui/material/Button";
-
-// import BasicTextFields from "../AMI/form";
 import { blue, red } from "@material-ui/core/colors";
 import Stack from "@mui/material/Stack";
 import InputLabel from "@mui/material/InputLabel";
