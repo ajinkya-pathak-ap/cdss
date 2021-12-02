@@ -1,21 +1,14 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { useState } from "react";
 import Box from "@material-ui/core/Box";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import { Typography } from "@material-ui/core";
 import Checkbox from "@mui/material/Checkbox";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { blue, red } from "@material-ui/core/colors";
 import Stack from "@mui/material/Stack";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import "./styles.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -111,13 +104,36 @@ export default function AMICSInput() {
   const [checked, setChecked] = React.useState(true);
   const classes = useStyles();
   const [textValue, setTextValue] = useState();
-
   const onTextChange = () => setTextValue();
 
   /******methods of checkbox********/
+  const pageValues = {
+    age: 0,
+    gender: "",
+    race: "",
+    presentingSymptoms: "",
+    symptomOnset: "",
+    riskFactors: "",
+    ekgFindingNoDeviation: true,
+    ekgFindingstDeviation: true,
+    firstDraw: {
+      amount: 1,
+      time: "",
+    },
+    secondDraw: {
+      amount: 1,
+      time: "",
+    },
+    thirdDraw: {
+      amount: 1,
+      time: "",
+    },
+  };
+
   const label = {
     inputProps: { "aria-label": "Checkbox demo" },
   };
+
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
@@ -126,6 +142,8 @@ export default function AMICSInput() {
   const handleChangeSelect = (event) => {
     setAge(event.target.value);
   };
+
+  const resetFields = () => {};
 
   return (
     <Grid
@@ -226,8 +244,6 @@ export default function AMICSInput() {
             select
             label="Risk Factors"
             variant="standard"
-
-            // onChange={handleChange1}
           >
             {riskFactor.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -235,11 +251,7 @@ export default function AMICSInput() {
               </MenuItem>
             ))}
           </TextField>
-          {/* </Box> */}
-          {/* </Grid> */}
-          {/* </Grid> */}
         </form>
-        {/* </Grid> */}
       </Grid>
 
       <Grid
@@ -250,7 +262,6 @@ export default function AMICSInput() {
         xs={12}
         style={{ backgroundColor: "#6D7F9B" }}
       >
-        {/* *****************  first Box *********************** */}
         <Grid
           item
           xs={12}
@@ -360,9 +371,6 @@ export default function AMICSInput() {
           </Grid>
         </form>
         {/* ***************** end of second Box *********************** */}
-
-        {/* ***************** end of second Box *********************** */}
-
         {/* *****************  start third Box *********************** */}
         <Grid item xs={12}>
           {/* <Paper className={classes.paper}>1</Paper> */}
@@ -378,6 +386,7 @@ export default function AMICSInput() {
               className={classes.buttonColor}
               variant="contained"
               style={{ textTransform: "none", backgroundColor: "#414BB2" }}
+              onClick={resetFields}
             >
               Reset
             </Button>
