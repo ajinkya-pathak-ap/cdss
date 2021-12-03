@@ -36,10 +36,10 @@ function ShellComponent(props) {
 
   return (
     <div className="top_mt_100">
-      <h3>Risk Score Output Screen</h3>
+      {/* <h3>Risk Score Output Screen</h3>
       <RiskScoreAmi />
       <h3>AMI CDS Input Screen</h3>
-      <AMICDSInput />
+      <AMICDSInput /> */}
       <h3>Admin Configuration Screen</h3>
       <AMIConfiguration />
     </div>
