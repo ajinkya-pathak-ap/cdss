@@ -163,7 +163,7 @@ export default function AMICSInput() {
         style={{ backgroundColor: "#050038" }}
       >
         <form className={classes.firstform}>
-          <h5 style={{ textAlign: "left", color: "white" }}>Patient History</h5>
+          <h3 style={{ textAlign: "left", color: "white" }}>Patient History</h3>
           <h5 style={{ textAlign: "left", color: "white" }}>
             Demographics Information pulled from EHR
           </h5>
@@ -269,9 +269,9 @@ export default function AMICSInput() {
           style={{ backgroundColor: "#050038", paddingLeft: "16px" }}
         >
           <FormGroup className={classes.formgrop}>
-            <h5 style={{ textAlign: "left", color: "white" }}>
+            <h3 style={{ textAlign: "left", color: "white" }}>
               EKG Findings(Select One)
-            </h5>
+            </h3>
 
             <FormControlLabel
               control={
@@ -321,8 +321,7 @@ export default function AMICSInput() {
                 noValidate
                 autoComplete="off"
               >
-                <h4>HsTnl Results</h4>
-
+                <h3>HsTnl Results</h3>
                 <TextField
                   className={classes.textFieldColor}
                   id="25 ng/L"
@@ -347,7 +346,7 @@ export default function AMICSInput() {
             </Grid>
 
             <Grid item xs={6}>
-              <h4>Draw Time</h4>
+              <h3>Draw Time</h3>
               <TextField
                 className={classes.textFieldColor}
                 id="date1"

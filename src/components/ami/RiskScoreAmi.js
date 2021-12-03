@@ -67,7 +67,7 @@ const commonStyles = {
   width: "5rem",
   height: "5rem",
 };
-
+const greaterThanSymbol = ">";
 export default function RiskScoreAmi() {
   const classes = useStyles();
 
@@ -139,20 +139,20 @@ export default function RiskScoreAmi() {
           <Card className={classes.gridcontainer}>
             <CardContent>
               <Typography variant="subtitle1" className="fw-bold">
-                Risk Score
+                Risk Score Contributors
               </Typography>
               <Typography style={{ fontSize: "12px" }}>
-                The following are the top 3 contributors to the risk score
+                The following are the top three contributors to the risk score
               </Typography>
               <Typography style={{ fontSize: "12px" }}>
-                1.Troponin change of X ng/L/hour between 0 and 1 hours after
-                symptom onset
+                1.Troponin change of {greaterThanSymbol}X ng/L/hour between 0
+                and 1 hours after symptom onset
               </Typography>
               <Typography style={{ fontSize: "12px" }}>
                 2.History of Hypertension
               </Typography>
               <Typography style={{ fontSize: "12px" }}>
-                3.Prior Cardiac History
+                3.Prior cardiac history
               </Typography>
             </CardContent>
           </Card>
@@ -185,7 +185,7 @@ export default function RiskScoreAmi() {
               Guidance
             </Typography>
             <Typography style={{ fontSize: "12px" }}>
-              Based on the patient's risk score and the care path way at your
+              Based on the patient's risk score and the care pathway at your
               institution, the following course of action is recommended
             </Typography>
 

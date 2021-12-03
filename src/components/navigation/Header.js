@@ -217,7 +217,7 @@ export default function PrimarySearchAppBar() {
             component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            Sepsis onset warning system
+            AMI CDS Application
           </Typography>
           <Search>
             <SearchIconWrapper>
