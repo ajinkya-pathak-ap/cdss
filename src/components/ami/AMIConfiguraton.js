@@ -425,15 +425,16 @@ export default function AMIConfiguration() {
                   <FormGroup className={classes.formgrop}>
                     <FormControlLabel
                       control={
-                        <Checkbox
-                          {...label}
-                          sx={{
-                            color: "#fff",
-                            "&.Mui-checked": {
-                              color: "#fff",
-                            },
-                          }}
-                        />
+                        // <Checkbox
+                        //   {...label}
+                        //   sx={{
+                        //     color: "#fff",
+                        //     "&.Mui-checked": {
+                        //       color: "#fff",
+                        //     },
+                        //   }}
+                        // />
+                        <Checkbox {...label} defaultChecked />
                       }
                       label="Document risk score and contributors in EMR  "
                     />
