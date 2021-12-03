@@ -23,6 +23,9 @@ import {
 import { TextFieldsRounded } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
+  mainContainer: {
+    width: "75%",
+  },
   gridcontainer: {
     background: "#050038",
     color: "#fff",
@@ -87,7 +90,7 @@ export default function AMIConfiguration() {
   const classes = useStyles();
 
   return (
-    <Grid container item xs={12} spacing={4}>
+    <Grid container item xs={12} spacing={4} className={classes.mainContainer}>
       <Grid item sm={12} xs={12}>
         <Box
           sx={{ bgcolor: "#6D7F9B" }}
@@ -119,7 +122,6 @@ export default function AMIConfiguration() {
                       }
                       label="All ED admits > 18 years with at least one hsTnl test result  "
                     />
-
                     <Typography
                       style={{ fontSize: "19px", paddingLeft: "10%" }}
                     >
@@ -133,179 +135,77 @@ export default function AMIConfiguration() {
                     >
                       User defined Rules
                     </Typography>
+                    <br />
                     <Grid item xs={12}>
-                      <FormControl sx={{ m: 1, minWidth: 120, minHeight: 20 }}>
-                        <Select
-                          native
-                          defaultValue="65 years"
-                          id="Age"
-                          label="Age"
-                          style={{
-                            backgroundColor: "#fff",
-                            height: "26px",
-                            fontSize: "13px",
-                          }}
-                        >
-                          <option value={1}>
-                            Age {greaterThanSign}=65 years
-                          </option>
-                          <option value={2}>Age 18-65 years</option>
-                          <option value={3}>none</option>
-                        </Select>
-                      </FormControl>
-                      <label htmlFor="">AND</label>
-                      <FormControl sx={{ m: 1, minWidth: 120, height: "26px" }}>
+                      <Stack xs={12} direction="row" spacing={2}>
+                        <label htmlFor="">Rule 1</label>
                         <TextField
-                          native
-                          defaultValue="65 years"
-                          id="Age"
-                          label="Age"
+                          id="outlined-basic"
+                          variant="standard"
                           style={{
                             backgroundColor: "#fff",
                             height: "26px",
                             fontSize: "13px",
                           }}
-                        ></TextField>
-                      </FormControl>
-                      <label htmlFor="">AND</label>
-                      <FormControl sx={{ m: 1, minWidth: 120, minHeight: 20 }}>
-                        <Select
-                          native
-                          defaultValue="65 years"
-                          id="Age"
-                          label="Age"
+                        />
+                        <label htmlFor="">AND</label>
+                        <TextField
+                          id="outlined-basic"
+                          variant="standard"
                           style={{
                             backgroundColor: "#fff",
                             height: "26px",
                             fontSize: "13px",
                           }}
-                        >
-                          <option value={1}>First hnTnl 50 ng/L</option>
-                          <option value={2}>First hnTnl 50 ng/L</option>
-                        </Select>
-                      </FormControl>
-                      {/* <label htmlFor="">AND</label> */}
-                      {/* <FormControl sx={{ m: 1, minWidth: 120 }}>
-                        <Select
-                          native
-                          defaultValue="65 years"
-                          id="Age"
-                          label="Age"
+                        />
+                        <label htmlFor="">AND</label>
+                        <TextField
+                          id="outlined-basic"
+                          variant="standard"
                           style={{
                             backgroundColor: "#fff",
                             height: "26px",
                             fontSize: "13px",
                           }}
-                        >
-                          <option value={1}>
-                            symptoms onset {greaterThanSign} 3 hours
-                          </option>
-                          <option value={2}>
-                            symptoms onset {greaterThanSign} 4 hours
-                          </option>
-                          <option value={2}>
-                            symptoms onset {greaterThanSign} 5 hours
-                          </option>
-                        </Select>
-                      </FormControl> */}
-
-                      {/* </Stack> */}
+                        />
+                      </Stack>
                     </Grid>
-                    {/* <Typography
-                      style={{
-                        fontSize: "19px",
-                        paddingLeft: "10%",
-                        justifycontent: "left",
-                      }}
-                    >
-                      And
-                    </Typography> */}
-                    {/* <Typography style={{ fontSize: "10px" }}>
-                      User defined Rule2
-                    </Typography> */}
+                    <br />
+                    <br />
                     <Grid item xs={12}>
-                      <FormControl sx={{ m: 1, minWidth: 120, minHeight: 20 }}>
-                        <Select
-                          native
-                          defaultValue="65 years"
-                          id="Age"
-                          label="Age"
+                      <Stack xs={12} direction="row" spacing={2}>
+                        <label htmlFor="">Rule 2</label>
+                        <TextField
+                          id="outlined-basic"
+                          variant="standard"
                           style={{
                             backgroundColor: "#fff",
                             height: "26px",
                             fontSize: "13px",
                           }}
-                        >
-                          <option value={1}>
-                            Age {greaterThanSign}=65 years
-                          </option>
-                          <option value={2}>Age 18-65 years</option>
-                        </Select>
-                      </FormControl>
-                      <label htmlFor="">AND</label>
-                      <FormControl sx={{ m: 1, minWidth: 120, height: "26px" }}>
-                        <Select
-                          native
-                          defaultValue="65 years"
-                          id="Age"
-                          label="Age"
+                        />
+                        <label htmlFor="">AND</label>
+                        <TextField
+                          id="outlined-basic"
+                          variant="standard"
                           style={{
                             backgroundColor: "#fff",
                             height: "26px",
                             fontSize: "13px",
                           }}
-                        >
-                          <option value={1}>
-                            First hnTnl {greaterThanSign}5 ng/L
-                          </option>
-                          <option value={2}>
-                            First hnTnl {greaterThanSign}20 ng/L
-                          </option>
-                        </Select>
-                      </FormControl>
-                      <label htmlFor="">AND</label>
-                      <FormControl sx={{ m: 1, minWidth: 120, minHeight: 20 }}>
-                        <Select
-                          native
-                          defaultValue="65 years"
-                          id="Age"
-                          label="Age"
+                        />
+                        <label htmlFor="">AND</label>
+                        <TextField
+                          id="outlined-basic"
+                          variant="standard"
                           style={{
                             backgroundColor: "#fff",
                             height: "26px",
                             fontSize: "13px",
                           }}
-                        >
-                          <option value={1}>First hnTnl 50 ng/L</option>
-                          <option value={2}>First hnTnl 50 ng/L</option>
-                        </Select>
-                      </FormControl>
-                      {/* <label htmlFor="">AND</label> */}
-                      {/* <FormControl sx={{ m: 1, minWidth: 120 }}>
-                        <Select
-                          native
-                          defaultValue="65 years"
-                          id="Age"
-                          label="Age"
-                          style={{
-                            backgroundColor: "#fff",
-                            height: "26px",
-                            fontSize: "13px",
-                          }}
-                        >
-                          <option value={1}>
-                            symptoms onset {greaterThanSign} 3 hours
-                          </option>
-                          <option value={2}>
-                            symptoms onset {greaterThanSign} 4 hours
-                          </option>
-                          <option value={2}>
-                            symptoms onset {greaterThanSign} 5 hours
-                          </option>
-                        </Select>
-                      </FormControl> */}
+                        />
+                      </Stack>
                     </Grid>
-                    <br></br>
                     <Button
                       className={classes.buttonColor}
                       variant="contained"
@@ -325,17 +225,50 @@ export default function AMIConfiguration() {
               {/* ***************** end of User defined rule2 code  ***************** */}
             </Grid>
             {/* ***************** End of first container ***************** */}
-
             {/* *****************Second container***************** */}
             <Grid container item xs={12}>
               <Grid item xs={12} className={classes.gridcontainer1}>
                 <Card className={classes.gridcontainer}>
                   <CardContent>
-                    <Typography variant="subtitle1" className="fw-bold">
+                    <h3 variant="subtitle1" className="fw-bold">
                       Display Risk Score for only Patients meeting the following
                       criteria
+                    </h3>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          {...label}
+                          sx={{
+                            color: "#fff",
+                            "&.Mui-checked": {
+                              color: "#fff",
+                            },
+                          }}
+                        />
+                      }
+                      label="Display ALL Risk Scores"
+                    />
+
+                    <Typography
+                      style={{
+                        fontSize: "19px",
+                        paddingLeft: "10%",
+                        marginTop: 15,
+                      }}
+                    >
+                      Or
                     </Typography>
-                    <br></br>
+                    <br />
+                    <Typography
+                      style={{
+                        fontSize: "18px",
+                        textAlign: "left",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      User Defined Ranges
+                    </Typography>
+                    <br />
                     <Grid item xs={12}>
                       <Stack xs={12} direction="row" spacing={2}>
                         <label htmlFor="">BETWEEN</label>
@@ -395,21 +328,23 @@ export default function AMIConfiguration() {
                         <label hhtmlFor="pin">
                           risk of MACE within 30 days
                         </label>
-
-                        <Button
-                          variant="contained"
-                          alignItems="end"
-                          className={classes.buttonColor}
-                          style={{ textTransform: "none", marginLeft: "258px" }}
-                        >
-                          Apply
-                        </Button>
                       </Stack>
                     </Grid>
+                    <Button
+                      className={classes.buttonColor}
+                      variant="contained"
+                      style={{
+                        textTransform: "none",
+                        backgroundColor: "#414BB2",
+                        marginBottom: "10px",
+                        float: "right",
+                      }}
+                    >
+                      Apply
+                    </Button>
                   </CardContent>
                 </Card>
               </Grid>
-
               {/* ***************** end of User defined rule2 code  ***************** */}
             </Grid>
             {/* *****************end of Second container***************** */}
@@ -421,12 +356,12 @@ export default function AMIConfiguration() {
                   <Typography variant="subtitle1" className="fw-bold">
                     Other Settings
                   </Typography>
-
                   <FormGroup className={classes.formgrop}>
                     <FormControlLabel
                       control={
                         <Checkbox
                           {...label}
+                          defaultChecked
                           sx={{
                             color: "#fff",
                             "&.Mui-checked": {
@@ -453,9 +388,14 @@ export default function AMIConfiguration() {
                     />
                   </FormGroup>
                   <Button
-                    variant="contained"
                     className={classes.buttonColor}
-                    style={{ textTransform: "none", marginTop: "20px" }}
+                    variant="contained"
+                    style={{
+                      textTransform: "none",
+                      backgroundColor: "#414BB2",
+                      marginBottom: "10px",
+                      float: "right",
+                    }}
                   >
                     Apply
                   </Button>
