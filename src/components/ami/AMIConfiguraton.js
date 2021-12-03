@@ -23,9 +23,7 @@ import {
 import { TextFieldsRounded } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
-  mainContainer: {
-    width: "75%",
-  },
+  mainContainer: {},
   gridcontainer: {
     background: "#050038",
     color: "#fff",
@@ -90,7 +88,14 @@ export default function AMIConfiguration() {
   const classes = useStyles();
 
   return (
-    <Grid container item xs={12} spacing={4} className={classes.mainContainer}>
+    <Grid
+      container
+      item
+      xs={12}
+      spacing={4}
+      className={classes.mainContainer}
+      justifyContent="center"
+    >
       <Grid item sm={12} xs={12}>
         <Box
           sx={{ bgcolor: "#6D7F9B" }}
@@ -129,14 +134,29 @@ export default function AMIConfiguration() {
                     </Typography>
                     <Typography
                       style={{
-                        fontSize: "16px",
+                        fontSize: "18px",
                         textAlign: "left",
+                        fontWeight: "bold",
                       }}
                     >
-                      User defined Rules
+                      User Defined Rules
                     </Typography>
                     <br />
                     <Grid item xs={12}>
+                      <Stack xs={12} direction="row" spacing={2}>
+                        <label htmlFor="" style={{ marginLeft: "140px" }}>
+                          Age
+                        </label>
+
+                        <label htmlFor="" style={{ marginLeft: "170px" }}>
+                          First hsTnl Value
+                        </label>
+
+                        <label htmlFor="" style={{ marginLeft: "130px" }}>
+                          Symptom Onset
+                        </label>
+                      </Stack>
+                      <br />
                       <Stack xs={12} direction="row" spacing={2}>
                         <label htmlFor="">Rule 1</label>
                         <TextField
