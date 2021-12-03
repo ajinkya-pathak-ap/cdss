@@ -3,9 +3,7 @@ import { styled } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import ListSubheader from "@mui/material/ListSubheader";
+
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Button from "@material-ui/core/Button";
@@ -22,6 +20,7 @@ import {
   Typography,
   Link,
 } from "@material-ui/core";
+import { TextFieldsRounded } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   gridcontainer: {
@@ -120,13 +119,7 @@ export default function AMIConfiguration() {
                       }
                       label="All ED admits > 18 years with at least one hsTnl test result  "
                     />
-                    <Button
-                      variant="contained"
-                      className={classes.buttonColor}
-                      style={{ textTransform: "none", marginLeft: "47%" }}
-                    >
-                      Apply
-                    </Button>
+
                     <Typography
                       style={{ fontSize: "19px", paddingLeft: "10%" }}
                     >
@@ -134,11 +127,11 @@ export default function AMIConfiguration() {
                     </Typography>
                     <Typography
                       style={{
-                        fontSize: "10px",
+                        fontSize: "16px",
                         textAlign: "left",
                       }}
                     >
-                      User defined Rule1
+                      User defined Rules
                     </Typography>
                     <Grid item xs={12}>
                       <FormControl sx={{ m: 1, minWidth: 120, minHeight: 20 }}>
@@ -162,7 +155,7 @@ export default function AMIConfiguration() {
                       </FormControl>
                       <label htmlFor="">AND</label>
                       <FormControl sx={{ m: 1, minWidth: 120, height: "26px" }}>
-                        <Select
+                        <TextField
                           native
                           defaultValue="65 years"
                           id="Age"
@@ -172,17 +165,7 @@ export default function AMIConfiguration() {
                             height: "26px",
                             fontSize: "13px",
                           }}
-                        >
-                          <option value={1}>
-                            First hnTnl {greaterThanSign}5 ng/L
-                          </option>
-                          <option value={2}>
-                            First hnTnl {greaterThanSign}20 ng/L
-                          </option>
-                          <option value={3}>
-                            First hnTnl {greaterThanSign}10 ng/L
-                          </option>
-                        </Select>
+                        ></TextField>
                       </FormControl>
                       <label htmlFor="">AND</label>
                       <FormControl sx={{ m: 1, minWidth: 120, minHeight: 20 }}>
@@ -201,8 +184,8 @@ export default function AMIConfiguration() {
                           <option value={2}>First hnTnl 50 ng/L</option>
                         </Select>
                       </FormControl>
-                      <label htmlFor="">AND</label>
-                      <FormControl sx={{ m: 1, minWidth: 120 }}>
+                      {/* <label htmlFor="">AND</label> */}
+                      {/* <FormControl sx={{ m: 1, minWidth: 120 }}>
                         <Select
                           native
                           defaultValue="65 years"
@@ -224,65 +207,11 @@ export default function AMIConfiguration() {
                             symptoms onset {greaterThanSign} 5 hours
                           </option>
                         </Select>
-                      </FormControl>
+                      </FormControl> */}
 
-                      {/* <Stack xs={12} direction="row" spacing={2}> */}
-                      {/* <input
-                          type="text"
-                          id="pin"
-                          name="pin"
-                          maxlength="4"
-                          maxheight="2"
-                          size="4"
-                        />
-                        <label hhtmlFor="pin">AND</label>
-                        <input
-                          type="text"
-                          id="pin"
-                          name="pin"
-                          maxlength="4"
-                          maxheight="2"
-                          size="4"
-                        />
-                        <label hhtmlFor="pin">AND</label>
-                        <input
-                          type="text"
-                          id="pin"
-                          name="pin"
-                          maxlength="4"
-                          maxheight="2"
-                          size="4"
-                        />
-                        <label hhtmlFor="pin">AND</label>
-                        <input
-                          type="text"
-                          id="pin"
-                          name="pin"
-                          maxlength="4"
-                          maxheight="2"
-                          size="4"
-                        /> */}
-                      <Button
-                        className={classes.buttonColor}
-                        variant="contained"
-                        style={{
-                          textTransform: "none",
-                          backgroundColor: "#414BB2",
-                          alignItems: "right",
-                        }}
-                      >
-                        Add criteria
-                      </Button>
-                      <Button
-                        variant="contained"
-                        className={classes.buttonColor}
-                        style={{ textTransform: "none", marginLeft: "4%" }}
-                      >
-                        Apply
-                      </Button>
                       {/* </Stack> */}
                     </Grid>
-                    <Typography
+                    {/* <Typography
                       style={{
                         fontSize: "19px",
                         paddingLeft: "10%",
@@ -290,10 +219,10 @@ export default function AMIConfiguration() {
                       }}
                     >
                       And
-                    </Typography>
-                    <Typography style={{ fontSize: "10px" }}>
+                    </Typography> */}
+                    {/* <Typography style={{ fontSize: "10px" }}>
                       User defined Rule2
-                    </Typography>
+                    </Typography> */}
                     <Grid item xs={12}>
                       <FormControl sx={{ m: 1, minWidth: 120, minHeight: 20 }}>
                         <Select
@@ -351,8 +280,8 @@ export default function AMIConfiguration() {
                           <option value={2}>First hnTnl 50 ng/L</option>
                         </Select>
                       </FormControl>
-                      <label htmlFor="">AND</label>
-                      <FormControl sx={{ m: 1, minWidth: 120 }}>
+                      {/* <label htmlFor="">AND</label> */}
+                      {/* <FormControl sx={{ m: 1, minWidth: 120 }}>
                         <Select
                           native
                           defaultValue="65 years"
@@ -374,25 +303,7 @@ export default function AMIConfiguration() {
                             symptoms onset {greaterThanSign} 5 hours
                           </option>
                         </Select>
-                      </FormControl>
-                      <Button
-                        className={classes.buttonColor}
-                        variant="contained"
-                        style={{
-                          textTransform: "none",
-                          backgroundColor: "#414BB2",
-                          alignItems: "right",
-                        }}
-                      >
-                        Add criteria
-                      </Button>
-                      <Button
-                        variant="contained"
-                        className={classes.buttonColor}
-                        style={{ textTransform: "none", marginLeft: "4%" }}
-                      >
-                        Apply
-                      </Button>
+                      </FormControl> */}
                     </Grid>
                     <br></br>
                     <Button
@@ -401,10 +312,11 @@ export default function AMIConfiguration() {
                       style={{
                         textTransform: "none",
                         backgroundColor: "#414BB2",
-                        alignItems: "right",
+                        marginBottom: "10px",
+                        float: "right",
                       }}
                     >
-                      Create new user defined rule
+                      Apply
                     </Button>
                   </CardContent>
                 </Card>
@@ -447,17 +359,6 @@ export default function AMIConfiguration() {
                           }}
                         />
                         <label htmlFor="">risk of MACE within 30 days</label>
-
-                        <Button
-                          variant="contained"
-                          className={classes.buttonColor}
-                          style={{
-                            textTransform: "none",
-                            marginLeft: "258px",
-                          }}
-                        >
-                          Apply
-                        </Button>
                       </Stack>
                     </Grid>
                     <Typography
