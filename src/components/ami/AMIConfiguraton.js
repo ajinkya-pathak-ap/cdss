@@ -10,49 +10,52 @@ import Stack from "@mui/material/Stack";
 import FormGroup from "@mui/material/FormGroup";
 import TextField from "@mui/material/TextField";
 
-import {
-  Card,
-  CardContent,
-  makeStyles,
-  Typography,
-  Link,
-} from "@material-ui/core";
-import { TextFieldsRounded } from "@material-ui/icons";
+import { Link, useNavigate } from "react-router-dom";
+import { Card, CardContent, makeStyles, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  mainContainer: {},
   gridcontainer: {
     background: "#050038",
     color: "#fff",
     textAlign: "left",
     minHeight: "80px",
   },
+
   gridcontainer1: {
     background: "#050038",
     color: "#fff",
     textAlign: "left",
     minHeight: "80px",
   },
+
   typo: {
     color: "red",
     fontSize: "12px",
   },
+
   buttonColor: {
     backgroundColor: "#414BB2",
+    textDecoration: "none",
     color: "#fff",
     "&:hover": {
       backgroundColor: "#414BB2",
     },
     justifycontent: "left",
   },
+
   hyperLink: {
     color: "white",
     cursor: "pointer",
     textDecoration: "underline",
   },
+
   textFieldColor: {
     width: "5%",
     height: "100px",
+  },
+
+  alignRight: {
+    justifyContent: "flex-end",
   },
 }));
 
@@ -63,32 +66,25 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const commonStyles = {
-  bgcolor: "#f24726",
-  m: 1,
-  width: "5rem",
-  height: "5rem",
-};
-
-const greaterThanSign = `>`;
-
 export default function AMIConfiguration() {
   const [generateRS, setGenerateRS] = useState(false);
   const [displayRS, setDisplayRS] = useState(false);
-
+  const navigate = useNavigate();
   /******methods of checkbox********/
   const label = {
     inputProps: { "aria-label": "Checkbox demo" },
   };
   const handleGeneareRiskScore = (event) => {
     setGenerateRS(event.target.checked);
-    console.log("Risk Score Generation --> 1", generateRS);
   };
 
   const handleDisplayRiskScore = (event) => {
     setDisplayRS(event.target.checked);
-    console.log("Display Risk Score -->", displayRS);
   };
+
+  // const navigateToAmiOutput = () => {
+  //   navigate("/amioutput");
+  // };
 
   const classes = useStyles();
 
@@ -98,8 +94,7 @@ export default function AMIConfiguration() {
       item
       xs={12}
       spacing={4}
-      className={classes.mainContainer}
-      justifyContent="center"
+      justifycontent="center"
     >
       <Grid item sm={12} xs={12}>
         <Box
@@ -250,7 +245,6 @@ export default function AMIConfiguration() {
 
               {/* ***************** end of User defined rule2 code  ***************** */}
             </Grid>
-            {/* ***************** End of first container ***************** */}
             {/* *****************Second container***************** */}
             <Grid container item xs={12}>
               <Grid item xs={12} className={classes.gridcontainer1}>
@@ -342,7 +336,7 @@ export default function AMIConfiguration() {
                             fontSize: "13px",
                           }}
                         />
-                        <label hhtmlFor="pin">And</label>
+                        <label htmlFor="pin">And</label>
                         <TextField
                           id="2"
                           variant="standard"
@@ -352,9 +346,7 @@ export default function AMIConfiguration() {
                             fontSize: "13px",
                           }}
                         />
-                        <label hhtmlFor="pin">
-                          risk of MACE within 30 days
-                        </label>
+                        <label htmlFor="pin">risk of MACE within 30 days</label>
                       </Stack>
                     </Grid>
                     <Button
@@ -374,8 +366,6 @@ export default function AMIConfiguration() {
               </Grid>
               {/* ***************** end of User defined rule2 code  ***************** */}
             </Grid>
-            {/* *****************end of Second container***************** */}
-
             {/* *****************third container***************** */}
             <Grid item xs={12}>
               <Card className={classes.gridcontainer}>
@@ -430,8 +420,8 @@ export default function AMIConfiguration() {
               </Card>
             </Grid>
             {/* *****************end of third container***************** */}
-            <Grid item xs={12} container justify="flex-end">
-              <div justifycontent="flex-end">
+            <Grid item xs={12} container className={classes.alignRight}>
+              <div className={classes.alignRight}>
                 <Button
                   variant="contained"
                   style={{
@@ -443,8 +433,11 @@ export default function AMIConfiguration() {
                       backgroundColor: "#414BB2",
                     },
                   }}
+                  // onClick={navigateToAmiOutput}
                 >
-                  Close
+                  <Link className={classes.buttonColor} to="/amioutput">
+                    <span className="m-2">Close</span>
+                  </Link>
                 </Button>
               </div>
             </Grid>

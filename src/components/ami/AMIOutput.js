@@ -11,13 +11,12 @@ import { ChestFlowchartModal } from "../../shared/dialog/ModalPopup";
 import { green, lightBlue, purple } from "@material-ui/core/colors";
 import RiskScoreContributors from "./RiskScoreContributors";
 import ChestPainFlowchart from "./ChestPainFlowchart";
-
+import { Link } from "react-router-dom";
 import {
   Card,
   CardContent,
   makeStyles,
   Typography,
-  Link,
   AppBar,
   Toolbar,
   Avatar,
@@ -42,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonColor: {
     backgroundColor: "#414BB2",
+    textDecoration: "none",
     color: "#fff",
     "&:hover": {
       backgroundColor: "#414BB2",
@@ -51,6 +51,9 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     cursor: "pointer",
     textDecoration: "underline",
+  },
+  alignRight: {
+    justifyContent: "flex-end",
   },
 }));
 
@@ -78,9 +81,9 @@ export default function AMIOutput() {
     setOpenPopup(true);
   };
 
-  const chestPainFlowChartPopup = () => {
-    setChestPopupOpen(true);
-  };
+  // const chestPainFlowChartPopup = () => {
+  //   setChestPopupOpen(true);
+  // };
 
   return (
     <Grid
@@ -115,11 +118,11 @@ export default function AMIOutput() {
           item
           xs={2}
           className={classes.gridcontainer1}
-          alignItems="center"
+          alignitems="center"
         >
           <Box sx={{ ...commonStyles, borderRadius: "50%" }} textAlign="center">
             <Typography
-              alignItems="center"
+              alignitems="center"
               style={{
                 fontSize: "22px",
                 lineHeight: "3.5",
@@ -163,7 +166,7 @@ export default function AMIOutput() {
           item
           xs={2}
           className={classes.gridcontainer1}
-          alignItems="center"
+          alignitems="center"
         >
           <Button
             size="small"
@@ -172,7 +175,9 @@ export default function AMIOutput() {
             onClick={moreInfoPopup}
             style={{ textTransform: "none", marginRight: "5" }}
           >
-            More Info
+            <Link className={classes.buttonColor} to="/contributors">
+              <span className="m-2">More Info</span>
+            </Link>
           </Button>
         </Grid>
       </Grid>
@@ -188,26 +193,20 @@ export default function AMIOutput() {
               Based on the patient's risk score and the care pathway at your
               institution, the following course of action is recommended
             </Typography>
-
             <Typography className={classes.typo}>
               Refer patient for Cardiology Consult
             </Typography>
-            <Typography style={{ fontSize: "12px" }}>
-              <span
-                className={classes.hyperLink}
-                onClick={chestPainFlowChartPopup}
-              >
-                Click here
-              </span>
-              &nbsp; to view patient's position of your institution's Chest Pain
-              Management Care Flowchart
-            </Typography>
+            <Link className={classes.hyperLink} to="/carepath">
+              Click here
+            </Link>
+            &nbsp; to view patient's position of your institution's Chest Pain
+            Management Care Flowchart
           </CardContent>
         </Card>
       </Grid>
 
       <Grid item container spacing={1} md={12}>
-        <Grid item container md={6} xs={12} justify="flex-end">
+        <Grid item container md={6} xs={12} className={classes.alignRight}>
           <Button variant="contained" className={classes.buttonColor}>
             <span style={{ textTransform: "none" }}>
               Acknowledge and Document
@@ -215,13 +214,13 @@ export default function AMIOutput() {
           </Button>
         </Grid>
 
-        <Grid item container md={6} xs={12} justify="flex-start">
+        <Grid item container md={6} xs={12} justifycontent="flex-start">
           <Button variant="contained" className={classes.buttonColor}>
             <span style={{ textTransform: "none" }}>Acknowledge only</span>
           </Button>
         </Grid>
       </Grid>
-      <MoreInfoModal
+      {/* <MoreInfoModal
         title="Risk Score Calculator"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
@@ -234,7 +233,7 @@ export default function AMIOutput() {
         setChestPopupOpen={setChestPopupOpen}
       >
         <ChestPainFlowchart />
-      </ChestFlowchartModal>
+      </ChestFlowchartModal> */}
     </Grid>
   );
 }
