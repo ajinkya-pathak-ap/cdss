@@ -7,9 +7,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Notification = (props) => {
   const { notify, setNotify } = props;
-
   const classes = useStyles();
-
   const handleClose = (event, reason) => {
     if (reason === "Click away") {
       return;

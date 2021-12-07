@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
+
 import Notification from "../../shared/notification/Notification";
 import ModalPopup from "../../shared/dialog/ModalPopup";
-import RiskScoreAmi from "../ami/RiskScoreAmi";
+
+import AMIOutput from "../ami/AMIOutput";
 import AMICDSInput from "../ami/AMICDSInput";
 import AMIConfiguration from "../ami/AMIConfiguraton";
+import Login from "../common/Login";
+import RiskScoreContributors from "../ami/RiskScoreContributors";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -22,7 +27,7 @@ function ShellComponent(props) {
     type: "",
   });
 
-  const showSnacksBar = (_object) => {
+  const snacksBar = (_object) => {
     setNotify({
       isOpen: true,
       message: _object.message,
@@ -35,14 +40,37 @@ function ShellComponent(props) {
   }
 
   return (
-    <div className="top_mt_100">
-      {/* <h3>Risk Score Output Screen</h3>
-      <RiskScoreAmi />
-      <h3>AMI CDS Input Screen</h3>
-      <AMICDSInput /> */}
-      <h3>Admin Configuration Screen</h3>
-      <AMIConfiguration />
-    </div>
+    <>
+      <Notification notify={notify} setNotify={setNotify} />
+      <Routes>
+        <Route
+          exact
+          path="/"
+          element={<AMIConfiguration notify={snacksBar} />}
+        />
+        <Route exact path="/login" element={<Login notify={snacksBar} />} />
+        <Route
+          exact
+          path="/config"
+          element={<AMIConfiguration notify={snacksBar} />}
+        />
+        <Route
+          exact
+          path="/amioutput"
+          element={<AMIOutput notify={snacksBar} />}
+        />
+        <Route
+          exact
+          path="/contributors"
+          element={<RiskScoreContributors notify={snacksBar} />}
+        />
+        <Route
+          exact
+          path="/amiinput"
+          element={<AMICDSInput notify={snacksBar} />}
+        />
+      </Routes>
+    </>
   );
 }
 
