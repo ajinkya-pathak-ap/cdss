@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     color: "white",
     backgroundColor: "#050038",
-    alignItems: "flex-start",
+    alignitems: "flex-start",
   },
 
   buttonColor: {

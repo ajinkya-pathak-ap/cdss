@@ -54,7 +54,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   position: "absolute",
   pointerEvents: "none",
   display: "flex",
-  alignItems: "center",
+  alignitems: "center",
   justifycontent: "center",
 }));
 
@@ -203,7 +203,7 @@ export default function PrimarySearchAppBar() {
       <AppBar position="static">
         <Toolbar>
           <IconButton
-            size="large"
+            size="medium"
             edge="start"
             color="inherit"
             aria-label="open drawer"
@@ -272,7 +272,7 @@ export default function PrimarySearchAppBar() {
             {/* ********************** */}
 
             <IconButton
-              size="large"
+              size="medium"
               aria-label="show 17 new notifications"
               color="inherit"
             >
@@ -281,7 +281,7 @@ export default function PrimarySearchAppBar() {
               </Badge> */}
             </IconButton>
             <IconButton
-              size="large"
+              size="medium"
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
@@ -294,7 +294,7 @@ export default function PrimarySearchAppBar() {
           </Box>
           {/* <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
-              size="large"
+              size="medium"
               aria-label="show more"
               aria-controls={mobileMenuId}
               aria-haspopup="true"
