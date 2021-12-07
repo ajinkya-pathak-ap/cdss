@@ -321,7 +321,7 @@ export default function AMICSInput() {
                 noValidate
                 autoComplete="off"
               >
-                <h3>HsTnl Results</h3>
+                {/* <h3>HsTnl Results</h3>
                 <TextField
                   className={classes.textFieldColor}
                   id="25 ng/L"
@@ -341,11 +341,32 @@ export default function AMICSInput() {
                   id=" ng/L"
                   label="ng/L"
                   variant="outlined"
-                />
+                /> */}
+                <form className="ui form">
+                  <tbody className={classes.formgrop}>
+                    <tr>
+                      <th> </th>
+                      <th>HsTnl Results</th>
+                      <th>Draw </th>
+                    </tr>
+                    <tr>
+                      <td className="ui header">Name</td>
+
+                      <td>
+                        <input type="text" placeholder="Name" />
+                      </td>
+                      <td className="ui header">Name</td>
+
+                      <td>
+                        <input type="text" placeholder="Name" />
+                      </td>
+                    </tr>
+                  </tbody>
+                </form>
               </Box>
             </Grid>
 
-            <Grid item xs={6}>
+            {/* <Grid item xs={6}>
               <h3>Draw Time</h3>
               <TextField
                 className={classes.textFieldColor}
@@ -366,7 +387,7 @@ export default function AMICSInput() {
                 label="mm:hh:yyyy"
                 variant="outlined"
               />
-            </Grid>
+            </Grid> */}
           </Grid>
         </form>
         {/* ***************** end of second Box *********************** */}
