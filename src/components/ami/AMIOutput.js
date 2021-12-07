@@ -68,7 +68,7 @@ const commonStyles = {
   height: "5rem",
 };
 const greaterThanSymbol = ">";
-export default function RiskScoreAmi() {
+export default function AMIOutput() {
   const classes = useStyles();
 
   const [openPopup, setOpenPopup] = useState(false);
