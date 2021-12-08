@@ -373,25 +373,37 @@ export default function AMICSInput() {
         {/* *****************  start third Box *********************** */}
         <Grid item xs={12}>
           {/* <Paper className={classes.paper}>1</Paper> */}
-          <Stack xs={12} direction="row" justifycontent="center" spacing={2}>
+          <Stack xs={12} direction="row" justifycontent="flex-end" spacing={2}>
             <Button
               className={classes.buttonColor}
               variant="contained"
-              style={{ textTransform: "none", backgroundColor: "#414BB2" }}
+              style={{
+                textTransform: "none",
+                padding: "6px 38px",
+                backgroundColor: "#414BB2",
+              }}
             >
               Exit
             </Button>
             <Button
               className={classes.buttonColor}
               variant="contained"
-              style={{ textTransform: "none", backgroundColor: "#414BB2" }}
+              style={{
+                textTransform: "none",
+                padding: "6px 32px",
+                backgroundColor: "#414BB2",
+              }}
               onClick={resetFields}
             >
               Reset
             </Button>
             <Button
               className={classes.buttonColor}
-              style={{ textTransform: "none", backgroundColor: "#414BB2" }}
+              style={{
+                textTransform: "none",
+                backgroundColor: "#414BB2",
+                padding: "6px 32px",
+              }}
               variant="contained"
               href="#contained-buttons"
             >
