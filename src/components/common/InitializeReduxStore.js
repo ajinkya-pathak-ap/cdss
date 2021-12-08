@@ -22,7 +22,7 @@ const InitializeReduxStore = () => {
 // };
 
 // export default connect(
-//   mapStatetoProps,
+//   mapStatetoProps, 
 //   mapDispatchToProps
 // )(InitializeReduxStore);
 export default InitializeReduxStore;

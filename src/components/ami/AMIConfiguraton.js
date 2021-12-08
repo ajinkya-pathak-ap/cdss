@@ -3,9 +3,6 @@ import { styled } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -76,15 +73,23 @@ const commonStyles = {
 const greaterThanSign = `>`;
 
 export default function AMIConfiguration() {
-  const [checked, setChecked] = React.useState(true);
+  const [generateRS, setGenerateRS] = useState(false);
+  const [displayRS, setDisplayRS] = useState(false);
 
   /******methods of checkbox********/
   const label = {
     inputProps: { "aria-label": "Checkbox demo" },
   };
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
+  const handleGeneareRiskScore = (event) => {
+    setGenerateRS(event.target.checked);
+    console.log("Risk Score Generation --> 1", generateRS);
   };
+
+  const handleDisplayRiskScore = (event) => {
+    setDisplayRS(event.target.checked);
+    console.log("Display Risk Score -->", displayRS);
+  };
+
   const classes = useStyles();
 
   return (
@@ -116,6 +121,7 @@ export default function AMIConfiguration() {
                     <FormControlLabel
                       control={
                         <Checkbox
+                          onChange={handleGeneareRiskScore}
                           {...label}
                           sx={{
                             color: "#fff",
@@ -257,6 +263,7 @@ export default function AMIConfiguration() {
                     <FormControlLabel
                       control={
                         <Checkbox
+                          onChange={handleDisplayRiskScore}
                           {...label}
                           sx={{
                             color: "#fff",
