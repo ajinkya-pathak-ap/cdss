@@ -9,17 +9,8 @@ import Button from "@material-ui/core/Button";
 import ModalPopup from "../../shared/dialog/ModalPopup";
 
 import { green, lightBlue, purple } from "@material-ui/core/colors";
-
-import {
-  Card,
-  CardContent,
-  makeStyles,
-  Typography,
-  Link,
-  AppBar,
-  Toolbar,
-  Avatar,
-} from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { Card, CardContent, makeStyles, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   gridcontainer: {
@@ -45,10 +36,12 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#414BB2",
     },
   },
-  hyperLink: {
-    color: "white",
-    cursor: "pointer",
-    textDecoration: "underline",
+  whiteBtn: {
+    color: "#fff",
+    textDecoration: "none",
+  },
+  alignRight: {
+    justifyContent: "flex-end",
   },
 }));
 
@@ -59,18 +52,8 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const commonStyles = {
-  bgcolor: "#fff",
-  m: 1,
-  width: "5rem",
-  height: "5rem",
-};
-
 export default function RiskScoreContributors() {
   const classes = useStyles();
-
-  /** globals */
-
   /****************methods**************/
 
   return (
@@ -90,12 +73,24 @@ export default function RiskScoreContributors() {
                 <Grid item xs={10} className={classes.gridcontainer1}>
                   <Card className={classes.gridcontainer}>
                     <CardContent>
-                      <Typography style={{ fontSize: "12px" }}>
+                      <Typography style={{ fontSize: "20px" }}>
                         Detailed Information how Risk Score is calculated.
                       </Typography>
                     </CardContent>
                   </Card>
                 </Grid>
+              </Grid>
+
+              <Grid item xs={12} sm={12} className={classes.alignRight}>
+                <Box>
+                  <Grid item xs={12} container className={classes.alignRight}>
+                    <Button variant="contained" className={classes.buttonColor}>
+                      <Link className={classes.whiteBtn} to="/amioutput">
+                        <span className="m-2">OK</span>
+                      </Link>
+                    </Button>
+                  </Grid>
+                </Box>
               </Grid>
             </Grid>
           </Box>

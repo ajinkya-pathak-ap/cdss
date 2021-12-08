@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   item: {
     marginTop: "18px",
     display: "flex",
-    alignItems: "center",
+    alignitems: "center",
     textDecoration: "none",
     [theme.breakpoints.down("sm")]: {
       marginBottom: theme.spacing(4),

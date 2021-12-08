@@ -10,6 +10,7 @@ import AMICDSInput from "../ami/AMICDSInput";
 import AMIConfiguration from "../ami/AMIConfiguraton";
 import Login from "../common/Login";
 import RiskScoreContributors from "../ami/RiskScoreContributors";
+import ChestPainFlowchart from "../ami/ChestPainFlowchart";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -41,35 +42,42 @@ function ShellComponent(props) {
 
   return (
     <>
-      <Notification notify={notify} setNotify={setNotify} />
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={<AMIConfiguration notify={snacksBar} />}
-        />
-        <Route exact path="/login" element={<Login notify={snacksBar} />} />
-        <Route
-          exact
-          path="/config"
-          element={<AMIConfiguration notify={snacksBar} />}
-        />
-        <Route
-          exact
-          path="/amioutput"
-          element={<AMIOutput notify={snacksBar} />}
-        />
-        <Route
-          exact
-          path="/contributors"
-          element={<RiskScoreContributors notify={snacksBar} />}
-        />
-        <Route
-          exact
-          path="/amiinput"
-          element={<AMICDSInput notify={snacksBar} />}
-        />
-      </Routes>
+      <div className="top_mt_100">
+        <Notification notify={notify} setNotify={setNotify} />
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={<AMIConfiguration notify={snacksBar} />}
+          />
+          <Route exact path="/login" element={<Login notify={snacksBar} />} />
+          <Route
+            exact
+            path="/config"
+            element={<AMIConfiguration notify={snacksBar} />}
+          />
+          <Route
+            exact
+            path="/amioutput"
+            element={<AMIOutput notify={snacksBar} />}
+          />
+          <Route
+            exact
+            path="/contributors"
+            element={<RiskScoreContributors notify={snacksBar} />}
+          />
+          <Route
+            exact
+            path="/amiinput"
+            element={<AMICDSInput notify={snacksBar} />}
+          />
+          <Route
+            exact
+            path="/carepath"
+            element={<ChestPainFlowchart notify={snacksBar} />}
+          />
+        </Routes>
+      </div>
     </>
   );
 }
