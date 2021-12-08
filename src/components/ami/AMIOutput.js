@@ -167,16 +167,22 @@ export default function AMIOutput() {
           xs={2}
           className={classes.gridcontainer1}
           alignitems="center"
+          direction="column"
+          justify="flex-end"
         >
           <Button
             size="small"
             variant="contained"
             className={classes.buttonColor}
             onClick={moreInfoPopup}
-            style={{ textTransform: "none", marginRight: "5" }}
+            style={{
+              textTransform: "none",
+              width: "50%",
+              marginBottom: "20px",
+            }}
           >
             <Link className={classes.buttonColor} to="/contributors">
-              <span className="m-2">More Info</span>
+              <span>More Info</span>
             </Link>
           </Button>
         </Grid>
@@ -220,20 +226,6 @@ export default function AMIOutput() {
           </Button>
         </Grid>
       </Grid>
-      {/* <MoreInfoModal
-        title="Risk Score Calculator"
-        openPopup={openPopup}
-        setOpenPopup={setOpenPopup}
-      >
-        <RiskScoreContributors />
-      </MoreInfoModal>
-      <ChestFlowchartModal
-        title="Chest Pain Flow Chart"
-        chestPopupOpen={chestPopupOpen}
-        setChestPopupOpen={setChestPopupOpen}
-      >
-        <ChestPainFlowchart />
-      </ChestFlowchartModal> */}
     </Grid>
   );
 }

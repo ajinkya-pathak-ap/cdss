@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { styled } from "@material-ui/core/styles";
+import { alpha, styled } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -9,9 +9,65 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Stack from "@mui/material/Stack";
 import FormGroup from "@mui/material/FormGroup";
 import TextField from "@mui/material/TextField";
+import { purple } from "@mui/material/colors";
+
+import InputBase from "@mui/material/InputBase";
 
 import { Link, useNavigate } from "react-router-dom";
-import { Card, CardContent, makeStyles, Typography } from "@material-ui/core";
+import {
+  Card,
+  CardContent,
+  makeStyles,
+  Typography,
+  FormControl,
+  InputLabel,
+} from "@material-ui/core";
+
+const BootstrapButton = styled(Button)({
+  boxShadow: "none",
+  textTransform: "none",
+  fontSize: "14px",
+  color: "#fff",
+  padding: "6px 32px",
+  lineHeight: 1.9,
+  backgroundColor: "#414bb2",
+  fontFamily: ["Roboto"].join(","),
+
+  "&:active": {
+    boxShadow: "none",
+    backgroundColor: "#0062cc",
+  },
+  "&:focus": {
+    boxShadow: "0 0 0 0.2rem rgba(0,123,255,.5)",
+  },
+});
+
+const BootstrapInput = styled(InputBase)(({ theme }) => ({
+  "label + &": {
+    marginTop: theme.spacing(3),
+  },
+  "& .MuiInputBase-input": {
+    borderRadius: 4,
+    position: "relative",
+    backgroundColor: "#fff",
+    border: "1px solid #ced4da",
+    fontSize: 14,
+    width: "70%",
+
+    padding: "10px 12px",
+    transition: theme.transitions.create([
+      "border-color",
+      "background-color",
+      "box-shadow",
+    ]),
+    // Use the system font instead of the default Roboto font.
+    fontFamily: ["Roboto"].join(","),
+    "&:focus": {
+      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+      borderColor: theme.palette.primary.main,
+    },
+  },
+}));
 
 const useStyles = makeStyles((theme) => ({
   gridcontainer: {
@@ -89,13 +145,7 @@ export default function AMIConfiguration() {
   const classes = useStyles();
 
   return (
-    <Grid
-      container
-      item
-      xs={12}
-      spacing={4}
-      justifycontent="center"
-    >
+    <Grid container item xs={12} spacing={4} justifycontent="center">
       <Grid item sm={12} xs={12}>
         <Box
           sx={{ bgcolor: "#6D7F9B" }}
@@ -140,93 +190,62 @@ export default function AMIConfiguration() {
                         fontWeight: "bold",
                       }}
                     >
-                      User Defined Rules
+                      User Defined Rule
                     </Typography>
                     <br />
                     <Grid item xs={12}>
-                      <Stack xs={12} direction="row" spacing={2}>
-                        <label htmlFor="" style={{ marginLeft: "140px" }}>
-                          Age
-                        </label>
+                      <Box component="form" noValidate>
+                        <FormControl variant="standard">
+                          <InputLabel
+                            style={{
+                              fontSize: "18px",
+                              fontWeight: "bold",
+                              color: "#fff",
+                              marginLeft: "60px",
+                              width: "80%",
+                            }}
+                            shrink
+                            htmlFor="Age"
+                          >
+                            Age
+                          </InputLabel>
+                          <BootstrapInput
+                            style={{
+                              marginLeft: "20px",
+                            }}
+                            defaultValue=">=65 years"
+                            id="age"
+                          />
+                        </FormControl>
 
-                        <label htmlFor="" style={{ marginLeft: "170px" }}>
-                          First hsTnl Value
-                        </label>
-
-                        <label htmlFor="" style={{ marginLeft: "130px" }}>
-                          Symptom Onset
-                        </label>
-                      </Stack>
-                      <br />
-                      <Stack xs={12} direction="row" spacing={2}>
-                        <label htmlFor="">Rule 1</label>
-                        <TextField
-                          id="outlined-basic"
-                          variant="standard"
-                          style={{
-                            backgroundColor: "#fff",
-                            height: "26px",
-                            fontSize: "13px",
-                          }}
-                        />
-                        <label htmlFor="">AND</label>
-                        <TextField
-                          id="outlined-basic"
-                          variant="standard"
-                          style={{
-                            backgroundColor: "#fff",
-                            height: "26px",
-                            fontSize: "13px",
-                          }}
-                        />
-                        <label htmlFor="">AND</label>
-                        <TextField
-                          id="outlined-basic"
-                          variant="standard"
-                          style={{
-                            backgroundColor: "#fff",
-                            height: "26px",
-                            fontSize: "13px",
-                          }}
-                        />
-                      </Stack>
+                        <label>AND</label>
+                        <FormControl variant="standard">
+                          <InputLabel
+                            style={{
+                              fontSize: "18px",
+                              fontWeight: "bold",
+                              color: "#fff",
+                              marginLeft: "40px",
+                              width: "80%",
+                            }}
+                            shrink
+                            htmlFor="hstnl"
+                          >
+                            First hsTnl Value
+                          </InputLabel>
+                          <BootstrapInput
+                            style={{
+                              marginLeft: "20px",
+                            }}
+                            defaultValue="All Values"
+                            id="hstnl"
+                          />
+                        </FormControl>
+                      </Box>
                     </Grid>
                     <br />
                     <br />
-                    <Grid item xs={12}>
-                      <Stack xs={12} direction="row" spacing={2}>
-                        <label htmlFor="">Rule 2</label>
-                        <TextField
-                          id="outlined-basic"
-                          variant="standard"
-                          style={{
-                            backgroundColor: "#fff",
-                            height: "26px",
-                            fontSize: "13px",
-                          }}
-                        />
-                        <label htmlFor="">AND</label>
-                        <TextField
-                          id="outlined-basic"
-                          variant="standard"
-                          style={{
-                            backgroundColor: "#fff",
-                            height: "26px",
-                            fontSize: "13px",
-                          }}
-                        />
-                        <label htmlFor="">AND</label>
-                        <TextField
-                          id="outlined-basic"
-                          variant="standard"
-                          style={{
-                            backgroundColor: "#fff",
-                            height: "26px",
-                            fontSize: "13px",
-                          }}
-                        />
-                      </Stack>
-                    </Grid>
+
                     <Button
                       className={classes.buttonColor}
                       variant="contained"
@@ -250,14 +269,13 @@ export default function AMIConfiguration() {
               <Grid item xs={12} className={classes.gridcontainer1}>
                 <Card className={classes.gridcontainer}>
                   <CardContent>
-                    <h3 variant="subtitle1" className="fw-bold">
+                    <Typography variant="subtitle1" className="fw-bold">
                       Display Risk Score for only Patients meeting the following
-                      criteria
-                    </h3>
+                    </Typography>
                     <FormControlLabel
                       control={
                         <Checkbox
-                          onChange={handleDisplayRiskScore}
+                          onChange={handleGeneareRiskScore}
                           {...label}
                           sx={{
                             color: "#fff",
@@ -267,19 +285,13 @@ export default function AMIConfiguration() {
                           }}
                         />
                       }
-                      label="Display ALL Risk Scores"
+                      label="Display All Risk Scores"
                     />
-
                     <Typography
-                      style={{
-                        fontSize: "19px",
-                        paddingLeft: "10%",
-                        marginTop: 15,
-                      }}
+                      style={{ fontSize: "19px", paddingLeft: "10%" }}
                     >
                       Or
                     </Typography>
-                    <br />
                     <Typography
                       style={{
                         fontSize: "18px",
@@ -287,68 +299,50 @@ export default function AMIConfiguration() {
                         fontWeight: "bold",
                       }}
                     >
-                      User Defined Ranges
+                      User Defined Range
                     </Typography>
                     <br />
                     <Grid item xs={12}>
-                      <Stack xs={12} direction="row" spacing={2}>
-                        <label htmlFor="">BETWEEN</label>
-                        <TextField
-                          id="outlined-basic"
-                          variant="standard"
-                          style={{
-                            backgroundColor: "#fff",
-                            height: "26px",
-                            fontSize: "13px",
-                          }}
-                        />
-                        <label htmlFor="">And</label>
-                        <TextField
-                          id="outlined-basic"
-                          variant="standard"
-                          style={{
-                            backgroundColor: "#fff",
-                            height: "26px",
-                            fontSize: "13px",
-                          }}
-                        />
-                        <label htmlFor="">risk of MACE within 30 days</label>
-                      </Stack>
+                      <Box component="form" noValidate>
+                        <label>BETWEEN</label>
+                        <FormControl variant="standard">
+                          <BootstrapInput
+                            style={{
+                              marginLeft: "20px",
+                            }}
+                            defaultValue="0%"
+                            id="range"
+                          />
+                        </FormControl>
+                        <label>AND</label>
+                        <FormControl variant="standard">
+                          {/* <InputLabel
+                            style={{
+                              fontSize: "18px",
+                              fontWeight: "bold",
+                              color: "#fff",
+                              marginLeft: "40px",
+                              width: "80%",
+                            }}
+                            shrink
+                            htmlFor="hstnl"
+                          >
+                            First hsTnl Value
+                          </InputLabel> */}
+                          <BootstrapInput
+                            style={{
+                              marginLeft: "20px",
+                            }}
+                            defaultValue="1%"
+                            id="range"
+                          />
+                        </FormControl>
+                        <label>risk of MACE within 30 days</label>
+                      </Box>
                     </Grid>
-                    <Typography
-                      style={{
-                        fontSize: "16px",
-                        paddingLeft: "10%",
-                        justifycontent: "left",
-                      }}
-                    >
-                      And
-                    </Typography>
-                    <Grid item xs={12}>
-                      <Stack xs={12} direction="row" spacing={2}>
-                        <label htmlFor="pin">BETWEEN</label>
-                        <TextField
-                          id="1"
-                          variant="standard"
-                          style={{
-                            backgroundColor: "#fff",
-                            height: "26px",
-                            fontSize: "13px",
-                          }}
-                        />
-                        <label htmlFor="pin">And</label>
-                        <TextField
-                          id="2"
-                          variant="standard"
-                          style={{
-                            backgroundColor: "#fff",
-                            height: "26px",
-                            fontSize: "13px",
-                          }}
-                        />
-                        <label htmlFor="pin">risk of MACE within 30 days</label>
-                      </Stack>
-                    </Grid>
+                    <br />
+                    <br />
+
                     <Button
                       className={classes.buttonColor}
                       variant="contained"
@@ -374,7 +368,7 @@ export default function AMIConfiguration() {
                     Other Settings
                   </Typography>
                   <FormGroup className={classes.formgrop}>
-                    <FormControlLabel
+                    {/* <FormControlLabel
                       control={
                         <Checkbox
                           {...label}
@@ -388,7 +382,7 @@ export default function AMIConfiguration() {
                         />
                       }
                       label="Document risk score and contributors in EMR  "
-                    />
+                    /> */}
                     <FormControlLabel
                       control={
                         <Checkbox
@@ -421,12 +415,31 @@ export default function AMIConfiguration() {
             </Grid>
             {/* *****************end of third container***************** */}
             <Grid item xs={12} container className={classes.alignRight}>
-              <div className={classes.alignRight}>
+              {/* <div className={classes.alignRight}>
                 <Button
                   variant="contained"
                   style={{
                     textTransform: "none",
-
+                    width: "120px",
+                    marginRight: "60px",
+                    backgroundColor: "#414BB2",
+                    color: "#fff",
+                    "&:hover": {
+                      backgroundColor: "#414BB2",
+                    },
+                  }}
+                  // onClick={navigateToAmiOutput}
+                >
+                  <Link className={classes.buttonColor} to="/amioutput">
+                    <span className="m-2">Reset</span>
+                  </Link>
+                </Button>
+                &nbsp;
+                <Button
+                  variant="contained"
+                  style={{
+                    textTransform: "none",
+                    width: "120px",
                     backgroundColor: "#414BB2",
                     color: "#fff",
                     "&:hover": {
@@ -439,7 +452,25 @@ export default function AMIConfiguration() {
                     <span className="m-2">Close</span>
                   </Link>
                 </Button>
-              </div>
+              </div> */}
+              <Stack spacing={4} direction="row">
+                <BootstrapButton
+                  variant="contained"
+                  className={classes.buttonColor}
+                >
+                  <Link className={classes.buttonColor} to="">
+                    <span className="m-2"> Reset</span>
+                  </Link>
+                </BootstrapButton>
+                <BootstrapButton
+                  variant="contained"
+                  className={classes.buttonColor}
+                >
+                  <Link className={classes.buttonColor} to="/amioutput">
+                    <span className="m-2"> Close</span>
+                  </Link>
+                </BootstrapButton>
+              </Stack>
             </Grid>
           </Grid>
         </Box>

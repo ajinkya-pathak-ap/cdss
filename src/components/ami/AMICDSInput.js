@@ -321,7 +321,7 @@ export default function AMICSInput() {
                 noValidate
                 autoComplete="off"
               >
-                {/* <h3>HsTnl Results</h3>
+                <h3>HsTnl Results</h3>
                 <TextField
                   className={classes.textFieldColor}
                   id="25 ng/L"
@@ -341,32 +341,11 @@ export default function AMICSInput() {
                   id=" ng/L"
                   label="ng/L"
                   variant="outlined"
-                /> */}
-                <form className="ui form">
-                  <tbody className={classes.formgrop}>
-                    <tr>
-                      <th> </th>
-                      <th>HsTnl Results</th>
-                      <th>Draw </th>
-                    </tr>
-                    <tr>
-                      <td className="ui header">Name</td>
-
-                      <td>
-                        <input type="text" placeholder="Name" />
-                      </td>
-                      <td className="ui header">Name</td>
-
-                      <td>
-                        <input type="text" placeholder="Name" />
-                      </td>
-                    </tr>
-                  </tbody>
-                </form>
+                />
               </Box>
             </Grid>
 
-            {/* <Grid item xs={6}>
+            <Grid item xs={6}>
               <h3>Draw Time</h3>
               <TextField
                 className={classes.textFieldColor}
@@ -387,32 +366,44 @@ export default function AMICSInput() {
                 label="mm:hh:yyyy"
                 variant="outlined"
               />
-            </Grid> */}
+            </Grid>
           </Grid>
         </form>
         {/* ***************** end of second Box *********************** */}
         {/* *****************  start third Box *********************** */}
         <Grid item xs={12}>
           {/* <Paper className={classes.paper}>1</Paper> */}
-          <Stack xs={12} direction="row" justifycontent="center" spacing={2}>
+          <Stack xs={12} direction="row" justifycontent="flex-end" spacing={2}>
             <Button
               className={classes.buttonColor}
               variant="contained"
-              style={{ textTransform: "none", backgroundColor: "#414BB2" }}
+              style={{
+                textTransform: "none",
+                padding: "6px 38px",
+                backgroundColor: "#414BB2",
+              }}
             >
               Exit
             </Button>
             <Button
               className={classes.buttonColor}
               variant="contained"
-              style={{ textTransform: "none", backgroundColor: "#414BB2" }}
+              style={{
+                textTransform: "none",
+                padding: "6px 32px",
+                backgroundColor: "#414BB2",
+              }}
               onClick={resetFields}
             >
               Reset
             </Button>
             <Button
               className={classes.buttonColor}
-              style={{ textTransform: "none", backgroundColor: "#414BB2" }}
+              style={{
+                textTransform: "none",
+                backgroundColor: "#414BB2",
+                padding: "6px 32px",
+              }}
               variant="contained"
               href="#contained-buttons"
             >
