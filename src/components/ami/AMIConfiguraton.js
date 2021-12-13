@@ -136,6 +136,14 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     fontSize: "20px",
   },
+  holder: {
+    backgroundColor: "#6D7F9B",
+    width: "55%",
+    position: "absolute",
+    left: "0",
+    right: "0",
+    margin: "auto",
+  },
 }));
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -181,9 +189,9 @@ export default function AMIConfiguration() {
         <Box
           sx={{ bgcolor: "#6D7F9B" }}
           marginTop={3}
-          paddingLeft={4}
-          paddingRight={4}
-          paddingTop={5}
+          paddingLeft={2}
+          paddingRight={1}
+          paddingTop={1}
         >
           <Grid container item xs={12} spacing={2}>
             {/* *****************First container***************** */}
@@ -233,6 +241,7 @@ export default function AMIConfiguration() {
                               marginLeft: "60px",
                               width: "80%",
                               fontSize: "20px",
+                              // height: "60px",
                             }}
                             className={classes.headerText}
                             shrink
@@ -243,6 +252,8 @@ export default function AMIConfiguration() {
                           <BootstrapInput
                             style={{
                               marginLeft: "20px",
+                              // height: "10px",
+                              width: "120px",
                             }}
                             defaultValue=">=65 years"
                             id="age"
@@ -256,8 +267,8 @@ export default function AMIConfiguration() {
                               fontSize: "18px",
                               fontWeight: "bold",
                               color: "#fff",
-                              marginLeft: "40px",
-                              width: "80%",
+                              marginLeft: "26px",
+                              width: "100%",
                             }}
                             shrink
                             htmlFor="hstnl"
@@ -267,6 +278,7 @@ export default function AMIConfiguration() {
                           <BootstrapInput
                             style={{
                               marginLeft: "20px",
+                              width: "120px",
                             }}
                             defaultValue="All Values"
                             id="hstnl"
@@ -342,10 +354,16 @@ export default function AMIConfiguration() {
                     <Grid item xs={12}>
                       <Box component="form" noValidate>
                         <label className={classes.headerText}>BETWEEN</label>
-                        <FormControl variant="standard">
+                        <FormControl
+                          variant="standard"
+                          style={{ textAlign: "right" }}
+                        >
                           <BootstrapInput
                             style={{
                               marginLeft: "20px",
+                              marginRight: "10px",
+                              width: "60px",
+                              textAlign: "right",
                             }}
                             defaultValue="0%"
                             id="range"
@@ -369,6 +387,9 @@ export default function AMIConfiguration() {
                           <BootstrapInput
                             style={{
                               marginLeft: "20px",
+                              marginRight: "10px",
+                              width: "55px",
+                              textAlign: "center",
                             }}
                             defaultValue="1%"
                             id="range"
@@ -463,7 +484,7 @@ export default function AMIConfiguration() {
             </Grid>
             {/* *****************end of third container***************** */}
             <Grid item xs={12} container className={classes.alignRight}>
-              <Stack spacing={4} direction="row">
+              <Stack spacing={2} direction="row">
                 <BootstrapButton
                   variant="contained"
                   className={classes.buttonColor}

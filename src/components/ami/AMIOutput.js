@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   circle: {
-    fontSize: "22px",
+    fontSize: "42px",
     lineHeight: "3.5",
     fontWeight: "bold",
     color: "black",
@@ -116,8 +116,8 @@ const Item = styled(Paper)(({ theme }) => ({
 const commonStyles = {
   bgcolor: "#f24726",
   m: 1,
-  width: "5rem",
-  height: "5rem",
+  width: "9rem",
+  height: "9rem",
 };
 
 const greaterThanSymbol = ">";
@@ -256,7 +256,7 @@ export default function AMIOutput() {
         </Card>
       </Grid>
       <Grid item xs={12} container className={classes.alignRight}>
-        <Stack spacing={4} direction="row">
+        <Stack spacing={4} direction="row" container>
           <BootstrapButton variant="contained" className={classes.buttonColor}>
             <Link className={classes.buttonColor} to="">
               <span className="m-2">
@@ -270,6 +270,30 @@ export default function AMIOutput() {
             </Link>
           </BootstrapButton>
         </Stack>
+        {/* <Stack spacing={2} direction="row">
+          <Button
+            style={{
+              backgroundColor: "#414bb2",
+              color: "#fff",
+              fontVariafont: "normal",
+              textDecoration: "none",
+            }}
+            variant="contained"
+          >
+            Acknowledge(to write Risk Contributors)
+          </Button>
+          <Button
+            style={{
+              backgroundColor: "#414bb2",
+              color: "#fff",
+              fontVariafont: "normal",
+              textDecoration: "none",
+            }}
+            variant="contained"
+          >
+            Close
+          </Button>
+        </Stack> */}
       </Grid>
     </Grid>
   );

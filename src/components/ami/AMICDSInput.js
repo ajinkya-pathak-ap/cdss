@@ -83,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
   textFieldColor: {
     backgroundColor: "white",
     textAlign: "right",
+    height: " 2.65em",
     color: "#000",
   },
 
@@ -195,8 +196,9 @@ export default function AMICSInput() {
   const [age, setAge] = useState(25);
   const [gender, setGender] = useState("Male");
   const [race, setRace] = useState("Asian");
-  const [presentingSymptoms, setPresentingSymptoms] =
-    useState("Left Hand Pain");
+  const [presentingSymptoms, setPresentingSymptoms] = useState(
+    "Left Hand Pain"
+  );
   const [symptomOnset, setSymptomOnset] = useState("1 Hrs");
   const [riskFactors, setrRiskFactors] = useState("prior AMI");
 
@@ -416,7 +418,8 @@ export default function AMICSInput() {
                 autoComplete="off"
               >
                 <h3>hsTnl Results</h3>
-                <TextField
+                {/* <TextField
+                  style={{ textAlign: "right" }}
                   className={`${classes.textFieldColor} ${classes.nonDisable}`}
                   id="firstDraw"
                   label="25 ng/L"
@@ -425,48 +428,90 @@ export default function AMICSInput() {
                     readOnly: true,
                   }}
                   disabled
-                />
+                /> */}
                 <TextField
+                  style={{
+                    backgroundColor: "#fff",
+                    // height: "2.65em",
+                  }}
+                  variant="filled"
+                  label="25 ng/L"
+                ></TextField>
+                {/* <TextField
                   className={`${classes.textFieldColor} ${classes.nonDisable}`}
                   id="secondDraw"
                   label="35 ng/L"
                   variant="outlined"
                   disabled
-                />
+                /> */}
                 <TextField
+                  style={{
+                    backgroundColor: "#fff",
+                    // height: "2.65em",
+                  }}
+                  variant="filled"
+                  label="35 ng/L"
+                ></TextField>
+                {/* <TextField
                   className={`${classes.textFieldColor} ${classes.nonDisable}`}
                   id="thirdDraw"
                   label="ng/L"
                   variant="outlined"
                   disabled
-                />
+                /> */}
+                <TextField
+                  style={{
+                    backgroundColor: "#fff",
+                    // height: "2.65em",
+                  }}
+                  variant="filled"
+                  label=" ng/L"
+                ></TextField>
               </Box>
             </Grid>
 
             <Grid item xs={6}>
               <h3>Draw Time</h3>
-              <TextField
+              {/* <TextField
                 className={`${classes.textFieldColor} ${classes.nonDisable}`}
                 id="date1"
                 label="10/26/2021,20:40"
                 variant="outlined"
                 disabled
-              />
-
+              /> */}
               <TextField
+                style={{
+                  backgroundColor: "#fff",
+                  // height: "2.65em",
+                }}
+                variant="filled"
+                label="10/26/2021,20:40"
+              ></TextField>
+
+              {/* <TextField
                 className={`${classes.textFieldColor} ${classes.nonDisable}`}
                 id="date2"
                 label="10/26/2021,23:10"
                 variant="outlined"
                 disabled
-              />
+              /> */}
               <TextField
-                className={`${classes.textFieldColor} ${classes.nonDisable}`}
-                id="date3"
-                label="mm:hh:yyyy"
-                variant="outlined"
-                disabled
-              />
+                style={{
+                  backgroundColor: "#fff",
+                  // height: "2.65em",
+                }}
+                variant="filled"
+                label="10/26/2021,20:40"
+              ></TextField>
+
+              <TextField
+                style={{
+                  backgroundColor: "#fff",
+                  // height: "2.65em",
+                }}
+                variant="filled"
+                label="10/26/2021,20:40"
+              ></TextField>
             </Grid>
           </Grid>
         </form>
