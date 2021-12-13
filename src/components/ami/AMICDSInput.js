@@ -10,12 +10,53 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import MenuItem from "@mui/material/MenuItem";
 import "./styles.css";
+import { FormControl, Select, Typography } from "@material-ui/core";
+import { alpha, styled } from "@material-ui/core/styles";
+import InputBase from "@mui/material/InputBase";
 
+const BootstrapInput = styled(InputBase)(({ theme }) => ({
+  "label + &": {
+    marginTop: theme.spacing(3),
+  },
+  "& .MuiInputBase-input": {
+    borderRadius: 4,
+    position: "relative",
+    backgroundColor: "#fff",
+    border: "1px solid #ced4da",
+    fontSize: 14,
+    width: "70%",
+
+    padding: "10px 12px",
+    transition: theme.transitions.create([
+      "border-color",
+      "background-color",
+      "box-shadow",
+    ]),
+    // Use the system font instead of the default Roboto font.
+    fontFamily: ["Roboto"].join(","),
+    "&:focus": {
+      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+      borderColor: theme.palette.primary.main,
+    },
+  },
+}));
 const useStyles = makeStyles((theme) => ({
+  holder: {
+    backgroundColor: "#6D7F9B",
+    width: "70%",
+    position: "absolute",
+    left: "0",
+    right: "0",
+    margin: "auto",
+    [theme.breakpoints.down("sm")]: {
+      width: "90%",
+    },
+  },
   firstform: {
     "& .MuiFormControl-root": {
-      width: "70%",
+      width: "90%",
       margin: theme.spacing(1),
+      float: "left",
     },
   },
   secondform: {
@@ -42,6 +83,24 @@ const useStyles = makeStyles((theme) => ({
   textFieldColor: {
     backgroundColor: "white",
     textAlign: "right",
+    color: "#000",
+  },
+
+  headerText: {
+    fontWeight: "bold",
+    fontSize: "20px",
+    marginBottom: "15px",
+    color: "#fff",
+    textAlign: "left",
+  },
+  headerTextThree: {
+    fontSize: "14px",
+    color: "#fff",
+    textAlign: "left",
+    marginLeft: "8px",
+  },
+  nonDisable: {
+    color: "rgba(0, 0, 0, 0.38) !important",
   },
 }));
 
@@ -101,10 +160,7 @@ const time = [
 ];
 
 export default function AMICSInput() {
-  const [checked, setChecked] = React.useState(true);
   const classes = useStyles();
-  const [textValue, setTextValue] = useState();
-  const onTextChange = () => setTextValue();
 
   /******methods of checkbox********/
   const pageValues = {
@@ -134,16 +190,35 @@ export default function AMICSInput() {
     inputProps: { "aria-label": "Checkbox demo" },
   };
 
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
-  const [age, setAge] = React.useState("");
-
-  const handleChangeSelect = (event) => {
-    setAge(event.target.value);
-  };
-
   const resetFields = () => {};
+
+  const [age, setAge] = useState(25);
+  const [gender, setGender] = useState("Male");
+  const [race, setRace] = useState("Asian");
+  const [presentingSymptoms, setPresentingSymptoms] =
+    useState("Left Hand Pain");
+  const [symptomOnset, setSymptomOnset] = useState("1 Hrs");
+  const [riskFactors, setrRiskFactors] = useState("prior AMI");
+
+  function handleAge(e) {
+    setAge(e.target.value);
+  }
+  function handleGender(e) {
+    setGender(e.target.value);
+  }
+  function handleRace(e) {
+    setRace(e.target.value);
+  }
+
+  function handlePresentingSymptoms(e) {
+    setPresentingSymptoms(e.target.value);
+  }
+  function handleSymptomOnset(e) {
+    setSymptomOnset(e.target.value);
+  }
+  function handleRiskFactors(e) {
+    setrRiskFactors(e.target.value);
+  }
 
   return (
     <Grid
@@ -152,8 +227,8 @@ export default function AMICSInput() {
       item
       container
       spacing={4}
-      className={classes.root}
-      style={{ backgroundColor: "#6D7F9B", padding: "30px", marginTop: "40px" }}
+      className={`${classes.root} ${classes.holder}`}
+      style={{ backgroundColor: "#6D7F9B", padding: "30px", marginTop: "30px" }}
     >
       <Grid
         item
@@ -163,47 +238,62 @@ export default function AMICSInput() {
         style={{ backgroundColor: "#050038" }}
       >
         <form className={classes.firstform}>
-          <h3 style={{ textAlign: "left", color: "white" }}>Patient History</h3>
-          <h5 style={{ textAlign: "left", color: "white" }}>
+          <Typography className={classes.headerText}>
+            Patient History
+          </Typography>
+
+          <Typography className={classes.headerTextThree}>
             Demographics Information pulled from EHR
-          </h5>
+          </Typography>
 
           <TextField
             className={classes.textFieldColor}
             id="age"
-            label="Age"
-            variant="standard"
-            type="number"
-          />
+            // select
+            label="Patient Age*"
+            variant="outlined"
+            value={age}
+            onChange={handleAge}
+            InputProps={{
+              inputProps: {
+                style: { marginTop: "4px" },
+              },
+            }}
+          >
+            <MenuItem value="25">25</MenuItem>
+          </TextField>
+
           <TextField
             className={classes.textFieldColor}
             id="gender"
-            variant="standard"
             select
             label="Gender"
-            // onChange={handleChange1}
+            variant="standard"
+            value={gender}
+            onChange={handleGender}
           >
-            {Gender.map((option) => (
+            {/* {Gender.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
-            ))}
+            ))} */}
+            <MenuItem value="Male">Male</MenuItem>
           </TextField>
-
           <TextField
             className={classes.textFieldColor}
             id="Race"
             select
             label="Race"
             variant="standard"
-
-            // onChange={handleChange1}
+            value={race}
+            onChange={handleRace}
           >
-            {Race.map((option) => (
+            {/* {Race.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
-            ))}
+            ))} */}
+            <MenuItem value="Asian">Asian</MenuItem>
           </TextField>
 
           <TextField
@@ -212,14 +302,15 @@ export default function AMICSInput() {
             select
             label="Presenting Symptoms"
             variant="standard"
-
-            // onChange={handleChange1}
+            value={presentingSymptoms}
+            onChange={handlePresentingSymptoms}
           >
-            {symptoms.map((option) => (
+            {/* {symptoms.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
-            ))}
+            ))} */}
+            <MenuItem value="Left Hand Pain">Left Hand Pain</MenuItem>
           </TextField>
 
           <TextField
@@ -228,28 +319,32 @@ export default function AMICSInput() {
             select
             label="Time since symptom onset"
             variant="standard"
-
-            // onChange={handleChange1}
+            value={symptomOnset}
+            onChange={handleSymptomOnset}
           >
             {time.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}
+            {/* <MenuItem value="Asian">Asian</MenuItem> */}
           </TextField>
 
           <TextField
             className={classes.textFieldColor}
-            id="risk factors"
+            id="riskFactors"
             select
             label="Risk Factors"
             variant="standard"
+            value={riskFactors}
+            onChange={handleRiskFactors}
           >
-            {riskFactor.map((option) => (
+            {/* {riskFactor.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
-            ))}
+            ))} */}
+            <MenuItem value="prior AMI">Prior AMI</MenuItem>
           </TextField>
         </form>
       </Grid>
@@ -270,7 +365,7 @@ export default function AMICSInput() {
         >
           <FormGroup className={classes.formgrop}>
             <h3 style={{ textAlign: "left", color: "white" }}>
-              EKG Findings(Select One)
+              EKG findings (Select One)
             </h3>
 
             <FormControlLabel
@@ -304,15 +399,14 @@ export default function AMICSInput() {
           </FormGroup>
         </Grid>
         {/* ***************** end of first Box *********************** */}
-
         {/* ***************** start of second Box *********************** */}
         <form className={classes.secondform}>
           <Grid
             container
             className={classes.formgrop}
-            style={{ paddingLeft: "16px", marginTop: "14px" }}
+            style={{ paddingLeft: "10px", marginTop: "14px" }}
           >
-            <Grid item xs={6}>
+            <Grid container item xs={6}>
               <Box
                 component="form"
                 sx={{
@@ -321,26 +415,30 @@ export default function AMICSInput() {
                 noValidate
                 autoComplete="off"
               >
-                <h3>HsTnl Results</h3>
+                <h3>hsTnl Results</h3>
                 <TextField
-                  className={classes.textFieldColor}
-                  id="25 ng/L"
+                  className={`${classes.textFieldColor} ${classes.nonDisable}`}
+                  id="firstDraw"
                   label="25 ng/L"
                   variant="outlined"
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  disabled
                 />
-
                 <TextField
-                  className={classes.textFieldColor}
-                  id="35 ng/L"
+                  className={`${classes.textFieldColor} ${classes.nonDisable}`}
+                  id="secondDraw"
                   label="35 ng/L"
                   variant="outlined"
+                  disabled
                 />
-
                 <TextField
-                  className={classes.textFieldColor}
-                  id=" ng/L"
+                  className={`${classes.textFieldColor} ${classes.nonDisable}`}
+                  id="thirdDraw"
                   label="ng/L"
                   variant="outlined"
+                  disabled
                 />
               </Box>
             </Grid>
@@ -348,23 +446,26 @@ export default function AMICSInput() {
             <Grid item xs={6}>
               <h3>Draw Time</h3>
               <TextField
-                className={classes.textFieldColor}
+                className={`${classes.textFieldColor} ${classes.nonDisable}`}
                 id="date1"
                 label="10/26/2021,20:40"
                 variant="outlined"
+                disabled
               />
 
               <TextField
-                className={classes.textFieldColor}
+                className={`${classes.textFieldColor} ${classes.nonDisable}`}
                 id="date2"
                 label="10/26/2021,23:10"
                 variant="outlined"
+                disabled
               />
               <TextField
-                className={classes.textFieldColor}
+                className={`${classes.textFieldColor} ${classes.nonDisable}`}
                 id="date3"
                 label="mm:hh:yyyy"
                 variant="outlined"
+                disabled
               />
             </Grid>
           </Grid>

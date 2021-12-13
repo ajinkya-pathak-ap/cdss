@@ -57,27 +57,19 @@ function ShellComponent(props) {
           />
           <Route exact path="/login" element={<Login notify={snacksBar} />} />
           <Route
-            exact
             path="/config"
             element={<AMIConfiguration notify={snacksBar} />}
           />
+          <Route path="/amioutput" element={<AMIOutput notify={snacksBar} />} />
           <Route
-            exact
-            path="/amioutput"
-            element={<AMIOutput notify={snacksBar} />}
-          />
-          <Route
-            exact
             path="/contributors"
             element={<RiskScoreContributors notify={snacksBar} />}
           />
           <Route
-            exact
             path="/amiinput"
             element={<AMICDSInput notify={snacksBar} />}
           />
           <Route
-            exact
             path="/carepath"
             element={<ChestPainFlowchart notify={snacksBar} />}
           />

@@ -17,13 +17,15 @@ const useStyles = makeStyles((theme) => ({
     background: "#fff",
     color: "#000",
     textAlign: "center",
-    minHeight: "80px",
+    minHeight: "250px",
+    borderRadius: "50px",
   },
   gridcontainer1: {
     background: "#050038",
     color: "#fff",
     textAlign: "center",
     minHeight: "80px",
+    borderRadius: "50px",
   },
   typo: {
     color: "red",
@@ -61,7 +63,7 @@ export default function RiskScoreContributors() {
       <Grid container spacing={4}>
         <Grid item sm={12} xs={12} marginTop={10}>
           <Box
-            sx={{ bgcolor: "#6D7F9B", height: "auto" }}
+            sx={{ bgcolor: "#6D7F9B", height: "50vh" }}
             margin={10}
             paddingLeft={4}
             paddingRight={4}
@@ -69,12 +71,13 @@ export default function RiskScoreContributors() {
           >
             <Grid container item xs={12} spacing={2}>
               {/* *****************First container***************** */}
-              <Grid container item xs={12}>
+              <Grid container item xs={12} justify="center" alignItems="center">
                 <Grid item xs={10} className={classes.gridcontainer1}>
                   <Card className={classes.gridcontainer}>
                     <CardContent>
-                      <Typography style={{ fontSize: "20px" }}>
-                        Detailed Information how Risk Score is calculated.
+                      <Typography style={{ fontSize: "22px" }}>
+                        Detailed Information on how the Risk Score is
+                        calculated.
                       </Typography>
                     </CardContent>
                   </Card>

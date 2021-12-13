@@ -45,6 +45,7 @@ const BootstrapButton = styled(Button)({
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
     marginTop: theme.spacing(3),
+    fontSize: "20px",
   },
   "& .MuiInputBase-input": {
     borderRadius: 4,
@@ -53,7 +54,6 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     border: "1px solid #ced4da",
     fontSize: 14,
     width: "70%",
-
     padding: "10px 12px",
     transition: theme.transitions.create([
       "border-color",
@@ -70,6 +70,14 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 }));
 
 const useStyles = makeStyles((theme) => ({
+  holder: {
+    backgroundColor: "#6D7F9B",
+    width: "70%",
+    position: "absolute",
+    left: "0",
+    right: "0",
+    margin: "auto",
+  },
   gridcontainer: {
     background: "#050038",
     color: "#fff",
@@ -113,6 +121,21 @@ const useStyles = makeStyles((theme) => ({
   alignRight: {
     justifyContent: "flex-end",
   },
+  riskOne: {
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+  riskTwo: {
+    display: "none",
+    [theme.breakpoints.down("sm")]: {
+      display: "block",
+    },
+  },
+  headerText: {
+    fontWeight: "bold",
+    fontSize: "20px",
+  },
 }));
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -145,7 +168,15 @@ export default function AMIConfiguration() {
   const classes = useStyles();
 
   return (
-    <Grid container item xs={12} spacing={4} justifycontent="center">
+    <Grid
+      container
+      item
+      xs={12}
+      spacing={4}
+      justifycontent="center"
+      alignItems="center"
+      className={classes.holder}
+    >
       <Grid item sm={12} xs={12}>
         <Box
           sx={{ bgcolor: "#6D7F9B" }}
@@ -160,7 +191,7 @@ export default function AMIConfiguration() {
               <Grid item xs={12} className={classes.gridcontainer1}>
                 <Card className={classes.gridcontainer}>
                   <CardContent>
-                    <Typography variant="subtitle1" className="fw-bold">
+                    <Typography className={classes.headerText}>
                       Generate Risk Score for only Patients meeting criteria
                     </Typography>
                     <FormControlLabel
@@ -180,15 +211,15 @@ export default function AMIConfiguration() {
                     />
                     <Typography
                       style={{ fontSize: "19px", paddingLeft: "10%" }}
+                      className={classes.headerText}
                     >
                       Or
                     </Typography>
                     <Typography
                       style={{
-                        fontSize: "18px",
                         textAlign: "left",
-                        fontWeight: "bold",
                       }}
+                      className={classes.headerText}
                     >
                       User Defined Rule
                     </Typography>
@@ -198,12 +229,12 @@ export default function AMIConfiguration() {
                         <FormControl variant="standard">
                           <InputLabel
                             style={{
-                              fontSize: "18px",
-                              fontWeight: "bold",
                               color: "#fff",
                               marginLeft: "60px",
                               width: "80%",
+                              fontSize: "20px",
                             }}
+                            className={classes.headerText}
                             shrink
                             htmlFor="Age"
                           >
@@ -269,7 +300,7 @@ export default function AMIConfiguration() {
               <Grid item xs={12} className={classes.gridcontainer1}>
                 <Card className={classes.gridcontainer}>
                   <CardContent>
-                    <Typography variant="subtitle1" className="fw-bold">
+                    <Typography className={classes.headerText}>
                       Display Risk Score for only Patients meeting the following
                     </Typography>
                     <FormControlLabel
@@ -287,24 +318,30 @@ export default function AMIConfiguration() {
                       }
                       label="Display All Risk Scores"
                     />
+                    <br />
+                    <br />
+                    <br />
                     <Typography
                       style={{ fontSize: "19px", paddingLeft: "10%" }}
+                      className={classes.headerText}
                     >
                       Or
                     </Typography>
+                    <br />
+                    <br />
+
                     <Typography
                       style={{
-                        fontSize: "18px",
                         textAlign: "left",
-                        fontWeight: "bold",
                       }}
+                      className={classes.headerText}
                     >
                       User Defined Range
                     </Typography>
                     <br />
                     <Grid item xs={12}>
                       <Box component="form" noValidate>
-                        <label>BETWEEN</label>
+                        <label className={classes.headerText}>BETWEEN</label>
                         <FormControl variant="standard">
                           <BootstrapInput
                             style={{
@@ -314,7 +351,7 @@ export default function AMIConfiguration() {
                             id="range"
                           />
                         </FormControl>
-                        <label>AND</label>
+                        <label className={classes.headerText}>AND</label>
                         <FormControl variant="standard">
                           {/* <InputLabel
                             style={{
@@ -337,8 +374,17 @@ export default function AMIConfiguration() {
                             id="range"
                           />
                         </FormControl>
-                        <label>risk of MACE within 30 days</label>
+                        <label
+                          className={`${classes.riskOne} ${classes.headerText}`}
+                        >
+                          risk of MACE within 30 days
+                        </label>
                       </Box>
+                      <label
+                        className={`${classes.riskTwo} ${classes.headerText}`}
+                      >
+                        risk of MACE within 30 days
+                      </label>
                     </Grid>
                     <br />
                     <br />
@@ -364,10 +410,12 @@ export default function AMIConfiguration() {
             <Grid item xs={12}>
               <Card className={classes.gridcontainer}>
                 <CardContent>
-                  <Typography variant="subtitle1" className="fw-bold">
+                  <Typography className={classes.headerText}>
                     Other Settings
                   </Typography>
-                  <FormGroup className={classes.formgrop}>
+                  <FormGroup
+                    className={`${classes.formgrop} ${classes.headerText}`}
+                  >
                     {/* <FormControlLabel
                       control={
                         <Checkbox
@@ -415,44 +463,6 @@ export default function AMIConfiguration() {
             </Grid>
             {/* *****************end of third container***************** */}
             <Grid item xs={12} container className={classes.alignRight}>
-              {/* <div className={classes.alignRight}>
-                <Button
-                  variant="contained"
-                  style={{
-                    textTransform: "none",
-                    width: "120px",
-                    marginRight: "60px",
-                    backgroundColor: "#414BB2",
-                    color: "#fff",
-                    "&:hover": {
-                      backgroundColor: "#414BB2",
-                    },
-                  }}
-                  // onClick={navigateToAmiOutput}
-                >
-                  <Link className={classes.buttonColor} to="/amioutput">
-                    <span className="m-2">Reset</span>
-                  </Link>
-                </Button>
-                &nbsp;
-                <Button
-                  variant="contained"
-                  style={{
-                    textTransform: "none",
-                    width: "120px",
-                    backgroundColor: "#414BB2",
-                    color: "#fff",
-                    "&:hover": {
-                      backgroundColor: "#414BB2",
-                    },
-                  }}
-                  // onClick={navigateToAmiOutput}
-                >
-                  <Link className={classes.buttonColor} to="/amioutput">
-                    <span className="m-2">Close</span>
-                  </Link>
-                </Button>
-              </div> */}
               <Stack spacing={4} direction="row">
                 <BootstrapButton
                   variant="contained"
