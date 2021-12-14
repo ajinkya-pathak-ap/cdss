@@ -388,7 +388,7 @@ export default function AMIConfiguration() {
                             style={{
                               marginLeft: "20px",
                               marginRight: "10px",
-                              width: "55px",
+                              width: "60px",
                               textAlign: "center",
                             }}
                             defaultValue="1%"
