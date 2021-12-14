@@ -72,7 +72,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 const useStyles = makeStyles((theme) => ({
   holder: {
     backgroundColor: "#6D7F9B",
-    width: "70%",
+    width: "100%",
     position: "absolute",
     left: "0",
     right: "0",
@@ -138,7 +138,7 @@ const useStyles = makeStyles((theme) => ({
   },
   holder: {
     backgroundColor: "#6D7F9B",
-    width: "55%",
+    width: "75%",
     position: "absolute",
     left: "0",
     right: "0",
@@ -188,7 +188,7 @@ export default function AMIConfiguration() {
       <Grid item sm={12} xs={12}>
         <Box
           sx={{ bgcolor: "#6D7F9B" }}
-          marginTop={3}
+          marginTop={1}
           paddingLeft={2}
           paddingRight={1}
           paddingTop={1}
@@ -233,12 +233,16 @@ export default function AMIConfiguration() {
                     </Typography>
                     <br />
                     <Grid item xs={12}>
+                      <h3 style={{ marginLeft: "200px" }}>
+                        Age<label style={{ marginLeft: "380px" }}>Hstnl</label>
+                      </h3>
+
                       <Box component="form" noValidate>
                         <FormControl variant="standard">
                           <InputLabel
                             style={{
                               color: "#fff",
-                              marginLeft: "60px",
+                              marginLeft: "30px",
                               width: "80%",
                               fontSize: "20px",
                               // height: "60px",
@@ -247,11 +251,64 @@ export default function AMIConfiguration() {
                             shrink
                             htmlFor="Age"
                           >
-                            Age
+                            Operator
                           </InputLabel>
                           <BootstrapInput
                             style={{
-                              marginLeft: "20px",
+                              // marginLeft: "8px",
+                              // height: "10px",
+                              width: "120px",
+                            }}
+                            defaultValue=">=65 years"
+                            id="age"
+                          />
+                        </FormControl>
+                        <FormControl variant="standard">
+                          <InputLabel
+                            style={{
+                              color: "#fff",
+                              marginLeft: "50px",
+                              width: "80%",
+                              fontSize: "20px",
+                              // height: "60px",
+                            }}
+                            className={classes.headerText}
+                            shrink
+                            htmlFor="Age"
+                          >
+                            Value-1
+                          </InputLabel>
+                          <BootstrapInput
+                            style={{
+                              marginLeft: "30px",
+                              // height: "10px",
+                              width: "120px",
+                            }}
+                            defaultValue=">=65 years"
+                            id="age"
+                          />
+                        </FormControl>
+                        <FormControl
+                          variant="standard"
+                          style={{ marginLeft: "30px" }}
+                        >
+                          <InputLabel
+                            style={{
+                              color: "#fff",
+                              marginLeft: "30px",
+                              width: "80%",
+                              fontSize: "20px",
+                              // height: "60px",
+                            }}
+                            className={classes.headerText}
+                            shrink
+                            htmlFor="Age"
+                          >
+                            Value-2
+                          </InputLabel>
+                          <BootstrapInput
+                            style={{
+                              // marginLeft: "20px",
                               // height: "10px",
                               width: "120px",
                             }}
@@ -261,27 +318,89 @@ export default function AMIConfiguration() {
                         </FormControl>
 
                         <label>AND</label>
-                        <FormControl variant="standard">
+
+                        <FormControl
+                          variant="standard"
+                          style={{ marginLeft: "30px" }}
+                        >
                           <InputLabel
                             style={{
-                              fontSize: "18px",
-                              fontWeight: "bold",
                               color: "#fff",
-                              marginLeft: "26px",
-                              width: "100%",
+                              marginLeft: "30px",
+                              width: "80%",
+                              fontSize: "20px",
+                              // height: "60px",
                             }}
+                            className={classes.headerText}
                             shrink
-                            htmlFor="hstnl"
+                            htmlFor="Age"
                           >
-                            First hsTnl Value
+                            Operator
                           </InputLabel>
                           <BootstrapInput
                             style={{
-                              marginLeft: "20px",
+                              // marginLeft: "18px",
+                              // height: "10px",
                               width: "120px",
                             }}
-                            defaultValue="All Values"
-                            id="hstnl"
+                            defaultValue=">=65 years"
+                            id="age"
+                          />
+                        </FormControl>
+                        <FormControl
+                          variant="standard"
+                          style={{ marginLeft: "30px" }}
+                        >
+                          <InputLabel
+                            style={{
+                              color: "#fff",
+                              marginLeft: "30px",
+                              width: "80%",
+                              fontSize: "20px",
+                              // height: "60px",
+                            }}
+                            className={classes.headerText}
+                            shrink
+                            htmlFor="Age"
+                          >
+                            Value-1
+                          </InputLabel>
+                          <BootstrapInput
+                            style={{
+                              // marginLeft: "30px",
+                              // height: "10px",
+                              width: "120px",
+                            }}
+                            defaultValue=">=65 years"
+                            id="age"
+                          />
+                        </FormControl>
+                        <FormControl
+                          variant="standard"
+                          style={{ marginLeft: "30px" }}
+                        >
+                          <InputLabel
+                            style={{
+                              color: "#fff",
+                              marginLeft: "30px",
+                              width: "80%",
+                              fontSize: "20px",
+                              // height: "60px",
+                            }}
+                            className={classes.headerText}
+                            shrink
+                            htmlFor="Age"
+                          >
+                            Value-2
+                          </InputLabel>
+                          <BootstrapInput
+                            style={{
+                              // marginLeft: "30px",
+                              // height: "10px",
+                              width: "120px",
+                            }}
+                            defaultValue=">=65 years"
+                            id="age"
                           />
                         </FormControl>
                       </Box>

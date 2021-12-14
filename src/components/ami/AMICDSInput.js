@@ -402,7 +402,7 @@ export default function AMICSInput() {
         </Grid>
         {/* ***************** end of first Box *********************** */}
         {/* ***************** start of second Box *********************** */}
-        <form className={classes.secondform}>
+        {/* <form className={classes.secondform}>
           <Grid
             container
             className={classes.formgrop}
@@ -418,56 +418,31 @@ export default function AMICSInput() {
                 autoComplete="off"
               >
                 <h3>hsTnl Results</h3>
-                {/* <TextField
-                  style={{ textAlign: "right" }}
-                  className={`${classes.textFieldColor} ${classes.nonDisable}`}
-                  id="firstDraw"
-                  label="25 ng/L"
-                  variant="outlined"
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                  disabled
-                /> */}
 
                 <TextField
                   style={{
                     backgroundColor: "#fff",
-                    // height: "2.65em",
+                    width: "150px",
                     textAlign: "right",
                   }}
                   variant="filled"
                   label="25 ng/L"
                   textAlign="right"
                 ></TextField>
-                {/* <TextField
-                  className={`${classes.textFieldColor} ${classes.nonDisable}`}
-                  id="secondDraw"
-                  label="35 ng/L"
-                  variant="outlined"
-                  disabled
-                /> */}
 
                 <TextField
                   style={{
                     backgroundColor: "#fff",
-                    // height: "2.65em",
+                    width: "150px",
                   }}
                   variant="filled"
                   label="35 ng/L"
                 ></TextField>
-                {/* <TextField
-                  className={`${classes.textFieldColor} ${classes.nonDisable}`}
-                  id="thirdDraw"
-                  label="ng/L"
-                  variant="outlined"
-                  disabled
-                /> */}
 
                 <TextField
                   style={{
                     backgroundColor: "#fff",
-                    // height: "2.65em",
+                    width: "150px",
                   }}
                   variant="filled"
                   label=" ng/L"
@@ -477,34 +452,11 @@ export default function AMICSInput() {
 
             <Grid item xs={6}>
               <h3>Draw Time</h3>
-              {/* <TextField
-                className={`${classes.textFieldColor} ${classes.nonDisable}`}
-                id="date1"
-                label="10/26/2021,20:40"
-                variant="outlined"
-                disabled
-              /> */}
 
               <TextField
                 style={{
                   backgroundColor: "#fff",
-                  // height: "2.65em",
-                }}
-                variant="filled"
-                label="10/26/2021,20:40"
-              ></TextField>
-
-              {/* <TextField
-                className={`${classes.textFieldColor} ${classes.nonDisable}`}
-                id="date2"
-                label="10/26/2021,23:10"
-                variant="outlined"
-                disabled
-              /> */}
-              <TextField
-                style={{
-                  backgroundColor: "#fff",
-                  // height: "2.65em",
+                  width: "160px",
                 }}
                 variant="filled"
                 label="10/26/2021,20:40"
@@ -513,14 +465,134 @@ export default function AMICSInput() {
               <TextField
                 style={{
                   backgroundColor: "#fff",
-                  // height: "2.65em",
+                  width: "160px",
+                }}
+                variant="filled"
+                label="10/26/2021,20:40"
+              ></TextField>
+
+              <TextField
+                style={{
+                  backgroundColor: "#fff",
+                  width: "160px",
                 }}
                 variant="filled"
                 label="10/26/2021,20:40"
               ></TextField>
             </Grid>
           </Grid>
+        </form> */}
+        <form className={classes.secondform}>
+          <Grid
+            container
+            className={classes.formgrop}
+            style={{ marginTop: "14px" }}
+          >
+            <Grid container item xs={12} md={4}>
+              <Typography style={{ marginLeft: "20px", marginTop: "20px" }}>
+                First draw
+              </Typography>
+            </Grid>
+            <Grid xs={12} md={4}>
+              <TextField
+                style={{
+                  backgroundColor: "#fff",
+                  width: "100px",
+                  textAlign: "right",
+                }}
+                variant="filled"
+                label="25 ng/L"
+                // placeholder="Enter Last Name"
+                type="text"
+                id="lastname"
+              />
+            </Grid>
+            <br></br>
+            <Grid xs={12} md={4}>
+              <TextField
+                style={{
+                  backgroundColor: "#fff",
+
+                  textAlign: "right",
+                }}
+                variant="filled"
+                label="10/26/2021, 21:40"
+                // placeholder="Enter Last Name"
+                type="text"
+                id="lastname"
+              />
+            </Grid>
+            <Grid container item xs={12} md={4}>
+              <Typography style={{ marginLeft: "20px", marginTop: "20px" }}>
+                Second draw
+              </Typography>
+            </Grid>
+            <Grid xs={12} md={4}>
+              <TextField
+                style={{
+                  backgroundColor: "#fff",
+                  width: "100px",
+                  textAlign: "right",
+                }}
+                variant="filled"
+                label="25 ng/L"
+                // placeholder="Enter Last Name"
+                type="text"
+                id="lastname"
+              />
+            </Grid>
+            <br></br>
+            <Grid xs={12} md={4}>
+              <TextField
+                style={{
+                  backgroundColor: "#fff",
+
+                  textAlign: "right",
+                }}
+                variant="filled"
+                label="10/26/2021, 21:40"
+                // placeholder="Enter Last Name"
+                type="text"
+                id="lastname"
+              />
+            </Grid>
+            <Grid container item xs={12} md={4}>
+              <Typography style={{ marginLeft: "20px", marginTop: "20px" }}>
+                Third draw
+              </Typography>
+            </Grid>
+            <Grid xs={12} md={4}>
+              <TextField
+                style={{
+                  backgroundColor: "#fff",
+                  width: "100px",
+                  textAlign: "right",
+                }}
+                variant="filled"
+                label="25 ng/L"
+                // placeholder="Enter Last Name"
+                type="text"
+                id="lastname"
+              />
+            </Grid>
+            <br></br>
+            <Grid xs={12} md={4}>
+              <TextField
+                style={{
+                  backgroundColor: "#fff",
+
+                  textAlign: "right",
+                }}
+                variant="filled"
+                label="10/26/2021, 21:40"
+                // placeholder="Enter Last Name"
+                type="text"
+                id="lastname"
+              />
+            </Grid>
+          </Grid>
         </form>
+
         {/* ***************** end of second Box *********************** */}
         {/* *****************  start third Box *********************** */}
         <Grid item xs={12}>
@@ -531,7 +603,7 @@ export default function AMICSInput() {
               variant="contained"
               style={{
                 textTransform: "none",
-                padding: "6px 38px",
+                // padding: "6px 38px",
                 backgroundColor: "#414BB2",
               }}
             >
@@ -542,7 +614,7 @@ export default function AMICSInput() {
               variant="contained"
               style={{
                 textTransform: "none",
-                padding: "6px 32px",
+                // padding: "6px 32px",
                 backgroundColor: "#414BB2",
               }}
               onClick={resetFields}
@@ -554,7 +626,7 @@ export default function AMICSInput() {
               style={{
                 textTransform: "none",
                 backgroundColor: "#414BB2",
-                padding: "12px 12px",
+                padding: "12px 8px",
               }}
               variant="contained"
               href="#contained-buttons"
