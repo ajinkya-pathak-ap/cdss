@@ -429,13 +429,16 @@ export default function AMICSInput() {
                   }}
                   disabled
                 /> */}
+
                 <TextField
                   style={{
                     backgroundColor: "#fff",
                     // height: "2.65em",
+                    textAlign: "right",
                   }}
                   variant="filled"
                   label="25 ng/L"
+                  textAlign="right"
                 ></TextField>
                 {/* <TextField
                   className={`${classes.textFieldColor} ${classes.nonDisable}`}
@@ -444,6 +447,7 @@ export default function AMICSInput() {
                   variant="outlined"
                   disabled
                 /> */}
+
                 <TextField
                   style={{
                     backgroundColor: "#fff",
@@ -459,6 +463,7 @@ export default function AMICSInput() {
                   variant="outlined"
                   disabled
                 /> */}
+
                 <TextField
                   style={{
                     backgroundColor: "#fff",
@@ -479,6 +484,7 @@ export default function AMICSInput() {
                 variant="outlined"
                 disabled
               /> */}
+
               <TextField
                 style={{
                   backgroundColor: "#fff",
@@ -548,7 +554,7 @@ export default function AMICSInput() {
               style={{
                 textTransform: "none",
                 backgroundColor: "#414BB2",
-                padding: "6px 32px",
+                padding: "12px 12px",
               }}
               variant="contained"
               href="#contained-buttons"
