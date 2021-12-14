@@ -9,7 +9,6 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Stack from "@mui/material/Stack";
 import FormGroup from "@mui/material/FormGroup";
 import TextField from "@mui/material/TextField";
-import { purple } from "@mui/material/colors";
 
 import InputBase from "@mui/material/InputBase";
 
@@ -21,6 +20,7 @@ import {
   Typography,
   FormControl,
   InputLabel,
+  MenuItem,
 } from "@material-ui/core";
 
 const BootstrapButton = styled(Button)({
@@ -112,12 +112,6 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     textDecoration: "underline",
   },
-
-  textFieldColor: {
-    width: "5%",
-    height: "100px",
-  },
-
   alignRight: {
     justifyContent: "flex-end",
   },
@@ -136,28 +130,34 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     fontSize: "20px",
   },
-  holder: {
-    backgroundColor: "#6D7F9B",
-    width: "55%",
-    position: "absolute",
-    left: "0",
-    right: "0",
-    margin: "auto",
-  },
-}));
 
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
+  textFieldHeight: {
+    height: "15px",
+  },
+
+  textFieldColor: {
+    backgroundColor: "white",
+    textAlign: "right",
+    // height: "2.65em",
+    color: "#000",
+  },
+
+  firstform: {
+    "& .MuiFormControl-root": {
+      width: "25%",
+      margin: theme.spacing(1),
+      float: "left",
+    },
+  },
 }));
 
 export default function AMIConfiguration() {
   const [generateRS, setGenerateRS] = useState(false);
-  const [displayRS, setDisplayRS] = useState(false);
-  const navigate = useNavigate();
-  /******methods of checkbox********/
+  const [operator, setOperator] = useState("");
+
+  const operators = [">", "<", ">=", "<=", "=", "Between"];
+  /*=============================================================*/
+
   const label = {
     inputProps: { "aria-label": "Checkbox demo" },
   };
@@ -165,13 +165,11 @@ export default function AMIConfiguration() {
     setGenerateRS(event.target.checked);
   };
 
-  const handleDisplayRiskScore = (event) => {
-    setDisplayRS(event.target.checked);
-  };
+  function handleGender(e) {
+    setOperator(e.target.value);
+  }
 
-  // const navigateToAmiOutput = () => {
-  //   navigate("/amioutput");
-  // };
+  function handleAgeValue(e) {}
 
   const classes = useStyles();
 
@@ -233,7 +231,42 @@ export default function AMIConfiguration() {
                     </Typography>
                     <br />
                     <Grid item xs={12}>
-                      <Box component="form" noValidate>
+                      <form className={classes.firstform}>
+                        <TextField
+                          className={classes.textFieldColor}
+                          id="operator"
+                          select
+                          label="Operator"
+                          variant="outlined"
+                          onChange={handleGender}
+                        >
+                          {operators.map((option) => (
+                            <MenuItem key={option} value={option}>
+                              {option}
+                            </MenuItem>
+                          ))}
+                        </TextField>
+                        <TextField
+                          className={classes.textFieldColor}
+                          id="ageValue_1"
+                          label="Age"
+                          variant="outlined"
+                          onChange={handleAgeValue}
+                        />
+                        {operator === "Between" ? (
+                          <TextField
+                            className={classes.textFieldColor}
+                            id="ageValue_1"
+                            label="Age"
+                            variant="outlined"
+                          />
+                        ) : (
+                          ""
+                        )}
+                      </form>
+
+                      {/*------------ Old ------------ */}
+                      {/* <Box component="form" noValidate>
                         <FormControl variant="standard">
                           <InputLabel
                             style={{
@@ -241,7 +274,6 @@ export default function AMIConfiguration() {
                               marginLeft: "60px",
                               width: "80%",
                               fontSize: "20px",
-                              // height: "60px",
                             }}
                             className={classes.headerText}
                             shrink
@@ -252,7 +284,6 @@ export default function AMIConfiguration() {
                           <BootstrapInput
                             style={{
                               marginLeft: "20px",
-                              // height: "10px",
                               width: "120px",
                             }}
                             defaultValue=">=65 years"
@@ -284,7 +315,8 @@ export default function AMIConfiguration() {
                             id="hstnl"
                           />
                         </FormControl>
-                      </Box>
+                      </Box> */}
+                      {/*------------ Old ------------- */}
                     </Grid>
                     <br />
                     <br />
