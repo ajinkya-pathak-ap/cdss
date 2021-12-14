@@ -18,7 +18,7 @@ import { Stack } from "@mui/material";
 const useStyles = makeStyles((theme) => ({
   holder: {
     backgroundColor: "#6D7F9B",
-    width: "55%",
+    width: "65%",
     position: "absolute",
     left: "0",
     right: "0",
@@ -132,9 +132,25 @@ export default function AMIOutput() {
     setOpenPopup(true);
   };
 
-  // const chestPainFlowChartPopup = () => {
-  //   setChestPopupOpen(true);
-  // };
+  const time = [
+    {
+      value: "7",
+      label: "1 Hrs",
+    },
+    {
+      value: "8",
+      label: "2 Hrs",
+    },
+  ];
+  const contributors = {
+    firstvalue:
+      "1.Troponin change of X ng/L/hour between 0 and 1 hours after symptom onset",
+    secondvalue: "2. History of Hypertension",
+    thirdvalue: "3. Prior cardiac history",
+  };
+  const chestPainFlowChartPopup = () => {
+    setChestPopupOpen(true);
+  };
 
   return (
     <Grid
@@ -180,7 +196,7 @@ export default function AMIOutput() {
       </Grid>
       {/* *****************Second container***************** */}
       <Grid container item xs={12}>
-        <Grid item xs={8} className={classes.gridcontainer1}>
+        <Grid item xs={9} className={classes.gridcontainer1}>
           <Card className={classes.gridcontainer}>
             <CardContent>
               <Typography className={`${classes.headerText}`}>
@@ -190,14 +206,13 @@ export default function AMIOutput() {
                 The following are the top three contributors to the risk score
               </Typography>
               <Typography className={`${classes.headerTextThree}`}>
-                1.Troponin change of {greaterThanSymbol}X ng/L/hour between 0
-                and 1 hours after symptom onset
+                {contributors.firstvalue}
               </Typography>
               <Typography className={`${classes.headerTextThree}`}>
-                2.History of Hypertension
+                {contributors.secondvalue}
               </Typography>
               <Typography className={`${classes.headerTextThree}`}>
-                3.Prior cardiac history
+                {contributors.thirdvalue}
               </Typography>
             </CardContent>
           </Card>
@@ -206,7 +221,7 @@ export default function AMIOutput() {
         <Grid
           container
           item
-          xs={4}
+          xs={3}
           className={classes.gridcontainer1}
           direction="column"
           alignItems="flex-end"
