@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
 
 import Notification from "../../shared/notification/Notification";
-import ModalPopup from "../../shared/dialog/ModalPopup";
 
 import AMIOutput from "../ami/AMIOutput";
 import AMICDSInput from "../ami/AMICDSInput";

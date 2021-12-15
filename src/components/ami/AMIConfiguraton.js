@@ -162,6 +162,7 @@ export default function AMIConfiguration() {
     setGenerateRS(event.target.checked);
   };
 
+  
   function handleGender(e) {
     setOperator(e.target.value);
   }

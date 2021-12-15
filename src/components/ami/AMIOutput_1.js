@@ -117,6 +117,12 @@ const BootstrapButton = styled(Button)({
   },
 });
 
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 
 const commonStyles = {
   bgcolor: "#f24726",
@@ -125,6 +131,7 @@ const commonStyles = {
   height: "9rem",
 };
 
+const greaterThanSymbol = ">";
 const configData = {
   MRN: "1",
   EncounterNumber: "1",
@@ -151,10 +158,7 @@ export default function AMIOutput() {
   });
 
   useEffect(() => {
-    // fetchRiskScore(configData);
-    setTimeout(() => {
-      setIsFetching(false);
-    }, 1500);
+    fetchRiskScore(configData);
   }, [0]);
 
   const fetchRiskScore = (config) => {
@@ -216,16 +220,15 @@ export default function AMIOutput() {
                   Risk Score
                 </Typography>
                 <Typography className={`${classes.headerText}`}>
-                  {/* {details.text_1} */}
-                  Patient's Risk of major Adverse Cardiac Event within 30 days
+                  {details.text_1}
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
-                  {/* {details.text_2} */}
-                  MACE includes death, AMI, stroke,urgent re-vascularization
+                  {details.text_2}
                 </Typography>
               </CardContent>
             </Card>
           </Grid>
+
           <Grid
             container
             item
@@ -239,8 +242,7 @@ export default function AMIOutput() {
               textAlign="center"
             >
               <Typography alignitems="center" className={classes.circle}>
-                {/* {riskScore.value.riskScore}% */}
-                88%
+                {riskScore.value.riskScore}%
               </Typography>
             </Box>
           </Grid>
@@ -254,21 +256,16 @@ export default function AMIOutput() {
                   Risk Score Contributors
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
-                  {/* {contributors.text_1} */}
-                  The Following are the top three contributors to the risk score
+                  {contributors.text_1}
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
-                  {/* {contributors.firstContributor} */}
-                  1. Troponin change of Xng/L/hour between 0 and 1 hours after
-                  symptom onset
+                  {contributors.firstContributor}
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
-                  {/* {contributors.secondContributor} */}
-                  2. History of hypertension
+                  {contributors.secondContributor}
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
-                  {/* {contributors.thirdContributor} */}
-                  3. Prior cardiac history
+                  {contributors.thirdContributor}
                 </Typography>
               </CardContent>
             </Card>
@@ -307,13 +304,10 @@ export default function AMIOutput() {
                 Guidance
               </Typography>
               <Typography className={`${classes.headerTextThree}`}>
-                {/* {guidance.text_1} */}
-                Based on the patient's risk score and the care pathway at your
-                institution, the following course of action is recommended
+                {guidance.text_1}
               </Typography>
               <Typography className={classes.typo}>
-                {/* {guidance.text_2} */}
-                Refer patient for Cardiology Consultant
+                {guidance.text_2}
               </Typography>
               <Typography>
                 <Link className={classes.hyperLink} to="/carepath">
