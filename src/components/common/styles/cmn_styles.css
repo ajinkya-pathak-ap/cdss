@@ -94,4 +94,13 @@ i.icon {
     padding-left: 0px;
   }
 }
-
+.css-10botns-MuiInputBase-input-MuiFilledInput-input {
+  font: 10px;
+  letter-spacing: inherit;
+  color: currentColor;
+  padding: 4px 0 5px;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: 0.2375em !important;
+}

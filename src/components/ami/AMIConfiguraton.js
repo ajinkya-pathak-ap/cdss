@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { alpha, styled } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@mui/material/Checkbox";
@@ -20,7 +22,6 @@ import {
   Typography,
   FormControl,
   InputLabel,
-  MenuItem,
 } from "@material-ui/core";
 
 const BootstrapButton = styled(Button)({
@@ -149,11 +150,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AMIConfiguration() {
-  const [generateRS, setGenerateRS] = useState(false);
-  const [operator, setOperator] = useState("");
+  const [Operator, setOperator] = React.useState("");
 
-  const operators = [">", "<", ">=", "<=", "=", "Between"];
-  /*=============================================================*/
+  const handleChangeOperator = (event) => {
+    setOperator(event.target.value);
+  };
+  const [generateRS, setGenerateRS] = useState(false);
 
   const label = {
     inputProps: { "aria-label": "Checkbox demo" },
@@ -161,13 +163,11 @@ export default function AMIConfiguration() {
   const handleGeneareRiskScore = (event) => {
     setGenerateRS(event.target.checked);
   };
+  const operators = [">", "<", ">=", "<=", "=", "Between"];
 
-  
   function handleGender(e) {
     setOperator(e.target.value);
   }
-
-  function handleAgeValue(e) {}
 
   const classes = useStyles();
 
@@ -228,12 +228,100 @@ export default function AMIConfiguration() {
                       User Defined Rule
                     </Typography>
                     <br />
-                    <Grid item xs={12}>
-                      <h3 style={{ marginLeft: "200px" }}>
-                        Age<label style={{ marginLeft: "380px" }}>Hstnl</label>
-                      </h3>
+                    <Grid item container xs={12}>
+                      <Grid item xs={12} md={2}>
+                        <h4>Operator</h4>
 
-                      <Box component="form" noValidate>
+                        <FormControl fullWidth>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={Operator}
+                            label="Age"
+                            autoWidth
+                            onChange={handleChangeOperator}
+                            style={{
+                              backgroundColor: "#fff",
+                              width: "80px",
+                              height: "35px",
+                            }}
+                          >
+                            {operators.map((option) => {
+                              return (
+                                <MenuItem value={option} key={option}>
+                                  {option}
+                                </MenuItem>
+                              );
+                            })}
+                          </Select>
+                        </FormControl>
+                      </Grid>
+                      <Grid item xs={12} md={2}>
+                        <h4>Value-1</h4>
+                        <TextField
+                          style={{
+                            backgroundColor: "#fff",
+                            width: "100px",
+                            fontSize: "12px",
+                          }}
+                          id="outlined-basic"
+                          // label="Outlined"
+                          variant="filled"
+                        />
+                      </Grid>
+                      {Operator === "Between" ? (
+                        <Grid item xs={12} md={2}>
+                          <h4>Value-2</h4>
+                          <TextField
+                            style={{
+                              backgroundColor: "#fff",
+                              width: "100px",
+                              fontSize: "12px",
+                            }}
+                            id="outlined-basic"
+                            variant="filled"
+                          />
+                        </Grid>
+                      ) : (
+                        ""
+                      )}
+                      <Grid item xs={12} md={2}>
+                        <h4>AND</h4>
+                      </Grid>
+                      <Grid item xs={12} md={1}>
+                        <h4>Operator</h4>
+                        <FormControl fullWidth>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={Operator}
+                            label="Age"
+                            autoWidth
+                            onChange={handleChangeOperator}
+                            style={{
+                              // marginLeft: "18px",
+                              backgroundColor: "#fff",
+                              width: "100px",
+                              height: "35px",
+                            }}
+                          >
+                            <MenuItem value={10}>Ten</MenuItem>
+                            <MenuItem value={20}>Twenty</MenuItem>
+                            <MenuItem value={30}>Thirty</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Grid>
+                      <Grid item xs={12} md={2}>
+                        <h4>Value-1</h4>
+                      </Grid>
+                      <Grid item xs={12} md={2}>
+                        <h4>Value-2</h4>
+                      </Grid>
+                      {/* <h3 style={{ marginLeft: "200px" }}>
+                        Age<label style={{ marginLeft: "380px" }}>Hstnl</label>
+                      </h3> */}
+
+                      {/* <Box component="form" noValidate>
                         <FormControl variant="standard">
                           <InputLabel
                             style={{
@@ -265,7 +353,7 @@ export default function AMIConfiguration() {
                               marginLeft: "50px",
                               width: "80%",
                               fontSize: "20px",
-                              // height: "60px",
+                              height: "20px",
                             }}
                             className={classes.headerText}
                             shrink
@@ -377,8 +465,8 @@ export default function AMIConfiguration() {
                           <InputLabel
                             style={{
                               color: "#fff",
-                              marginLeft: "30px",
-                              width: "80%",
+                              marginLeft: "10px",
+                              width: "70%",
                               fontSize: "20px",
                               // height: "60px",
                             }}
@@ -392,14 +480,13 @@ export default function AMIConfiguration() {
                             style={{
                               // marginLeft: "30px",
                               // height: "10px",
-                              width: "120px",
+                              width: "100px",
                             }}
                             defaultValue=">=65 years"
                             id="age"
                           />
                         </FormControl>
-                      </Box>
-                      {/*------------ Old ------------- */}
+                      </Box> */}
                     </Grid>
                     <br />
                     <br />
