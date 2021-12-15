@@ -203,6 +203,7 @@ export default function AMIConfiguration() {
                         <Checkbox
                           onChange={handleGeneareRiskScore}
                           {...label}
+                          defaultChecked
                           sx={{
                             color: "#fff",
                             "&.Mui-checked": {
@@ -229,13 +230,13 @@ export default function AMIConfiguration() {
                     </Typography>
                     <br />
                     <Grid item container xs={12}>
-                      <Grid item xs={12} md={2}>
+                      <Grid item xs={6} md={2}>
                         <h4>Operator</h4>
 
                         <FormControl fullWidth>
                           <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
+                            labelId="simple"
+                            id="demo2"
                             value={Operator}
                             label="Age"
                             autoWidth
@@ -256,44 +257,46 @@ export default function AMIConfiguration() {
                           </Select>
                         </FormControl>
                       </Grid>
-                      <Grid item xs={12} md={2}>
+                      <Grid item xs={6} md={2}>
                         <h4>Value-1</h4>
                         <TextField
                           style={{
                             backgroundColor: "#fff",
-                            width: "100px",
+                            width: "80px",
                             fontSize: "12px",
                           }}
                           id="outlined-basic"
-                          // label="Outlined"
+                          label="65"
                           variant="filled"
                         />
                       </Grid>
                       {Operator === "Between" ? (
-                        <Grid item xs={12} md={2}>
+                        <Grid item xs={6} md={2}>
                           <h4>Value-2</h4>
                           <TextField
                             style={{
                               backgroundColor: "#fff",
-                              width: "100px",
+                              width: "80px",
                               fontSize: "12px",
                             }}
                             id="outlined-basic"
+                            label="All"
                             variant="filled"
                           />
                         </Grid>
                       ) : (
                         ""
                       )}
-                      <Grid item xs={12} md={2}>
+                      {/* <Grid item xs={12} md={2}>
                         <h4>AND</h4>
-                      </Grid>
-                      <Grid item xs={12} md={1}>
+                      </Grid> */}
+
+                      <Grid item xs={6} md={2}>
                         <h4>Operator</h4>
                         <FormControl fullWidth>
                           <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
+                            labelId="simple2"
+                            id="demo"
                             value={Operator}
                             label="Age"
                             autoWidth
@@ -301,192 +304,46 @@ export default function AMIConfiguration() {
                             style={{
                               // marginLeft: "18px",
                               backgroundColor: "#fff",
-                              width: "100px",
+                              width: "80px",
                               height: "35px",
                             }}
                           >
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
+                            {operators.map((option) => {
+                              return (
+                                <MenuItem value={option} key={option}>
+                                  {option}
+                                </MenuItem>
+                              );
+                            })}
                           </Select>
                         </FormControl>
                       </Grid>
-                      <Grid item xs={12} md={2}>
+                      <Grid item xs={6} md={2}>
                         <h4>Value-1</h4>
+                        <TextField
+                          style={{
+                            backgroundColor: "#fff",
+                            width: "80px",
+                            fontSize: "12px",
+                          }}
+                          id="outlined-basic"
+                          label="456"
+                          variant="filled"
+                        />
                       </Grid>
-                      <Grid item xs={12} md={2}>
+                      <Grid item xs={6} md={2}>
                         <h4>Value-2</h4>
+                        <TextField
+                          style={{
+                            backgroundColor: "#fff",
+                            width: "80px",
+                            fontSize: "12px",
+                          }}
+                          id="outlined-basic"
+                          label="All"
+                          variant="filled"
+                        />
                       </Grid>
-                      {/* <h3 style={{ marginLeft: "200px" }}>
-                        Age<label style={{ marginLeft: "380px" }}>Hstnl</label>
-                      </h3> */}
-
-                      {/* <Box component="form" noValidate>
-                        <FormControl variant="standard">
-                          <InputLabel
-                            style={{
-                              color: "#fff",
-                              marginLeft: "30px",
-                              width: "80%",
-                              fontSize: "20px",
-                            }}
-                            className={classes.headerText}
-                            shrink
-                            htmlFor="Age"
-                          >
-                            Operator
-                          </InputLabel>
-                          <BootstrapInput
-                            style={{
-                              // marginLeft: "8px",
-                              // height: "10px",
-                              width: "120px",
-                            }}
-                            defaultValue=">=65 years"
-                            id="age"
-                          />
-                        </FormControl>
-                        <FormControl variant="standard">
-                          <InputLabel
-                            style={{
-                              color: "#fff",
-                              marginLeft: "50px",
-                              width: "80%",
-                              fontSize: "20px",
-                              height: "20px",
-                            }}
-                            className={classes.headerText}
-                            shrink
-                            htmlFor="Age"
-                          >
-                            Value-1
-                          </InputLabel>
-                          <BootstrapInput
-                            style={{
-                              marginLeft: "30px",
-                              // height: "10px",
-                              width: "120px",
-                            }}
-                            defaultValue=">=65 years"
-                            id="age"
-                          />
-                        </FormControl>
-                        <FormControl
-                          variant="standard"
-                          style={{ marginLeft: "30px" }}
-                        >
-                          <InputLabel
-                            style={{
-                              color: "#fff",
-                              marginLeft: "30px",
-                              width: "80%",
-                              fontSize: "20px",
-                              // height: "60px",
-                            }}
-                            className={classes.headerText}
-                            shrink
-                            htmlFor="Age"
-                          >
-                            Value-2
-                          </InputLabel>
-                          <BootstrapInput
-                            style={{
-                              // marginLeft: "20px",
-                              // height: "10px",
-                              width: "120px",
-                            }}
-                            defaultValue=">=65 years"
-                            id="age"
-                          />
-                        </FormControl>
-
-                        <label>AND</label>
-
-                        <FormControl
-                          variant="standard"
-                          style={{ marginLeft: "30px" }}
-                        >
-                          <InputLabel
-                            style={{
-                              color: "#fff",
-                              marginLeft: "30px",
-                              width: "80%",
-                              fontSize: "20px",
-                              // height: "60px",
-                            }}
-                            className={classes.headerText}
-                            shrink
-                            htmlFor="Age"
-                          >
-                            Operator
-                          </InputLabel>
-                          <BootstrapInput
-                            style={{
-                              // marginLeft: "18px",
-                              // height: "10px",
-                              width: "120px",
-                            }}
-                            defaultValue=">=65 years"
-                            id="age"
-                          />
-                        </FormControl>
-                        <FormControl
-                          variant="standard"
-                          style={{ marginLeft: "30px" }}
-                        >
-                          <InputLabel
-                            style={{
-                              color: "#fff",
-                              marginLeft: "30px",
-                              width: "80%",
-                              fontSize: "20px",
-                              // height: "60px",
-                            }}
-                            className={classes.headerText}
-                            shrink
-                            htmlFor="Age"
-                          >
-                            Value-1
-                          </InputLabel>
-                          <BootstrapInput
-                            style={{
-                              // marginLeft: "30px",
-                              // height: "10px",
-                              width: "120px",
-                            }}
-                            defaultValue=">=65 years"
-                            id="age"
-                          />
-                        </FormControl>
-                        <FormControl
-                          variant="standard"
-                          style={{ marginLeft: "30px" }}
-                        >
-                          <InputLabel
-                            style={{
-                              color: "#fff",
-                              marginLeft: "10px",
-                              width: "70%",
-                              fontSize: "20px",
-                              // height: "60px",
-                            }}
-                            className={classes.headerText}
-                            shrink
-                            htmlFor="Age"
-                          >
-                            Value-2
-                          </InputLabel>
-                          <BootstrapInput
-                            style={{
-                              // marginLeft: "30px",
-                              // height: "10px",
-                              width: "100px",
-                            }}
-                            defaultValue=">=65 years"
-                            id="age"
-                          />
-                        </FormControl>
-                      </Box> */}
                     </Grid>
                     <br />
                     <br />
@@ -521,6 +378,7 @@ export default function AMIConfiguration() {
                       control={
                         <Checkbox
                           onChange={handleGeneareRiskScore}
+                          defaultChecked
                           {...label}
                           sx={{
                             color: "#fff",
@@ -534,14 +392,13 @@ export default function AMIConfiguration() {
                     />
                     <br />
                     <br />
-                    <br />
+
                     <Typography
                       style={{ fontSize: "19px", paddingLeft: "10%" }}
                       className={classes.headerText}
                     >
                       Or
                     </Typography>
-                    <br />
                     <br />
 
                     <Typography
