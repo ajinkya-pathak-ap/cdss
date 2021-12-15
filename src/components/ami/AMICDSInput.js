@@ -103,6 +103,9 @@ const useStyles = makeStyles((theme) => ({
   nonDisable: {
     color: "rgba(0, 0, 0, 0.38) !important",
   },
+  resize: {
+    fontSize: 11,
+  },
 }));
 
 const Gender = [
@@ -189,6 +192,7 @@ export default function AMICSInput() {
 
   const label = {
     inputProps: { "aria-label": "Checkbox demo" },
+    fontSize: "10px",
   };
 
   const resetFields = () => {};
@@ -376,6 +380,7 @@ export default function AMICSInput() {
                   {...label}
                   sx={{
                     color: "#fff",
+
                     "&.Mui-checked": {
                       color: "#fff",
                     },
@@ -482,12 +487,17 @@ export default function AMICSInput() {
             </Grid>
           </Grid>
         </form> */}
+
         <form className={classes.secondform}>
           <Grid
             container
             className={classes.formgrop}
             style={{ marginTop: "14px" }}
           >
+            <h4 style={{ marginLeft: "130px" }}>
+              hsTnl Results
+              <label style={{ marginLeft: "40px" }}>Draw Time</label>
+            </h4>
             <Grid container item xs={12} md={4}>
               <Typography style={{ marginLeft: "20px", marginTop: "20px" }}>
                 First draw
@@ -535,7 +545,7 @@ export default function AMICSInput() {
                   textAlign: "right",
                 }}
                 variant="filled"
-                label="25 ng/L"
+                label="35 ng/L"
                 // placeholder="Enter Last Name"
                 type="text"
                 id="lastname"
@@ -568,8 +578,9 @@ export default function AMICSInput() {
                   width: "100px",
                   textAlign: "right",
                 }}
+                InputProps={{ classes: { input: classes.resize } }}
                 variant="filled"
-                label="25 ng/L"
+                label=" ng/L"
                 // placeholder="Enter Last Name"
                 type="text"
                 id="lastname"
@@ -584,7 +595,7 @@ export default function AMICSInput() {
                   textAlign: "right",
                 }}
                 variant="filled"
-                label="10/26/2021, 21:40"
+                label="mm/dd/yyyy,hh:mm"
                 // placeholder="Enter Last Name"
                 type="text"
                 id="lastname"
