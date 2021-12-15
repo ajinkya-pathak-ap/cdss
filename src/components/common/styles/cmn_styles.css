@@ -102,5 +102,31 @@ i.icon {
   border: 0;
   box-sizing: content-box;
   background: none;
-  height: 0.2375em !important;
+  height: 0.1375em !important;
+}
+
+/* 1% textfield height */
+.ForwardRef\(InputBase\)-root-43 .MuiInputBase-input {
+  width: 70%;
+  border: 1px solid rgb(206, 212, 218);
+  padding: 3px 6px !important;
+  position: relative;
+  font-size: 14px;
+  transition: border-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-family: Roboto;
+  border-radius: 4px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* 0% textfield height */
+.ForwardRef\(InputBase\)-root-41 .MuiInputBase-input {
+  width: 70%;
+  border: 1px solid rgb(206, 212, 218);
+  padding: 3px 6px !important;
+  position: relative;
+  font-size: 14px;
+  transition: border-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-family: Roboto;
+  border-radius: 4px;
+  background-color: rgb(255, 255, 255);
 }
