@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { makeStyles } from "@material-ui/core";
-
 import Notification from "../../shared/notification/Notification";
-
 import AMIOutput from "../ami/AMIOutput";
 import AMICDSInput from "../ami/AMICDSInput";
 import AMIConfiguration from "../ami/AMIConfiguraton";
@@ -11,16 +8,7 @@ import Login from "../common/Login";
 import RiskScoreContributors from "../ami/RiskScoreContributors";
 import ChestPainFlowchart from "../ami/ChestPainFlowchart";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    paddingTop: theme.spacing(10),
-  },
-}));
-
 function ShellComponent(props) {
-  const classes = useStyles();
-  const [openPopup, setOpenPopup] = useState(false);
-
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -34,10 +22,6 @@ function ShellComponent(props) {
       type: _object.type,
     });
   };
-
-  function handlePopup() {
-    setOpenPopup(true);
-  }
 
   return (
     <>

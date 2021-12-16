@@ -4,9 +4,7 @@ import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Button from "@material-ui/core/Button";
-import ModalPopup from "../../shared/dialog/ModalPopup";
 
 import { Link } from "react-router-dom";
 import { Card, CardContent, makeStyles, Typography } from "@material-ui/core";

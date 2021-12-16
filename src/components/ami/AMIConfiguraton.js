@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { alpha, styled } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
-import Paper from "@material-ui/core/Paper";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import Grid from "@material-ui/core/Grid";
@@ -14,14 +13,13 @@ import TextField from "@mui/material/TextField";
 
 import InputBase from "@mui/material/InputBase";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Card,
   CardContent,
   makeStyles,
   Typography,
   FormControl,
-  InputLabel,
 } from "@material-ui/core";
 
 const BootstrapButton = styled(Button)({
@@ -150,11 +148,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AMIConfiguration() {
-  const [Operator, setOperator] = React.useState("");
+  const [operatorOne, setOperatorOne] = React.useState("");
+  const [operatorTwo, setOperatorTwo] = React.useState("");
 
-  const handleChangeOperator = (event) => {
-    setOperator(event.target.value);
+  const changeOperatorOne = (event) => {
+    setOperatorOne(event.target.value);
   };
+  const changeOperatorTwo = (event) => {
+    setOperatorTwo(event.target.value);
+  };
+
   const [generateRS, setGenerateRS] = useState(false);
 
   const label = {
@@ -164,10 +167,6 @@ export default function AMIConfiguration() {
     setGenerateRS(event.target.checked);
   };
   const operators = [">", "<", ">=", "<=", "=", "Between"];
-
-  function handleGender(e) {
-    setOperator(e.target.value);
-  }
 
   const classes = useStyles();
 
@@ -232,15 +231,14 @@ export default function AMIConfiguration() {
                     <Grid item container xs={12}>
                       <Grid item xs={6} md={2}>
                         <h4>Operator</h4>
-
                         <FormControl fullWidth>
                           <Select
                             labelId="simple"
                             id="demo2"
-                            value={Operator}
+                            value={operatorOne}
                             label="Age"
                             autoWidth
-                            onChange={handleChangeOperator}
+                            onChange={changeOperatorOne}
                             style={{
                               backgroundColor: "#fff",
                               width: "80px",
@@ -270,7 +268,7 @@ export default function AMIConfiguration() {
                           variant="filled"
                         />
                       </Grid>
-                      {Operator === "Between" ? (
+                      {operatorOne === "Between" ? (
                         <Grid item xs={6} md={2}>
                           <h4>Value-2</h4>
                           <TextField
@@ -287,9 +285,9 @@ export default function AMIConfiguration() {
                       ) : (
                         ""
                       )}
-                      {/* <Grid item xs={12} md={2}>
+                      <Grid item xs={12} md={2}>
                         <h4>AND</h4>
-                      </Grid> */}
+                      </Grid>
 
                       <Grid item xs={6} md={2}>
                         <h4>Operator</h4>
@@ -297,10 +295,10 @@ export default function AMIConfiguration() {
                           <Select
                             labelId="simple2"
                             id="demo"
-                            value={Operator}
+                            value={operatorTwo}
                             label="Age"
                             autoWidth
-                            onChange={handleChangeOperator}
+                            onChange={changeOperatorTwo}
                             style={{
                               // marginLeft: "18px",
                               backgroundColor: "#fff",
@@ -318,6 +316,7 @@ export default function AMIConfiguration() {
                           </Select>
                         </FormControl>
                       </Grid>
+
                       <Grid item xs={6} md={2}>
                         <h4>Value-1</h4>
                         <TextField
@@ -331,19 +330,24 @@ export default function AMIConfiguration() {
                           variant="filled"
                         />
                       </Grid>
-                      <Grid item xs={6} md={2}>
-                        <h4>Value-2</h4>
-                        <TextField
-                          style={{
-                            backgroundColor: "#fff",
-                            width: "80px",
-                            fontSize: "12px",
-                          }}
-                          id="outlined-basic"
-                          label="All"
-                          variant="filled"
-                        />
-                      </Grid>
+
+                      {operatorTwo === "Between" ? (
+                        <Grid item xs={6} md={2}>
+                          <h4>Value-2</h4>
+                          <TextField
+                            style={{
+                              backgroundColor: "#fff",
+                              width: "80px",
+                              fontSize: "12px",
+                            }}
+                            id="outlined-basic"
+                            label="All"
+                            variant="filled"
+                          />
+                        </Grid>
+                      ) : (
+                        ""
+                      )}
                     </Grid>
                     <br />
                     <br />

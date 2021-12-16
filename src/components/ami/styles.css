@@ -22,7 +22,6 @@ label#firstDraw-label,
 label#secondDraw-label,
 label#thirdDraw-label{
 color: black;
-/* margin-left: 110px; */
 }
 
 
@@ -30,5 +29,9 @@ label#date1-label,
 label#date2-label,
 label#date3-label{
 color: black;
-/* margin-left: 110px; */
+}
+
+.cds-input-fields > input{
+  font-size: 12px;
+  text-align: right;
 }
