@@ -1,58 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { styled } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
-
 import { Link } from "react-router-dom";
-import { Card, CardContent, makeStyles, Typography } from "@material-ui/core";
-
+import { Card, CardContent, Typography } from "@material-ui/core";
 import { riskScoreService } from "../../services/riskScore-service";
 import CircularIndeterminate from "../../shared/preloder/Preloder";
-
-const useStyles = makeStyles((theme) => ({
-  gridcontainer: {
-    background: "#fff",
-    color: "#000",
-    textAlign: "center",
-    minHeight: "250px",
-    borderRadius: "50px",
-  },
-  gridcontainer1: {
-    background: "#050038",
-    color: "#fff",
-    textAlign: "center",
-    minHeight: "80px",
-    borderRadius: "50px",
-  },
-  typo: {
-    color: "red",
-    fontSize: "12px",
-  },
-  buttonColor: {
-    backgroundColor: "#414BB2",
-    color: "#fff",
-    "&:hover": {
-      backgroundColor: "#414BB2",
-    },
-  },
-  whiteBtn: {
-    color: "#fff",
-    textDecoration: "none",
-  },
-  alignRight: {
-    justifyContent: "flex-end",
-  },
-}));
-
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+import { riskContributorStyles } from "./CustomStyles";
 
 const configData = {
   MRN: "1",
@@ -60,13 +15,13 @@ const configData = {
 };
 
 export default function RiskScoreContributors() {
-  const classes = useStyles();
+  const classes = riskContributorStyles();
 
   const [isFetching, setIsFetching] = useState(true);
   const [riskScoreContributors, setRiskScoreContributors] = useState({});
 
   useEffect(() => {
-    fetchRiskScoreContributors();
+    fetchRiskScoreContributors(configData);
   }, [0]);
 
   const fetchRiskScoreContributors = (config) => {
@@ -111,6 +66,7 @@ export default function RiskScoreContributors() {
                       <CardContent>
                         <Typography style={{ fontSize: "22px" }}>
                           {riskScoreContributors.value.riskScoreContributors}
+                          {/* Provide the Details for the Risk Score Contributors */}
                         </Typography>
                       </CardContent>
                     </Card>

@@ -4,8 +4,8 @@
 
 label#age-label {
   margin-top: 10px;
-  margin-left: -3px;
-  font-size: 20px !important;
+  margin-left: -1px;
+  font-size: 16px !important;
   color: red;
 }
 
@@ -14,24 +14,17 @@ label#Race-label,
 label#symptoms-label,
 label#time-label,
 label#riskFactors-label {
-  margin-top: 21px;
+  margin-top: 12px;
+  color: #000;
   margin-left: 12px;
-  font-size: 20px !important;
+  font-size: 18px !important;
 }
+
 label#firstDraw-label,
 label#secondDraw-label,
-label#thirdDraw-label{
-color: black;
-}
-
-
+label#thirdDraw-label,
 label#date1-label,
 label#date2-label,
-label#date3-label{
-color: black;
-}
-
-.cds-input-fields > input{
-  font-size: 12px;
-  text-align: right;
+label#date3-label {
+  color: black;
 }

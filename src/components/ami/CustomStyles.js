@@ -1,5 +1,13 @@
 import { makeStyles } from "@material-ui/core";
 
+
+
+
+
+
+/**AMI CDS Output Screen Styles */
+
+
 /**AMI CDS Input Screen Styles */
 export const CDSInputStyles = makeStyles((theme) => ({
   holder: {
@@ -49,6 +57,7 @@ export const CDSInputStyles = makeStyles((theme) => ({
     textAlign: "right",
     height: " 2.65em",
     color: "#000",
+    fontSize:"14px"
   },
 
   headerText: {
@@ -70,12 +79,59 @@ export const CDSInputStyles = makeStyles((theme) => ({
     color: "rgba(0, 0, 0, 0.38) !important",
   },
 
-  resize: {
-    fontSize: 11,
-  },
-
   inputFields: {
     textAlign: "right",
     fontSize: "14px !important",
   },
+
+  fontTypeOne: {
+    fontSize: "14px !important",
+  },
 }));
+
+/**AMI CDS config Screen Styles */
+
+/**AMI CDS Riskcontributor Screen*/
+export const riskContributorStyles = makeStyles((theme) => ({
+  gridcontainer: {
+    background: "#fff",
+    color: "#000",
+    textAlign: "center",
+    minHeight: "250px",
+    borderRadius: "50px",
+  },
+  gridcontainer1: {
+    background: "#050038",
+    color: "#fff",
+    textAlign: "center",
+    minHeight: "80px",
+    borderRadius: "50px",
+  },
+  typo: {
+    color: "red",
+    fontSize: "12px",
+  },
+  buttonColor: {
+    backgroundColor: "#414BB2",
+    color: "#fff",
+    "&:hover": {
+      backgroundColor: "#414BB2",
+    },
+  },
+  whiteBtn: {
+    color: "#fff",
+    textDecoration: "none",
+  },
+  alignRight: {
+    justifyContent: "flex-end",
+  },
+}));
+
+/**AMI CDS Chest Pain Management Screen*/
+
+
+
+
+
+
+
