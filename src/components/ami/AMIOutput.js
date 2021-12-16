@@ -11,92 +11,7 @@ import { Stack } from "@mui/material";
 
 import { riskScoreService } from "../../services/riskScore-service";
 import CircularIndeterminate from "../../shared/preloder/Preloder";
-
-const useStyles = makeStyles((theme) => ({
-  holder: {
-    backgroundColor: "#6D7F9B",
-    width: "65%",
-    position: "absolute",
-    left: "0",
-    right: "0",
-    margin: "auto",
-  },
-
-  gridcontainer: {
-    background: "#050038",
-    color: "#fff",
-    textAlign: "left",
-    minHeight: "80px",
-  },
-
-  gridcontainer1: {
-    background: "#050038",
-    color: "#fff",
-    textAlign: "left",
-    minHeight: "80px",
-  },
-
-  typo: {
-    color: "red",
-    fontSize: "14px",
-  },
-
-  headerText: {
-    fontWeight: "bold",
-    fontSize: "20px",
-    marginBottom: "15px",
-  },
-
-  headerTextTwo: {
-    fontWeight: "bold",
-    fontSize: "16px",
-  },
-
-  headerTextThree: {
-    fontSize: "14px",
-  },
-
-  buttonColor: {
-    backgroundColor: "#414BB2",
-    textDecoration: "none",
-    color: "#fff",
-    "&:hover": {
-      backgroundColor: "#414BB2",
-    },
-    textTransform: "none",
-  },
-
-  hyperLink: {
-    color: "white",
-    cursor: "pointer",
-    textDecoration: "underline",
-  },
-
-  alignRight: {
-    justifyContent: "flex-end",
-  },
-
-  circle: {
-    fontSize: "42px",
-    lineHeight: "3.5",
-    fontWeight: "bold",
-    color: "black",
-  },
-  acknowledgeBtn_1: {
-    display: "block",
-    [theme.breakpoints.down("sm")]: {
-      display: "none",
-    },
-  },
-  acknowledgeBtn_2: {
-    display: "none",
-    [theme.breakpoints.down("sm")]: {
-      display: "block",
-      padding: "10px !important",
-      marginLeft: "4px !important",
-    },
-  },
-}));
+import { amiOutputStyles } from "./CustomStyles";
 
 const BootstrapButton = styled(Button)({
   boxShadow: "none",
@@ -117,7 +32,6 @@ const BootstrapButton = styled(Button)({
   },
 });
 
-
 const commonStyles = {
   bgcolor: "#f24726",
   m: 1,
@@ -131,7 +45,7 @@ const configData = {
 };
 
 export default function AMIOutput() {
-  const classes = useStyles();
+  const classes = amiOutputStyles();
 
   const [riskScore, setRiskScore] = useState({});
   const [isFetching, setIsFetching] = useState(true);
