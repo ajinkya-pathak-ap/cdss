@@ -226,9 +226,9 @@ export default function AMIConfiguration() {
                       User Defined Rule
                     </Typography>
                     <br />
-                    <Grid item container xs={12}>
+                    <Grid item container spacing={2} xs={12}>
                       <Grid item xs={6} md={2}>
-                        <h4>Operator</h4>
+                        <h5>Operator</h5>
                         <FormControl fullWidth>
                           <Select
                             labelId="simple"
@@ -254,11 +254,11 @@ export default function AMIConfiguration() {
                         </FormControl>
                       </Grid>
                       <Grid item xs={6} md={2}>
-                        <h4>Value-1</h4>
+                        <h5>Value-1</h5>
                         <TextField
                           style={{
                             backgroundColor: "#fff",
-                            width: "80px",
+                            width: "70px",
                             fontSize: "12px",
                           }}
                           id="outlined-basic"
@@ -267,12 +267,12 @@ export default function AMIConfiguration() {
                         />
                       </Grid>
                       {operatorOne === "Between" ? (
-                        <Grid item xs={6} md={2}>
-                          <h4>Value-2</h4>
+                        <Grid item xs={6} md={1}>
+                          <h5>Value-2</h5>
                           <TextField
                             style={{
                               backgroundColor: "#fff",
-                              width: "80px",
+                              width: "70px",
                               fontSize: "12px",
                             }}
                             id="outlined-basic"
@@ -283,12 +283,14 @@ export default function AMIConfiguration() {
                       ) : (
                         ""
                       )}
-                      <Grid item xs={12} md={2}>
-                        <h4>AND</h4>
+                      <Grid item xs={12} md={1}>
+                        <h4 style={{ marginLeft: "15px", marginTop: "65px" }}>
+                          AND
+                        </h4>
                       </Grid>
 
                       <Grid item xs={6} md={2}>
-                        <h4>Operator</h4>
+                        <h5>Operator</h5>
                         <FormControl fullWidth>
                           <Select
                             labelId="simple2"
@@ -316,7 +318,7 @@ export default function AMIConfiguration() {
                       </Grid>
 
                       <Grid item xs={6} md={2}>
-                        <h4>Value-1</h4>
+                        <h5>Value-1</h5>
                         <TextField
                           style={{
                             backgroundColor: "#fff",
@@ -331,7 +333,7 @@ export default function AMIConfiguration() {
 
                       {operatorTwo === "Between" ? (
                         <Grid item xs={6} md={2}>
-                          <h4>Value-2</h4>
+                          <h5>Value-2</h5>
                           <TextField
                             style={{
                               backgroundColor: "#fff",
