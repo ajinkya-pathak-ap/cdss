@@ -12,6 +12,7 @@ class PatientInfoService {
   //   };
   //   return axios.post(url, JSON.stringify(config), _config);
   // }
+
   getPatientInfo(config) {
     const url = `${URLS.PATIENT_INFO}`;
     return axios.get(url);

@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-
 import { Link } from "react-router-dom";
-import { Card, CardContent, makeStyles, Typography } from "@material-ui/core";
+import { Card, CardContent, Typography } from "@material-ui/core";
 import { Stack } from "@mui/material";
-
 import { riskScoreService } from "../../services/riskScore-service";
 import CircularIndeterminate from "../../shared/preloder/Preloder";
 import { amiOutputStyles } from "./CustomStyles";
 
-const BootstrapButton = styled(Button)({
+const BootstrapButton = styled(Button)((props) => ({
   boxShadow: "none",
   textTransform: "none",
   fontSize: "14px",
@@ -22,7 +19,6 @@ const BootstrapButton = styled(Button)({
   lineHeight: 1.9,
   backgroundColor: "#414bb2",
   fontFamily: ["Roboto"].join(","),
-
   "&:active": {
     boxShadow: "none",
     backgroundColor: "#0062cc",
@@ -30,14 +26,10 @@ const BootstrapButton = styled(Button)({
   "&:focus": {
     boxShadow: "0 0 0 0.2rem rgba(0,123,255,.5)",
   },
-});
-
-const commonStyles = {
-  bgcolor: "#f24726",
-  m: 1,
-  width: "9rem",
-  height: "9rem",
-};
+  [props.theme.breakpoints.down("md")]: {
+    fontSize: "12px",
+  },
+}));
 
 const configData = {
   MRN: "1",
@@ -90,6 +82,7 @@ export default function AMIOutput() {
     let strArr = _string.split("$");
     setDetails({ ...details, text_1: strArr[0], text_2: strArr[1] });
   };
+
   const getRiskScoreContrubutors = (_string) => {
     let strArr = _string.split("$");
     setContributors({
@@ -100,27 +93,17 @@ export default function AMIOutput() {
       thirdContributor: strArr[3],
     });
   };
+
   const getGuidance = (_string) => {
     let strArr = _string.split("$");
     setGuidance({ ...guidance, text_1: strArr[0], text_2: strArr[1] });
   };
 
-  const time = [
-    {
-      value: "7",
-      label: "1 Hrs",
-    },
-    {
-      value: "8",
-      label: "2 Hrs",
-    },
-  ];
-
   if (isFetching) {
     return <CircularIndeterminate />;
   } else {
     return (
-      <Grid container spacing={4} className={classes.holder}>
+      <Grid container spacing={3} className={classes.mainContainer}>
         {/* *****************First container***************** */}
         <Grid container item xs={12} style={{ margin: "10" }}>
           <Grid item xs={8} className={classes.gridcontainer1}>
@@ -148,11 +131,11 @@ export default function AMIOutput() {
             alignItems="center"
             justifyContent="center"
           >
-            <Box
-              sx={{ ...commonStyles, borderRadius: "50%" }}
-              textAlign="center"
-            >
-              <Typography alignitems="center" className={classes.circle}>
+            <Box textAlign="center" className={classes.smallMargin}>
+              <Typography
+                alignitems="center"
+                className={classes.riskScoreShell}
+              >
                 {/* {riskScore.value.riskScore}% */}
                 88%
               </Typography>
@@ -161,7 +144,7 @@ export default function AMIOutput() {
         </Grid>
         {/* *****************Second container***************** */}
         <Grid container item xs={12}>
-          <Grid item xs={9} className={classes.gridcontainer1}>
+          <Grid item xs={7} className={classes.gridcontainer1}>
             <Card className={classes.gridcontainer}>
               <CardContent>
                 <Typography className={`${classes.headerText}`}>
@@ -191,11 +174,11 @@ export default function AMIOutput() {
           <Grid
             container
             item
-            xs={3}
-            className={classes.gridcontainer1}
+            xs={5}
+            className={`${classes.gridcontainer1} ${classes.moreInfo}`}
             direction="column"
             alignItems="flex-end"
-            justifyContent="flex-end"
+            // justifyContent="flex-end"
           >
             <Stack spacing={4} direction="row">
               <BootstrapButton
@@ -267,7 +250,7 @@ export default function AMIOutput() {
               className={classes.buttonColor}
             >
               <Link className={classes.buttonColor} to="/amioutput">
-                <span className="m-2"> Close</span>
+                <span className="m-2">Close</span>
               </Link>
             </BootstrapButton>
           </Stack>
