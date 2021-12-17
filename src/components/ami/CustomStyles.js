@@ -2,13 +2,19 @@ import { makeStyles } from "@material-ui/core";
 
 /**AMI CDS Output Screen Styles */
 export const amiOutputStyles = makeStyles((theme) => ({
-  holder: {
+  mainContainer: {
     backgroundColor: "#6D7F9B",
     width: "65%",
     position: "absolute",
     left: "0",
     right: "0",
     margin: "auto",
+    [theme.breakpoints.between("md", "lg")]: {
+      width: "56%",
+    },
+    [theme.breakpoints.only("xl")]: {
+      width: "40%",
+    },
   },
 
   gridcontainer: {
@@ -23,6 +29,13 @@ export const amiOutputStyles = makeStyles((theme) => ({
     color: "#fff",
     textAlign: "left",
     minHeight: "80px",
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center",
+    },
+  },
+
+  moreInfo: {
+    justifyContent: "flex-end",
   },
 
   typo: {
@@ -37,6 +50,9 @@ export const amiOutputStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       fontSize: "16px",
     },
+    [theme.breakpoints.down("md")]: {
+      fontSize: "15px",
+    },
   },
 
   headerTextTwo: {
@@ -48,6 +64,9 @@ export const amiOutputStyles = makeStyles((theme) => ({
     fontSize: "14px",
     [theme.breakpoints.up("sm")]: {
       fontSize: "12px",
+    },
+    [theme.breakpoints.down("md")]: {
+      fontSize: "13px",
     },
   },
 
@@ -69,26 +88,53 @@ export const amiOutputStyles = makeStyles((theme) => ({
 
   alignRight: {
     justifyContent: "flex-end",
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center",
+    },
   },
 
-  circle: {
+  riskScoreShell: {
     fontSize: "42px",
     lineHeight: "3.5",
     fontWeight: "bold",
     color: "black",
+    backgroundColor: "#f24726",
+    borderRadius: "50%",
+    width: "9rem",
+    height: "9rem",
+    [theme.breakpoints.up("md")]: {
+      fontSize: "35px",
+      lineHeight: "3.2",
+      width: "8rem",
+      height: "7rem",
+    },
+
+    [theme.breakpoints.down("md")]: {
+      width: "5rem",
+      height: "6rem",
+      fontSize: "29px",
+    },
   },
+
   acknowledgeBtn_1: {
     display: "block",
     [theme.breakpoints.down("sm")]: {
       display: "none",
     },
   },
+
   acknowledgeBtn_2: {
     display: "none",
     [theme.breakpoints.down("sm")]: {
       display: "block",
       padding: "10px !important",
       marginLeft: "4px !important",
+    },
+  },
+
+  smallMargin: {
+    [theme.breakpoints.down("md")]: {
+      marginRight: "25px",
     },
   },
 }));
