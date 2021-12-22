@@ -236,193 +236,155 @@ export default function AMIConfiguration() {
                     >
                       User Defined Rule
                     </Typography>
-                    <br></br>
-                    {/* <Typography
-                      style={{ fontSize: "12px", paddingLeft: "10%" }}
-                      className={classes.headerText}
-                    >
-                      Age
-                    </Typography> */}
 
-                    <Grid
-                      item
-                      container
-                      spacing={2}
-                      xs={12}
-                      justify="flex-start"
-                    >
-                      <Grid item xs={12} md={5}>
-                        <Typography
-                          variant="h6"
-                          style={{ fontSize: "15px", paddingLeft: "30px" }}
-                        >
-                          Age
-                        </Typography>
-                      </Grid>
-                      <Grid item md={7} justify="flex-start">
-                        {operatorOne === "Between" ? (
-                          <Typography
-                            variant="h6"
-                            style={{ fontSize: "15px", marginLeft: "64px" }}
-                          >
-                            First hsTnl Value
-                          </Typography>
-                        ) : (
-                          <Typography variant="h6" style={{ fontSize: "15px" }}>
-                            First hsTnl Value
-                          </Typography>
-                        )}
+                    <Grid container spacing={1}>
+                      <Grid item xs={12} sm={5} md={5}>
+                        <Grid container spacing={1}>
+                          <Grid item xs={12} md={12}>
+                            <h4>Age</h4>
+                          </Grid>
+                          <Grid item xs={12} md={4}>
+                            <FormControl fullWidth>
+                              <Select
+                                labelId="simple"
+                                size="small"
+                                id="demo2"
+                                value={operatorOne}
+                                label="Age"
+                                autoWidth
+                                onChange={changeOperatorOne}
+                                style={{
+                                  fontSize: "13px",
+                                  backgroundColor: "#fff",
+                                  width: "100px",
+                                  height: "40px",
+                                }}
+                                disabled={generateRS}
+                              >
+                                {operators.map((option) => {
+                                  return (
+                                    <MenuItem value={option} key={option}>
+                                      {option}
+                                    </MenuItem>
+                                  );
+                                })}
+                              </Select>
+                            </FormControl>
+                          </Grid>
+                          <Grid item xs={12} md={4}>
+                            <TextField
+                              size="small"
+                              disabled={generateRS}
+                              style={{
+                                backgroundColor: "#fff",
+                                width: "100px",
+                              }}
+                            />
+                          </Grid>
+                          {operatorOne === "Between" ? (
+                            <Grid item xs={12} md={4}>
+                              <TextField
+                                size="small"
+                                disabled={generateRS}
+                                style={{
+                                  backgroundColor: "#fff",
+                                  width: "90px",
+                                }}
+                              />
+                            </Grid>
+                          ) : (
+                            ""
+                          )}
+                        </Grid>
                       </Grid>
                       <Grid item xs={12} md={2}>
-                        {/* <h5>Age</h5> */}
-                        <FormControl fullWidth>
-                          <Select
-                            labelId="simple"
-                            id="demo2"
-                            value={operatorOne}
-                            label="Age"
-                            autoWidth
-                            onChange={changeOperatorOne}
-                            style={{
-                              fontSize: "13px",
-                              backgroundColor: "#fff",
-                              width: "100px",
-                              height: "35px",
-                            }}
-                            disabled={generateRS}
-                          >
-                            {operators.map((option) => {
-                              return (
-                                <MenuItem value={option} key={option}>
-                                  {option}
-                                </MenuItem>
-                              );
-                            })}
-                          </Select>
-                        </FormControl>
-                      </Grid>
-                      <Grid item xs={6} md={2}>
-                        <TextField
-                          style={{
-                            backgroundColor: "#fff",
-                            width: "90px",
-
-                            color: "#fff",
-                          }}
-                          id="outlined-basic"
-                          // label="65"
-                          variant="filled"
-                          disabled={generateRS}
-                        />
-                      </Grid>
-                      {operatorOne === "Between" ? (
-                        <Grid item xs={6} md={1}>
-                          <TextField
-                            style={{
-                              backgroundColor: "#fff",
-                              width: "90px",
-                              fontSize: "12px",
-                            }}
-                            id="outlined-basic"
-                            // label="All"
-                            variant="filled"
-                            disabled={generateRS}
-                          />
-                        </Grid>
-                      ) : (
-                        ""
-                      )}
-                      <Grid item xs={12} md={1}>
+                        {/* <Grid container>
+                            <Grid item md={12}>
+                              <h5></h5>
+                            </Grid>
+                            <Grid item md={12}>
+                              <h3
+                                style={{
+                                  marginTop: "50px",
+                                  marginLeft: "-20px",
+                                }}
+                              >
+                                AND
+                              </h3>
+                            </Grid>
+                          </Grid> */}
                         {operatorOne === "Between" ? (
-                          <h5 style={{ marginLeft: "30px", marginTop: "5px" }}>
+                          <h3 style={{ marginLeft: "30px", marginTop: "83px" }}>
                             AND
-                          </h5>
+                          </h3>
                         ) : (
-                          <h5 style={{ marginLeft: "-15px", marginTop: "5px" }}>
+                          <h3
+                            style={{ marginLeft: "-20px", marginTop: "82px" }}
+                          >
                             AND
-                          </h5>
+                          </h3>
                         )}
                       </Grid>
-
-                      <Grid item xs={6} md={2}>
-                        {/* <h5>First hsTnl Value</h5> */}
-                        <FormControl fullWidth>
-                          <Select
-                            labelId="simple2"
-                            id="demo"
-                            value={operatorTwo}
-                            // label="Age"
-                            autoWidth
-                            onChange={changeOperatorTwo}
-                            style={{
-                              // marginLeft: "18px",
-                              fontSize: "13px",
-                              backgroundColor: "#fff",
-                              width: "100px",
-                              height: "35px",
-                            }}
-                            disabled={generateRS}
-                          >
-                            {operators.map((option) => {
-                              return (
-                                <MenuItem value={option} key={option}>
-                                  {option}
-                                </MenuItem>
-                              );
-                            })}
-                          </Select>
-                        </FormControl>
-                      </Grid>
-
-                      <Grid item xs={6} md={2}>
-                        {/* <h5>Value-1</h5> */}
-                        <TextField
-                          style={{
-                            backgroundColor: "#fff",
-                            width: "90px",
-                            fontSize: "12px",
-                          }}
-                          id="outlined-basic"
-                          // label="456"
-                          variant="filled"
-                          disabled={generateRS}
-                        />
-                      </Grid>
-
-                      {operatorTwo === "Between" ? (
-                        <Grid item xs={6} md={2}>
-                          {/* <h5>Value-2</h5> */}
-                          <TextField
-                            style={{
-                              backgroundColor: "#fff",
-                              width: "90px",
-                              fontSize: "12px",
-                            }}
-                            id="outlined-basic"
-                            // label="All"
-                            variant="filled"
-                            disabled={generateRS}
-                          />
+                      <Grid item xs={12} md={5}>
+                        <Grid container spacing={1}>
+                          <Grid item xs={12} md={12}>
+                            <h4>First hsTnl Value</h4>
+                          </Grid>
+                          <Grid item xs={12} md={4}>
+                            <FormControl fullWidth>
+                              <Select
+                                labelId="simple2"
+                                id="demo"
+                                value={operatorTwo}
+                                // label="Age"
+                                autoWidth
+                                onChange={changeOperatorTwo}
+                                style={{
+                                  // marginLeft: "18px",
+                                  fontSize: "13px",
+                                  backgroundColor: "#fff",
+                                  width: "100px",
+                                  height: "40px",
+                                }}
+                                disabled={generateRS}
+                              >
+                                {operators.map((option) => {
+                                  return (
+                                    <MenuItem value={option} key={option}>
+                                      {option}
+                                    </MenuItem>
+                                  );
+                                })}
+                              </Select>
+                            </FormControl>
+                          </Grid>
+                          <Grid item xs={12} md={4}>
+                            <TextField
+                              size="small"
+                              disabled={generateRS}
+                              style={{
+                                backgroundColor: "#fff",
+                                width: "100px",
+                              }}
+                            />
+                          </Grid>
+                          {operatorTwo === "Between" ? (
+                            <Grid item md={4}>
+                              <TextField
+                                size="small"
+                                disabled={generateRS}
+                                style={{
+                                  backgroundColor: "#fff",
+                                  width: "100px",
+                                }}
+                              />
+                            </Grid>
+                          ) : (
+                            ""
+                          )}
                         </Grid>
-                      ) : (
-                        ""
-                      )}
+                      </Grid>
                     </Grid>
-                    <br />
-                    <br />
-
-                    {/* <Button
-                      className={classes.buttonColor}
-                      variant="contained"
-                      style={{
-                        textTransform: "none",
-                        backgroundColor: "#414BB2",
-                        marginBottom: "10px",
-                        float: "right",
-                      }}
-                    >
-                      Apply
-                    </Button> */}
                   </CardContent>
                 </Card>
               </Grid>
@@ -580,34 +542,36 @@ export default function AMIConfiguration() {
             </Grid>
             {/* *****************end of third container***************** */}
             <Grid item xs={12} container className={classes.alignRight}>
-              <Stack spacing={2} direction="row">
-                <BootstrapButton
-                  variant="contained"
-                  className={classes.buttonColor}
-                >
-                  {/* <Link className={classes.buttonColor} to="">
+              <Grid item xs={12} md={4}>
+                <Stack spacing={2} direction="row">
+                  <BootstrapButton
+                    variant="contained"
+                    className={classes.buttonColor}
+                  >
+                    {/* <Link className={classes.buttonColor} to="">
                     <span className="m-2">Apply</span>
                   </Link> */}
-                  Apply
-                </BootstrapButton>
-                <BootstrapButton
-                  variant="contained"
-                  className={classes.buttonColor}
-                >
-                  Reset
-                  {/* <Link className={classes.buttonColor} to="">
+                    Apply
+                  </BootstrapButton>
+                  <BootstrapButton
+                    variant="contained"
+                    className={classes.buttonColor}
+                  >
+                    Reset
+                    {/* <Link className={classes.buttonColor} to="">
                     <span className="m-2">Reset</span>
                   </Link> */}
-                </BootstrapButton>
-                <BootstrapButton
-                  variant="contained"
-                  className={classes.buttonColor}
-                >
-                  <Link className={classes.buttonColor} to="/amioutput">
-                    <span className="m-2">Close</span>
-                  </Link>
-                </BootstrapButton>
-              </Stack>
+                  </BootstrapButton>
+                  <BootstrapButton
+                    variant="contained"
+                    className={classes.buttonColor}
+                  >
+                    <Link className={classes.buttonColor} to="/amioutput">
+                      <span className="m-2">Close</span>
+                    </Link>
+                  </BootstrapButton>
+                </Stack>
+              </Grid>
             </Grid>
           </Grid>
         </Box>
