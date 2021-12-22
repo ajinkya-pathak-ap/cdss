@@ -322,7 +322,7 @@ export default function AMIConfiguration() {
                         <TextField
                           style={{
                             backgroundColor: "#fff",
-                            width: "80px",
+                            width: "70px",
                             fontSize: "12px",
                           }}
                           id="outlined-basic"
@@ -434,19 +434,6 @@ export default function AMIConfiguration() {
                         </FormControl>
                         <label className={classes.headerText}>AND</label>
                         <FormControl variant="standard">
-                          {/* <InputLabel
-                            style={{
-                              fontSize: "18px",
-                              fontWeight: "bold",
-                              color: "#fff",
-                              marginLeft: "40px",
-                              width: "80%",
-                            }}
-                            shrink
-                            htmlFor="hstnl"
-                          >
-                            First hsTnl Value
-                          </InputLabel> */}
                           <BootstrapInput
                             style={{
                               marginLeft: "20px",
@@ -500,21 +487,6 @@ export default function AMIConfiguration() {
                   <FormGroup
                     className={`${classes.formgrop} ${classes.headerText}`}
                   >
-                    {/* <FormControlLabel
-                      control={
-                        <Checkbox
-                          {...label}
-                          defaultChecked
-                          sx={{
-                            color: "#fff",
-                            "&.Mui-checked": {
-                              color: "#fff",
-                            },
-                          }}
-                        />
-                      }
-                      label="Document risk score and contributors in EMR  "
-                    /> */}
                     <FormControlLabel
                       control={
                         <Checkbox
