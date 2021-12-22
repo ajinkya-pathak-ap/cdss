@@ -89,8 +89,9 @@ export default function AMICSInput() {
 
   const resetFields = () => {};
   const [race, setRace] = useState("Asian");
-  const [presentingSymptoms, setPresentingSymptoms] =
-    useState("Left Hand Pain");
+  const [presentingSymptoms, setPresentingSymptoms] = useState(
+    "Left Hand Pain"
+  );
   const [symptomOnset, setSymptomOnset] = useState("1 Hrs");
   const [riskFactors, setrRiskFactors] = useState("prior AMI");
 
@@ -288,7 +289,7 @@ export default function AMICSInput() {
                 EKG findings (Select One)
               </h3>
 
-              <FormControlLabel
+              {/* <FormControlLabel
                 control={
                   <Checkbox
                     {...label}
@@ -301,8 +302,30 @@ export default function AMICSInput() {
                   />
                 }
                 label="No ST deviation, but LBBB, LVH, repolarization changes "
-              />
-              <FormControlLabel
+              /> */}
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault"
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  No ST deviation, but LBBB, LVH, repolarization changes
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault"
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  ST deviation, but LBBB, LVH, repolarization changes
+                </label>
+              </div>
+              {/* <FormControlLabel
                 control={
                   <Checkbox
                     {...label}
@@ -315,7 +338,7 @@ export default function AMICSInput() {
                   />
                 }
                 label="ST deviation, but LBBB, LVH, repolarization changes"
-              />
+              /> */}
             </FormGroup>
           </Grid>
           {/* ***************** end of first Box *********************** */}

@@ -79,6 +79,19 @@ export const amiOutputStyles = makeStyles((theme) => ({
 
   buttonColor: {
     backgroundColor: "#414BB2",
+    // paddingLeft: "12px",
+    textDecoration: "none",
+    color: "#fff",
+    "&:hover": {
+      backgroundColor: "#414BB2",
+    },
+    textTransform: "none",
+  },
+
+  buttonColor1: {
+    backgroundColor: "#414BB2",
+    paddingLeft: "62px",
+    paddingRight: "62px",
     textDecoration: "none",
     color: "#fff",
     "&:hover": {
@@ -89,6 +102,7 @@ export const amiOutputStyles = makeStyles((theme) => ({
 
   hyperLink: {
     color: "white",
+    fontSize: "13px",
     cursor: "pointer",
     textDecoration: "underline",
   },

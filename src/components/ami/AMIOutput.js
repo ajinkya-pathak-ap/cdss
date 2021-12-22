@@ -243,37 +243,13 @@ export default function AMIOutput() {
             </BootstrapButton>
             <BootstrapButton
               variant="contained"
-              className={classes.buttonColor}
+              className={classes.buttonColor1}
             >
-              <Link className={classes.buttonColor} to="/amioutput">
+              <Link className={classes.buttonColor1} to="/amioutput">
                 <span className="m-2">Close</span>
               </Link>
             </BootstrapButton>
           </Stack>
-          {/* <Stack spacing={2} direction="row">
-          <Button
-            style={{
-              backgroundColor: "#414bb2",
-              color: "#fff",
-              fontVariafont: "normal",
-              textDecoration: "none",
-            }}
-            variant="contained"
-          >
-            Acknowledge(to write Risk Contributors)
-          </Button>
-          <Button
-            style={{
-              backgroundColor: "#414bb2",
-              color: "#fff",
-              fontVariafont: "normal",
-              textDecoration: "none",
-            }}
-            variant="contained"
-          >
-            Close
-          </Button>
-        </Stack> */}
         </Grid>
       </Grid>
     );
