@@ -225,10 +225,45 @@ export default function AMIConfiguration() {
                     >
                       User Defined Rule
                     </Typography>
-                    <br />
-                    <Grid item container spacing={2} xs={12}>
+                    <br></br>
+                    {/* <Typography
+                      style={{ fontSize: "12px", paddingLeft: "10%" }}
+                      className={classes.headerText}
+                    >
+                      Age
+                    </Typography> */}
+
+                    <Grid
+                      item
+                      container
+                      spacing={2}
+                      xs={12}
+                      justify="flex-start"
+                    >
+                      <Grid item md={5}>
+                        <Typography
+                          variant="h6"
+                          style={{ fontSize: "15px", paddingLeft: "30px" }}
+                        >
+                          Age
+                        </Typography>
+                      </Grid>
+                      <Grid item md={7} justify="flex-start">
+                        {operatorOne === "Between" ? (
+                          <Typography
+                            variant="h6"
+                            style={{ fontSize: "15px", marginLeft: "64px" }}
+                          >
+                            First hsTnl Value
+                          </Typography>
+                        ) : (
+                          <Typography variant="h6" style={{ fontSize: "15px" }}>
+                            First hsTnl Value
+                          </Typography>
+                        )}
+                      </Grid>
                       <Grid item xs={6} md={2}>
-                        <h5>Age</h5>
+                        {/* <h5>Age</h5> */}
                         <FormControl fullWidth>
                           <Select
                             labelId="simple"
@@ -238,8 +273,9 @@ export default function AMIConfiguration() {
                             autoWidth
                             onChange={changeOperatorOne}
                             style={{
+                              fontSize: "13px",
                               backgroundColor: "#fff",
-                              width: "115px",
+                              width: "100px",
                               height: "35px",
                             }}
                           >
@@ -258,12 +294,17 @@ export default function AMIConfiguration() {
                         <TextField
                           style={{
                             backgroundColor: "#fff",
-                            width: "70px",
+                            width: "90px",
                             fontSize: "12px",
                           }}
                           id="outlined-basic"
                           // label="65"
                           variant="filled"
+                          inputProps={{
+                            input: {
+                              marginTop: "0px",
+                            },
+                          }}
                         />
                       </Grid>
                       {operatorOne === "Between" ? (
@@ -272,7 +313,7 @@ export default function AMIConfiguration() {
                           <TextField
                             style={{
                               backgroundColor: "#fff",
-                              width: "70px",
+                              width: "90px",
                               fontSize: "12px",
                             }}
                             id="outlined-basic"
@@ -284,13 +325,19 @@ export default function AMIConfiguration() {
                         ""
                       )}
                       <Grid item xs={12} md={1}>
-                        <h4 style={{ marginLeft: "15px", marginTop: "65px" }}>
-                          AND
-                        </h4>
+                        {operatorOne === "Between" ? (
+                          <h5 style={{ marginLeft: "30px", marginTop: "5px" }}>
+                            AND
+                          </h5>
+                        ) : (
+                          <h5 style={{ marginLeft: "0px", marginTop: "5px" }}>
+                            AND
+                          </h5>
+                        )}
                       </Grid>
 
                       <Grid item xs={6} md={2}>
-                        <h5>First hsTnl Value</h5>
+                        {/* <h5>First hsTnl Value</h5> */}
                         <FormControl fullWidth>
                           <Select
                             labelId="simple2"
@@ -301,8 +348,9 @@ export default function AMIConfiguration() {
                             onChange={changeOperatorTwo}
                             style={{
                               // marginLeft: "18px",
+                              fontSize: "13px",
                               backgroundColor: "#fff",
-                              width: "115px",
+                              width: "100px",
                               height: "35px",
                             }}
                           >
@@ -322,7 +370,7 @@ export default function AMIConfiguration() {
                         <TextField
                           style={{
                             backgroundColor: "#fff",
-                            width: "80px",
+                            width: "90px",
                             fontSize: "12px",
                           }}
                           id="outlined-basic"
@@ -337,7 +385,7 @@ export default function AMIConfiguration() {
                           <TextField
                             style={{
                               backgroundColor: "#fff",
-                              width: "80px",
+                              width: "90px",
                               fontSize: "12px",
                             }}
                             id="outlined-basic"
@@ -434,19 +482,6 @@ export default function AMIConfiguration() {
                         </FormControl>
                         <label className={classes.headerText}>AND</label>
                         <FormControl variant="standard">
-                          {/* <InputLabel
-                            style={{
-                              fontSize: "18px",
-                              fontWeight: "bold",
-                              color: "#fff",
-                              marginLeft: "40px",
-                              width: "80%",
-                            }}
-                            shrink
-                            htmlFor="hstnl"
-                          >
-                            First hsTnl Value
-                          </InputLabel> */}
                           <BootstrapInput
                             style={{
                               marginLeft: "20px",
@@ -500,21 +535,6 @@ export default function AMIConfiguration() {
                   <FormGroup
                     className={`${classes.formgrop} ${classes.headerText}`}
                   >
-                    {/* <FormControlLabel
-                      control={
-                        <Checkbox
-                          {...label}
-                          defaultChecked
-                          sx={{
-                            color: "#fff",
-                            "&.Mui-checked": {
-                              color: "#fff",
-                            },
-                          }}
-                        />
-                      }
-                      label="Document risk score and contributors in EMR  "
-                    /> */}
                     <FormControlLabel
                       control={
                         <Checkbox
