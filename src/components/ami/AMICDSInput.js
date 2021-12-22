@@ -9,9 +9,6 @@ import Stack from "@mui/material/Stack";
 import MenuItem from "@mui/material/MenuItem";
 import "./styles.css";
 import { Typography } from "@material-ui/core";
-import { alpha, styled } from "@material-ui/core/styles";
-import InputBase from "@mui/material/InputBase";
-
 import { patientInfoService } from "../../services/patientInfo-service";
 import CircularIndeterminate from "../../shared/preloder/Preloder";
 import { CDSInputStyles } from "./CustomStyles";
@@ -62,7 +59,6 @@ const time = [
 
 export default function AMICSInput() {
   const classes = CDSInputStyles();
-  console.log(classes);
   const pageValues = {
     age: 0,
     gender: "",

@@ -1,5 +1,12 @@
 import { makeStyles } from "@material-ui/core";
 
+/** AMI Header Styles */
+export const amiHeader = makeStyles((theme) => ({
+  searchBtnIcon: {
+    alignItems: "center",
+  },
+}));
+
 /**AMI CDS Output Screen Styles */
 export const amiOutputStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -63,7 +70,7 @@ export const amiOutputStyles = makeStyles((theme) => ({
   headerTextThree: {
     fontSize: "14px",
     [theme.breakpoints.up("sm")]: {
-      fontSize: "12px",
+      fontSize: "13px",
     },
     [theme.breakpoints.down("md")]: {
       fontSize: "13px",
