@@ -149,6 +149,8 @@ export default function AMIConfiguration() {
   const [operatorOne, setOperatorOne] = React.useState("");
   const [operatorTwo, setOperatorTwo] = React.useState("");
 
+  const _amiConfigData = {};
+
   const changeOperatorOne = (event) => {
     setOperatorOne(event.target.value);
   };
@@ -156,13 +158,20 @@ export default function AMIConfiguration() {
     setOperatorTwo(event.target.value);
   };
 
-  const [generateRS, setGenerateRS] = useState(false);
+  const [generateRS, setGenerateRS] = useState(true);
+  const [displayRS, setDisplayRS] = useState(true);
 
   const label = {
     inputProps: { "aria-label": "Checkbox demo" },
   };
   const handleGeneareRiskScore = (event) => {
-    setGenerateRS(event.target.checked);
+    const checkedValue = event.target.checked;
+    setGenerateRS(checkedValue);
+  };
+
+  const handleDisplayRiskScore = (event) => {
+    const checkedValue = event.target.checked;
+    setDisplayRS(checkedValue);
   };
   const operators = [">", "<", ">=", "<=", "=", "Between"];
 
@@ -173,11 +182,13 @@ export default function AMIConfiguration() {
       container
       item
       xs={12}
+      lg={12}
       spacing={4}
       justifycontent="center"
       alignItems="center"
       className={classes.holder}
     >
+      {console.log("aaaaaaa", generateRS)}
       <Grid item sm={12} xs={12}>
         <Box
           sx={{ bgcolor: "#6D7F9B" }}
@@ -198,7 +209,7 @@ export default function AMIConfiguration() {
                     <FormControlLabel
                       control={
                         <Checkbox
-                          onChange={handleGeneareRiskScore}
+                          onChange={(e) => handleGeneareRiskScore(e)}
                           {...label}
                           defaultChecked
                           sx={{
@@ -278,6 +289,7 @@ export default function AMIConfiguration() {
                               width: "100px",
                               height: "35px",
                             }}
+                            disabled={generateRS}
                           >
                             {operators.map((option) => {
                               return (
@@ -290,7 +302,6 @@ export default function AMIConfiguration() {
                         </FormControl>
                       </Grid>
                       <Grid item xs={6} md={2}>
-                        {/* <h5>Value-1</h5> */}
                         <TextField
                           style={{
                             backgroundColor: "#fff",
@@ -301,16 +312,11 @@ export default function AMIConfiguration() {
                           id="outlined-basic"
                           // label="65"
                           variant="filled"
-                          inputProps={{
-                            input: {
-                              marginTop: "0px",
-                            },
-                          }}
+                          disabled={generateRS}
                         />
                       </Grid>
                       {operatorOne === "Between" ? (
                         <Grid item xs={6} md={1}>
-                          {/* <h5>Value-2</h5> */}
                           <TextField
                             style={{
                               backgroundColor: "#fff",
@@ -320,6 +326,7 @@ export default function AMIConfiguration() {
                             id="outlined-basic"
                             // label="All"
                             variant="filled"
+                            disabled={generateRS}
                           />
                         </Grid>
                       ) : (
@@ -331,7 +338,7 @@ export default function AMIConfiguration() {
                             AND
                           </h5>
                         ) : (
-                          <h5 style={{ marginLeft: "0px", marginTop: "5px" }}>
+                          <h5 style={{ marginLeft: "-15px", marginTop: "5px" }}>
                             AND
                           </h5>
                         )}
@@ -354,6 +361,7 @@ export default function AMIConfiguration() {
                               width: "100px",
                               height: "35px",
                             }}
+                            disabled={generateRS}
                           >
                             {operators.map((option) => {
                               return (
@@ -377,6 +385,7 @@ export default function AMIConfiguration() {
                           id="outlined-basic"
                           // label="456"
                           variant="filled"
+                          disabled={generateRS}
                         />
                       </Grid>
 
@@ -392,6 +401,7 @@ export default function AMIConfiguration() {
                             id="outlined-basic"
                             // label="All"
                             variant="filled"
+                            disabled={generateRS}
                           />
                         </Grid>
                       ) : (
@@ -401,7 +411,7 @@ export default function AMIConfiguration() {
                     <br />
                     <br />
 
-                    <Button
+                    {/* <Button
                       className={classes.buttonColor}
                       variant="contained"
                       style={{
@@ -412,7 +422,7 @@ export default function AMIConfiguration() {
                       }}
                     >
                       Apply
-                    </Button>
+                    </Button> */}
                   </CardContent>
                 </Card>
               </Grid>
@@ -430,7 +440,7 @@ export default function AMIConfiguration() {
                     <FormControlLabel
                       control={
                         <Checkbox
-                          onChange={handleGeneareRiskScore}
+                          onChange={(e) => handleDisplayRiskScore(e)}
                           defaultChecked
                           {...label}
                           sx={{
@@ -479,6 +489,7 @@ export default function AMIConfiguration() {
                             }}
                             defaultValue="0%"
                             id="range"
+                            disabled={displayRS}
                           />
                         </FormControl>
                         <label className={classes.headerText}>AND</label>
@@ -492,6 +503,7 @@ export default function AMIConfiguration() {
                             }}
                             defaultValue="1%"
                             id="range"
+                            disabled={displayRS}
                           />
                         </FormControl>
                         <label
@@ -509,7 +521,7 @@ export default function AMIConfiguration() {
                     <br />
                     <br />
 
-                    <Button
+                    {/* <Button
                       className={classes.buttonColor}
                       variant="contained"
                       style={{
@@ -520,7 +532,7 @@ export default function AMIConfiguration() {
                       }}
                     >
                       Apply
-                    </Button>
+                    </Button> */}
                   </CardContent>
                 </Card>
               </Grid>
@@ -551,7 +563,7 @@ export default function AMIConfiguration() {
                       label="Share de-identified data and results with Beckman Coulter "
                     />
                   </FormGroup>
-                  <Button
+                  {/* <Button
                     className={classes.buttonColor}
                     variant="contained"
                     style={{
@@ -562,7 +574,7 @@ export default function AMIConfiguration() {
                     }}
                   >
                     Apply
-                  </Button>
+                  </Button> */}
                 </CardContent>
               </Card>
             </Grid>
@@ -573,16 +585,26 @@ export default function AMIConfiguration() {
                   variant="contained"
                   className={classes.buttonColor}
                 >
-                  <Link className={classes.buttonColor} to="">
-                    <span className="m-2"> Reset</span>
-                  </Link>
+                  {/* <Link className={classes.buttonColor} to="">
+                    <span className="m-2">Apply</span>
+                  </Link> */}
+                  Apply
+                </BootstrapButton>
+                <BootstrapButton
+                  variant="contained"
+                  className={classes.buttonColor}
+                >
+                  Reset
+                  {/* <Link className={classes.buttonColor} to="">
+                    <span className="m-2">Reset</span>
+                  </Link> */}
                 </BootstrapButton>
                 <BootstrapButton
                   variant="contained"
                   className={classes.buttonColor}
                 >
                   <Link className={classes.buttonColor} to="/amioutput">
-                    <span className="m-2"> Close</span>
+                    <span className="m-2">Close</span>
                   </Link>
                 </BootstrapButton>
               </Stack>
