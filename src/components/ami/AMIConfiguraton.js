@@ -228,7 +228,7 @@ export default function AMIConfiguration() {
                     <br />
                     <Grid item container spacing={2} xs={12}>
                       <Grid item xs={6} md={2}>
-                        <h5>Operator</h5>
+                        <h5>Age</h5>
                         <FormControl fullWidth>
                           <Select
                             labelId="simple"
@@ -239,7 +239,7 @@ export default function AMIConfiguration() {
                             onChange={changeOperatorOne}
                             style={{
                               backgroundColor: "#fff",
-                              width: "80px",
+                              width: "115px",
                               height: "35px",
                             }}
                           >
@@ -254,7 +254,7 @@ export default function AMIConfiguration() {
                         </FormControl>
                       </Grid>
                       <Grid item xs={6} md={2}>
-                        <h5>Value-1</h5>
+                        {/* <h5>Value-1</h5> */}
                         <TextField
                           style={{
                             backgroundColor: "#fff",
@@ -262,13 +262,13 @@ export default function AMIConfiguration() {
                             fontSize: "12px",
                           }}
                           id="outlined-basic"
-                          label="65"
+                          // label="65"
                           variant="filled"
                         />
                       </Grid>
                       {operatorOne === "Between" ? (
                         <Grid item xs={6} md={1}>
-                          <h5>Value-2</h5>
+                          {/* <h5>Value-2</h5> */}
                           <TextField
                             style={{
                               backgroundColor: "#fff",
@@ -276,7 +276,7 @@ export default function AMIConfiguration() {
                               fontSize: "12px",
                             }}
                             id="outlined-basic"
-                            label="All"
+                            // label="All"
                             variant="filled"
                           />
                         </Grid>
@@ -290,19 +290,19 @@ export default function AMIConfiguration() {
                       </Grid>
 
                       <Grid item xs={6} md={2}>
-                        <h5>Operator</h5>
+                        <h5>First hsTnl Value</h5>
                         <FormControl fullWidth>
                           <Select
                             labelId="simple2"
                             id="demo"
                             value={operatorTwo}
-                            label="Age"
+                            // label="Age"
                             autoWidth
                             onChange={changeOperatorTwo}
                             style={{
                               // marginLeft: "18px",
                               backgroundColor: "#fff",
-                              width: "80px",
+                              width: "115px",
                               height: "35px",
                             }}
                           >
@@ -318,7 +318,7 @@ export default function AMIConfiguration() {
                       </Grid>
 
                       <Grid item xs={6} md={2}>
-                        <h5>Value-1</h5>
+                        {/* <h5>Value-1</h5> */}
                         <TextField
                           style={{
                             backgroundColor: "#fff",
@@ -326,14 +326,14 @@ export default function AMIConfiguration() {
                             fontSize: "12px",
                           }}
                           id="outlined-basic"
-                          label="456"
+                          // label="456"
                           variant="filled"
                         />
                       </Grid>
 
                       {operatorTwo === "Between" ? (
                         <Grid item xs={6} md={2}>
-                          <h5>Value-2</h5>
+                          {/* <h5>Value-2</h5> */}
                           <TextField
                             style={{
                               backgroundColor: "#fff",
@@ -341,7 +341,7 @@ export default function AMIConfiguration() {
                               fontSize: "12px",
                             }}
                             id="outlined-basic"
-                            label="All"
+                            // label="All"
                             variant="filled"
                           />
                         </Grid>

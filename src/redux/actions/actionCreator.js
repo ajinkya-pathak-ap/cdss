@@ -1,6 +1,6 @@
 import { userActions } from "./actions";
 import axios from "axios";
-import { URLS } from "../../shared/urls/urls";
+import { urls as URLS } from "../../shared/urls/urls";
 
 let config = {
   headers: {

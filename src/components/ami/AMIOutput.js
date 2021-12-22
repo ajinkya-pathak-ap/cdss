@@ -57,10 +57,7 @@ export default function AMIOutput() {
   });
 
   useEffect(() => {
-    // fetchRiskScore(configData);
-    setTimeout(() => {
-      setIsFetching(false);
-    }, 1500);
+    fetchRiskScore(configData);
   }, [0]);
 
   const fetchRiskScore = (config) => {
@@ -113,12 +110,12 @@ export default function AMIOutput() {
                   Risk Score
                 </Typography>
                 <Typography className={`${classes.headerText}`}>
-                  {/* {details.text_1} */}
-                  Patient's Risk of major Adverse Cardiac Event within 30 days
+                  {details.text_1}
+                  {/* Patient's Risk of major Adverse Cardiac Event within 30 days */}
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
-                  {/* {details.text_2} */}
-                  MACE includes death, AMI, stroke,urgent re-vascularization
+                  {details.text_2}
+                  {/* MACE includes death, AMI, stroke,urgent re-vascularization */}
                 </Typography>
               </CardContent>
             </Card>
@@ -136,36 +133,35 @@ export default function AMIOutput() {
                 alignitems="center"
                 className={classes.riskScoreShell}
               >
-                {/* {riskScore.value.riskScore}% */}
-                88%
+                {riskScore.value.riskScore}%{/* 88% */}
               </Typography>
             </Box>
           </Grid>
         </Grid>
         {/* *****************Second container***************** */}
         <Grid container item xs={12}>
-          <Grid item xs={7} className={classes.gridcontainer1}>
+          <Grid item xs={7} lg={8} className={classes.gridcontainer1}>
             <Card className={classes.gridcontainer}>
               <CardContent>
                 <Typography className={`${classes.headerText}`}>
                   Risk Score Contributors
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
-                  {/* {contributors.text_1} */}
-                  The Following are the top three contributors to the risk score
+                  {contributors.text_1}
+                  {/* The Following are the top three contributors to the risk score */}
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
-                  {/* {contributors.firstContributor} */}
-                  1. Troponin change of Xng/L/hour between 0 and 1 hours after
-                  symptom onset
+                  {contributors.firstContributor}
+                  {/* 1. Troponin change of Xng/L/hour between 0 and 1 hours after */}
+                  {/* symptom onset */}
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
-                  {/* {contributors.secondContributor} */}
-                  2. History of hypertension
+                  {contributors.secondContributor}
+                  {/* 2. History of hypertension */}
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
-                  {/* {contributors.thirdContributor} */}
-                  3. Prior cardiac history
+                  {contributors.thirdContributor}
+                  {/* 3. Prior cardiac history */}
                 </Typography>
               </CardContent>
             </Card>
@@ -175,10 +171,10 @@ export default function AMIOutput() {
             container
             item
             xs={5}
+            lg={4}
             className={`${classes.gridcontainer1} ${classes.moreInfo}`}
             direction="column"
             alignItems="flex-end"
-            // justifyContent="flex-end"
           >
             <Stack spacing={4} direction="row">
               <BootstrapButton
@@ -204,13 +200,13 @@ export default function AMIOutput() {
                 Guidance
               </Typography>
               <Typography className={`${classes.headerTextThree}`}>
-                {/* {guidance.text_1} */}
-                Based on the patient's risk score and the care pathway at your
+                {guidance.text_1}
+                {/* Based on the patient's risk score and the care pathway at your */}
                 institution, the following course of action is recommended
               </Typography>
               <Typography className={classes.typo}>
-                {/* {guidance.text_2} */}
-                Refer patient for Cardiology Consultant
+                {guidance.text_2}
+                {/* Refer patient for Cardiology Consultant */}
               </Typography>
               <Typography>
                 <Link className={classes.hyperLink} to="/carepath">

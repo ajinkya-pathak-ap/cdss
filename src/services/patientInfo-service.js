@@ -1,22 +1,24 @@
 import axios from "axios";
-import { URLS } from "../shared/urls/urls";
+import { localUrl as URLS } from "../shared/urls/urls";
+// import { urls as URLS } from "../shared/urls/urls";
 
 class PatientInfoService {
-  // getPatientInfo(config) {
-  //   const url = `${URLS.PATIENT_INFO}`;
-  //   let _config = {
-  //     headers: {
-  //       "Content-Type": "application/json; charset=utf-8",
-  //       "Access-Control-Allow-Origin": "*",
-  //     },
-  //   };
-  //   return axios.post(url, JSON.stringify(config), _config);
-  // }
+  _config = {
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "Access-Control-Allow-Origin": "*",
+    },
+  };
 
   getPatientInfo(config) {
-    const url = `${URLS.PATIENT_INFO}`;
-    return axios.get(url);
+    const url = `${URLS.baseUrl}${URLS.patientInfo}`;
+    return axios.post(url, JSON.stringify(config), this._config);
   }
+
+  //   getPatientInfo(config) {
+  //     const url = `${URLS.baseUrl}${URLS.patientInfo}`;
+  //     return axios.get(url);
+  //   }
 }
 
 const patientInfoService = new PatientInfoService();
