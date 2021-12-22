@@ -240,7 +240,7 @@ export default function AMIConfiguration() {
                       xs={12}
                       justify="flex-start"
                     >
-                      <Grid item md={5}>
+                      <Grid item xs={12} md={5}>
                         <Typography
                           variant="h6"
                           style={{ fontSize: "15px", paddingLeft: "30px" }}
@@ -262,7 +262,7 @@ export default function AMIConfiguration() {
                           </Typography>
                         )}
                       </Grid>
-                      <Grid item xs={6} md={2}>
+                      <Grid item xs={12} md={2}>
                         {/* <h5>Age</h5> */}
                         <FormControl fullWidth>
                           <Select
@@ -295,7 +295,8 @@ export default function AMIConfiguration() {
                           style={{
                             backgroundColor: "#fff",
                             width: "90px",
-                            fontSize: "12px",
+
+                            color: "#fff",
                           }}
                           id="outlined-basic"
                           // label="65"
