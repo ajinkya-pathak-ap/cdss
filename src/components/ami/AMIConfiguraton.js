@@ -149,7 +149,18 @@ export default function AMIConfiguration() {
   const [operatorOne, setOperatorOne] = React.useState("");
   const [operatorTwo, setOperatorTwo] = React.useState("");
 
-  const _amiConfigData = {};
+  let configValues = {
+    genRiskScore: true,
+    ageValueOne: "0",
+    ageValueTwo: "0",
+    hstnlValueOne: "0",
+    hstnlValueTwo: "0",
+    dispRiskScore: true,
+    dispValueOne: "0",
+    dispValueTwo: "0",
+  };
+
+  const [generateRiskScore, setgenerateRiskScore] = useState(configValues);
 
   const changeOperatorOne = (event) => {
     setOperatorOne(event.target.value);
@@ -164,15 +175,25 @@ export default function AMIConfiguration() {
   const label = {
     inputProps: { "aria-label": "Checkbox demo" },
   };
+
   const handleGeneareRiskScore = (event) => {
     const checkedValue = event.target.checked;
     setGenerateRS(checkedValue);
+    setgenerateRiskScore({
+      ...generateRiskScore,
+      genRiskScore: event.target.checked,
+    });
   };
 
   const handleDisplayRiskScore = (event) => {
     const checkedValue = event.target.checked;
     setDisplayRS(checkedValue);
   };
+
+  const handleGS = (event) => {
+    console.log(event.target);
+  };
+
   const operators = [">", "<", ">=", "<=", "=", "Between"];
 
   const classes = useStyles();
@@ -188,7 +209,6 @@ export default function AMIConfiguration() {
       alignItems="center"
       className={classes.holder}
     >
-      {console.log("aaaaaaa", generateRS)}
       <Grid item sm={12} xs={12}>
         <Box
           sx={{ bgcolor: "#6D7F9B" }}
@@ -237,13 +257,6 @@ export default function AMIConfiguration() {
                       User Defined Rule
                     </Typography>
                     <br></br>
-                    {/* <Typography
-                      style={{ fontSize: "12px", paddingLeft: "10%" }}
-                      className={classes.headerText}
-                    >
-                      Age
-                    </Typography> */}
-
                     <Grid
                       item
                       container
@@ -312,6 +325,8 @@ export default function AMIConfiguration() {
                           // label="65"
                           variant="filled"
                           disabled={generateRS}
+                          value={configValues.ageValueOne}
+                          onChange={(e) => handleGS(e)}
                         />
                       </Grid>
                       {operatorOne === "Between" ? (
@@ -326,6 +341,8 @@ export default function AMIConfiguration() {
                             // label="All"
                             variant="filled"
                             disabled={generateRS}
+                            onChange={(e) => handleGS(e)}
+                            value={configValues.ageValueTwo}
                           />
                         </Grid>
                       ) : (
