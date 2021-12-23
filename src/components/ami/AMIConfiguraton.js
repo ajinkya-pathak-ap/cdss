@@ -437,7 +437,6 @@ export default function AMIConfiguration() {
                     />
                     <br />
                     <br />
-
                     <Typography
                       style={{ fontSize: "19px", paddingLeft: "10%" }}
                       className={classes.headerText}
