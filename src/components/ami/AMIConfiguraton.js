@@ -241,7 +241,7 @@ export default function AMIConfiguration() {
                       <Grid item xs={12} sm={5} md={5}>
                         <Grid container spacing={1}>
                           <Grid item xs={12} md={12}>
-                            <h4>Age</h4>
+                            <h4 style={{ marginLeft: "30px" }}>Age</h4>
                           </Grid>
                           <Grid item xs={12} md={4}>
                             <FormControl fullWidth>
@@ -318,9 +318,7 @@ export default function AMIConfiguration() {
                             AND
                           </h3>
                         ) : (
-                          <h3
-                            style={{ marginLeft: "-20px", marginTop: "82px" }}
-                          >
+                          <h3 style={{ marginLeft: "0px", marginTop: "82px" }}>
                             AND
                           </h3>
                         )}
