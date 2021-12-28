@@ -16,7 +16,7 @@ const configData = {
 
 export default function RiskScoreContributors() {
   const classes = riskContributorStyles();
-
+  const localMode = true;
   const [isFetching, setIsFetching] = useState(true);
   const [riskScoreContributors, setRiskScoreContributors] = useState({});
 
@@ -25,15 +25,27 @@ export default function RiskScoreContributors() {
   }, [0]);
 
   const fetchRiskScoreContributors = (config) => {
-    riskScoreService.getRiskScoreContributors(config).then(
-      (response) => {
-        setRiskScoreContributors(response.data);
-        setIsFetching(false);
-      },
-      (error) => {
-        return;
-      }
-    );
+    if (localMode) {
+      riskScoreService.getRiskScoreContributorsLocal(config).then(
+        (response) => {
+          setRiskScoreContributors(response.data);
+          setIsFetching(false);
+        },
+        (error) => {
+          return;
+        }
+      );
+    } else {
+      riskScoreService.getRiskScoreContributors(config).then(
+        (response) => {
+          setRiskScoreContributors(response.data);
+          setIsFetching(false);
+        },
+        (error) => {
+          return;
+        }
+      );
+    }
   };
 
   /****************methods**************/

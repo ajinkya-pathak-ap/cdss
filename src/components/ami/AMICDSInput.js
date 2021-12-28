@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
-import Checkbox from "@mui/material/Checkbox";
 import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
@@ -60,16 +58,12 @@ const time = [
 export default function AMICSInput() {
   const classes = CDSInputStyles();
 
-  const label = {
-    inputProps: { "aria-label": "Checkbox demo" },
-    fontSize: "10px",
-  };
+  const localMode = true;
 
   const resetFields = () => {};
   const [race, setRace] = useState("Asian");
-  const [presentingSymptoms, setPresentingSymptoms] = useState(
-    "Left Hand Pain"
-  );
+  const [presentingSymptoms, setPresentingSymptoms] =
+    useState("Left Hand Pain");
   const [symptomOnset, setSymptomOnset] = useState("1 Hrs");
   const [riskFactors, setrRiskFactors] = useState("prior AMI");
 
@@ -86,30 +80,44 @@ export default function AMICSInput() {
   }, [0]);
 
   const getPatientInfo = (config) => {
-    patientInfoService.getPatientInfo(config).then(
-      (response) => {
-        setPatientInfo(response.data);
-        setIsFetching(false);
-      },
-      (error) => {
-        return;
-      }
-    );
+    if (localMode) {
+      patientInfoService.getPatientInfoLocal(config).then(
+        (response) => {
+          setPatientInfo(response.data);
+          setIsFetching(false);
+        },
+        (error) => {
+          return;
+        }
+      );
+    } else {
+      patientInfoService.getPatientInfo(config).then(
+        (response) => {
+          setPatientInfo(response.data);
+          setIsFetching(false);
+        },
+        (error) => {
+          return;
+        }
+      );
+    }
   };
 
-  function handleRace(e) {
+  const handleRace = (e) => {
     setRace(e.target.value);
-  }
+  };
 
-  function handlePresentingSymptoms(e) {
+  const handlePresentingSymptoms = (e) => {
     setPresentingSymptoms(e.target.value);
-  }
-  function handleSymptomOnset(e) {
+  };
+
+  const handleSymptomOnset = (e) => {
     setSymptomOnset(e.target.value);
-  }
-  function handleRiskFactors(e) {
+  };
+
+  const handleRiskFactors = (e) => {
     setrRiskFactors(e.target.value);
-  }
+  };
 
   if (isFetching) {
     return <CircularIndeterminate />;

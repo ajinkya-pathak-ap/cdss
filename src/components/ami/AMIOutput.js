@@ -31,6 +31,8 @@ const BootstrapButton = styled(Button)((props) => ({
   },
 }));
 
+const localMode = true;
+
 const configData = {
   MRN: "1",
   EncounterNumber: "1",
@@ -61,18 +63,33 @@ export default function AMIOutput() {
   }, [0]);
 
   const fetchRiskScore = (config) => {
-    riskScoreService.getRiskScore(config).then(
-      (response) => {
-        setRiskScore(response.data);
-        setIsFetching(false);
-        getRiskScoreDetails(response.data.value.riskScoreDetails);
-        getRiskScoreContrubutors(response.data.value.contributors);
-        getGuidance(response.data.value.guidance);
-      },
-      (error) => {
-        return;
-      }
-    );
+    if (localMode) {
+      riskScoreService.getRiskScoreLocal(config).then(
+        (response) => {
+          setRiskScore(response.data);
+          setIsFetching(false);
+          getRiskScoreDetails(response.data.value.riskScoreDetails);
+          getRiskScoreContrubutors(response.data.value.contributors);
+          getGuidance(response.data.value.guidance);
+        },
+        (error) => {
+          return;
+        }
+      );
+    } else {
+      riskScoreService.getRiskScore(config).then(
+        (response) => {
+          setRiskScore(response.data);
+          setIsFetching(false);
+          getRiskScoreDetails(response.data.value.riskScoreDetails);
+          getRiskScoreContrubutors(response.data.value.contributors);
+          getGuidance(response.data.value.guidance);
+        },
+        (error) => {
+          return;
+        }
+      );
+    }
   };
 
   const getRiskScoreDetails = (_string) => {
@@ -229,7 +246,7 @@ export default function AMIOutput() {
             >
               <Link className={classes.buttonColor} to="">
                 <span className="m-2">
-                  Acknowledge(to write Risk Contributors)
+                  Acknowledge(Document Risk Contributors)
                 </span>
               </Link>
             </BootstrapButton>

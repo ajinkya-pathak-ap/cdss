@@ -440,7 +440,7 @@ export default function AMIConfiguration() {
             {/* *****************end of third container***************** */}
             <Grid item xs={12} container className={classes.alignRight}>
               <Grid item xs={12} md={4}>
-                <Stack spacing={2} direction="row">
+                <Stack spacing={2} direction="row" justifyContent="end">
                   <BootstrapButton
                     variant="contained"
                     className={classes.buttonColor}

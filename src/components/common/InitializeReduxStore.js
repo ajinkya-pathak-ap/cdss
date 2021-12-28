@@ -1,4 +1,4 @@
-import React from "react";
+import { React } from "react";
 
 const InitializeReduxStore = () => {
   return <></>;
@@ -22,8 +22,7 @@ const InitializeReduxStore = () => {
 // };
 
 // export default connect(
-//   mapStatetoProps, 
+//   mapStatetoProps,
 //   mapDispatchToProps
 // )(InitializeReduxStore);
 export default InitializeReduxStore;
-

@@ -1,6 +1,6 @@
 import axios from "axios";
-import { localUrl as URLS } from "../shared/urls/urls";
-// import { urls as URLS } from "../shared/urls/urls";
+import { localUrl } from "../shared/urls/urls";
+import { urls as remoteUrl } from "../shared/urls/urls";
 
 class PatientInfoService {
   _config = {
@@ -11,14 +11,14 @@ class PatientInfoService {
   };
 
   getPatientInfo(config) {
-    const url = `${URLS.baseUrl}${URLS.patientInfo}`;
+    const url = `${remoteUrl.baseUrl}${remoteUrl.patientInfo}`;
     return axios.post(url, JSON.stringify(config), this._config);
   }
 
-  //   getPatientInfo(config) {
-  //     const url = `${URLS.baseUrl}${URLS.patientInfo}`;
-  //     return axios.get(url);
-  //   }
+  getPatientInfoLocal(config) {
+    const url = `${localUrl.baseUrl}${localUrl.patientInfo}`;
+    return axios.get(url);
+  }
 }
 
 const patientInfoService = new PatientInfoService();
