@@ -10,15 +10,15 @@ class PatientInfoService {
     },
   };
 
+  // getPatientInfo(config) {
+  //   const url = `${URLS.baseUrl}${URLS.patientInfo}`;
+  //   return axios.post(url, JSON.stringify(config), this._config);
+  // }
+
   getPatientInfo(config) {
     const url = `${URLS.baseUrl}${URLS.patientInfo}`;
-    return axios.post(url, JSON.stringify(config), this._config);
+    return axios.get(url);
   }
-
-  //   getPatientInfo(config) {
-  //     const url = `${URLS.baseUrl}${URLS.patientInfo}`;
-  //     return axios.get(url);
-  //   }
 }
 
 const patientInfoService = new PatientInfoService();

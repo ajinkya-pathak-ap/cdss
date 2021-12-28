@@ -7,11 +7,17 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import MenuItem from "@mui/material/MenuItem";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import { grey } from "@mui/material/colors";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 import "./styles.css";
 import { Typography } from "@material-ui/core";
 import { patientInfoService } from "../../services/patientInfo-service";
 import CircularIndeterminate from "../../shared/preloder/Preloder";
 import { CDSInputStyles } from "./CustomStyles";
+import { red } from "@material-ui/core/colors";
 
 const riskFactor = [
   {
@@ -86,6 +92,12 @@ export default function AMICSInput() {
     inputProps: { "aria-label": "Checkbox demo" },
     fontSize: "10px",
   };
+
+  const controlProps = (item) => ({
+    value: item,
+    name: "color-radio-button-demo",
+    // inputProps: { "aria-label": item },
+  });
 
   const resetFields = () => {};
   const [race, setRace] = useState("Asian");
@@ -285,9 +297,9 @@ export default function AMICSInput() {
             style={{ backgroundColor: "#050038", paddingLeft: "16px" }}
           >
             <FormGroup className={classes.formgrop}>
-              <h3 style={{ textAlign: "left", color: "white" }}>
+              {/* <h3 style={{ textAlign: "left", color: "white" }}>
                 EKG findings (Select One)
-              </h3>
+              </h3> */}
 
               {/* <FormControlLabel
                 control={
@@ -303,28 +315,28 @@ export default function AMICSInput() {
                 }
                 label="No ST deviation, but LBBB, LVH, repolarization changes "
               /> */}
-              <div class="form-check">
+              {/* <div class="form-check">
                 <input
                   class="form-check-input"
-                  type="checkbox"
-                  value=""
+                  type="radio"
+                  value="w"
                   id="flexCheckDefault"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   No ST deviation, but LBBB, LVH, repolarization changes
                 </label>
-              </div>
-              <div class="form-check">
+              </div> */}
+              {/* <div class="form-check">
                 <input
                   class="form-check-input"
-                  type="checkbox"
+                  type="radio"
                   value=""
                   id="flexCheckDefault"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   ST deviation, but LBBB, LVH, repolarization changes
                 </label>
-              </div>
+              </div> */}
               {/* <FormControlLabel
                 control={
                   <Checkbox
@@ -339,6 +351,54 @@ export default function AMICSInput() {
                 }
                 label="ST deviation, but LBBB, LVH, repolarization changes"
               /> */}
+              <FormControl component="fieldset">
+                <FormLabel
+                  style={{
+                    textAlign: "left",
+                    fontSize: "18px",
+                    color: "white",
+                  }}
+                  component="legend"
+                >
+                  Gender
+                </FormLabel>
+                <RadioGroup
+                  aria-label="gender"
+                  defaultValue="female"
+                  name="radio-buttons-group"
+                >
+                  <FormControlLabel
+                    value="female"
+                    control={
+                      <Radio
+                        {...controlProps("d")}
+                        sx={{
+                          color: grey[800],
+                          "&.Mui-checked": {
+                            color: grey[600],
+                          },
+                        }}
+                      />
+                    }
+                    label="No ST deviation, but LBBB, LVH, repolarization changes"
+                  />
+                  <FormControlLabel
+                    value="male"
+                    control={
+                      <Radio
+                        {...controlProps("e")}
+                        sx={{
+                          color: grey[800],
+                          "&.Mui-checked": {
+                            color: grey[600],
+                          },
+                        }}
+                      />
+                    }
+                    label="ST deviation, but LBBB, LVH, repolarization changes"
+                  />
+                </RadioGroup>
+              </FormControl>
             </FormGroup>
           </Grid>
           {/* ***************** end of first Box *********************** */}
