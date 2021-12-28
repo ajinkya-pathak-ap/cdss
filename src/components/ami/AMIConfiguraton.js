@@ -226,21 +226,6 @@ export default function AMIConfiguration() {
                         </Grid>
                       </Grid>
                       <Grid item xs={12} md={2}>
-                        {/* <Grid container>
-                            <Grid item md={12}>
-                              <h5></h5>
-                            </Grid>
-                            <Grid item md={12}>
-                              <h3
-                                style={{
-                                  marginTop: "50px",
-                                  marginLeft: "-20px",
-                                }}
-                              >
-                                AND
-                              </h3>
-                            </Grid>
-                          </Grid> */}
                         {operatorOne === "Between" ? (
                           <h3 style={{ marginLeft: "30px", marginTop: "83px" }}>
                             AND
@@ -254,7 +239,7 @@ export default function AMIConfiguration() {
                       <Grid item xs={12} md={5}>
                         <Grid container spacing={1}>
                           <Grid item xs={12} md={12}>
-                            <h4>First hsTnl Value</h4>
+                            <h4>hsTnl Value</h4>
                           </Grid>
                           <Grid item xs={12} md={4}>
                             <FormControl fullWidth>
@@ -314,9 +299,9 @@ export default function AMIConfiguration() {
                   </CardContent>
                 </Card>
               </Grid>
-
-              {/* ***************** end of User defined rule2 code  ***************** */}
             </Grid>
+            {/* ***************** end of User defined rule2 code  ***************** */}
+
             {/* *****************Second container***************** */}
             <Grid container item xs={12}>
               <Grid item xs={12} className={classes.gridcontainer1}>
@@ -362,7 +347,7 @@ export default function AMIConfiguration() {
                     <br />
                     <Grid item xs={12}>
                       <Box component="form" noValidate>
-                        <label className={classes.headerText}>BETWEEN</label>
+                        <label className={classes.headerText}>Between</label>
                         <FormControl
                           variant="standard"
                           style={{ textAlign: "right" }}
@@ -379,7 +364,7 @@ export default function AMIConfiguration() {
                             disabled={displayRS}
                           />
                         </FormControl>
-                        <label className={classes.headerText}>AND</label>
+                        <label className={classes.headerText}>And</label>
                         <FormControl variant="standard">
                           <BootstrapInput
                             style={{
@@ -449,18 +434,6 @@ export default function AMIConfiguration() {
                       label="Share de-identified data and results with Beckman Coulter "
                     />
                   </FormGroup>
-                  {/* <Button
-                    className={classes.buttonColor}
-                    variant="contained"
-                    style={{
-                      textTransform: "none",
-                      backgroundColor: "#414BB2",
-                      marginBottom: "10px",
-                      float: "right",
-                    }}
-                  >
-                    Apply
-                  </Button> */}
                 </CardContent>
               </Card>
             </Grid>
