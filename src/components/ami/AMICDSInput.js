@@ -59,28 +59,6 @@ const time = [
 
 export default function AMICSInput() {
   const classes = CDSInputStyles();
-  const pageValues = {
-    age: 0,
-    gender: "",
-    race: "",
-    presentingSymptoms: "",
-    symptomOnset: "",
-    riskFactors: "",
-    ekgFindingNoDeviation: true,
-    ekgFindingstDeviation: true,
-    firstDraw: {
-      amount: 1,
-      time: "",
-    },
-    secondDraw: {
-      amount: 1,
-      time: "",
-    },
-    thirdDraw: {
-      amount: 1,
-      time: "",
-    },
-  };
 
   const label = {
     inputProps: { "aria-label": "Checkbox demo" },
