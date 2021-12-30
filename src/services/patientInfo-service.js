@@ -10,6 +10,11 @@ class PatientInfoService {
     },
   };
 
+  // getPatientInfo(config) {
+  //   const url = `${URLS.baseUrl}${URLS.patientInfo}`;
+  //   return axios.post(url, JSON.stringify(config), this._config);
+  // }
+
   getPatientInfo(config) {
     const url = `${remoteUrl.baseUrl}${remoteUrl.patientInfo}`;
     return axios.post(url, JSON.stringify(config), this._config);

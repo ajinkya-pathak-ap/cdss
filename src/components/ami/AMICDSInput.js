@@ -1,15 +1,24 @@
 import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
+import Checkbox from "@mui/material/Checkbox";
+import { Select, MenuItem, FormControl, InputLabel } from "@material-ui/core";
 import FormGroup from "@mui/material/FormGroup";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
-import MenuItem from "@mui/material/MenuItem";
+import { alpha, styled } from "@mui/material/styles";
+import InputBase from "@mui/material/InputBase";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import { grey } from "@mui/material/colors";
+
+import FormLabel from "@mui/material/FormLabel";
 import "./styles.css";
 import { Typography } from "@material-ui/core";
 import { patientInfoService } from "../../services/patientInfo-service";
 import CircularIndeterminate from "../../shared/preloder/Preloder";
 import { CDSInputStyles } from "./CustomStyles";
+import { red } from "@material-ui/core/colors";
 
 const riskFactor = [
   {
@@ -60,10 +69,17 @@ export default function AMICSInput() {
 
   const localMode = true;
 
+  const controlProps = (item) => ({
+    value: item,
+    name: "color-radio-button-demo",
+    // inputProps: { "aria-label": item },
+  });
+
   const resetFields = () => {};
   const [race, setRace] = useState("Asian");
-  const [presentingSymptoms, setPresentingSymptoms] =
-    useState("Left Hand Pain");
+  const [presentingSymptoms, setPresentingSymptoms] = useState(
+    "Left Hand Pain"
+  );
   const [symptomOnset, setSymptomOnset] = useState("1 Hrs");
   const [riskFactors, setrRiskFactors] = useState("prior AMI");
 
@@ -103,9 +119,35 @@ export default function AMICSInput() {
     }
   };
 
-  const handleRace = (e) => {
+  const BootstrapInput = styled(InputBase)(({ theme }) => ({
+    "label + &": {
+      marginTop: theme.spacing(3),
+    },
+    "& .MuiInputBase-input": {
+      borderRadius: 4,
+      position: "relative",
+      backgroundColor: theme.palette.mode === "light" ? "#fcfcfb" : "#2b2b2b",
+      // border: "1px solid #ced4da",
+      fontSize: 13,
+      width: "auto",
+      padding: "9px 10px",
+      transition: theme.transitions.create([
+        "border-color",
+        "background-color",
+        "box-shadow",
+      ]),
+      // Use the system font instead of the default Roboto font.
+      fontFamily: ["Roboto"].join(","),
+      // "&:focus": {
+      //   boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+      //   borderColor: theme.palette.primary.main,
+      // },
+    },
+  }));
+
+  function handleRace(e) {
     setRace(e.target.value);
-  };
+  }
 
   const handlePresentingSymptoms = (e) => {
     setPresentingSymptoms(e.target.value);
@@ -152,40 +194,51 @@ export default function AMICSInput() {
               Demographics Information pulled from EHR
             </Typography>
 
-            <TextField
+            {/* <TextField
               className={classes.textFieldColor}
               id="age"
               // select
+              // size="small"
               label="Patient Age*"
-              variant="outlined"
-              value={patientInfo.value.age}
-              InputProps={{
-                inputProps: {
-                  style: { marginTop: "0px" },
-                  className: classes.fontTypeOne,
-                },
-              }}
-            >
-              {/* <MenuItem value="25">25</MenuItem> */}
-              <MenuItem value={patientInfo.value.age}>
-                {patientInfo.value.age}
-              </MenuItem>
-            </TextField>
-
-            <TextField
-              className={classes.textFieldColor}
-              id="gender"
-              select
-              label="Gender"
               variant="standard"
-              value={patientInfo.value.gender}
+              value={patientInfo.value.age}
               inputProps={{
                 className: classes.fontTypeOne,
               }}
             >
-              {/* <MenuItem value="Male">Male</MenuItem> */}
-              <MenuItem value={patientInfo.value.gender}>
-                {patientInfo.value.gender}
+           
+              <MenuItem value={patientInfo.value.age}>
+                {patientInfo.value.age}
+              </MenuItem>
+            </TextField> */}
+
+            <FormControl variant="standard" style={{ backgroundColor: "#fff" }}>
+              <InputLabel
+                style={{ color: "red", marginTop: "5px", marginLeft: "9px" }}
+                shrink
+                htmlFor="bootstrap-input"
+              >
+                Patient Age*
+              </InputLabel>
+              <BootstrapInput defaultValue="62" id="bootstrap-input">
+                {patientInfo.value.age}
+              </BootstrapInput>
+            </FormControl>
+
+            <TextField
+              className={classes.textFieldColor}
+              id="Race"
+              select
+              label="Gender"
+              variant="standard"
+              value={race}
+              onChange={handleRace}
+              inputProps={{
+                className: classes.fontTypeOne,
+              }}
+            >
+              <MenuItem style={{ textAlign: "center" }} value="Asian">
+                Male
               </MenuItem>
             </TextField>
 
@@ -201,22 +254,24 @@ export default function AMICSInput() {
                 className: classes.fontTypeOne,
               }}
             >
-              <MenuItem value="Asian">Asian</MenuItem>
+              <MenuItem style={{ textAlign: "center" }} value="Asian">
+                Asian
+              </MenuItem>
             </TextField>
 
             <TextField
               className={classes.textFieldColor}
-              id="symptoms"
+              id="riskFactors"
               select
               label="Presenting Symptoms"
               variant="standard"
-              value={presentingSymptoms}
-              onChange={handlePresentingSymptoms}
+              value={riskFactors}
+              onChange={handleRiskFactors}
               inputProps={{
                 className: classes.fontTypeOne,
               }}
             >
-              <MenuItem value="Left Hand Pain">Left Hand Pain</MenuItem>
+              <MenuItem value="prior AMI">Chest pain</MenuItem>
             </TextField>
 
             <TextField
@@ -271,60 +326,97 @@ export default function AMICSInput() {
             style={{ backgroundColor: "#050038", paddingLeft: "16px" }}
           >
             <FormGroup className={classes.formgrop}>
-              <h3 style={{ textAlign: "left", color: "white" }}>
-                EKG findings (Select One)
-              </h3>
+              <FormControl component="fieldset">
+                <FormLabel
+                  style={{
+                    textAlign: "left",
+                    fontSize: "18px",
+                    color: "white",
+                    fontWeight: "800",
+                  }}
+                  component="legend"
+                >
+                  EKG findings(Select One)
+                </FormLabel>
+                <br />
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input
+                    style={{
+                      color: "#fff",
+                      borderColor: "#7B1FA2",
+                      backgroundColor: "red",
+                    }}
+                    type="radio"
+                    id="rd_1"
+                    name="rd"
+                    class="custom-control-input green"
+                    value="Yes"
 
-              {/* <FormControlLabel
-                control={
-                  <Checkbox
-                    {...label}
-                    sx={{
-                      color: "#fff",
-                      "&.Mui-checked": {
-                        color: "#fff",
-                      },
-                    }}
+                    //radio testing code//
                   />
-                }
-                label="No ST deviation, but LBBB, LVH, repolarization changes "
-              /> */}
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault"
-                />
-                <label class="form-check-label" for="flexCheckDefault">
-                  No ST deviation, but LBBB, LVH, repolarization changes
-                </label>
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault"
-                />
-                <label class="form-check-label" for="flexCheckDefault">
-                  ST deviation, but LBBB, LVH, repolarization changes
-                </label>
-              </div>
-              {/* <FormControlLabel
-                control={
-                  <Checkbox
-                    {...label}
-                    sx={{
-                      color: "#fff",
-                      "&.Mui-checked": {
-                        color: "#fff",
-                      },
-                    }}
+                  <label
+                    style={{ fontSize: "14px" }}
+                    class="custom-control-label"
+                    for="rd_1"
+                  >
+                    ST deviation, but LBBB, LVH, repolarization changes
+                  </label>
+                </div>
+                <br />
+
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input
+                    type="radio"
+                    id="rd_2"
+                    name="rd"
+                    class="custom-control-input red"
+                    value="No"
                   />
-                }
-                label="ST deviation, but LBBB, LVH, repolarization changes"
-              /> */}
+                  <label
+                    style={{ fontSize: "14px" }}
+                    class="custom-control-label"
+                    for="rd_2"
+                  >
+                    No ST deviation, but LBBB, LVH, repolarization changes
+                  </label>
+                </div>
+                {/* <RadioGroup
+                  aria-label="gender"
+                  defaultValue="female"
+                  name="radio-buttons-group"
+                >
+                  <FormControlLabel
+                    value="female"
+                    control={
+                      <Radio
+                        {...controlProps("d")}
+                        sx={{
+                          color: grey[800],
+                          "&.Mui-checked": {
+                            color: grey[600],
+                          },
+                        }}
+                      />
+                    }
+                    label="ST deviation, but LBBB, LVH, repolarization changes"
+                  />
+                  <FormControlLabel
+                    value="male"
+                    control={
+                      <Radio
+                        {...controlProps("e")}
+                        sx={{
+                          color: grey[800],
+                          "&.Mui-checked": {
+                            color: grey[600],
+                          },
+                        }}
+                      />
+                    }
+                    label="Male"
+                  />
+                </RadioGroup> */}
+              </FormControl>
             </FormGroup>
           </Grid>
           {/* ***************** end of first Box *********************** */}
@@ -335,12 +427,49 @@ export default function AMICSInput() {
               className={classes.formgrop}
               style={{ marginTop: "14px" }}
             >
-              <h4 style={{ marginLeft: "130px" }}>
+              {/* <h4 style={{ marginLeft: "130px" }}>
                 hsTnl Results
                 <label style={{ marginLeft: "40px" }}>Draw Time</label>
-              </h4>
+              </h4> */}
+              <Grid container item>
+                {/* <Grid item xs={4} md={4}>
+                  <Typography variant="h9"></Typography>
+                </Grid> */}
+                <Grid item xs={6} md={6}>
+                  <Typography
+                    variant="h9"
+                    style={{
+                      fontWeight: "700",
+                      marginLeft: "17px",
+                      marginTop: "10px",
+                    }}
+                  >
+                    hsTnl Results
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <Typography
+                    variant="h9"
+                    style={{
+                      fontWeight: "700",
+
+                      marginLeft: "70px",
+                    }}
+                  >
+                    Draw Time
+                  </Typography>
+                </Grid>
+                <br />
+              </Grid>
+
               <Grid container item xs={12} md={4}>
-                <Typography style={{ marginLeft: "20px", marginTop: "20px" }}>
+                <Typography
+                  style={{
+                    marginLeft: "20px",
+                    fontSize: "14px",
+                    marginTop: "20px",
+                  }}
+                >
                   First draw
                 </Typography>
               </Grid>
@@ -378,7 +507,13 @@ export default function AMICSInput() {
                 />
               </Grid>
               <Grid container item xs={12} md={4}>
-                <Typography style={{ marginLeft: "20px", marginTop: "20px" }}>
+                <Typography
+                  style={{
+                    marginLeft: "20px",
+                    marginTop: "20px",
+                    fontSize: "14px",
+                  }}
+                >
                   Second draw
                 </Typography>
               </Grid>
@@ -417,7 +552,13 @@ export default function AMICSInput() {
                 />
               </Grid>
               <Grid container item xs={12} md={4}>
-                <Typography style={{ marginLeft: "20px", marginTop: "20px" }}>
+                <Typography
+                  style={{
+                    marginLeft: "20px",
+                    fontSize: "14px",
+                    marginTop: "20px",
+                  }}
+                >
                   Third draw
                 </Typography>
               </Grid>
@@ -495,7 +636,7 @@ export default function AMICSInput() {
                 style={{
                   textTransform: "none",
                   backgroundColor: "#414BB2",
-                  padding: "12px 8px",
+                  padding: "12px 12px",
                 }}
                 variant="contained"
                 href="#contained-buttons"

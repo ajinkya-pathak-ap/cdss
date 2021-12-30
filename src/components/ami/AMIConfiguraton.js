@@ -247,7 +247,7 @@ export default function AMIConfiguration() {
                                 labelId="simple2"
                                 id="demo"
                                 value={operatorTwo}
-                                // label="Age"
+                                label="Age"
                                 autoWidth
                                 onChange={changeOperatorTwo}
                                 style={{
