@@ -1,6 +1,6 @@
 import axios from "axios";
-import { localUrl as URLS } from "../shared/urls/urls";
-// import { urls as URLS } from "../shared/urls/urls";
+import { localUrl } from "../shared/urls/urls";
+import { urls as remoteUrl } from "../shared/urls/urls";
 
 class RiskScoreServices {
   _config = {
@@ -9,25 +9,26 @@ class RiskScoreServices {
       "Access-Control-Allow-Origin": "*",
     },
   };
+
   getRiskScore(config) {
-    const url = `${URLS.baseUrl}${URLS.riskScore}`;
+    const url = `${remoteUrl.baseUrl}${remoteUrl.riskScore}`;
     return axios.post(url, JSON.stringify(config), this._config);
   }
 
   getRiskScoreContributors(config) {
-    const url = `${URLS.baseUrl}${URLS.riskScoreContr}`;
+    const url = `${remoteUrl.baseUrl}${remoteUrl.riskScoreContr}`;
     return axios.post(url, JSON.stringify(config), this._config);
   }
 
-  // getRiskScore(config) {
-  //   const url = `${URLS.baseUrl}${URLS.riskScore}`;
-  //   return axios.get(url);
-  // }
+  getRiskScoreLocal(config) {
+    const url = `${localUrl.baseUrl}${localUrl.riskScore}`;
+    return axios.get(url);
+  }
 
-  // getRiskScoreContributors(config) {
-  //   const url = `${URLS.baseUrl}${URLS.riskScoreContr}`;
-  //   return axios.get(url);
-  // }
+  getRiskScoreContributorsLocal(config) {
+    const url = `${localUrl.baseUrl}${localUrl.riskScoreContr}`;
+    return axios.get(url);
+  }
 }
 
 const riskScoreService = new RiskScoreServices();

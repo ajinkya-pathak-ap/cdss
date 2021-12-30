@@ -1,155 +1,74 @@
 import React, { useState } from "react";
-import { alpha, styled } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Stack from "@mui/material/Stack";
 import FormGroup from "@mui/material/FormGroup";
 import TextField from "@mui/material/TextField";
-import InputBase from "@mui/material/InputBase";
 import { Link } from "react-router-dom";
+import { Card, CardContent, Typography, FormControl } from "@material-ui/core";
 import {
-  Card,
-  CardContent,
-  makeStyles,
-  Typography,
-  FormControl,
-} from "@material-ui/core";
+  AMIConfigStyles,
+  amiConfigBtns,
+  amiConfigInputs,
+} from "./CustomStyles";
 
-const BootstrapButton = styled(Button)({
-  boxShadow: "none",
-  textTransform: "none",
-  fontSize: "14px",
-  color: "#fff",
-  padding: "6px 32px",
-  lineHeight: 1.9,
-  backgroundColor: "#414bb2",
-  fontFamily: ["Roboto"].join(","),
-
-  "&:active": {
-    boxShadow: "none",
-    backgroundColor: "#0062cc",
-  },
-  "&:focus": {
-    boxShadow: "0 0 0 0.2rem rgba(0,123,255,.5)",
-  },
-});
-
-const BootstrapInput = styled(InputBase)(({ theme }) => ({
-  "label + &": {
-    marginTop: theme.spacing(3),
-    fontSize: "20px",
-  },
-  "& .MuiInputBase-input": {
-    borderRadius: 4,
-    position: "relative",
-    backgroundColor: "#fff",
-    border: "1px solid #ced4da",
-    fontSize: 14,
-    width: "70%",
-    padding: "10px 12px",
-    transition: theme.transitions.create([
-      "border-color",
-      "background-color",
-      "box-shadow",
-    ]),
-    // Use the system font instead of the default Roboto font.
-    fontFamily: ["Roboto"].join(","),
-    "&:focus": {
-      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-      borderColor: theme.palette.primary.main,
-    },
-  },
-}));
-
-const useStyles = makeStyles((theme) => ({
-  holder: {
-    backgroundColor: "#6D7F9B",
-    width: "100%",
-    position: "absolute",
-    left: "0",
-    right: "0",
-    margin: "auto",
-  },
-  gridcontainer: {
-    background: "#050038",
-    color: "#fff",
-    textAlign: "left",
-    minHeight: "80px",
-  },
-
-  gridcontainer1: {
-    background: "#050038",
-    color: "#fff",
-    textAlign: "left",
-    minHeight: "80px",
-  },
-
-  typo: {
-    color: "red",
-    fontSize: "12px",
-  },
-
-  buttonColor: {
-    backgroundColor: "#414BB2",
-    textDecoration: "none",
-    color: "#fff",
-    "&:hover": {
-      backgroundColor: "#414BB2",
-    },
-    justifycontent: "left",
-  },
-
-  hyperLink: {
-    color: "white",
-    cursor: "pointer",
-    textDecoration: "underline",
-  },
-  alignRight: {
-    justifyContent: "flex-end",
-  },
-  riskOne: {
-    [theme.breakpoints.down("sm")]: {
-      display: "none",
-    },
-  },
-  riskTwo: {
-    display: "none",
-    [theme.breakpoints.down("sm")]: {
-      display: "block",
-    },
-  },
-  headerText: {
-    fontWeight: "bold",
-    fontSize: "20px",
-  },
-  holder: {
-    backgroundColor: "#6D7F9B",
-    width: "75%",
-    position: "absolute",
-    left: "0",
-    right: "0",
-    margin: "auto",
-  },
-
-  firstform: {
-    "& .MuiFormControl-root": {
-      width: "25%",
-      margin: theme.spacing(1),
-      float: "left",
-    },
-  },
-}));
+const BootstrapButton = amiConfigBtns;
+const BootstrapInput = amiConfigInputs;
 
 export default function AMIConfiguration() {
   const [operatorOne, setOperatorOne] = React.useState("");
   const [operatorTwo, setOperatorTwo] = React.useState("");
 
-  const _amiConfigData = {};
+  let configValues = {
+    ConfigurationReq: {
+      ConfigurationId: 1,
+      OganizationId: 1,
+      ModelId: 1,
+      Configurations: [
+        {
+          RuleSectionId: 1,
+          Rules: [
+            {
+              IsDefault: false,
+              IsChecked: true,
+              Categories: [
+                {
+                  CategoryDefination: "Age",
+                  Operator: ">",
+                  Values: ["65"],
+                },
+                {
+                  CategoryDefination: "hsTnl",
+                  Operator: "Between",
+                  Values: ["5", "20"],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          RuleSectionId: 2,
+          Rules: [
+            {
+              IsDefault: true,
+              IsChecked: true,
+              Categories: null,
+            },
+          ],
+        },
+        {
+          RuleSectionId: 3,
+          Rules: [{}],
+        },
+      ],
+    },
+  };
+
+  const [generateRiskScore, setgenerateRiskScore] = useState(configValues);
 
   const changeOperatorOne = (event) => {
     setOperatorOne(event.target.value);
@@ -164,18 +83,28 @@ export default function AMIConfiguration() {
   const label = {
     inputProps: { "aria-label": "Checkbox demo" },
   };
+
   const handleGeneareRiskScore = (event) => {
     const checkedValue = event.target.checked;
     setGenerateRS(checkedValue);
+    setgenerateRiskScore({
+      ...generateRiskScore,
+      genRiskScore: event.target.checked,
+    });
   };
 
   const handleDisplayRiskScore = (event) => {
     const checkedValue = event.target.checked;
     setDisplayRS(checkedValue);
   };
+
+  const handleGS = (event) => {
+    console.log(event.target);
+  };
+
   const operators = [">", "<", ">=", "<=", "=", "Between"];
 
-  const classes = useStyles();
+  const classes = AMIConfigStyles();
 
   return (
     <Grid
@@ -188,7 +117,6 @@ export default function AMIConfiguration() {
       alignItems="center"
       className={classes.holder}
     >
-      {console.log("aaaaaaa", generateRS)}
       <Grid item sm={12} xs={12}>
         <Box
           sx={{ bgcolor: "#6D7F9B" }}
@@ -400,7 +328,6 @@ export default function AMIConfiguration() {
                     />
                     <br />
                     <br />
-
                     <Typography
                       style={{ fontSize: "19px", paddingLeft: "10%" }}
                       className={classes.headerText}
@@ -465,7 +392,6 @@ export default function AMIConfiguration() {
                     </Grid>
                     <br />
                     <br />
-
                     {/* <Button
                       className={classes.buttonColor}
                       variant="contained"
@@ -514,7 +440,7 @@ export default function AMIConfiguration() {
             {/* *****************end of third container***************** */}
             <Grid item xs={12} container className={classes.alignRight}>
               <Grid item xs={12} md={4}>
-                <Stack spacing={2} direction="row">
+                <Stack spacing={2} direction="row" justifyContent="end">
                   <BootstrapButton
                     variant="contained"
                     className={classes.buttonColor}

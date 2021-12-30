@@ -3,7 +3,6 @@ import Grid from "@material-ui/core/Grid";
 import Checkbox from "@mui/material/Checkbox";
 import { Select, MenuItem, FormControl, InputLabel } from "@material-ui/core";
 import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
@@ -67,33 +66,8 @@ const time = [
 
 export default function AMICSInput() {
   const classes = CDSInputStyles();
-  const pageValues = {
-    age: 0,
-    gender: "",
-    race: "",
-    presentingSymptoms: "",
-    symptomOnset: "",
-    riskFactors: "",
-    ekgFindingNoDeviation: true,
-    ekgFindingstDeviation: true,
-    firstDraw: {
-      amount: 1,
-      time: "",
-    },
-    secondDraw: {
-      amount: 1,
-      time: "",
-    },
-    thirdDraw: {
-      amount: 1,
-      time: "",
-    },
-  };
 
-  const label = {
-    inputProps: { "aria-label": "Checkbox demo" },
-    fontSize: "10px",
-  };
+  const localMode = true;
 
   const controlProps = (item) => ({
     value: item,
@@ -122,15 +96,27 @@ export default function AMICSInput() {
   }, [0]);
 
   const getPatientInfo = (config) => {
-    patientInfoService.getPatientInfo(config).then(
-      (response) => {
-        setPatientInfo(response.data);
-        setIsFetching(false);
-      },
-      (error) => {
-        return;
-      }
-    );
+    if (localMode) {
+      patientInfoService.getPatientInfoLocal(config).then(
+        (response) => {
+          setPatientInfo(response.data);
+          setIsFetching(false);
+        },
+        (error) => {
+          return;
+        }
+      );
+    } else {
+      patientInfoService.getPatientInfo(config).then(
+        (response) => {
+          setPatientInfo(response.data);
+          setIsFetching(false);
+        },
+        (error) => {
+          return;
+        }
+      );
+    }
   };
 
   const BootstrapInput = styled(InputBase)(({ theme }) => ({
@@ -163,15 +149,17 @@ export default function AMICSInput() {
     setRace(e.target.value);
   }
 
-  function handlePresentingSymptoms(e) {
+  const handlePresentingSymptoms = (e) => {
     setPresentingSymptoms(e.target.value);
-  }
-  function handleSymptomOnset(e) {
+  };
+
+  const handleSymptomOnset = (e) => {
     setSymptomOnset(e.target.value);
-  }
-  function handleRiskFactors(e) {
+  };
+
+  const handleRiskFactors = (e) => {
     setrRiskFactors(e.target.value);
-  }
+  };
 
   if (isFetching) {
     return <CircularIndeterminate />;
