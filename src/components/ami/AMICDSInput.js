@@ -236,58 +236,7 @@ export default function AMICSInput() {
                 {patientInfo.value.age}
               </BootstrapInput>
             </FormControl>
-            {/* 
-            <TextField
-              className={classes.textFieldColor}
-              id="gender"
-              select
-              label="Gender"
-              variant="standard"
-              value={patientInfo.value.gender}
-              inputProps={{
-                className: classes.fontTypeOne,
-              }}
-            >
-             
-              <MenuItem value={patientInfo.value.gender}>
-                {patientInfo.value.gender}
-              </MenuItem>
-            </TextField> */}
-            {/* <div className="App">
-              <FormControl>
-               
 
-                <Select
-                  className={classes.textFieldColor}
-                  id="gender"
-                  placeholder="enter"
-                  label="Age"
-                  value={patientInfo.value.gender}
-                  inputProps={{
-                    className: classes.fontTypeOne,
-                  }}
-                >
-                  <MenuItem value={patientInfo.value.gender}>
-                    {patientInfo.value.gender}
-                  </MenuItem>
-                </Select>
-              </FormControl>
-            </div> */}
-
-            {/* <Select
-              className={classes.textFieldColor}
-              id="Race"
-              select
-              label="Race"
-              variant="standard"
-              value={race}
-              onChange={handleRace}
-              inputProps={{
-                className: classes.fontTypeOne,
-              }}
-            >
-              <MenuItem value="Asian">Asian</MenuItem>
-            </Select> */}
             <TextField
               className={classes.textFieldColor}
               id="Race"
@@ -321,24 +270,6 @@ export default function AMICSInput() {
                 Asian
               </MenuItem>
             </TextField>
-
-            {/* <TextField
-              className={classes.textFieldColor}
-              id="symptoms"
-              size="small"
-              select
-              label="Presenting Symptoms"
-              variant="standard"
-              value={presentingSymptoms}
-              onChange={handlePresentingSymptoms}
-              inputProps={{
-                className: classes.fontTypeOne,
-              }}
-            >
-              <MenuItem style={{ textAlign: "center" }} value="Left Hand Pain">
-                Left Hand Pain
-              </MenuItem>
-            </TextField> */}
 
             <TextField
               className={classes.textFieldColor}
@@ -407,60 +338,6 @@ export default function AMICSInput() {
             style={{ backgroundColor: "#050038", paddingLeft: "16px" }}
           >
             <FormGroup className={classes.formgrop}>
-              {/* <h3 style={{ textAlign: "left", color: "white" }}>
-                EKG findings (Select One)
-              </h3> */}
-
-              {/* <FormControlLabel
-                control={
-                  <Checkbox
-                    {...label}
-                    sx={{
-                      color: "#fff",
-                      "&.Mui-checked": {
-                        color: "#fff",
-                      },
-                    }}
-                  />
-                }
-                label="No ST deviation, but LBBB, LVH, repolarization changes "
-              /> */}
-              {/* <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  value="w"
-                  id="flexCheckDefault"
-                />
-                <label class="form-check-label" for="flexCheckDefault">
-                  No ST deviation, but LBBB, LVH, repolarization changes
-                </label>
-              </div> */}
-              {/* <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  value=""
-                  id="flexCheckDefault"
-                />
-                <label class="form-check-label" for="flexCheckDefault">
-                  ST deviation, but LBBB, LVH, repolarization changes
-                </label>
-              </div> */}
-              {/* <FormControlLabel
-                control={
-                  <Checkbox
-                    {...label}
-                    sx={{
-                      color: "#fff",
-                      "&.Mui-checked": {
-                        color: "#fff",
-                      },
-                    }}
-                  />
-                }
-                label="ST deviation, but LBBB, LVH, repolarization changes"
-              /> */}
               <FormControl component="fieldset">
                 <FormLabel
                   style={{
@@ -486,6 +363,8 @@ export default function AMICSInput() {
                     name="rd"
                     class="custom-control-input green"
                     value="Yes"
+
+                    //radio testing code//
                   />
                   <label
                     style={{ fontSize: "14px" }}
