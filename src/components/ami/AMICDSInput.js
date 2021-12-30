@@ -221,7 +221,7 @@ export default function AMICSInput() {
                 Patient Age*
               </InputLabel>
               <BootstrapInput defaultValue="62" id="bootstrap-input">
-                {patientInfo.value.age}
+                {patientInfo.result.patientDetails.age}
               </BootstrapInput>
             </FormControl>
 
@@ -359,7 +359,8 @@ export default function AMICSInput() {
                     class="custom-control-label"
                     for="rd_1"
                   >
-                    ST deviation, but LBBB, LVH, repolarization changes
+                    {/* ST deviation, but LBBB, LVH, repolarization changes */}
+                    {patientInfo.result.modelDetails[0].modelInputKeyName}
                   </label>
                 </div>
                 <br />
@@ -377,7 +378,8 @@ export default function AMICSInput() {
                     class="custom-control-label"
                     for="rd_2"
                   >
-                    No ST deviation, but LBBB, LVH, repolarization changes
+                    {/* No ST deviation, but LBBB, LVH, repolarization changes */}
+                    {patientInfo.result.modelDetails[1].modelInputKeyName}
                   </label>
                 </div>
                 {/* <RadioGroup
@@ -481,7 +483,7 @@ export default function AMICSInput() {
                   }}
                   variant="filled"
                   // value="25 ng/L"
-                  value={`${patientInfo.value.troponinlst[0].value} ${patientInfo.value.troponinlst[0].units}`}
+                  value={`${patientInfo.result.troponins[0].value} ${patientInfo.result.troponins[0].units}`}
                   type="text"
                   id="first-draw"
                   inputProps={{
@@ -498,7 +500,7 @@ export default function AMICSInput() {
                   }}
                   variant="filled"
                   // value="10/26/2021, 21:40"
-                  value={`${patientInfo.value.troponinlst[0].resultDateTime}`}
+                  value={`${patientInfo.result.troponins[0].resultDateTime}`}
                   type="text"
                   id="first-draw-date"
                   inputProps={{
@@ -526,7 +528,7 @@ export default function AMICSInput() {
                   }}
                   variant="filled"
                   // value="35 ng/L"
-                  value={`${patientInfo.value.troponinlst[1].value} ${patientInfo.value.troponinlst[1].units}`}
+                  value={`${patientInfo.result.troponins[1].value} ${patientInfo.result.troponins[1].units}`}
                   type="text"
                   id="second-draw"
                   inputProps={{
@@ -543,7 +545,7 @@ export default function AMICSInput() {
                   }}
                   variant="filled"
                   // value="10/26/2021, 21:40"
-                  value={`${patientInfo.value.troponinlst[1].resultDateTime}`}
+                  value={`${patientInfo.result.troponins[1].resultDateTime}`}
                   type="text"
                   id="second-draw-date"
                   inputProps={{
@@ -574,7 +576,7 @@ export default function AMICSInput() {
                   }}
                   variant="filled"
                   // value="ng/L"
-                  value={`${patientInfo.value.troponinlst[2].value} ${patientInfo.value.troponinlst[2].units}`}
+                  value={`${patientInfo.result.troponins[2].value} ${patientInfo.result.troponins[2].units}`}
                   type="text"
                   id="third-draw"
                 />
@@ -588,7 +590,7 @@ export default function AMICSInput() {
                   }}
                   variant="filled"
                   // value="mm/dd/yyyy,hh:mm"
-                  value={`${patientInfo.value.troponinlst[2].resultDateTime}`}
+                  value={`${patientInfo.result.troponins[2].resultDateTime}`}
                   type="text"
                   id="third-draw-date"
                   inputProps={{
