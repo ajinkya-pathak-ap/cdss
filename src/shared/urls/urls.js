@@ -3,6 +3,7 @@ export const localUrl = {
   riskScore: "/riskScore",
   riskScoreContr: "/riskScoreContributors",
   patientInfo: "/patientInfo",
+  configFetch: "/configFetch",
 };
 export const urls = {
   baseUrl: "https://localhost:44371/api/",
