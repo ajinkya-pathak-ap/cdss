@@ -151,22 +151,11 @@ export default function AMIOutput(props) {
                   Risk Score Contributors
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
-                  {riskScore.result.positiveContributors}
-                  {/* The Following are the top three contributors to the risk score */}
+                  1.{riskScore.result.positiveContributors}
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
-                  {riskScore.result.negativeContributors}
-                  {/* 1. Troponin change of Xng/L/hour between 0 and 1 hours after */}
-                  {/* symptom onset */}
+                  2.{riskScore.result.negativeContributors}
                 </Typography>
-                {/* <Typography className={`${classes.headerTextThree}`}> */}
-                {/* {result.negativeContributors} */}
-                {/* 2. History of hypertension */}
-                {/* </Typography> */}
-                {/* <Typography className={`${classes.headerTextThree}`}> */}
-                {/* {riskScore.result.guidance} */}
-                {/* 3. Prior cardiac history */}
-                {/* </Typography> */}
               </CardContent>
             </Card>
           </Grid>
@@ -205,12 +194,10 @@ export default function AMIOutput(props) {
               </Typography>
               <Typography className={`${classes.headerTextThree}`}>
                 {guidance.text_1}
-                {/* Based on the patient's risk score and the care pathway at your */}
-                institution, the following course of action is recommended
+                {/* institution, the following course of action is recommended */}
               </Typography>
               <Typography className={classes.typo}>
                 {guidance.text_2}
-                {/* Refer patient for Cardiology Consultant */}
               </Typography>
               <Typography>
                 <Link className={classes.hyperLink} to="/carepath">

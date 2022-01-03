@@ -71,8 +71,19 @@ export default function AMIConfiguration(props) {
     displayTwo: "",
   });
 
+  const [ageArr, setAgeArr] = useState([]);
+  const [hstnlArr, setHstnlArr] = useState([]);
+
   const handleGenerateRule = (e) => {
     setGenerateRule({ ...generateRule, [e.target.name]: e.target.value });
+
+    operatorOne === "Between"
+      ? setAgeArr([generateRule.ageOne, generateRule.ageTwo])
+      : setAgeArr([generateRule.ageOne]);
+
+    operatorTwo === "Between"
+      ? setHstnlArr([generateRule.hstnlOne, generateRule.hstnlTwo])
+      : setHstnlArr([generateRule.hstnlOne]);
   };
 
   let postRequestObject = {
@@ -90,18 +101,12 @@ export default function AMIConfiguration(props) {
               {
                 categoryDefinition: "Age",
                 operator: operatorOne,
-                Values: [
-                  generateRule.ageOne,
-                  operatorOne === "Between" ? generateRule.ageTwo : null,
-                ],
+                Values: ageArr,
               },
               {
                 categoryDefinition: "hsTnl",
                 operator: operatorTwo,
-                Values: [
-                  generateRule.hstnlOne,
-                  operatorTwo === "Between" ? generateRule.hstnlTwo : null,
-                ],
+                Values: hstnlArr,
               },
             ],
           },
@@ -170,6 +175,7 @@ export default function AMIConfiguration(props) {
 
   const applySetings = () => {
     saveConfigData(postRequestObject);
+    console.log(postRequestObject);
   };
   /*************config api stuff***************/
 
@@ -371,7 +377,7 @@ export default function AMIConfiguration(props) {
                                     width: "100px",
                                   }}
                                   onChange={(e) => handleGenerateRule(e)}
-                                  name="hstnltwo"
+                                  name="hstnlTwo"
                                 />
                               </Grid>
                             ) : (

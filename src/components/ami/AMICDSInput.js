@@ -17,7 +17,7 @@ import "./styles.css";
 import { Typography } from "@material-ui/core";
 import { patientInfoService } from "../../services/patientInfo-service";
 import CircularIndeterminate from "../../shared/preloder/Preloder";
-import { CDSInputStyles } from "./CustomStyles";
+import { CDSInputStyles, bootstrappedInput } from "./CustomStyles";
 import { red } from "@material-ui/core/colors";
 
 const riskFactor = [
@@ -67,12 +67,6 @@ const time = [
 export default function AMICSInput(props) {
   const classes = CDSInputStyles();
 
-  const controlProps = (item) => ({
-    value: item,
-    name: "color-radio-button-demo",
-    // inputProps: { "aria-label": item },
-  });
-
   const resetFields = () => {};
   const [race, setRace] = useState("Asian");
   const [presentingSymptoms, setPresentingSymptoms] =
@@ -98,6 +92,7 @@ export default function AMICSInput(props) {
         (response) => {
           setPatientInfo(response.data);
           setIsFetching(false);
+          console.log(response.data)
         },
         (error) => {
           return;
@@ -119,31 +114,7 @@ export default function AMICSInput(props) {
     }
   };
 
-  const BootstrapInput = styled(InputBase)(({ theme }) => ({
-    "label + &": {
-      marginTop: theme.spacing(3),
-    },
-    "& .MuiInputBase-input": {
-      borderRadius: 4,
-      position: "relative",
-      backgroundColor: theme.palette.mode === "light" ? "#fcfcfb" : "#2b2b2b",
-      // border: "1px solid #ced4da",
-      fontSize: 13,
-      width: "auto",
-      padding: "9px 10px",
-      transition: theme.transitions.create([
-        "border-color",
-        "background-color",
-        "box-shadow",
-      ]),
-      // Use the system font instead of the default Roboto font.
-      fontFamily: ["Roboto"].join(","),
-      // "&:focus": {
-      //   boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-      //   borderColor: theme.palette.primary.main,
-      // },
-    },
-  }));
+  const BootstrapInput = bootstrappedInput;
 
   function handleRace(e) {
     setRace(e.target.value);
@@ -221,7 +192,7 @@ export default function AMICSInput(props) {
                 Patient Age*
               </InputLabel>
               <BootstrapInput defaultValue="62" id="bootstrap-input">
-                {patientInfo.result.patientDetails.age}
+                {patientInfo.value.patientDetails.age}
               </BootstrapInput>
             </FormControl>
 
@@ -351,8 +322,6 @@ export default function AMICSInput(props) {
                     name="rd"
                     class="custom-control-input green"
                     value="Yes"
-
-                    //radio testing code//
                   />
                   &nbsp;
                   <label
@@ -361,7 +330,7 @@ export default function AMICSInput(props) {
                     for="rd_1"
                   >
                     {/* ST deviation, but LBBB, LVH, repolarization changes */}
-                    {patientInfo.result.modelDetails[0].modelInputKeyName}
+                    {patientInfo.value.modelDetails[0].modelInputKeyName}
                   </label>
                 </div>
                 <br />
@@ -381,7 +350,7 @@ export default function AMICSInput(props) {
                   >
                     &nbsp;
                     {/* No ST deviation, but LBBB, LVH, repolarization changes */}
-                    {patientInfo.result.modelDetails[1].modelInputKeyName}
+                    {patientInfo.value.modelDetails[1].modelInputKeyName}
                   </label>
                 </div>
                 {/* <RadioGroup
@@ -456,7 +425,6 @@ export default function AMICSInput(props) {
                     variant="h9"
                     style={{
                       fontWeight: "700",
-
                       marginLeft: "70px",
                     }}
                   >
@@ -530,7 +498,7 @@ export default function AMICSInput(props) {
                   }}
                   variant="filled"
                   // value="35 ng/L"
-                  value={`${patientInfo.result.troponins[1].value} ${patientInfo.result.troponins[1].units}`}
+                  value={`${patientInfo.value.troponins[1].value} ${patientInfo.value.troponins[1].units}`}
                   type="text"
                   id="second-draw"
                   inputProps={{
@@ -547,7 +515,7 @@ export default function AMICSInput(props) {
                   }}
                   variant="filled"
                   // value="10/26/2021, 21:40"
-                  value={`${patientInfo.result.troponins[1].resultDateTime}`}
+                  value={`${patientInfo.value.troponins[1].resultDateTime}`}
                   type="text"
                   id="second-draw-date"
                   inputProps={{
@@ -578,7 +546,7 @@ export default function AMICSInput(props) {
                   }}
                   variant="filled"
                   // value="ng/L"
-                  value={`${patientInfo.result.troponins[2].value} ${patientInfo.result.troponins[2].units}`}
+                  value={`${patientInfo.value.troponins[2].value} ${patientInfo.value.troponins[2].units}`}
                   type="text"
                   id="third-draw"
                 />
@@ -592,7 +560,7 @@ export default function AMICSInput(props) {
                   }}
                   variant="filled"
                   // value="mm/dd/yyyy,hh:mm"
-                  value={`${patientInfo.result.troponins[2].resultDateTime}`}
+                  value={`${patientInfo.value.troponins[2].resultDateTime}`}
                   type="text"
                   id="third-draw-date"
                   inputProps={{
