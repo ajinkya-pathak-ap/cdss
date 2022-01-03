@@ -45,16 +45,23 @@ export default function AMIOutput(props) {
     text_1: "",
     text_2: "",
   });
-  const [contributors, setContributors] = useState({
-    text_1: "",
-    firstContributor: "",
-    secondContributor: "",
-    thirdContributor: "",
-  });
-  const [guidance, setGuidance] = useState({
-    text_1: "",
-    text_2: "",
-  });
+  // const [contributors, setContributors] = useState({
+  //   text_1: "",
+  //   firstContributor: "",
+  //   secondContributor: "",
+  //   thirdContributor: "",
+  // });
+
+const [positiveContributors, setContributors] = useState({
+  positiveContributors: "FIRST_TRP: 32%, Basophils.val: 1%, Eos: 0%",
+  negativeContributors:"AGE: -42%, BUN: -12%, lymph_leu_non_variant: -2%
+});
+;
+
+  // const [guidance, setGuidance] = useState({
+  //   text_1: "",
+  //   text_2: "",
+  // });
 
   useEffect(() => {
     fetchRiskScore(configData);
@@ -99,10 +106,10 @@ export default function AMIOutput(props) {
     let strArr = _string.split("$");
     setContributors({
       ...contributors,
-      text_1: strArr[0],
-      firstContributor: strArr[1],
-      secondContributor: strArr[2],
-      thirdContributor: strArr[3],
+      // text_1: strArr[0],
+      positiveContributors: strArr[1],
+      negativeContributors: strArr[2],
+      // thirdContributor: strArr[3],
     });
   };
 
@@ -128,10 +135,10 @@ export default function AMIOutput(props) {
                   {details.text_1}
                   {/* Patient's Risk of major Adverse Cardiac Event within 30 days */}
                 </Typography>
-                <Typography className={`${classes.headerTextThree}`}>
+                {/* <Typography className={`${classes.headerTextThree}`}>
                   {details.text_2}
-                  {/* MACE includes death, AMI, stroke,urgent re-vascularization */}
-                </Typography>
+                  MACE includes death, AMI, stroke,urgent re-vascularization
+                </Typography> */}
               </CardContent>
             </Card>
           </Grid>
@@ -148,7 +155,7 @@ export default function AMIOutput(props) {
                 alignitems="center"
                 className={classes.riskScoreShell}
               >
-                {riskScore.value.riskScore}%{/* 88% */}
+                {riskScore.result.score}
               </Typography>
             </Box>
           </Grid>
@@ -162,20 +169,20 @@ export default function AMIOutput(props) {
                   Risk Score Contributors
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
-                  {contributors.text_1}
+                  {riskScore.result.probabilityRange}
                   {/* The Following are the top three contributors to the risk score */}
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
-                  {contributors.firstContributor}
+                  {result.positiveContributors}
                   {/* 1. Troponin change of Xng/L/hour between 0 and 1 hours after */}
                   {/* symptom onset */}
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
-                  {contributors.secondContributor}
+                  {result.negativeContributors}
                   {/* 2. History of hypertension */}
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
-                  {contributors.thirdContributor}
+                  {riskScore.result.guidance}
                   {/* 3. Prior cardiac history */}
                 </Typography>
               </CardContent>
