@@ -66,7 +66,6 @@ const time = [
 
 export default function AMICSInput() {
   const classes = CDSInputStyles();
-
   const localMode = true;
 
   const controlProps = (item) => ({
@@ -77,9 +76,8 @@ export default function AMICSInput() {
 
   const resetFields = () => {};
   const [race, setRace] = useState("Asian");
-  const [presentingSymptoms, setPresentingSymptoms] = useState(
-    "Left Hand Pain"
-  );
+  const [presentingSymptoms, setPresentingSymptoms] =
+    useState("Left Hand Pain");
   const [symptomOnset, setSymptomOnset] = useState("1 Hrs");
   const [riskFactors, setrRiskFactors] = useState("prior AMI");
 
@@ -114,6 +112,9 @@ export default function AMICSInput() {
         },
         (error) => {
           return;
+          /**
+           * error boundry
+           */
         }
       );
     }
