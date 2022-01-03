@@ -55,8 +55,6 @@ export default function AMIConfiguration(props) {
   const operators = [">", "<", ">=", "<=", "=", "Between"];
   const classes = AMIConfigStyles();
 
-  /*************config api stuff***************/
-
   const fetchRequestObject = {
     OganizationId: 1,
     ModelId: 1,
