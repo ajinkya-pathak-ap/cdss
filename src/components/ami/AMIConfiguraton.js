@@ -21,7 +21,7 @@ import CircularIndeterminate from "../../shared/preloder/Preloder";
 const BootstrapButton = amiConfigBtns;
 const BootstrapInput = amiConfigInputs;
 
-export default function AMIConfiguration() {
+export default function AMIConfiguration(props) {
   const [operatorOne, setOperatorOne] = useState("");
   const [operatorTwo, setOperatorTwo] = useState("");
   const [isFetching, setIsFetching] = useState(true);
@@ -57,14 +57,23 @@ export default function AMIConfiguration() {
 
   /*************config api stuff***************/
 
-  const localMode = true,
-    fetchRequestObject = {
-      OganizationId: 1,
-      ModelId: 1,
-    };
+  const fetchRequestObject = {
+    OganizationId: 1,
+    ModelId: 1,
+  };
 
-  const [ageRule, setAgeRule] = useState({});
-  // const [hstnlRule, setAgeRule] = useState({});
+  const [generateRule, setGenerateRule] = useState({
+    ageOne: "",
+    ageTwo: "",
+    hstnlOne: "",
+    hstnlTwo: "",
+    displayOne: "",
+    displayTwo: "",
+  });
+
+  const handleGenerateRule = (e) => {
+    setGenerateRule({ ...generateRule, [e.target.name]: e.target.value });
+  };
 
   let postRequestObject = {
     configurationId: 1,
@@ -76,12 +85,23 @@ export default function AMIConfiguration() {
         rules: [
           {
             isDefault: true,
-            isChecked: true,
+            isChecked: generateRS,
             categories: [
               {
                 categoryDefinition: "Age",
                 operator: operatorOne,
-                Values: ["65"],
+                Values: [
+                  generateRule.ageOne,
+                  operatorOne === "Between" ? generateRule.ageTwo : null,
+                ],
+              },
+              {
+                categoryDefinition: "hsTnl",
+                operator: operatorTwo,
+                Values: [
+                  generateRule.hstnlOne,
+                  operatorTwo === "Between" ? generateRule.hstnlTwo : null,
+                ],
               },
             ],
           },
@@ -92,12 +112,12 @@ export default function AMIConfiguration() {
         rules: [
           {
             isDefault: false,
-            isChecked: true,
+            isChecked: displayRS,
             categories: [
               {
                 categoryDefinition: "hsTnl",
-                operator: operatorTwo,
-                Values: ["5", "20"],
+                operator: "Between",
+                Values: [generateRule.displayOne, generateRule.displayTwo],
               },
             ],
           },
@@ -111,7 +131,7 @@ export default function AMIConfiguration() {
   }, [0]);
 
   const fetchConfigData = (_config) => {
-    if (localMode) {
+    if (props.localMode) {
       configurationService.getConfigurationLocal(_config).then(
         (response) => {
           setConfigData(response.data);
@@ -129,6 +149,27 @@ export default function AMIConfiguration() {
       );
     } else {
     }
+  };
+
+  const saveConfigData = (_config) => {
+    if (props.localMode) {
+      configurationService.saveConfiguration(_config).then(
+        (response) => {
+          console.log("Succefully Save Settings", response);
+        },
+        (error) => {
+          return;
+          /**
+           * error boundry
+           */
+        }
+      );
+    } else {
+    }
+  };
+
+  const applySetings = () => {
+    saveConfigData(postRequestObject);
   };
   /*************config api stuff***************/
 
@@ -239,6 +280,8 @@ export default function AMIConfiguration() {
                                   backgroundColor: "#fff",
                                   width: "100px",
                                 }}
+                                onChange={(e) => handleGenerateRule(e)}
+                                name="ageOne"
                               />
                             </Grid>
                             {operatorOne === "Between" ? (
@@ -250,6 +293,8 @@ export default function AMIConfiguration() {
                                     backgroundColor: "#fff",
                                     width: "90px",
                                   }}
+                                  onChange={(e) => handleGenerateRule(e)}
+                                  name="ageTwo"
                                 />
                               </Grid>
                             ) : (
@@ -287,7 +332,6 @@ export default function AMIConfiguration() {
                                   autoWidth
                                   onChange={changeOperatorTwo}
                                   style={{
-                                    // marginLeft: "18px",
                                     fontSize: "13px",
                                     backgroundColor: "#fff",
                                     width: "100px",
@@ -313,6 +357,8 @@ export default function AMIConfiguration() {
                                   backgroundColor: "#fff",
                                   width: "100px",
                                 }}
+                                onChange={(e) => handleGenerateRule(e)}
+                                name="hstnlOne"
                               />
                             </Grid>
                             {operatorTwo === "Between" ? (
@@ -324,6 +370,8 @@ export default function AMIConfiguration() {
                                     backgroundColor: "#fff",
                                     width: "100px",
                                   }}
+                                  onChange={(e) => handleGenerateRule(e)}
+                                  name="hstnltwo"
                                 />
                               </Grid>
                             ) : (
@@ -397,8 +445,10 @@ export default function AMIConfiguration() {
                                 textAlign: "right",
                               }}
                               defaultValue="0%"
-                              id="range"
                               disabled={displayRS}
+                              id="rangeOne"
+                              name="displayOne"
+                              onChange={(e) => handleGenerateRule(e)}
                             />
                           </FormControl>
                           <label className={classes.headerText}>And</label>
@@ -411,8 +461,10 @@ export default function AMIConfiguration() {
                                 textAlign: "center",
                               }}
                               defaultValue="1%"
-                              id="range"
                               disabled={displayRS}
+                              id="rangeTwo"
+                              name="displayTwo"
+                              onChange={(e) => handleGenerateRule(e)}
                             />
                           </FormControl>
                           <label
@@ -481,6 +533,7 @@ export default function AMIConfiguration() {
                     <BootstrapButton
                       variant="contained"
                       className={classes.buttonColor}
+                      onClick={applySetings}
                     >
                       {/* <Link className={classes.buttonColor} to="">
                         <span className="m-2">Apply</span>

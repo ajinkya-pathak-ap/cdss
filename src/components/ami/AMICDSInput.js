@@ -64,9 +64,8 @@ const time = [
   },
 ];
 
-export default function AMICSInput() {
+export default function AMICSInput(props) {
   const classes = CDSInputStyles();
-  const localMode = true;
 
   const controlProps = (item) => ({
     value: item,
@@ -94,7 +93,7 @@ export default function AMICSInput() {
   }, [0]);
 
   const getPatientInfo = (config) => {
-    if (localMode) {
+    if (props.localMode) {
       patientInfoService.getPatientInfoLocal(config).then(
         (response) => {
           setPatientInfo(response.data);

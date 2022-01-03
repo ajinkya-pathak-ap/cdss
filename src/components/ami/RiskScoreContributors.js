@@ -14,9 +14,8 @@ const configData = {
   EncounterNumber: "1",
 };
 
-export default function RiskScoreContributors() {
+export default function RiskScoreContributors(props) {
   const classes = riskContributorStyles();
-  const localMode = true;
   const [isFetching, setIsFetching] = useState(true);
   const [riskScoreContributors, setRiskScoreContributors] = useState({});
 
@@ -25,7 +24,7 @@ export default function RiskScoreContributors() {
   }, [0]);
 
   const fetchRiskScoreContributors = (config) => {
-    if (localMode) {
+    if (props.localMode) {
       riskScoreService.getRiskScoreContributorsLocal(config).then(
         (response) => {
           setRiskScoreContributors(response.data);
