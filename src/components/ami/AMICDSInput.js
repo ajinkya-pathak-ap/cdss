@@ -354,6 +354,7 @@ export default function AMICSInput() {
 
                     //radio testing code//
                   />
+                  &nbsp;
                   <label
                     style={{ fontSize: "14px" }}
                     class="custom-control-label"
@@ -378,6 +379,7 @@ export default function AMICSInput() {
                     class="custom-control-label"
                     for="rd_2"
                   >
+                    &nbsp;
                     {/* No ST deviation, but LBBB, LVH, repolarization changes */}
                     {patientInfo.result.modelDetails[1].modelInputKeyName}
                   </label>
