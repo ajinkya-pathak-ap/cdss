@@ -45,23 +45,17 @@ export default function AMIOutput(props) {
     text_1: "",
     text_2: "",
   });
-  // const [contributors, setContributors] = useState({
-  //   text_1: "",
-  //   firstContributor: "",
-  //   secondContributor: "",
-  //   thirdContributor: "",
-  // });
+  const [contributors, setContributors] = useState({
+    text_1: "",
+    firstContributor: "",
+    secondContributor: "",
+    thirdContributor: "",
+  });
 
-const [positiveContributors, setContributors] = useState({
-  positiveContributors: "FIRST_TRP: 32%, Basophils.val: 1%, Eos: 0%",
-  negativeContributors:"AGE: -42%, BUN: -12%, lymph_leu_non_variant: -2%
-});
-;
-
-  // const [guidance, setGuidance] = useState({
-  //   text_1: "",
-  //   text_2: "",
-  // });
+  const [guidance, setGuidance] = useState({
+    text_1: "",
+    text_2: "",
+  });
 
   useEffect(() => {
     fetchRiskScore(configData);
@@ -71,11 +65,11 @@ const [positiveContributors, setContributors] = useState({
     if (props.localMode) {
       riskScoreService.getRiskScoreLocal(config).then(
         (response) => {
+          console.log(response.data);
           setRiskScore(response.data);
           setIsFetching(false);
-          getRiskScoreDetails(response.data.value.riskScoreDetails);
-          getRiskScoreContrubutors(response.data.value.contributors);
-          getGuidance(response.data.value.guidance);
+          getRiskScoreDetails(response.data.result.riskScoreDetails);
+          getGuidance(response.data.result.guidance);
         },
         (error) => {
           return;
@@ -86,9 +80,8 @@ const [positiveContributors, setContributors] = useState({
         (response) => {
           setRiskScore(response.data);
           setIsFetching(false);
-          getRiskScoreDetails(response.data.value.riskScoreDetails);
-          getRiskScoreContrubutors(response.data.value.contributors);
-          getGuidance(response.data.value.guidance);
+          getRiskScoreDetails(response.data.result.riskScoreDetails);
+          getGuidance(response.data.result.guidance);
         },
         (error) => {
           return;
@@ -100,17 +93,6 @@ const [positiveContributors, setContributors] = useState({
   const getRiskScoreDetails = (_string) => {
     let strArr = _string.split("$");
     setDetails({ ...details, text_1: strArr[0], text_2: strArr[1] });
-  };
-
-  const getRiskScoreContrubutors = (_string) => {
-    let strArr = _string.split("$");
-    setContributors({
-      ...contributors,
-      // text_1: strArr[0],
-      positiveContributors: strArr[1],
-      negativeContributors: strArr[2],
-      // thirdContributor: strArr[3],
-    });
   };
 
   const getGuidance = (_string) => {
@@ -135,10 +117,10 @@ const [positiveContributors, setContributors] = useState({
                   {details.text_1}
                   {/* Patient's Risk of major Adverse Cardiac Event within 30 days */}
                 </Typography>
-                {/* <Typography className={`${classes.headerTextThree}`}>
+                <Typography className={`${classes.headerTextThree}`}>
                   {details.text_2}
-                  MACE includes death, AMI, stroke,urgent re-vascularization
-                </Typography> */}
+                  {/* MACE includes death, AMI, stroke,urgent re-vascularization */}
+                </Typography>
               </CardContent>
             </Card>
           </Grid>
@@ -169,22 +151,22 @@ const [positiveContributors, setContributors] = useState({
                   Risk Score Contributors
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
-                  {riskScore.result.probabilityRange}
+                  {riskScore.result.positiveContributors}
                   {/* The Following are the top three contributors to the risk score */}
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
-                  {result.positiveContributors}
+                  {riskScore.result.negativeContributors}
                   {/* 1. Troponin change of Xng/L/hour between 0 and 1 hours after */}
                   {/* symptom onset */}
                 </Typography>
-                <Typography className={`${classes.headerTextThree}`}>
-                  {result.negativeContributors}
-                  {/* 2. History of hypertension */}
-                </Typography>
-                <Typography className={`${classes.headerTextThree}`}>
-                  {riskScore.result.guidance}
-                  {/* 3. Prior cardiac history */}
-                </Typography>
+                {/* <Typography className={`${classes.headerTextThree}`}> */}
+                {/* {result.negativeContributors} */}
+                {/* 2. History of hypertension */}
+                {/* </Typography> */}
+                {/* <Typography className={`${classes.headerTextThree}`}> */}
+                {/* {riskScore.result.guidance} */}
+                {/* 3. Prior cardiac history */}
+                {/* </Typography> */}
               </CardContent>
             </Card>
           </Grid>
@@ -250,7 +232,7 @@ const [positiveContributors, setContributors] = useState({
               className={`${classes.buttonColor} ${classes.acknowledgeBtn_1}`}
             >
               <Link className={classes.buttonColor} to="">
-                <span className="m-2">
+                <span className="m-1">
                   Acknowledge(Document Risk Contributors)
                 </span>
               </Link>
@@ -260,7 +242,7 @@ const [positiveContributors, setContributors] = useState({
               className={`${classes.buttonColor} ${classes.acknowledgeBtn_2}`}
             >
               <Link className={classes.buttonColor} to="">
-                <span className="m-2">Acknowledge</span>
+                <span className="m-1">Acknowledge</span>
               </Link>
             </BootstrapButton>
             <BootstrapButton
@@ -268,7 +250,7 @@ const [positiveContributors, setContributors] = useState({
               className={classes.buttonColor1}
             >
               <Link className={classes.buttonColor1} to="/amioutput">
-                <span className="m-2">Close</span>
+                <span className="m-1">Close</span>
               </Link>
             </BootstrapButton>
           </Stack>

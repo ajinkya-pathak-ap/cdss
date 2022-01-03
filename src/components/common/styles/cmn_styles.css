@@ -30,7 +30,7 @@ i.icon {
   font-size: 14px;
 }
 .top_mt_100{
-  margin-top: 80px;
+  margin-top: 8%;
   padding-left: 20px;
 }
 .MuiFormControl-marginNormal {
@@ -90,7 +90,7 @@ i.icon {
 
 @media only screen and (max-width: 600px) {
   .top_mt_100{
-    margin-top: 80px;
+    margin-top: 8%;
     padding-left: 0px;
   }
 }

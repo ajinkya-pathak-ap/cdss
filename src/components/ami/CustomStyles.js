@@ -96,8 +96,8 @@ export const amiOutputStyles = makeStyles((theme) => ({
 
   buttonColor1: {
     backgroundColor: "#414BB2",
-    paddingLeft: "62px",
-    paddingRight: "62px",
+    // paddingLeft: "62px",
+    // paddingRight: "62px",
     textDecoration: "none",
     color: "#fff",
     "&:hover": {
@@ -130,9 +130,9 @@ export const amiOutputStyles = makeStyles((theme) => ({
     width: "9rem",
     height: "9rem",
     [theme.breakpoints.up("md")]: {
-      fontSize: "35px",
-      lineHeight: "3.2",
-      width: "8rem",
+      fontSize: "25px",
+      lineHeight: "4.7",
+      width: "7rem",
       height: "7rem",
     },
 
