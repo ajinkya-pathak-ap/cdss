@@ -178,8 +178,17 @@ export default function AMIOutput(props) {
                   marginRight: "20px",
                 }}
               >
-                <Link className={classes.buttonColor} to="/contributors">
+                <Link
+                  className={`${classes.buttonColor} ${classes.moreInfoBtn_1}`}
+                  to="/contributors"
+                >
                   <span className="m-2">More Info</span>
+                </Link>
+                <Link
+                  className={`${classes.buttonColor} ${classes.moreInfoBtn_2}`}
+                  to="/contributors"
+                >
+                  <span className="m-2">More</span>
                 </Link>
               </BootstrapButton>
             </Stack>

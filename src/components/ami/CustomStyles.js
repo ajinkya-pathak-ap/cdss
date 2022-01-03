@@ -49,6 +49,24 @@ export const amiOutputStyles = makeStyles((theme) => ({
 
   moreInfo: {
     justifyContent: "flex-end",
+    [theme.breakpoints.down("md")]: {
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  },
+
+  moreInfoBtn_1: {
+    display: "block",
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+
+  moreInfoBtn_2: {
+    display: "none",
+    [theme.breakpoints.down("sm")]: {
+      display: "block",
+    },
   },
 
   typo: {
@@ -139,7 +157,8 @@ export const amiOutputStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("md")]: {
       width: "5rem",
       height: "6rem",
-      fontSize: "29px",
+      fontSize: "15px",
+      lineHeight: "6.5",
     },
   },
 
