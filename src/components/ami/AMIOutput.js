@@ -31,14 +31,12 @@ const BootstrapButton = styled(Button)((props) => ({
   },
 }));
 
-const localMode = true;
-
 const configData = {
   MRN: "1",
   EncounterNumber: "1",
 };
 
-export default function AMIOutput() {
+export default function AMIOutput(props) {
   const classes = amiOutputStyles();
 
   const [riskScore, setRiskScore] = useState({});
@@ -63,7 +61,7 @@ export default function AMIOutput() {
   }, [0]);
 
   const fetchRiskScore = (config) => {
-    if (localMode) {
+    if (props.localMode) {
       riskScoreService.getRiskScoreLocal(config).then(
         (response) => {
           setRiskScore(response.data);

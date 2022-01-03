@@ -23,6 +23,8 @@ function ShellComponent(props) {
     });
   };
 
+  const localMode = true;
+
   return (
     <>
       <div className="top_mt_100">
@@ -32,20 +34,29 @@ function ShellComponent(props) {
           <Route exact path="/login" element={<Login notify={snacksBar} />} />
           <Route
             path="/config"
-            element={<AMIConfiguration notify={snacksBar} />}
+            element={
+              <AMIConfiguration notify={snacksBar} localMode={localMode} />
+            }
           />
-          <Route path="/amioutput" element={<AMIOutput notify={snacksBar} />} />
+          <Route
+            path="/amioutput"
+            element={<AMIOutput notify={snacksBar} localMode={localMode} />}
+          />
           <Route
             path="/contributors"
-            element={<RiskScoreContributors notify={snacksBar} />}
+            element={
+              <RiskScoreContributors notify={snacksBar} localMode={localMode} />
+            }
           />
           <Route
             path="/amiinput"
-            element={<AMICDSInput notify={snacksBar} />}
+            element={<AMICDSInput notify={snacksBar} localMode={localMode} />}
           />
           <Route
             path="/carepath"
-            element={<ChestPainFlowchart notify={snacksBar} />}
+            element={
+              <ChestPainFlowchart notify={snacksBar} localMode={localMode} />
+            }
           />
         </Routes>
       </div>

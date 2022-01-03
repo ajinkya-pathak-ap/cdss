@@ -21,7 +21,7 @@ import CircularIndeterminate from "../../shared/preloder/Preloder";
 const BootstrapButton = amiConfigBtns;
 const BootstrapInput = amiConfigInputs;
 
-export default function AMIConfiguration() {
+export default function AMIConfiguration(props) {
   const [operatorOne, setOperatorOne] = useState("");
   const [operatorTwo, setOperatorTwo] = useState("");
   const [isFetching, setIsFetching] = useState(true);
@@ -57,11 +57,10 @@ export default function AMIConfiguration() {
 
   /*************config api stuff***************/
 
-  const localMode = true,
-    fetchRequestObject = {
-      OganizationId: 1,
-      ModelId: 1,
-    };
+  const fetchRequestObject = {
+    OganizationId: 1,
+    ModelId: 1,
+  };
 
   const [generateRule, setGenerateRule] = useState({
     ageOne: "",
@@ -132,7 +131,7 @@ export default function AMIConfiguration() {
   }, [0]);
 
   const fetchConfigData = (_config) => {
-    if (localMode) {
+    if (props.localMode) {
       configurationService.getConfigurationLocal(_config).then(
         (response) => {
           setConfigData(response.data);
@@ -152,8 +151,25 @@ export default function AMIConfiguration() {
     }
   };
 
+  const saveConfigData = (_config) => {
+    if (props.localMode) {
+      configurationService.saveConfiguration(_config).then(
+        (response) => {
+          console.log("Succefully Save Settings", response);
+        },
+        (error) => {
+          return;
+          /**
+           * error boundry
+           */
+        }
+      );
+    } else {
+    }
+  };
+
   const applySetings = () => {
-    console.log(postRequestObject);
+    saveConfigData(postRequestObject);
   };
   /*************config api stuff***************/
 
