@@ -244,6 +244,7 @@ export const CDSInputStyles = makeStyles((theme) => ({
 
   fontTypeOne: {
     fontSize: "14px !important",
+    marginTop: "-10px !important",
   },
 }));
 
