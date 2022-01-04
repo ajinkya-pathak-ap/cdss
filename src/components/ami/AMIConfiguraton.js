@@ -297,7 +297,7 @@ export default function AMIConfiguration(props) {
                                   disabled={generateRS}
                                   style={{
                                     backgroundColor: "#fff",
-                                    width: "90px",
+                                    width: "100px",
                                   }}
                                   onChange={(e) => handleGenerateRule(e)}
                                   name="ageTwo"
@@ -436,6 +436,132 @@ export default function AMIConfiguration(props) {
                         User Defined Range
                       </Typography>
                       <br />
+                      <Grid container spacing={2}>
+                        <Grid container spacing={0}>
+                          <Grid
+                            item
+                            xs={12}
+                            md={1}
+                            className={classes.betweenspacing}
+                          >
+                            <Typography
+                              variant={"h6"}
+                              style={{ marginLeft: "15px" }}
+                            >
+                              Between
+                            </Typography>
+                          </Grid>
+                          <Grid item xs={12} md={1}>
+                            <FormControl
+                              variant="standard"
+                              style={{
+                                marginLeft: "28px",
+                              }}
+                            >
+                              <BootstrapInput
+                                style={{
+                                  width: "80px",
+                                  textAlign: "right",
+                                }}
+                                defaultValue="0%"
+                                disabled={displayRS}
+                                id="rangeOne"
+                                name="displayOne"
+                                onChange={(e) => handleGenerateRule(e)}
+                              />
+                            </FormControl>
+                          </Grid>
+                          <Grid
+                            item
+                            xs={12}
+                            md={1}
+                            style={{
+                              marginLeft: "50px",
+                            }}
+                          >
+                            <Typography variant={"h6"}>And</Typography>
+                          </Grid>
+                          <Grid item xs={12} md={1} className={classes.spacing}>
+                            <FormControl variant="standard">
+                              <BootstrapInput
+                                style={{
+                                  marginLeft: "-20px",
+                                  width: "80px",
+                                }}
+                                defaultValue="1%"
+                                disabled={displayRS}
+                                id="rangeTwo"
+                                name="displayTwo"
+                                onChange={(e) => handleGenerateRule(e)}
+                              />
+                            </FormControl>
+                          </Grid>
+                          <Grid item xs={12} md={4}>
+                            {/* <label
+                              className={`${classes.riskTwo} ${classes.headerText}`}
+                            >
+                              risk of MACE within 30 days
+                            </label> */}
+                            <Typography
+                              variant={"h6"}
+                              style={{
+                                marginLeft: "5px",
+                                fontSize: "18px",
+                              }}
+                            >
+                              risk of MACE within 30 days
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                        <Grid item xs={12} md={4}></Grid>
+                      </Grid>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              </Grid>
+              {/* <Grid container item xs={12}>
+                <Grid item xs={12} className={classes.gridcontainer1}>
+                  <Card className={classes.gridcontainer}>
+                    <CardContent>
+                      <Typography className={classes.headerText}>
+                        Display Risk Score for only Patients meeting the
+                        following
+                      </Typography>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            onChange={(e) => handleDisplayRiskScore(e)}
+                            defaultChecked
+                            {...label}
+                            sx={{
+                              color: "#fff",
+                              "&.Mui-checked": {
+                                color: "#fff",
+                              },
+                            }}
+                          />
+                        }
+                        label="Display All Risk Scores"
+                      />
+                      <br />
+                      <br />
+                      <Typography
+                        style={{ fontSize: "19px", paddingLeft: "10%" }}
+                        className={classes.headerText}
+                      >
+                        Or
+                      </Typography>
+                      <br />
+
+                      <Typography
+                        style={{
+                          textAlign: "left",
+                        }}
+                        className={classes.headerText}
+                      >
+                        User Defined Range
+                      </Typography>
+                      <br />
                       <Grid item xs={12}>
                         <Box component="form" noValidate>
                           <label className={classes.headerText}>Between</label>
@@ -486,24 +612,13 @@ export default function AMIConfiguration(props) {
                         </label>
                       </Grid>
                       <br />
-                      <br />
-                      {/* <Button
-                          className={classes.buttonColor}
-                          variant="contained"
-                          style={{
-                            textTransform: "none",
-                            backgroundColor: "#414BB2",
-                            marginBottom: "10px",
-                            float: "right",
-                          }}
-                        >
-                          Apply
-                        </Button> */}
+
+                     
                     </CardContent>
                   </Card>
                 </Grid>
-                {/* ***************** end of User defined rule2 code  ***************** */}
-              </Grid>
+                ***************** end of User defined rule2 code  *****************
+              </Grid> */}
               {/* *****************third container***************** */}
               <Grid item xs={12}>
                 <Card className={classes.gridcontainer}>
@@ -522,6 +637,7 @@ export default function AMIConfiguration(props) {
                               color: "#fff",
                               "&.Mui-checked": {
                                 color: "#fff",
+                                fontSize: "35px",
                               },
                             }}
                           />
