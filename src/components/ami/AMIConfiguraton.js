@@ -24,10 +24,37 @@ const BootstrapInput = amiConfigInputs;
 export default function AMIConfiguration(props) {
   const [operatorOne, setOperatorOne] = useState("");
   const [operatorTwo, setOperatorTwo] = useState("");
+
   const [isFetching, setIsFetching] = useState(true);
+
+  /**fetch response */
   const [configData, setConfigData] = useState({});
+
+  /**isChecked */
   const [generateRS, setGenerateRS] = useState(true);
   const [displayRS, setDisplayRS] = useState(true);
+  const [otherRS, setOtherRS] = useState(true);
+
+  // const [isChecked_0, setIsChecked_0] = useState(true);
+  // const [isChecked_1, setIsChecked_1] = useState(true);
+  // const [isChecked_2, setIsChecked_2] = useState(true);
+
+  /**isDefault */
+  const [generateDefault, setGenrateDefault] = useState(true);
+  const [displayDefault, setDisplayDefault] = useState(true);
+  const [otherDefault, setOtherDefault] = useState(true);
+
+  // const [isDefault_0, setIsDefault_0] = useState(true);
+  // const [isDefault_1, setIsDefault_1] = useState(true);
+  // const [isDefault_2, setIsDefault_2] = useState(true);
+
+  /**values arrays */
+  const [ageArr, setAgeArr] = useState([]);
+  const [hstnlArr, setHstnlArr] = useState([]);
+  const [otherArr, setOtherArr] = useState([]);
+
+  const [apply, setApply] = useState(true);
+
   const [generateRule, setGenerateRule] = useState({
     ageOne: "",
     ageTwo: "",
@@ -36,12 +63,6 @@ export default function AMIConfiguration(props) {
     displayOne: "",
     displayTwo: "",
   });
-  const [generateDefault, setGenrateDefault] = useState(true);
-  const [displayDefault, setDisplayDefault] = useState(true);
-  const [otherDefault, setOtherDefault] = useState(true);
-  const [apply, setApply] = useState(true);
-  const [ageArr, setAgeArr] = useState([]);
-  const [hstnlArr, setHstnlArr] = useState([]);
 
   const changeOperatorOne = (event) => {
     setOperatorOne(event.target.value);
@@ -79,6 +100,7 @@ export default function AMIConfiguration(props) {
   const handleGenerateRule = (e) => {
     setGenerateRule({ ...generateRule, [e.target.name]: e.target.value });
     enableApply(e);
+
     operatorOne === "Between"
       ? setAgeArr([generateRule.ageOne, generateRule.ageTwo])
       : setAgeArr([generateRule.ageOne]);
@@ -86,54 +108,6 @@ export default function AMIConfiguration(props) {
     operatorTwo === "Between"
       ? setHstnlArr([generateRule.hstnlOne, generateRule.hstnlTwo])
       : setHstnlArr([generateRule.hstnlOne]);
-  };
-
-  let postRequestObject = {
-    configurationId: 1,
-    oganizationId: 1,
-    modelId: 1,
-    configurations: [
-      {
-        ruleSectionId: 1,
-        rules: [
-          {
-            isDefault: generateDefault,
-            isChecked: generateRS,
-            categories: [
-              {
-                categoryDefinition: "Age",
-                operator: operatorOne,
-                Values: ageArr,
-              },
-              {
-                categoryDefinition: "hsTnl",
-                operator: operatorTwo,
-                Values: hstnlArr,
-              },
-            ],
-          },
-        ],
-      },
-      {
-        ruleSectionId: 2,
-        rules: [
-          {
-            isDefault: displayDefault,
-            isChecked: displayRS,
-            categories: [
-              {
-                categoryDefinition: "hsTnl",
-                operator: "Between",
-                Values: [
-                  `${generateRule.displayOne}%`.split("%")[0],
-                  `${generateRule.displayTwo}%`.split("%")[0],
-                ],
-              },
-            ],
-          },
-        ],
-      },
-    ],
   };
 
   useEffect(() => {
@@ -145,10 +119,8 @@ export default function AMIConfiguration(props) {
       configurationService.getConfigurationLocal(_config).then(
         (response) => {
           setConfigData(response.data);
+          mapJsonResponse(response.data);
           setIsFetching(false);
-          setGenerateRS(
-            response.data.result.configurations[0].rules[0].isChecked
-          );
         },
         (error) => {
           return;
@@ -179,9 +151,9 @@ export default function AMIConfiguration(props) {
   };
 
   const applySetings = () => {
-    debugger;
-    saveConfigData(postRequestObject);
-    console.log(postRequestObject);
+    saveStateValues();
+    console.log("1111111111", configData.result);
+    // saveConfigData(postRequestObject);
   };
 
   const enableApply = (e) => {
@@ -216,6 +188,60 @@ export default function AMIConfiguration(props) {
             }
           })();
     } else {
+    }
+  };
+
+  const mapJsonResponse = (_obj) => {
+    if (_obj.result.configurations[0]) {
+      if (_obj.result.configurations[0].rules.length) {
+        setAgeArr(_obj.result.configurations[0].rules[0].categories);
+        setGenrateDefault(_obj.result.configurations[0].rules[0].isDefault);
+        setGenerateRS(_obj.result.configurations[0].rules[0].isChecked);
+      }
+    }
+
+    if (_obj.result.configurations[1]) {
+      if (_obj.result.configurations[1].rules.length) {
+        setDisplayDefault(_obj.result.configurations[1].rules[0].isDefault);
+        setDisplayRS(_obj.result.configurations[1].rules[0].isChecked);
+        setHstnlArr(_obj.result.configurations[1].rules[0].categories);
+      }
+    }
+
+    if (_obj.result.configurations[2]) {
+      if (_obj.result.configurations[2].rules.length) {
+        setOtherDefault(_obj.result.configurations[2].rules[0].isDefault);
+        setOtherRS(_obj.result.configurations[2].rules[0].isChecked);
+        setOtherArr(_obj.result.configurations[2].rules[0].categories);
+      }
+    }
+  };
+
+  const saveStateValues = () => {
+    if (configData.result.configurations[0]) {
+      configData.result.configurations[0].rules[0].categories[0].values = ageArr;
+      configData.result.configurations[0].rules[0].categories[0].operator = operatorOne;
+
+      configData.result.configurations[0].rules[0].categories[1].values = hstnlArr;
+      configData.result.configurations[0].rules[0].categories[1].operator = operatorTwo;
+
+      configData.result.configurations[0].rules[0].isDefault = generateDefault;
+      configData.result.configurations[0].rules[0].isChecked = generateRS;
+    }
+
+    if (configData.result.configurations[1]) {
+      configData.result.configurations[1].rules[0].isDefault = displayDefault;
+      configData.result.configurations[1].rules[0].isChecked = displayRS;
+      configData.result.configurations[1].rules[0].categories = [
+        `${generateRule.displayOne}%`.split("%")[0],
+        `${generateRule.displayTwo}%`.split("%")[0],
+      ];
+    }
+
+    if (configData.result.configurations[2]) {
+      configData.result.configurations[2].rules[0].isDefault = otherDefault;
+      configData.result.configurations[2].rules[0].isChecked = otherRS;
+      configData.result.configurations[2].rules[0].categories = otherArr;
     }
   };
   /*************config api stuff***************/
@@ -441,7 +467,6 @@ export default function AMIConfiguration(props) {
                 </Grid>
               </Grid>
               {/* ***************** end of User defined rule2 code  ***************** */}
-
               {/* *****************Second container***************** */}
               <Grid container item xs={12}>
                 <Grid item xs={12} className={classes.gridcontainer1}>
@@ -719,9 +744,6 @@ export default function AMIConfiguration(props) {
                       className={classes.buttonColor}
                     >
                       Reset
-                      {/* <Link className={classes.buttonColor} to="">
-                        <span className="m-2">Reset</span>
-                      </Link> */}
                     </BootstrapButton>
                     <BootstrapButton
                       variant="contained"
