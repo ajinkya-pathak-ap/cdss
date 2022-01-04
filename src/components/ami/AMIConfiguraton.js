@@ -26,6 +26,22 @@ export default function AMIConfiguration(props) {
   const [operatorTwo, setOperatorTwo] = useState("");
   const [isFetching, setIsFetching] = useState(true);
   const [configData, setConfigData] = useState({});
+  const [generateRS, setGenerateRS] = useState(true);
+  const [displayRS, setDisplayRS] = useState(true);
+  const [generateRule, setGenerateRule] = useState({
+    ageOne: "",
+    ageTwo: "",
+    hstnlOne: "",
+    hstnlTwo: "",
+    displayOne: "",
+    displayTwo: "",
+  });
+  const [generateDefault, setGenrateDefault] = useState(true);
+  const [displayDefault, setDisplayDefault] = useState(true);
+  const [otherDefault, setOtherDefault] = useState(true);
+  const [apply, setApply] = useState(true);
+  const [ageArr, setAgeArr] = useState([]);
+  const [hstnlArr, setHstnlArr] = useState([]);
 
   const changeOperatorOne = (event) => {
     setOperatorOne(event.target.value);
@@ -35,48 +51,34 @@ export default function AMIConfiguration(props) {
     setOperatorTwo(event.target.value);
   };
 
-  const [generateRS, setGenerateRS] = useState(true);
-  const [displayRS, setDisplayRS] = useState(true);
-
   const label = {
     inputProps: { "aria-label": "Checkbox demo" },
   };
 
-  const handleGeneareRiskScore = (event) => {
+  const handleGenerateRiskScore = (event) => {
     const checkedValue = event.target.checked;
     setGenerateRS(checkedValue);
+    setGenrateDefault(false);
   };
 
   const handleDisplayRiskScore = (event) => {
     const checkedValue = event.target.checked;
     setDisplayRS(checkedValue);
+    setDisplayDefault(false);
+    checkedValue ? setApply(false) : setApply(true);
   };
 
   const operators = [">", "<", ">=", "<=", "=", "Between"];
   const classes = AMIConfigStyles();
-
-  /*************config api stuff***************/
 
   const fetchRequestObject = {
     OganizationId: 1,
     ModelId: 1,
   };
 
-  const [generateRule, setGenerateRule] = useState({
-    ageOne: "",
-    ageTwo: "",
-    hstnlOne: "",
-    hstnlTwo: "",
-    displayOne: "",
-    displayTwo: "",
-  });
-
-  const [ageArr, setAgeArr] = useState([]);
-  const [hstnlArr, setHstnlArr] = useState([]);
-
   const handleGenerateRule = (e) => {
     setGenerateRule({ ...generateRule, [e.target.name]: e.target.value });
-
+    enableApply(e);
     operatorOne === "Between"
       ? setAgeArr([generateRule.ageOne, generateRule.ageTwo])
       : setAgeArr([generateRule.ageOne]);
@@ -95,7 +97,7 @@ export default function AMIConfiguration(props) {
         ruleSectionId: 1,
         rules: [
           {
-            isDefault: true,
+            isDefault: generateDefault,
             isChecked: generateRS,
             categories: [
               {
@@ -116,13 +118,16 @@ export default function AMIConfiguration(props) {
         ruleSectionId: 2,
         rules: [
           {
-            isDefault: false,
+            isDefault: displayDefault,
             isChecked: displayRS,
             categories: [
               {
                 categoryDefinition: "hsTnl",
                 operator: "Between",
-                Values: [generateRule.displayOne, generateRule.displayTwo],
+                Values: [
+                  `${generateRule.displayOne}%`.split("%")[0],
+                  `${generateRule.displayTwo}%`.split("%")[0],
+                ],
               },
             ],
           },
@@ -177,6 +182,41 @@ export default function AMIConfiguration(props) {
     saveConfigData(postRequestObject);
     console.log(postRequestObject);
   };
+
+  const enableApply = (e) => {
+    if (generateRS === false) {
+      operatorOne === "Between"
+        ? (() => {
+            if (
+              generateRule.ageOne.length > 1 &&
+              generateRule.ageTwo.length > 1
+            ) {
+              setApply(false);
+            }
+          })()
+        : (() => {
+            if (generateRule.ageOne.length > 1) {
+              setApply(false);
+            }
+          })();
+
+      operatorTwo === "Between"
+        ? (() => {
+            if (
+              generateRule.hstnlOne.length > 1 &&
+              generateRule.hstnlTwo.length > 1
+            ) {
+              setApply(false);
+            }
+          })()
+        : (() => {
+            if (generateRule.hstnlOne.length > 1) {
+              setApply(false);
+            }
+          })();
+    } else {
+    }
+  };
   /*************config api stuff***************/
 
   if (isFetching) {
@@ -213,7 +253,7 @@ export default function AMIConfiguration(props) {
                       <FormControlLabel
                         control={
                           <Checkbox
-                            onChange={(e) => handleGeneareRiskScore(e)}
+                            onChange={(e) => handleGenerateRiskScore(e)}
                             {...label}
                             defaultChecked={
                               configData.result.configurations[0].rules[0]
@@ -243,7 +283,6 @@ export default function AMIConfiguration(props) {
                       >
                         User Defined Rule
                       </Typography>
-
                       <Grid container spacing={1}>
                         <Grid item xs={12} sm={5} md={5}>
                           <Grid container spacing={1}>
@@ -656,10 +695,12 @@ export default function AMIConfiguration(props) {
                       variant="contained"
                       className={classes.buttonColor}
                       onClick={applySetings}
+                      disabled={apply}
                     >
                       {/* <Link className={classes.buttonColor} to="">
                         <span className="m-2">Apply</span>
                       </Link> */}
+                      {console.log(apply)}
                       Apply
                     </BootstrapButton>
                     <BootstrapButton
