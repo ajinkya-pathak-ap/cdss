@@ -219,15 +219,11 @@ export default function AMIConfiguration(props) {
 
   const saveStateValues = () => {
     if (configData.result.configurations[0]) {
-      configData.result.configurations[0].rules[0].categories[0].values =
-        ageArr;
-      configData.result.configurations[0].rules[0].categories[0].operator =
-        operatorOne;
+      configData.result.configurations[0].rules[0].categories[0].values = ageArr;
+      configData.result.configurations[0].rules[0].categories[0].operator = operatorOne;
 
-      configData.result.configurations[0].rules[0].categories[1].values =
-        hstnlArr;
-      configData.result.configurations[0].rules[0].categories[1].operator =
-        operatorTwo;
+      configData.result.configurations[0].rules[0].categories[1].values = hstnlArr;
+      configData.result.configurations[0].rules[0].categories[1].operator = operatorTwo;
 
       configData.result.configurations[0].rules[0].isDefault = generateDefault;
       configData.result.configurations[0].rules[0].isChecked = generateRS;
@@ -263,6 +259,7 @@ export default function AMIConfiguration(props) {
         justifycontent="center"
         alignItems="center"
         className={classes.holder}
+        // style={{ marginTop: "-80px" }}
       >
         <Grid item sm={12} xs={12}>
           <Box
@@ -378,7 +375,12 @@ export default function AMIConfiguration(props) {
                             )}
                           </Grid>
                         </Grid>
-                        <Grid item xs={12} md={2}>
+                        <Grid
+                          item
+                          xs={12}
+                          md={2}
+                          className={classes.spacingaboveand}
+                        >
                           {operatorOne === "Between" ? (
                             <h3
                               style={{ marginLeft: "30px", marginTop: "83px" }}
@@ -394,7 +396,11 @@ export default function AMIConfiguration(props) {
                           )}
                         </Grid>
                         <Grid item xs={12} md={5}>
-                          <Grid container spacing={1}>
+                          <Grid
+                            container
+                            spacing={1}
+                            className={classes.spacingabovehstnl}
+                          >
                             <Grid item xs={12} md={12}>
                               <h4>hsTnl Value</h4>
                             </Grid>
@@ -515,7 +521,7 @@ export default function AMIConfiguration(props) {
                           >
                             <Typography
                               variant={"h6"}
-                              style={{ marginLeft: "15px" }}
+                              style={{ marginLeft: "10px" }}
                             >
                               Between
                             </Typography>
@@ -722,10 +728,11 @@ export default function AMIConfiguration(props) {
                 <Grid item xs={12} md={4}>
                   <Stack spacing={2} direction="row" justifyContent="end">
                     <BootstrapButton
+                      style={{ marginLeft: "10px" }}
                       variant="contained"
                       className={classes.buttonColor}
                       onClick={applySetings}
-                      disabled={apply}
+                      // disabled={apply}
                     >
                       {/* <Link className={classes.buttonColor} to="">
                         <span className="m-2">Apply</span>

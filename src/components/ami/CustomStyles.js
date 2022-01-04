@@ -190,6 +190,7 @@ export const CDSInputStyles = makeStyles((theme) => ({
   holder: {
     backgroundColor: "#6D7F9B",
     width: "70%",
+
     position: "absolute",
     left: "0",
     right: "0",
@@ -367,14 +368,31 @@ export const AMIConfigStyles = makeStyles((theme) => ({
   },
 
   spacing: {
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("md")]: {
       marginLeft: "47px",
+      marginBottom: "5px",
     },
   },
 
   betweenspacing: {
     [theme.breakpoints.down("xs")]: {
-      marginTop: "17px",
+      marginTop: "0px",
+      marginLeft: "18px",
+      marginBottom: "5px",
+    },
+  },
+
+  spacingaboveand: {
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "-70px",
+      marginLeft: "20px",
+    },
+  },
+
+  spacingabovehstnl: {
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "-35px",
+      marginLeft: "0px",
     },
   },
 }));
