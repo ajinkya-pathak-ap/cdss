@@ -365,6 +365,18 @@ export const AMIConfigStyles = makeStyles((theme) => ({
       float: "left",
     },
   },
+
+  spacing: {
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: "47px",
+    },
+  },
+
+  betweenspacing: {
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "17px",
+    },
+  },
 }));
 
 export const amiConfigBtns = styled(Button)((props) => ({

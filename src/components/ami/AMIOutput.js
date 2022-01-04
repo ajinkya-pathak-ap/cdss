@@ -167,7 +167,7 @@ export default function AMIOutput(props) {
             lg={4}
             className={`${classes.gridcontainer1} ${classes.moreInfo}`}
             direction="column"
-            alignItems="flex-end"
+            alignItems="center"
           >
             <Stack spacing={4} direction="row">
               <BootstrapButton
@@ -175,7 +175,7 @@ export default function AMIOutput(props) {
                 className={classes.buttonColor}
                 style={{
                   marginBottom: "15px",
-                  marginRight: "20px",
+                  // marginRight: "20px",
                 }}
               >
                 <Link
