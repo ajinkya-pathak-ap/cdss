@@ -30,7 +30,13 @@ function ShellComponent(props) {
       <div className="">
         <Notification notify={notify} setNotify={setNotify} />
         <Routes>
-          <Route exact path="/" element={<AMIOutput notify={snacksBar} />} />
+          <Route
+            exact
+            path="/"
+            element={
+              <AMIConfiguration notify={snacksBar} localMode={localMode} />
+            }
+          />
           <Route exact path="/login" element={<Login notify={snacksBar} />} />
           <Route
             path="/config"

@@ -20,24 +20,21 @@ import CircularIndeterminate from "../../shared/preloder/Preloder";
 
 const BootstrapButton = amiConfigBtns;
 const BootstrapInput = amiConfigInputs;
+
 export default function AMIConfiguration(props) {
   const [operatorOne, setOperatorOne] = useState("");
   const [operatorTwo, setOperatorTwo] = useState("");
   const [isFetching, setIsFetching] = useState(true);
-
   /**fetch response */
   const [configData, setConfigData] = useState({});
-
   /**isChecked */
   const [generateRS, setGenerateRS] = useState(true);
   const [displayRS, setDisplayRS] = useState(true);
   const [otherRS, setOtherRS] = useState(true);
-
   /**isDefault */
   const [generateDefault, setGenrateDefault] = useState(true);
   const [displayDefault, setDisplayDefault] = useState(true);
   const [otherDefault, setOtherDefault] = useState(true);
-
   /**values arrays */
   const [ageArr, setAgeArr] = useState([]);
   const [hstnlArr, setHstnlArr] = useState([]);
@@ -51,24 +48,34 @@ export default function AMIConfiguration(props) {
     displayOne: "",
     displayTwo: "",
   });
-
   const [ageValues, setAgeValues] = useState({
     categoryDefinition: "Age",
     operator: "",
     values: [],
   });
-
   const [hstnlValues, sethstnlValues] = useState({
     categoryDefinition: "hstnl",
     operator: "",
     values: [],
   });
-
   const [displayValues, setDisplayValues] = useState({
     categoryDefinition: "hstnl",
     operator: "Between",
     values: [],
   });
+  const label = {
+    inputProps: { "aria-label": "Checkbox demo" },
+  };
+  const operators = [">", "<", ">=", "<=", "=", "Between"];
+  const classes = AMIConfigStyles();
+  const fetchRequestObject = {
+    OganizationId: 1,
+    ModelId: 1,
+  };
+
+  useEffect(() => {
+    fetchConfigData(fetchRequestObject);
+  }, []);
 
   const changeOperatorOne = (event) => {
     setOperatorOne(event.target.value);
@@ -76,31 +83,6 @@ export default function AMIConfiguration(props) {
 
   const changeOperatorTwo = (event) => {
     setOperatorTwo(event.target.value);
-  };
-
-  const label = {
-    inputProps: { "aria-label": "Checkbox demo" },
-  };
-
-  const handleGenerateRiskScore = (event) => {
-    const checkedValue = event.target.checked;
-    setGenerateRS(checkedValue);
-    setGenrateDefault(false);
-  };
-
-  const handleDisplayRiskScore = (event) => {
-    const checkedValue = event.target.checked;
-    setDisplayRS(checkedValue);
-    setDisplayDefault(false);
-    checkedValue ? setApply(false) : setApply(true);
-  };
-
-  const operators = [">", "<", ">=", "<=", "=", "Between"];
-  const classes = AMIConfigStyles();
-
-  const fetchRequestObject = {
-    OganizationId: 1,
-    ModelId: 1,
   };
 
   const handleGenerateRule = (e) => {
@@ -120,9 +102,18 @@ export default function AMIConfiguration(props) {
     sethstnlValues({ ...hstnlValues, values: hstnlArr, operator: operatorTwo });
   };
 
-  useEffect(() => {
-    fetchConfigData(fetchRequestObject);
-  }, []);
+  const handleGenerateRiskScore = (event) => {
+    const checkedValue = event.target.checked;
+    setGenerateRS(checkedValue);
+    setGenrateDefault(false);
+  };
+
+  const handleDisplayRiskScore = (event) => {
+    const checkedValue = event.target.checked;
+    setDisplayRS(checkedValue);
+    setDisplayDefault(false);
+    checkedValue ? setApply(false) : setApply(true);
+  };
 
   const fetchConfigData = (_config) => {
     if (props.localMode) {
@@ -205,23 +196,48 @@ export default function AMIConfiguration(props) {
     _obj.result.configurations.forEach((items) => {
       if (items.ruleSectionName.toLocaleLowerCase() === "generate") {
         if (items.rules.length > 0) {
-          setAgeArr(items.rules[0].categories);
-          setGenrateDefault(items.rules[0].isDefault);
-          setGenerateRS(items.rules[0].isChecked);
-        } else {
+          /**create rules dom here */
+          items.rules.forEach((item_0) => {
+            /**declare default & checked */
+            setGenrateDefault(item_0.isDefault);
+            setGenerateRS(item_0.isChecked);
+            if (item_0.categories.length > 0) {
+              item_0.categories.forEach((item_1) => {
+                /**create values categories */
+                setAgeArr(item_1);
+              });
+            }
+          });
         }
       } else if (items.ruleSectionName.toLocaleLowerCase() === "display") {
         if (items.rules.length > 0) {
-          setHstnlArr(items.rules[0].categories);
-          setDisplayRS(items.rules[0].isDefault);
-          setHstnlArr(items.rules[0].isChecked);
-        } else {
+          /**create rules dom here */
+          items.rules.forEach((item_0) => {
+            /**declare default & checked */
+            setDisplayDefault(item_0.isDefault);
+            setDisplayRS(item_0.isChecked);
+            if (item_0.categories.length > 0) {
+              item_0.categories.forEach((item_1) => {
+                /**create values categories */
+                setHstnlArr(item_1);
+              });
+            }
+          });
         }
       } else if (items.ruleSectionName.toLocaleLowerCase() === "other") {
         if (items.rules.length > 0) {
-          setOtherDefault(items.rules[0].categories);
-          setOtherRS(items.rules[0].isDefault);
-          setOtherArr(items.rules[0].isChecked);
+          /**create rules dom here */
+          items.rules.forEach((item_0) => {
+            /**declare default & checked */
+            setOtherDefault(item_0.isDefault);
+            setOtherRS(item_0.isChecked);
+            if (item_0.categories.length > 0) {
+              item_0.categories.forEach((item_1) => {
+                /**create values categories */
+                setOtherArr(item_1);
+              });
+            }
+          });
         }
       }
     });
@@ -294,8 +310,6 @@ export default function AMIConfiguration(props) {
         xs={12}
         lg={12}
         spacing={4}
-        justifycontent="center"
-        alignItems="center"
         className={classes.holder}
       >
         <Grid item sm={12} xs={12}>
@@ -307,8 +321,7 @@ export default function AMIConfiguration(props) {
             paddingTop={1}
           >
             <Grid container item xs={12} spacing={2}>
-              {/* *****************First container***************** */}
-
+              {/******************First container******************/}
               <Grid container item xs={12}>
                 <Grid item xs={12} className={classes.gridcontainer1}>
                   <Card className={classes.gridcontainer}>
@@ -509,8 +522,9 @@ export default function AMIConfiguration(props) {
                   </Card>
                 </Grid>
               </Grid>
-              {/* ***************** end of User defined rule2 code  ***************** */}
-              {/* *****************Second container***************** */}
+              {/******************First container******************/}
+
+              {/******************Second container******************/}
               <Grid container item xs={12}>
                 <Grid item xs={12} className={classes.gridcontainer1}>
                   <Card className={classes.gridcontainer}>
@@ -523,8 +537,11 @@ export default function AMIConfiguration(props) {
                         control={
                           <Checkbox
                             onChange={(e) => handleDisplayRiskScore(e)}
-                            defaultChecked
                             {...label}
+                            defaultChecked={
+                              configData.result.configurations[1].rules[0]
+                                .isChecked
+                            }
                             sx={{
                               color: "#fff",
                               "&.Mui-checked": {
@@ -637,8 +654,9 @@ export default function AMIConfiguration(props) {
                   </Card>
                 </Grid>
               </Grid>
-              {/* ***************** end of User defined rule2 code  ***************** */}
-              {/* *****************third container***************** */}
+              {/******************Second container******************/}
+
+              {/******************third container******************/}
               <Grid item xs={12}>
                 <Card className={classes.gridcontainer}>
                   <CardContent>
@@ -652,6 +670,10 @@ export default function AMIConfiguration(props) {
                         control={
                           <Checkbox
                             {...label}
+                            defaultChecked={
+                              configData.result.configurations[2].rules[0]
+                                .isChecked
+                            }
                             sx={{
                               color: "#fff",
                               "&.Mui-checked": {
@@ -667,7 +689,9 @@ export default function AMIConfiguration(props) {
                   </CardContent>
                 </Card>
               </Grid>
-              {/* *****************end of third container***************** */}
+              {/******************third container******************/}
+
+              {/******************bottom buttons******************/}
               <Grid item xs={12} container className={classes.alignRight}>
                 <Grid item xs={12} md={4}>
                   <Stack spacing={2} direction="row" justifyContent="end">
@@ -700,6 +724,7 @@ export default function AMIConfiguration(props) {
                   </Stack>
                 </Grid>
               </Grid>
+              {/******************bottom buttons******************/}
             </Grid>
           </Box>
         </Grid>

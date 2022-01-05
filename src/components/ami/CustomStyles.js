@@ -293,10 +293,8 @@ export const AMIConfigStyles = makeStyles((theme) => ({
   holder: {
     backgroundColor: "#6D7F9B",
     width: "100%",
-    position: "absolute",
-    left: "0",
-    right: "0",
-    margin: "auto",
+    justifyContent: "center",
+    alignItems: "center",
   },
   gridcontainer: {
     background: "#050038",
