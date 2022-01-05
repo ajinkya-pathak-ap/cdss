@@ -22,6 +22,7 @@ const BootstrapButton = amiConfigBtns;
 const BootstrapInput = amiConfigInputs;
 
 export default function AMIConfiguration(props) {
+  const [_tempObj, setTempObj] = useState({});
   const [operatorOne, setOperatorOne] = useState("");
   const [operatorTwo, setOperatorTwo] = useState("");
   const [isFetching, setIsFetching] = useState(true);
@@ -72,6 +73,7 @@ export default function AMIConfiguration(props) {
     OganizationId: 1,
     ModelId: 1,
   };
+  let genRuleDOM = "";
 
   useEffect(() => {
     fetchConfigData(fetchRequestObject);
@@ -193,7 +195,7 @@ export default function AMIConfiguration(props) {
   };
 
   const mapJsonResponse = (_obj) => {
-    _obj.result.configurations.forEach((items) => {
+    _obj.result.configurations.forEach((items, index) => {
       if (items.ruleSectionName.toLocaleLowerCase() === "generate") {
         if (items.rules.length > 0) {
           /**create rules dom here */
@@ -208,6 +210,9 @@ export default function AMIConfiguration(props) {
               });
             }
           });
+        } else {
+          setGenrateDefault(true);
+          setGenerateRS(true);
         }
       } else if (items.ruleSectionName.toLocaleLowerCase() === "display") {
         if (items.rules.length > 0) {
@@ -242,6 +247,338 @@ export default function AMIConfiguration(props) {
       }
     });
   };
+
+  function generateRuleDom() {
+    let response;
+    configData.result.configurations.forEach((v, i) => {
+      if (v.ruleSectionName.toLocaleLowerCase() === "generate") {
+        if (v.rules.length > 0) {
+          v.rules.forEach((w) => {
+            response = (
+              <Grid container spacing={1}>
+                <Grid item xs={12} sm={5} md={5}>
+                  <Grid container spacing={1}>
+                    <Grid item xs={12} md={12}>
+                      <h4 style={{ marginLeft: "30px" }}>Age</h4>
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                      <FormControl fullWidth>
+                        <Select
+                          labelId="simple"
+                          size="small"
+                          id="demo2"
+                          value={operatorOne}
+                          label="Age"
+                          autoWidth
+                          onChange={changeOperatorOne}
+                          style={{
+                            fontSize: "13px",
+                            backgroundColor: "#fff",
+                            width: "100px",
+                            height: "40px",
+                          }}
+                          disabled={generateRS}
+                        >
+                          {operators.map((option) => {
+                            return (
+                              <MenuItem value={option} key={option}>
+                                {option}
+                              </MenuItem>
+                            );
+                          })}
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                      <TextField
+                        size="small"
+                        disabled={generateRS}
+                        style={{
+                          backgroundColor: "#fff",
+                          width: "100px",
+                        }}
+                        onChange={(e) => handleGenerateRule(e)}
+                        name="ageOne"
+                        type="number"
+                        value={generateRule.ageOne}
+                      />
+                    </Grid>
+                    {operatorOne === "Between" ? (
+                      <Grid item xs={12} md={4}>
+                        <TextField
+                          size="small"
+                          disabled={generateRS}
+                          style={{
+                            backgroundColor: "#fff",
+                            width: "100px",
+                          }}
+                          onChange={(e) => handleGenerateRule(e)}
+                          name="ageTwo"
+                          type="number"
+                        />
+                      </Grid>
+                    ) : (
+                      ""
+                    )}
+                  </Grid>
+                </Grid>
+                <Grid item xs={12} md={2} className={classes.spacingaboveand}>
+                  {operatorOne === "Between" ? (
+                    <h3
+                      style={{
+                        marginLeft: "30px",
+                        marginTop: "83px",
+                      }}
+                    >
+                      AND
+                    </h3>
+                  ) : (
+                    <h3
+                      style={{
+                        marginLeft: "0px",
+                        marginTop: "82px",
+                      }}
+                    >
+                      AND
+                    </h3>
+                  )}
+                </Grid>
+                <Grid item xs={12} md={5}>
+                  <Grid
+                    container
+                    spacing={1}
+                    className={classes.spacingabovehstnl}
+                  >
+                    <Grid item xs={12} md={12}>
+                      <h4>hsTnl Value</h4>
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                      <FormControl fullWidth>
+                        <Select
+                          labelId="simple2"
+                          id="demo"
+                          value={operatorTwo}
+                          label="Age"
+                          autoWidth
+                          onChange={changeOperatorTwo}
+                          style={{
+                            fontSize: "13px",
+                            backgroundColor: "#fff",
+                            width: "100px",
+                            height: "40px",
+                          }}
+                          disabled={generateRS}
+                        >
+                          {operators.map((option) => {
+                            return (
+                              <MenuItem value={option} key={option}>
+                                {option}
+                              </MenuItem>
+                            );
+                          })}
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                      <TextField
+                        size="small"
+                        disabled={generateRS}
+                        style={{
+                          backgroundColor: "#fff",
+                          width: "100px",
+                        }}
+                        onChange={(e) => handleGenerateRule(e)}
+                        name="hstnlOne"
+                        type="number"
+                      />
+                    </Grid>
+                    {operatorTwo === "Between" ? (
+                      <Grid item md={4}>
+                        <TextField
+                          size="small"
+                          disabled={generateRS}
+                          style={{
+                            backgroundColor: "#fff",
+                            width: "100px",
+                          }}
+                          onChange={(e) => handleGenerateRule(e)}
+                          name="hstnlTwo"
+                          type="number"
+                        />
+                      </Grid>
+                    ) : (
+                      ""
+                    )}
+                  </Grid>
+                </Grid>
+              </Grid>
+            );
+          });
+        } else {
+          response = (
+            <Grid container spacing={1}>
+              <Grid item xs={12} sm={5} md={5}>
+                <Grid container spacing={1}>
+                  <Grid item xs={12} md={12}>
+                    <h4 style={{ marginLeft: "30px" }}>Age</h4>
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <FormControl fullWidth>
+                      <Select
+                        labelId="simple"
+                        size="small"
+                        id="demo2"
+                        value={operatorOne}
+                        label="Age"
+                        autoWidth
+                        onChange={changeOperatorOne}
+                        style={{
+                          fontSize: "13px",
+                          backgroundColor: "#fff",
+                          width: "100px",
+                          height: "40px",
+                        }}
+                        disabled={generateRS}
+                      >
+                        {operators.map((option) => {
+                          return (
+                            <MenuItem value={option} key={option}>
+                              {option}
+                            </MenuItem>
+                          );
+                        })}
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <TextField
+                      size="small"
+                      disabled={generateRS}
+                      style={{
+                        backgroundColor: "#fff",
+                        width: "100px",
+                      }}
+                      onChange={(e) => handleGenerateRule(e)}
+                      name="ageOne"
+                      type="number"
+                      value={generateRule.ageOne}
+                    />
+                  </Grid>
+                  {operatorOne === "Between" ? (
+                    <Grid item xs={12} md={4}>
+                      <TextField
+                        size="small"
+                        disabled={generateRS}
+                        style={{
+                          backgroundColor: "#fff",
+                          width: "100px",
+                        }}
+                        onChange={(e) => handleGenerateRule(e)}
+                        name="ageTwo"
+                        type="number"
+                      />
+                    </Grid>
+                  ) : (
+                    ""
+                  )}
+                </Grid>
+              </Grid>
+              <Grid item xs={12} md={2} className={classes.spacingaboveand}>
+                {operatorOne === "Between" ? (
+                  <h3
+                    style={{
+                      marginLeft: "30px",
+                      marginTop: "83px",
+                    }}
+                  >
+                    AND
+                  </h3>
+                ) : (
+                  <h3
+                    style={{
+                      marginLeft: "0px",
+                      marginTop: "82px",
+                    }}
+                  >
+                    AND
+                  </h3>
+                )}
+              </Grid>
+              <Grid item xs={12} md={5}>
+                <Grid
+                  container
+                  spacing={1}
+                  className={classes.spacingabovehstnl}
+                >
+                  <Grid item xs={12} md={12}>
+                    <h4>hsTnl Value</h4>
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <FormControl fullWidth>
+                      <Select
+                        labelId="simple2"
+                        id="demo"
+                        value={operatorTwo}
+                        label="Age"
+                        autoWidth
+                        onChange={changeOperatorTwo}
+                        style={{
+                          fontSize: "13px",
+                          backgroundColor: "#fff",
+                          width: "100px",
+                          height: "40px",
+                        }}
+                        disabled={generateRS}
+                      >
+                        {operators.map((option) => {
+                          return (
+                            <MenuItem value={option} key={option}>
+                              {option}
+                            </MenuItem>
+                          );
+                        })}
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <TextField
+                      size="small"
+                      disabled={generateRS}
+                      style={{
+                        backgroundColor: "#fff",
+                        width: "100px",
+                      }}
+                      onChange={(e) => handleGenerateRule(e)}
+                      name="hstnlOne"
+                      type="number"
+                    />
+                  </Grid>
+                  {operatorTwo === "Between" ? (
+                    <Grid item md={4}>
+                      <TextField
+                        size="small"
+                        disabled={generateRS}
+                        style={{
+                          backgroundColor: "#fff",
+                          width: "100px",
+                        }}
+                        onChange={(e) => handleGenerateRule(e)}
+                        name="hstnlTwo"
+                        type="number"
+                      />
+                    </Grid>
+                  ) : (
+                    ""
+                  )}
+                </Grid>
+              </Grid>
+            </Grid>
+          );
+        }
+      }
+    });
+    return response;
+  }
 
   const saveStateValues = () => {
     /**generate rule-section */
@@ -334,10 +671,7 @@ export default function AMIConfiguration(props) {
                           <Checkbox
                             onChange={(e) => handleGenerateRiskScore(e)}
                             {...label}
-                            defaultChecked={
-                              configData.result.configurations[0].rules[0]
-                                .isChecked
-                            }
+                            defaultChecked={generateRS}
                             sx={{
                               color: "#fff",
                               "&.Mui-checked": {
@@ -362,162 +696,7 @@ export default function AMIConfiguration(props) {
                       >
                         User Defined Rule
                       </Typography>
-                      <Grid container spacing={1}>
-                        <Grid item xs={12} sm={5} md={5}>
-                          <Grid container spacing={1}>
-                            <Grid item xs={12} md={12}>
-                              <h4 style={{ marginLeft: "30px" }}>Age</h4>
-                            </Grid>
-                            <Grid item xs={12} md={4}>
-                              <FormControl fullWidth>
-                                <Select
-                                  labelId="simple"
-                                  size="small"
-                                  id="demo2"
-                                  value={operatorOne}
-                                  label="Age"
-                                  autoWidth
-                                  onChange={changeOperatorOne}
-                                  style={{
-                                    fontSize: "13px",
-                                    backgroundColor: "#fff",
-                                    width: "100px",
-                                    height: "40px",
-                                  }}
-                                  disabled={generateRS}
-                                >
-                                  {operators.map((option) => {
-                                    return (
-                                      <MenuItem value={option} key={option}>
-                                        {option}
-                                      </MenuItem>
-                                    );
-                                  })}
-                                </Select>
-                              </FormControl>
-                            </Grid>
-                            <Grid item xs={12} md={4}>
-                              <TextField
-                                size="small"
-                                disabled={generateRS}
-                                style={{
-                                  backgroundColor: "#fff",
-                                  width: "100px",
-                                }}
-                                onChange={(e) => handleGenerateRule(e)}
-                                name="ageOne"
-                                type="number"
-                                value={generateRule.ageOne}
-                              />
-                            </Grid>
-                            {operatorOne === "Between" ? (
-                              <Grid item xs={12} md={4}>
-                                <TextField
-                                  size="small"
-                                  disabled={generateRS}
-                                  style={{
-                                    backgroundColor: "#fff",
-                                    width: "100px",
-                                  }}
-                                  onChange={(e) => handleGenerateRule(e)}
-                                  name="ageTwo"
-                                  type="number"
-                                />
-                              </Grid>
-                            ) : (
-                              ""
-                            )}
-                          </Grid>
-                        </Grid>
-                        <Grid
-                          item
-                          xs={12}
-                          md={2}
-                          className={classes.spacingaboveand}
-                        >
-                          {operatorOne === "Between" ? (
-                            <h3
-                              style={{ marginLeft: "30px", marginTop: "83px" }}
-                            >
-                              AND
-                            </h3>
-                          ) : (
-                            <h3
-                              style={{ marginLeft: "0px", marginTop: "82px" }}
-                            >
-                              AND
-                            </h3>
-                          )}
-                        </Grid>
-                        <Grid item xs={12} md={5}>
-                          <Grid
-                            container
-                            spacing={1}
-                            className={classes.spacingabovehstnl}
-                          >
-                            <Grid item xs={12} md={12}>
-                              <h4>hsTnl Value</h4>
-                            </Grid>
-                            <Grid item xs={12} md={4}>
-                              <FormControl fullWidth>
-                                <Select
-                                  labelId="simple2"
-                                  id="demo"
-                                  value={operatorTwo}
-                                  label="Age"
-                                  autoWidth
-                                  onChange={changeOperatorTwo}
-                                  style={{
-                                    fontSize: "13px",
-                                    backgroundColor: "#fff",
-                                    width: "100px",
-                                    height: "40px",
-                                  }}
-                                  disabled={generateRS}
-                                >
-                                  {operators.map((option) => {
-                                    return (
-                                      <MenuItem value={option} key={option}>
-                                        {option}
-                                      </MenuItem>
-                                    );
-                                  })}
-                                </Select>
-                              </FormControl>
-                            </Grid>
-                            <Grid item xs={12} md={4}>
-                              <TextField
-                                size="small"
-                                disabled={generateRS}
-                                style={{
-                                  backgroundColor: "#fff",
-                                  width: "100px",
-                                }}
-                                onChange={(e) => handleGenerateRule(e)}
-                                name="hstnlOne"
-                                type="number"
-                              />
-                            </Grid>
-                            {operatorTwo === "Between" ? (
-                              <Grid item md={4}>
-                                <TextField
-                                  size="small"
-                                  disabled={generateRS}
-                                  style={{
-                                    backgroundColor: "#fff",
-                                    width: "100px",
-                                  }}
-                                  onChange={(e) => handleGenerateRule(e)}
-                                  name="hstnlTwo"
-                                  type="number"
-                                />
-                              </Grid>
-                            ) : (
-                              ""
-                            )}
-                          </Grid>
-                        </Grid>
-                      </Grid>
+                      {generateRuleDom()}
                     </CardContent>
                   </Card>
                 </Grid>
