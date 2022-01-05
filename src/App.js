@@ -11,17 +11,34 @@ import { connect } from "react-redux";
 function App(props) {
 return (
   <div className="App">
-    <Header />
+    {/* <Header /> */}
     {props.isLoggedIn === false ? (
-      <Grid container>
-        <Grid item sm={12} xs={12}>
-          <ShellComponent />
-          {/* <Login /> */}
+      // <Grid container>
+      //   <Grid item sm={12} xs={12}>
+      //     <ShellComponent />
+      //     <Login />
+      //   </Grid>
+      // </Grid>
+
+      <Grid container spacing={2}>
+        <Grid item md={12} sm={12} xs={12}>
+          {/* Header */}
+          <Header />
+        </Grid>
+        <Grid container>
+          <Grid></Grid>
+          {/* <Grid item md={4} sm={12} xs={12}>
+            sidenav
+          </Grid> */}
+          <Grid item md={12} sm={12} xs={12}>
+            {/* sidenav&mainmenu */}
+            <ShellComponent />
+          </Grid>
         </Grid>
       </Grid>
     ) : (
       <React.Fragment>
-        <Header />
+        {/* <Header />
         <Grid container>
           <Grid item sm={6} xs={6}>
             <SideNav />
@@ -29,7 +46,7 @@ return (
           <Grid item sm={12} xs={12}>
             <ShellComponent />
           </Grid>
-        </Grid>
+        </Grid> */}
       </React.Fragment>
     )}
   </div>
