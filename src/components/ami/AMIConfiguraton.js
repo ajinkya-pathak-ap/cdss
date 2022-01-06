@@ -248,7 +248,7 @@ export default function AMIConfiguration(props) {
     });
   };
 
-  function generateRuleDom() {
+  const createGenerateRule = () => {
     let response;
     configData.result.configurations.forEach((v, i) => {
       if (v.ruleSectionName.toLocaleLowerCase() === "generate") {
@@ -578,7 +578,158 @@ export default function AMIConfiguration(props) {
       }
     });
     return response;
-  }
+  };
+
+  const createDisplayRule = () => {
+    let response;
+    configData.result.configurations.forEach((v, i) => {
+      if (v.ruleSectionName.toLocaleLowerCase() === "display") {
+        if (v.rules.length > 0) {
+          v.rules.forEach((w) => {
+            response = (
+              <Grid container spacing={2}>
+                <Grid container spacing={0}>
+                  <Grid item xs={12} md={1} className={classes.betweenspacing}>
+                    <Typography variant={"h6"} style={{ marginLeft: "10px" }}>
+                      Between
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} md={1}>
+                    <FormControl
+                      variant="standard"
+                      style={{
+                        marginLeft: "28px",
+                      }}
+                    >
+                      <BootstrapInput
+                        style={{
+                          width: "80px",
+                          textAlign: "right",
+                        }}
+                        defaultValue="0%"
+                        disabled={displayRS}
+                        id="rangeOne"
+                        name="displayOne"
+                        onChange={(e) => handleGenerateRule(e)}
+                      />
+                    </FormControl>
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    md={1}
+                    style={{
+                      marginLeft: "50px",
+                    }}
+                  >
+                    <Typography variant={"h6"}>And</Typography>
+                  </Grid>
+                  <Grid item xs={12} md={1} className={classes.spacing}>
+                    <FormControl variant="standard">
+                      <BootstrapInput
+                        style={{
+                          marginLeft: "-20px",
+                          width: "80px",
+                        }}
+                        defaultValue="1%"
+                        disabled={displayRS}
+                        id="rangeTwo"
+                        name="displayTwo"
+                        onChange={(e) => handleGenerateRule(e)}
+                      />
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <Typography
+                      variant={"h6"}
+                      style={{
+                        marginLeft: "5px",
+                        fontSize: "18px",
+                      }}
+                    >
+                      risk of MACE within 30 days
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid item xs={12} md={4}></Grid>
+              </Grid>
+            );
+          });
+        } else {
+          response = (
+            <Grid container spacing={2}>
+              <Grid container spacing={0}>
+                <Grid item xs={12} md={1} className={classes.betweenspacing}>
+                  <Typography variant={"h6"} style={{ marginLeft: "10px" }}>
+                    Between
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} md={1}>
+                  <FormControl
+                    variant="standard"
+                    style={{
+                      marginLeft: "28px",
+                    }}
+                  >
+                    <BootstrapInput
+                      style={{
+                        width: "80px",
+                        textAlign: "right",
+                      }}
+                      defaultValue="0%"
+                      disabled={displayRS}
+                      id="rangeOne"
+                      name="displayOne"
+                      onChange={(e) => handleGenerateRule(e)}
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  md={1}
+                  style={{
+                    marginLeft: "50px",
+                  }}
+                >
+                  <Typography variant={"h6"}>And</Typography>
+                </Grid>
+                <Grid item xs={12} md={1} className={classes.spacing}>
+                  <FormControl variant="standard">
+                    <BootstrapInput
+                      style={{
+                        marginLeft: "-20px",
+                        width: "80px",
+                      }}
+                      defaultValue="1%"
+                      disabled={displayRS}
+                      id="rangeTwo"
+                      name="displayTwo"
+                      onChange={(e) => handleGenerateRule(e)}
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12} md={4}>
+                  <Typography
+                    variant={"h6"}
+                    style={{
+                      marginLeft: "5px",
+                      fontSize: "18px",
+                    }}
+                  >
+                    risk of MACE within 30 days
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid item xs={12} md={4}></Grid>
+            </Grid>
+          );
+        }
+      }
+    });
+
+    return response;
+  };
 
   const saveStateValues = () => {
     /**generate rule-section */
@@ -696,7 +847,7 @@ export default function AMIConfiguration(props) {
                       >
                         User Defined Rule
                       </Typography>
-                      {generateRuleDom()}
+                      {createGenerateRule()}
                     </CardContent>
                   </Card>
                 </Grid>
@@ -717,10 +868,7 @@ export default function AMIConfiguration(props) {
                           <Checkbox
                             onChange={(e) => handleDisplayRiskScore(e)}
                             {...label}
-                            defaultChecked={
-                              configData.result.configurations[1].rules[0]
-                                .isChecked
-                            }
+                            defaultChecked={displayRS}
                             sx={{
                               color: "#fff",
                               "&.Mui-checked": {
@@ -740,7 +888,6 @@ export default function AMIConfiguration(props) {
                         Or
                       </Typography>
                       <br />
-
                       <Typography
                         style={{
                           textAlign: "left",
@@ -750,91 +897,12 @@ export default function AMIConfiguration(props) {
                         User Defined Range
                       </Typography>
                       <br />
-                      <Grid container spacing={2}>
-                        <Grid container spacing={0}>
-                          <Grid
-                            item
-                            xs={12}
-                            md={1}
-                            className={classes.betweenspacing}
-                          >
-                            <Typography
-                              variant={"h6"}
-                              style={{ marginLeft: "10px" }}
-                            >
-                              Between
-                            </Typography>
-                          </Grid>
-                          <Grid item xs={12} md={1}>
-                            <FormControl
-                              variant="standard"
-                              style={{
-                                marginLeft: "28px",
-                              }}
-                            >
-                              <BootstrapInput
-                                style={{
-                                  width: "80px",
-                                  textAlign: "right",
-                                }}
-                                defaultValue="0%"
-                                disabled={displayRS}
-                                id="rangeOne"
-                                name="displayOne"
-                                onChange={(e) => handleGenerateRule(e)}
-                              />
-                            </FormControl>
-                          </Grid>
-                          <Grid
-                            item
-                            xs={12}
-                            md={1}
-                            style={{
-                              marginLeft: "50px",
-                            }}
-                          >
-                            <Typography variant={"h6"}>And</Typography>
-                          </Grid>
-                          <Grid item xs={12} md={1} className={classes.spacing}>
-                            <FormControl variant="standard">
-                              <BootstrapInput
-                                style={{
-                                  marginLeft: "-20px",
-                                  width: "80px",
-                                }}
-                                defaultValue="1%"
-                                disabled={displayRS}
-                                id="rangeTwo"
-                                name="displayTwo"
-                                onChange={(e) => handleGenerateRule(e)}
-                              />
-                            </FormControl>
-                          </Grid>
-                          <Grid item xs={12} md={4}>
-                            {/* <label
-                              className={`${classes.riskTwo} ${classes.headerText}`}
-                            >
-                              risk of MACE within 30 days
-                            </label> */}
-                            <Typography
-                              variant={"h6"}
-                              style={{
-                                marginLeft: "5px",
-                                fontSize: "18px",
-                              }}
-                            >
-                              risk of MACE within 30 days
-                            </Typography>
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={12} md={4}></Grid>
-                      </Grid>
+                      {createDisplayRule()}
                     </CardContent>
                   </Card>
                 </Grid>
               </Grid>
               {/******************Second container******************/}
-
               {/******************third container******************/}
               <Grid item xs={12}>
                 <Card className={classes.gridcontainer}>
@@ -849,10 +917,7 @@ export default function AMIConfiguration(props) {
                         control={
                           <Checkbox
                             {...label}
-                            defaultChecked={
-                              configData.result.configurations[2].rules[0]
-                                .isChecked
-                            }
+                            defaultChecked={otherRS}
                             sx={{
                               color: "#fff",
                               "&.Mui-checked": {
@@ -869,7 +934,6 @@ export default function AMIConfiguration(props) {
                 </Card>
               </Grid>
               {/******************third container******************/}
-
               {/******************bottom buttons******************/}
               <Grid item xs={12} container className={classes.alignRight}>
                 <Grid item xs={12} md={4}>
