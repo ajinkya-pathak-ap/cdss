@@ -274,17 +274,6 @@ export default function AMIConfiguration(props) {
           ...generateRule,
           [generateRule.ageOne]: ageArr.values[0],
         });
-
-    // hstnlArr.length > 1
-    //   ? setGenerateRule({
-    //       ...generateRule,
-    //       [generateRule.hstnlOne]: [hstnlArr[0]],
-    //       [generateRule.hstnlTwo]: [hstnlArr[1]],
-    //     })
-    //   : setGenerateRule({
-    //       ...generateRule,
-    //       [generateRule.hstnlOne]: [hstnlArr[0]],
-    //     });
   };
   const createGenerateRule = () => {
     let response;
@@ -1069,9 +1058,6 @@ export default function AMIConfiguration(props) {
                       onClick={applySetings}
                       // disabled={apply}
                     >
-                      {/* <Link className={classes.buttonColor} to="">
-                        <span className="m-2">Apply</span>
-                      </Link> */}
                       Apply
                     </BootstrapButton>
                     <BootstrapButton

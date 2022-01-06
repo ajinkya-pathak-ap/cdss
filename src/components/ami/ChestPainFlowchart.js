@@ -28,40 +28,29 @@ const useStyles = makeStyles((theme) => ({
   },
 
   insidecontainer: {
-    height: 170,
+    height: 70,
+
+    borderRadius: "10px",
     marginRight: "auto",
     marginLeft: "auto",
     background: "#fff",
-    marginBottom: "0px",
+    marginBottom: "50px",
     [theme.breakpoints.up("md")]: {
-      width: "45%",
+      width: "50%",
     },
     [theme.breakpoints.up("lg")]: {
-      width: "45%",
+      width: "50%",
+    },
+    [theme.breakpoints.up("xs")]: {
+      width: "70%",
     },
   },
 
-  gridcontainer: {
-    background: "#fff",
-    color: "#000",
-    textAlign: "center",
-    minHeight: "250px",
-    borderRadius: "50px",
-  },
-  gridcontainer1: {
-    background: "#050038",
-    color: "#fff",
-    textAlign: "center",
-    minHeight: "80px",
-    borderRadius: "50px",
-  },
-  typo: {
-    color: "red",
-    fontSize: "12px",
-  },
   buttonColor: {
     backgroundColor: "#414BB2",
     color: "#fff",
+    marginRight: "40px",
+    marginTop: "80px",
     "&:hover": {
       backgroundColor: "#414BB2",
     },
@@ -69,17 +58,12 @@ const useStyles = makeStyles((theme) => ({
   whiteBtn: {
     color: "#fff",
     textDecoration: "none",
+    paddingLeft: "20px",
+    paddingRight: "20px",
   },
   alignRight: {
     justifyContent: "flex-end",
   },
-}));
-
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
 }));
 
 export default function RiskScoreContributors() {
@@ -89,18 +73,6 @@ export default function RiskScoreContributors() {
   return (
     <Grid container>
       <Grid item sm={12} xs={12} md={12} marginTop={10}>
-        {/* <Box
-          style={{
-            width: "60%",
-            position: "absolute",
-            left: "250px",
-            marginTop: "40px",
-          }}
-          sx={{ bgcolor: "#6D7F9B", height: "70vh" }}
-        
-          paddingTop={4}
-          alignItems="center"
-        > */}
         <Grid container justify="center">
           <Grid
             container
@@ -116,41 +88,23 @@ export default function RiskScoreContributors() {
                   alignItems="center"
                   justify="center"
                 >
-                  <Grid lg={12} item>
-                    Content Here
+                  <Grid lg={12} xs={12} item>
+                    <Typography style={{ fontSize: "16px" }}>
+                      Hospital's Chest Pain Management Flow Chart
+                    </Typography>
                   </Grid>
+                </Grid>
+                <Grid container justify="flex-end" lg={12} xs={12} item>
+                  <Button variant="contained" className={classes.buttonColor}>
+                    <Link className={classes.whiteBtn} to="/amioutput">
+                      <span className="m-3">OK</span>
+                    </Link>
+                  </Button>
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
         </Grid>
-        {/* <Grid container item xs={12} spacing={2}> */}
-        {/* *****************First container***************** */}
-        {/* <Grid container item xs={12} justify="center" alignItems="center">
-              <Grid item xs={10} className={classes.gridcontainer1}>
-                <Card className={classes.gridcontainer}>
-                  <CardContent>
-                    <Typography style={{ fontSize: "22px" }}>
-                      Hospital's Chest Pain Management Flow Chart
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            </Grid> */}
-
-        {/* <Grid item xs={12} sm={12} className={classes.alignRight}>
-              <Box>
-                <Grid item xs={12} container className={classes.alignRight}>
-                  <Button variant="contained" className={classes.buttonColor}>
-                    <Link className={classes.whiteBtn} to="/amioutput">
-                      <span className="m-2">OK</span>
-                    </Link>
-                  </Button>
-                </Grid>
-              </Box>
-            </Grid> */}
-        {/* </Grid> */}
-        {/* </Box> */}
       </Grid>
     </Grid>
   );
