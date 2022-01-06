@@ -17,10 +17,11 @@ export const amiHeader = makeStyles((theme) => ({
 export const amiOutputStyles = makeStyles((theme) => ({
   mainContainer: {
     backgroundColor: "#6D7F9B",
-    width: "65%",
+    width: "75%",
     position: "absolute",
     left: "0",
     right: "0",
+
     margin: "auto",
     [theme.breakpoints.between("md", "lg")]: {
       width: "56%",
@@ -42,6 +43,29 @@ export const amiOutputStyles = makeStyles((theme) => ({
     color: "#fff",
     textAlign: "left",
     minHeight: "80px",
+
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center",
+    },
+  },
+
+  gridcontainer2: {
+    background: "#050038",
+    color: "#fff",
+    textAlign: "left",
+    minHeight: "80px",
+    marginTop: "-18px",
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center",
+    },
+  },
+
+  gridcontainer3: {
+    background: "#050038",
+    color: "#fff",
+    textAlign: "left",
+    minHeight: "80px",
+    marginTop: "-18px",
     [theme.breakpoints.down("sm")]: {
       justifyContent: "center",
     },
@@ -132,6 +156,7 @@ export const amiOutputStyles = makeStyles((theme) => ({
   },
 
   alignRight: {
+    marginTop: "-15px",
     justifyContent: "flex-end",
     [theme.breakpoints.down("sm")]: {
       justifyContent: "center",
@@ -445,20 +470,23 @@ export const amiConfigInputs = styled(InputBase)(({ theme }) => ({
 
 /**AMI CDS Riskcontributor Screen*/
 export const riskContributorStyles = makeStyles((theme) => ({
-  gridcontainer: {
+  contribcontainer: {
     background: "#fff",
     color: "#000",
     textAlign: "center",
+    width: "85%",
+    alignItems: "center",
+    borderRadius: "50px",
     minHeight: "250px",
-    borderRadius: "50px",
+    marginLeft: "20px",
   },
-  gridcontainer1: {
-    background: "#050038",
-    color: "#fff",
-    textAlign: "center",
-    minHeight: "80px",
-    borderRadius: "50px",
-  },
+  // contribcontainer1: {
+  //   background: "#050038",
+  //   color: "#fff",
+  //   textAlign: "center",
+  //   minHeight: "50px",
+  //   borderRadius: "50px",
+  // },
   typo: {
     color: "red",
     fontSize: "12px",
@@ -476,6 +504,23 @@ export const riskContributorStyles = makeStyles((theme) => ({
   },
   alignRight: {
     justifyContent: "flex-end",
+  },
+
+  contrimainContainer: {
+    backgroundColor: "#6D7F9B",
+    width: "60%",
+    minHeight: "250px",
+    // position: "absolute",
+    left: "0",
+    right: "0",
+    marginTop: "40px",
+    margin: "auto",
+    [theme.breakpoints.between("md", "lg")]: {
+      width: "56%",
+    },
+    [theme.breakpoints.only("xl")]: {
+      width: "40%",
+    },
   },
 }));
 

@@ -145,7 +145,7 @@ export default function AMIOutput(props) {
         </Grid>
         {/* *****************Second container***************** */}
         <Grid container item xs={12}>
-          <Grid item xs={7} lg={8} className={classes.gridcontainer1}>
+          <Grid item xs={7} lg={8} className={classes.gridcontainer2}>
             <Card className={classes.gridcontainer}>
               <CardContent>
                 <Typography className={`${classes.headerText}`}>
@@ -176,7 +176,7 @@ export default function AMIOutput(props) {
             item
             xs={5}
             lg={4}
-            className={`${classes.gridcontainer1} ${classes.moreInfo}`}
+            className={`${classes.gridcontainer2} ${classes.moreInfo}`}
             direction="column"
             alignItems="center"
           >
@@ -206,31 +206,33 @@ export default function AMIOutput(props) {
           </Grid>
         </Grid>
         {/* *****************third container***************** */}
-        <Grid item xs={12}>
-          <Card className={classes.gridcontainer}>
-            <CardContent>
-              <Typography className={`${classes.headerText}`}>
-                Guidance
-              </Typography>
-              <Typography className={`${classes.headerTextThree}`}>
-                {guidance.text_1}
-                {/* institution, the following course of action is recommended */}
-              </Typography>
-              <Typography className={classes.typo}>
-                {guidance.text_2}
-              </Typography>
-              <Typography>
-                <Link className={classes.hyperLink} to="/carepath">
-                  Click here
-                </Link>
-                &nbsp;
-                <span className={classes.headerTextThree}>
-                  to view patient's position of your institution's Chest Pain
-                  Management Care Flowchart
-                </span>
-              </Typography>
-            </CardContent>
-          </Card>
+        <Grid container item xs={12}>
+          <Grid container item xs={12} className={classes.gridcontainer3}>
+            <Card className={classes.gridcontainer}>
+              <CardContent>
+                <Typography className={`${classes.headerText}`}>
+                  Guidance
+                </Typography>
+                <Typography className={`${classes.headerTextThree}`}>
+                  {guidance.text_1}
+                  {/* institution, the following course of action is recommended */}
+                </Typography>
+                <Typography className={classes.typo}>
+                  {guidance.text_2}
+                </Typography>
+                <Typography>
+                  <Link className={classes.hyperLink} to="/carepath">
+                    Click here
+                  </Link>
+                  &nbsp;
+                  <span className={classes.headerTextThree}>
+                    to view patient's position of your institution's Chest Pain
+                    Management Care Flowchart
+                  </span>
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
         </Grid>
         <Grid item xs={12} container className={classes.alignRight}>
           <Stack spacing={4} direction="row" container>
