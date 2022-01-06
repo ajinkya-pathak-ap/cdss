@@ -211,7 +211,13 @@ export default function AMIConfiguration(props) {
             if (item_0.categories.length > 0) {
               item_0.categories.forEach((item_1) => {
                 /**create values categories */
-                setAgeArr(item_1);
+                if (item_1.categoryDefinition.toLocaleLowerCase() === "age") {
+                  setOperatorOne(item_1.operator);
+                  setAgeArr(item_1);
+                } else {
+                  setOperatorTwo(item_1.operator);
+                  setHstnlArr(item_1);
+                }
               });
             }
           });
@@ -227,9 +233,10 @@ export default function AMIConfiguration(props) {
             setDisplayDefault(item_0.isDefault);
             setDisplayRS(item_0.isChecked);
             if (item_0.categories.length > 0) {
-              item_0.categories.forEach((item_1) => {
+              item_0.categories.forEach((item_1, ind) => {
                 /**create values categories */
-                setHstnlArr(item_1);
+                // setOperatorTwo(item_1.operator);
+                setDisplayArr(item_1);
               });
             }
           });
@@ -251,8 +258,34 @@ export default function AMIConfiguration(props) {
         }
       }
     });
-  };
+    console.log(ageArr);
+    console.log(hstnlArr);
 
+    mapExistingRules();
+  };
+  const mapExistingRules = () => {
+    ageArr.length > 1
+      ? setGenerateRule({
+          ...generateRule,
+          [generateRule.ageOne]: ageArr.values[0],
+          [generateRule.ageTwo]: ageArr.values[1],
+        })
+      : setGenerateRule({
+          ...generateRule,
+          [generateRule.ageOne]: ageArr.values[0],
+        });
+
+    // hstnlArr.length > 1
+    //   ? setGenerateRule({
+    //       ...generateRule,
+    //       [generateRule.hstnlOne]: [hstnlArr[0]],
+    //       [generateRule.hstnlTwo]: [hstnlArr[1]],
+    //     })
+    //   : setGenerateRule({
+    //       ...generateRule,
+    //       [generateRule.hstnlOne]: [hstnlArr[0]],
+    //     });
+  };
   const createGenerateRule = () => {
     let response;
     configData.result.configurations.forEach((v, i) => {
@@ -306,6 +339,11 @@ export default function AMIConfiguration(props) {
                         name="ageOne"
                         type="number"
                         value={generateRule.ageOne}
+                        // value={
+                        //   ageArr.values.length > 0
+                        //     ? ageArr.values[0]
+                        //     : generateRule.ageOne
+                        // }
                       />
                     </Grid>
                     {operatorOne === "Between" ? (
@@ -320,6 +358,12 @@ export default function AMIConfiguration(props) {
                           onChange={(e) => handleGenerateRule(e)}
                           name="ageTwo"
                           type="number"
+                          // value={
+                          //   ageArr.values.length > 0
+                          //     ? ageArr.values[1]
+                          //     : generateRule.ageTwo
+                          // }
+                          value={generateRule.ageTwo}
                         />
                       </Grid>
                     ) : (
@@ -395,6 +439,12 @@ export default function AMIConfiguration(props) {
                         onChange={(e) => handleGenerateRule(e)}
                         name="hstnlOne"
                         type="number"
+                        value={generateRule.hstnlOne}
+                        // value={
+                        //   hstnlArr.values.length > 0
+                        //     ? hstnlArr.values[0]
+                        //     : generateRule.hstnlOne
+                        // }
                       />
                     </Grid>
                     {operatorTwo === "Between" ? (
@@ -409,6 +459,12 @@ export default function AMIConfiguration(props) {
                           onChange={(e) => handleGenerateRule(e)}
                           name="hstnlTwo"
                           type="number"
+                          // value={
+                          //   hstnlArr.values.length > 0
+                          //     ? hstnlArr.values[1]
+                          //     : generateRule.hstnlTwo
+                          // }
+                          value={generateRule.hstnlTwo}
                         />
                       </Grid>
                     ) : (
@@ -467,6 +523,11 @@ export default function AMIConfiguration(props) {
                       name="ageOne"
                       type="number"
                       value={generateRule.ageOne}
+                      // value={
+                      //   ageArr.values.length > 0
+                      //     ? ageArr.values[0]
+                      //     : generateRule.ageOne
+                      // }
                     />
                   </Grid>
                   {operatorOne === "Between" ? (
@@ -481,6 +542,12 @@ export default function AMIConfiguration(props) {
                         onChange={(e) => handleGenerateRule(e)}
                         name="ageTwo"
                         type="number"
+                        // value={
+                        //   ageArr.values.length > 0
+                        //     ? ageArr.values[1]
+                        //     : generateRule.ageTwo
+                        // }
+                        value={generateRule.ageTwo}
                       />
                     </Grid>
                   ) : (
@@ -556,6 +623,12 @@ export default function AMIConfiguration(props) {
                       onChange={(e) => handleGenerateRule(e)}
                       name="hstnlOne"
                       type="number"
+                      // value={
+                      //   hstnlArr.values.length > 0
+                      //     ? hstnlArr.values[0]
+                      //     : generateRule.hstnlOne
+                      // }
+                      value={generateRule.hstnlOne}
                     />
                   </Grid>
                   {operatorTwo === "Between" ? (
@@ -570,6 +643,12 @@ export default function AMIConfiguration(props) {
                         onChange={(e) => handleGenerateRule(e)}
                         name="hstnlTwo"
                         type="number"
+                        // value={
+                        //   hstnlArr.values.length > 0
+                        //     ? hstnlArr.values[1]
+                        //     : generateRule.hstnlTwo
+                        // }
+                        value={generateRule.hstnlTwo}
                       />
                     </Grid>
                   ) : (
