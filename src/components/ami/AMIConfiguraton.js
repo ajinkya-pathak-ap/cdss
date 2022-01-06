@@ -101,9 +101,8 @@ export default function AMIConfiguration(props) {
     sethstnlValues({ ...hstnlValues, values: hstnlArr, operator: operatorTwo });
   };
   const handleDisplayRule = (e) => {
-    console.log("---------------", e);
     setGenerateRule({ ...generateRule, [e.target.name]: e.target.value });
-    // enableApply(e);
+    enableApply(e);
     setDisplayValues({
       ...displayValues,
       values: [

@@ -173,17 +173,17 @@ export const amiOutputStyles = makeStyles((theme) => ({
     width: "9rem",
     height: "9rem",
     [theme.breakpoints.up("md")]: {
-      fontSize: "25px",
-      lineHeight: "4.7",
-      width: "7rem",
-      height: "7rem",
+      fontSize: "15px",
+      lineHeight: "8.3",
+      width: "8rem",
+      height: "8rem",
     },
 
     [theme.breakpoints.down("md")]: {
-      width: "5rem",
+      width: "6rem",
       height: "6rem",
-      fontSize: "15px",
-      lineHeight: "6.5",
+      fontSize: "12px",
+      lineHeight: "8.4",
     },
   },
 
