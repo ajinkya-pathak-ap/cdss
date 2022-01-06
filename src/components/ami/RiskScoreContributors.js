@@ -87,6 +87,7 @@ export default function RiskScoreContributors(props) {
                         fontSize: "18px",
                         textAlign: "center",
                         paddingTop: "90px",
+                        textAlign: "center",
                       }}
                     >
                       {riskScoreContributors.value.riskScoreContributors}

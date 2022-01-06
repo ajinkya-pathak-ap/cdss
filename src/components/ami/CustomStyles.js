@@ -24,7 +24,7 @@ export const amiOutputStyles = makeStyles((theme) => ({
 
     margin: "auto",
     [theme.breakpoints.between("md", "lg")]: {
-      width: "56%",
+      width: "60%",
     },
     [theme.breakpoints.only("xl")]: {
       width: "40%",
@@ -116,7 +116,7 @@ export const amiOutputStyles = makeStyles((theme) => ({
   },
 
   headerTextThree: {
-    fontSize: "14px",
+    fontSize: "11px",
     [theme.breakpoints.up("sm")]: {
       fontSize: "13px",
     },
@@ -479,6 +479,10 @@ export const riskContributorStyles = makeStyles((theme) => ({
     borderRadius: "50px",
     minHeight: "250px",
     marginLeft: "20px",
+  },
+
+  listpadding: {
+    paddingInlineStart: "13px",
   },
   // contribcontainer1: {
   //   background: "#050038",

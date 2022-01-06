@@ -195,7 +195,7 @@ export default function AMIOutput(props) {
                 variant="contained"
                 className={classes.buttonColor}
                 style={{
-                  marginBottom: "15px",
+                  marginBottom: "40px",
                   // marginRight: "20px",
                 }}
               >
@@ -245,7 +245,7 @@ export default function AMIOutput(props) {
           </Grid>
         </Grid>
         <Grid item xs={12} container className={classes.alignRight}>
-          <Stack spacing={4} direction="row" container>
+          <Stack spacing={2} direction="row" container>
             <BootstrapButton
               variant="contained"
               className={`${classes.buttonColor} ${classes.acknowledgeBtn_1}`}
