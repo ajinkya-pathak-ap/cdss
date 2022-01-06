@@ -20,6 +20,16 @@ label#riskFactors-label {
   font-size: 18px !important;
 }
 
+ol {
+  display: block;
+  font-size: 11px;
+  list-style-type: decimal;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 13px;
+}
 
 
 label#firstDraw-label,
