@@ -22,7 +22,6 @@ const BootstrapButton = amiConfigBtns;
 const BootstrapInput = amiConfigInputs;
 
 export default function AMIConfiguration(props) {
-  const [_tempObj, setTempObj] = useState({});
   const [operatorOne, setOperatorOne] = useState("");
   const [operatorTwo, setOperatorTwo] = useState("");
   const [isFetching, setIsFetching] = useState(true);
@@ -90,7 +89,7 @@ export default function AMIConfiguration(props) {
   const handleGenerateRule = (e) => {
     setGenerateRule({ ...generateRule, [e.target.name]: e.target.value });
     enableApply(e);
-    console.log(generateRule);
+
     operatorOne.toLocaleLowerCase() === "between"
       ? setAgeArr([generateRule.ageOne, generateRule.ageTwo])
       : setAgeArr([generateRule.ageOne]);
@@ -99,10 +98,12 @@ export default function AMIConfiguration(props) {
     operatorTwo.toLocaleLowerCase() === "between"
       ? setHstnlArr([generateRule.hstnlOne, generateRule.hstnlTwo])
       : setHstnlArr([generateRule.hstnlOne]);
-
     sethstnlValues({ ...hstnlValues, values: hstnlArr, operator: operatorTwo });
-
-
+  };
+  const handleDisplayRule = (e) => {
+    console.log("---------------", e);
+    setGenerateRule({ ...generateRule, [e.target.name]: e.target.value });
+    // enableApply(e);
     setDisplayValues({
       ...displayValues,
       values: [
@@ -111,7 +112,6 @@ export default function AMIConfiguration(props) {
       ],
     });
   };
-
   const handleGenerateRiskScore = (event) => {
     const checkedValue = event.target.checked;
     setGenerateRS(checkedValue);
@@ -147,9 +147,7 @@ export default function AMIConfiguration(props) {
   const saveConfigData = (_config) => {
     if (props.localMode) {
       configurationService.saveConfiguration(_config).then(
-        (response) => {
-          console.log("Succefully Save Settings", response);
-        },
+        (response) => {},
         (error) => {
           return;
           /**
@@ -618,7 +616,7 @@ export default function AMIConfiguration(props) {
                         disabled={displayRS}
                         id="rangeOne"
                         name="displayOne"
-                        onChange={(e) => handleGenerateRule(e)}
+                        onChange={(e) => handleDisplayRule(e)}
                       />
                     </FormControl>
                   </Grid>
@@ -643,7 +641,7 @@ export default function AMIConfiguration(props) {
                         disabled={displayRS}
                         id="rangeTwo"
                         name="displayTwo"
-                        onChange={(e) => handleGenerateRule(e)}
+                        onChange={(e) => handleDisplayRule(e)}
                       />
                     </FormControl>
                   </Grid>
@@ -688,7 +686,7 @@ export default function AMIConfiguration(props) {
                       disabled={displayRS}
                       id="rangeOne"
                       name="displayOne"
-                      onChange={(e) => handleGenerateRule(e)}
+                      onChange={(e) => handleDisplayRule(e)}
                     />
                   </FormControl>
                 </Grid>
@@ -713,7 +711,7 @@ export default function AMIConfiguration(props) {
                       disabled={displayRS}
                       id="rangeTwo"
                       name="displayTwo"
-                      onChange={(e) => handleGenerateRule(e)}
+                      onChange={(e) => handleDisplayRule(e)}
                     />
                   </FormControl>
                 </Grid>
@@ -735,7 +733,6 @@ export default function AMIConfiguration(props) {
         }
       }
     });
-
     return response;
   };
 
@@ -799,7 +796,6 @@ export default function AMIConfiguration(props) {
                 item_1.categories[0].operator = "Between";
               } else {
                 /**values doesnt exists for textfields */
-                console.log(displayValues);
                 item_1.categories = displayValues;
               }
             } else {
@@ -833,7 +829,7 @@ export default function AMIConfiguration(props) {
       configData.result.configurations[2].rules[0].isChecked = otherRS;
       configData.result.configurations[2].rules[0].categories = otherArr;
     } else {
-      // configData.result.configurations[2].rules[0].categories[0] = [];
+      configData.result.configurations[2].rules[0].categories[0] = [];
     }
   };
   /*************config api stuff***************/

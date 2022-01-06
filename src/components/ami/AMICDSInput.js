@@ -165,24 +165,6 @@ export default function AMICSInput(props) {
               Demographics Information pulled from EHR
             </Typography>
 
-            {/* <TextField
-              className={classes.textFieldColor}
-              id="age"
-              // select
-              // size="small"
-              label="Patient Age*"
-              variant="standard"
-              value={patientInfo.value.age}
-              inputProps={{
-                className: classes.fontTypeOne,
-              }}
-            >
-           
-              <MenuItem value={patientInfo.value.age}>
-                {patientInfo.value.age}
-              </MenuItem>
-            </TextField> */}
-
             <FormControl variant="standard" style={{ backgroundColor: "#fff" }}>
               <InputLabel
                 style={{ color: "red", marginTop: "5px", marginLeft: "9px" }}
@@ -191,7 +173,7 @@ export default function AMICSInput(props) {
               >
                 Patient Age*
               </InputLabel>
-              <BootstrapInput defaultValue="62" id="bootstrap-input">
+              <BootstrapInput id="bootstrap-input">
                 {patientInfo.value.patientDetails.age}
               </BootstrapInput>
             </FormControl>
@@ -262,7 +244,6 @@ export default function AMICSInput(props) {
                   {option.label}
                 </MenuItem>
               ))}
-              {/* <MenuItem value="Asian">Asian</MenuItem> */}
             </TextField>
 
             <TextField

@@ -109,7 +109,7 @@ export default function AMIOutput(props) {
     return (
       <Grid container spacing={3} className={classes.mainContainer}>
         {/* *****************First container***************** */}
-        <Grid container item xs={12} style={{ margin: "10" }}>
+        <Grid container item xs={12}>
           <Grid item xs={8} className={classes.gridcontainer1}>
             <Card className={classes.gridcontainer}>
               <CardContent>
@@ -118,11 +118,9 @@ export default function AMIOutput(props) {
                 </Typography>
                 <Typography className={`${classes.headerText}`}>
                   {details.text_1}
-                  {/* Patient's Risk of major Adverse Cardiac Event within 30 days */}
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
                   {details.text_2}
-                  {/* MACE includes death, AMI, stroke,urgent re-vascularization */}
                 </Typography>
               </CardContent>
             </Card>
