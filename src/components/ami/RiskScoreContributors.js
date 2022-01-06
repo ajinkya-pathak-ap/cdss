@@ -53,56 +53,66 @@ export default function RiskScoreContributors(props) {
     return <CircularIndeterminate />;
   } else {
     return (
-      <Container>
-        <Grid container spacing={4}>
-          <Grid item sm={12} xs={12}>
-            <Box
-              sx={{ bgcolor: "#6D7F9B", height: "50vh" }}
-              margin={10}
-              paddingLeft={4}
-              paddingRight={4}
-              paddingTop={5}
+      <Grid
+        container
+        spacing={4}
+        className={classes.contrimainContainer}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid item sm={12} xs={12} md={12}>
+          <Box
+            sx={{ bgcolor: "#6D7F9B", minHeight: "250px" }}
+            // margin={10}
+            // // paddingLeft={4}
+            // paddingRight={4}
+            // paddingTop={5}
+          >
+            {/* <Grid container item xs={12} spacing={2}> */}
+            {/* *****************First container***************** */}
+            <Grid
+              container
+              item
+              xs={12}
+              md={12}
+              justifyContent="center"
+              alignItems="center"
             >
-              <Grid container item xs={12} spacing={2}>
-                {/* *****************First container***************** */}
-                <Grid
-                  container
-                  item
-                  xs={12}
-                  justifyContent="center"
-                  alignItems="center"
-                >
-                  <Grid item xs={10} className={classes.gridcontainer1}>
-                    <Card className={classes.gridcontainer}>
-                      <CardContent>
-                        <Typography style={{ fontSize: "22px" }}>
-                          {riskScoreContributors.value.riskScoreContributors}
-                          {/* Provide the Details for the Risk Score Contributors */}
-                        </Typography>
-                      </CardContent>
-                    </Card>
-                  </Grid>
-                </Grid>
-
-                <Grid item xs={12} sm={12} className={classes.alignRight}>
-                  <Box>
-                    <Grid item xs={12} container className={classes.alignRight}>
-                      <Button
-                        variant="contained"
-                        className={classes.buttonColor}
-                      >
-                        <Link className={classes.whiteBtn} to="/amioutput">
-                          <span className="m-2">OK</span>
-                        </Link>
-                      </Button>
-                    </Grid>
-                  </Box>
-                </Grid>
+              <Grid item xs={10}>
+                <Card className={classes.contribcontainer}>
+                  <CardContent style={{ textAlign: "center" }}>
+                    <Typography
+                      variant={"h6"}
+                      style={{
+                        fontSize: "18px",
+                        textAlign: "center",
+                        paddingTop: "90px",
+                      }}
+                    >
+                      {riskScoreContributors.value.riskScoreContributors}
+                      {/* Provide the Details for the Risk Score Contributors */}
+                    </Typography>
+                  </CardContent>
+                </Card>
               </Grid>
-            </Box>
-          </Grid>
+            </Grid>
+            <br></br>
+            <br></br>
+
+            {/* <Grid item xs={12} sm={12} className={classes.alignRight}> */}
+            <Grid item xs={12} container className={classes.alignRight}>
+              <Button variant="contained" className={classes.buttonColor}>
+                <Link className={classes.whiteBtn} to="/amioutput">
+                  <span className="m-2">OK</span>
+                </Link>
+              </Button>
+              <br />
+            </Grid>
+            {/* </Grid> */}
+            {/* </Grid> */}
+          </Box>
         </Grid>
-      </Container>
+      </Grid>
     );
   }
 }
