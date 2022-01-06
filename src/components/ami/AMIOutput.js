@@ -41,16 +41,14 @@ export default function AMIOutput(props) {
 
   const [riskScore, setRiskScore] = useState({});
   const [isFetching, setIsFetching] = useState(true);
+
   const [details, setDetails] = useState({
     text_1: "",
     text_2: "",
   });
-  const [contributors, setContributors] = useState({
-    text_1: "",
-    firstContributor: "",
-    secondContributor: "",
-    thirdContributor: "",
-  });
+
+  const [positiveCont, setPositiveCont] = useState([]);
+  const [negativeCont, setNegativeCont] = useState([]);
 
   const [guidance, setGuidance] = useState({
     text_1: "",
@@ -65,11 +63,11 @@ export default function AMIOutput(props) {
     if (props.localMode) {
       riskScoreService.getRiskScoreLocal(config).then(
         (response) => {
-          console.log(response.data);
           setRiskScore(response.data);
           setIsFetching(false);
           getRiskScoreDetails(response.data.result.riskScoreDetails);
           getGuidance(response.data.result.guidance);
+          riskScoreContributors(response.data.result);
         },
         (error) => {
           return;
@@ -98,6 +96,11 @@ export default function AMIOutput(props) {
   const getGuidance = (_string) => {
     let strArr = _string.split("$");
     setGuidance({ ...guidance, text_1: strArr[0], text_2: strArr[1] });
+  };
+
+  const riskScoreContributors = (_obj) => {
+    setPositiveCont(_obj.positiveContributors.split(","));
+    setNegativeCont(_obj.negativeContributors.split(","));
   };
 
   if (isFetching) {
@@ -151,10 +154,20 @@ export default function AMIOutput(props) {
                   Risk Score Contributors
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
-                  1.{riskScore.result.positiveContributors}
+                  Factors that increase the 30-day MACE risk
+                  <ol>
+                    {positiveCont.map((v) => (
+                      <li key={v}>{v}</li>
+                    ))}
+                  </ol>
                 </Typography>
                 <Typography className={`${classes.headerTextThree}`}>
-                  2.{riskScore.result.negativeContributors}
+                  Factors that decrease the 30-day MACE risk
+                  <ol>
+                    {negativeCont.map((v) => (
+                      <li key={v}>{v}</li>
+                    ))}
+                  </ol>
                 </Typography>
               </CardContent>
             </Card>

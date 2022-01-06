@@ -39,6 +39,7 @@ export default function AMIConfiguration(props) {
   /**values arrays */
   const [ageArr, setAgeArr] = useState([]);
   const [hstnlArr, setHstnlArr] = useState([]);
+  const [displayArr, setDisplayArr] = useState([]);
   const [otherArr, setOtherArr] = useState([]);
   const [apply, setApply] = useState(true);
   const [generateRule, setGenerateRule] = useState({
@@ -73,7 +74,6 @@ export default function AMIConfiguration(props) {
     OganizationId: 1,
     ModelId: 1,
   };
-  let genRuleDOM = "";
 
   useEffect(() => {
     fetchConfigData(fetchRequestObject);
@@ -90,11 +90,10 @@ export default function AMIConfiguration(props) {
   const handleGenerateRule = (e) => {
     setGenerateRule({ ...generateRule, [e.target.name]: e.target.value });
     enableApply(e);
-
+    console.log(generateRule);
     operatorOne.toLocaleLowerCase() === "between"
       ? setAgeArr([generateRule.ageOne, generateRule.ageTwo])
       : setAgeArr([generateRule.ageOne]);
-
     setAgeValues({ ...ageValues, values: ageArr, operator: operatorOne });
 
     operatorTwo.toLocaleLowerCase() === "between"
@@ -102,6 +101,15 @@ export default function AMIConfiguration(props) {
       : setHstnlArr([generateRule.hstnlOne]);
 
     sethstnlValues({ ...hstnlValues, values: hstnlArr, operator: operatorTwo });
+
+
+    setDisplayValues({
+      ...displayValues,
+      values: [
+        `${generateRule.displayOne}%`.split("%")[0],
+        `${generateRule.displayTwo}%`.split("%")[0],
+      ],
+    });
   };
 
   const handleGenerateRiskScore = (event) => {
@@ -733,50 +741,92 @@ export default function AMIConfiguration(props) {
 
   const saveStateValues = () => {
     /**generate rule-section */
-    if (generateRS === false) {
-      if (configData.result.configurations[0].rules[0].categories.length < 1) {
-        /**if no rules */
-        configData.result.configurations[0].rules[0].categories.push(ageValues);
-        configData.result.configurations[0].rules[0].categories.push(
-          hstnlValues
-        );
-        configData.result.configurations[0].rules[0].isDefault =
-          generateDefault;
-        configData.result.configurations[0].rules[0].isChecked = generateRS;
-      } else {
-        /**existing rules */
-        configData.result.configurations[0].rules[0].categories[0].values =
-          ageArr;
-        configData.result.configurations[0].rules[0].categories[0].operator =
-          operatorOne;
-        configData.result.configurations[0].rules[0].categories[1].values =
-          hstnlArr;
-        configData.result.configurations[0].rules[0].categories[1].operator =
-          operatorTwo;
-        configData.result.configurations[0].rules[0].isDefault =
-          generateDefault;
-        configData.result.configurations[0].rules[0].isChecked = generateRS;
-      }
-    } else {
-      configData.result.configurations[0].rules[0].categories = [];
-    }
+    configData.result.configurations.forEach((item_0) => {
+      if (item_0.ruleSectionName.toLocaleLowerCase() === "generate") {
+        if (item_0.rules.length > 0) {
+          /** if rules exists*/
+          item_0.rules.forEach((item_1) => {
+            if (generateRS === false) {
+              /** if checkbox is not checked */
+              item_1.isDefault = generateDefault;
+              item_1.isChecked = generateRS;
 
-    /**display rule-section */
-    if (displayRS === false) {
-      if (configData.result.configurations[1].rules[0].categories.length < 1) {
-        /**no rules */
-      } else {
+              if (item_1.categories.length > 0) {
+                /**values exists for textfields */
+                item_1.categories[0].values = ageArr;
+                item_1.categories[0].operator = operatorOne;
+                item_1.categories[1].values = hstnlArr;
+                item_1.categories[1].operator = operatorTwo;
+              } else {
+                /**values doesnt exists for textfields */
+                item_1.categories.push(ageValues);
+                item_1.categories.push(hstnlValues);
+              }
+            } else {
+              /**if checkbox selected */
+              item_1.categories = [];
+            }
+          });
+        } else {
+          /**no rules */
+          if (generateRS === false) {
+            /**checkbox not selected */
+            item_0.rules[0].categories.push(ageValues);
+            item_0.rules[0].categories.push(hstnlValues);
+            item_0.rules[0].isDefault = generateDefault;
+            item_0.rules[0].isChecked = generateRS;
+          } else {
+            /**checkbox selected */
+            item_0.rules[0].isDefault = generateDefault;
+            item_0.rules[0].isChecked = generateRS;
+            item_0.rules[0].categories = [];
+          }
+        }
+      } else if (item_0.ruleSectionName.toLocaleLowerCase() === "display") {
+        if (item_0.rules.length > 0) {
+          /** if rules exists*/
+          item_0.rules.forEach((item_1) => {
+            if (displayRS === false) {
+              /** if checkbox is not checked */
+              item_1.isDefault = displayDefault;
+              item_1.isChecked = displayRS;
+              if (item_1.categories.length > 0) {
+                /**values exists for textfields */
+                item_1.categories[0].values = [
+                  `${generateRule.displayOne}%`.split("%")[0],
+                  `${generateRule.displayTwo}%`.split("%")[0],
+                ];
+                item_1.categories[0].operator = "Between";
+              } else {
+                /**values doesnt exists for textfields */
+                console.log(displayValues);
+                item_1.categories = displayValues;
+              }
+            } else {
+              /**if checkbox selected */
+              item_1.categories = [];
+            }
+          });
+        } else {
+          /**no rules */
+          if (displayRS === false) {
+            /**checkbox not selected */
+            item_0.rules[0].categories[0].values = [
+              `${generateRule.displayOne}%`.split("%")[0],
+              `${generateRule.displayTwo}%`.split("%")[0],
+            ];
+            item_0.rules[0].isDefault = displayDefault;
+            item_0.rules[0].isChecked = displayRS;
+          } else {
+            /**checkbox selected */
+            item_0.rules[0].isDefault = generateDefault;
+            item_0.rules[0].isChecked = generateRS;
+            item_0.rules[0].categories = [];
+          }
+        }
       }
+    });
 
-      configData.result.configurations[1].rules[0].isDefault = displayDefault;
-      configData.result.configurations[1].rules[0].isChecked = displayRS;
-      configData.result.configurations[1].rules[0].categories = [
-        `${generateRule.displayOne}%`.split("%")[0],
-        `${generateRule.displayTwo}%`.split("%")[0],
-      ];
-    } else {
-      configData.result.configurations[1].rules[0].categories[0] = [];
-    }
     /**others settings */
     if (configData.result.configurations[2].rules.length) {
       configData.result.configurations[2].rules[0].isDefault = otherDefault;
