@@ -103,6 +103,15 @@ export default function AMIOutput(props) {
     setNegativeCont(_obj.negativeContributors.split(","));
   };
 
+  const riskScoreRange = () => {
+    let probRange = riskScore.result.probabilityRange;
+    probRange = probRange.replace("(", "");
+    probRange = probRange.replace(")", "");
+    probRange = probRange.replace(",", " -");
+    console.log(probRange);
+    return probRange;
+  };
+
   if (isFetching) {
     return <CircularIndeterminate />;
   } else {
@@ -138,7 +147,8 @@ export default function AMIOutput(props) {
                 alignitems="center"
                 className={classes.riskScoreShell}
               >
-                {riskScore.result.score}
+                {riskScoreRange()}
+                {/* {riskScore.result.score} */}
               </Typography>
             </Box>
           </Grid>
