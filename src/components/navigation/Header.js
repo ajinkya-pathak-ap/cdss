@@ -13,7 +13,6 @@ import SearchIcon from "@material-ui/icons/Search";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Avatar from "@material-ui/core/Avatar";
-// import {}
 
 const Img = styled("img")({
   margin: "auto",

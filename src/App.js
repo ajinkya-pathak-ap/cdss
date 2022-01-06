@@ -22,8 +22,7 @@ return (
 
       <Grid container spacing={2}>
         <Grid item md={12} sm={12} xs={12}>
-          {/* Header */}
-          <Header />
+          {/* <Header /> */}
         </Grid>
         <Grid container>
           <Grid></Grid>
