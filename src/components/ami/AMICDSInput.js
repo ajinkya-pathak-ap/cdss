@@ -174,7 +174,7 @@ export default function AMICSInput(props) {
                 Patient Age*
               </InputLabel>
               <BootstrapInput id="bootstrap-input">
-                {patientInfo.value.patientDetails.age}
+                {/* {patientInfo.value.patientDetails.age} */}
               </BootstrapInput>
             </FormControl>
 
@@ -311,7 +311,7 @@ export default function AMICSInput(props) {
                     for="rd_1"
                   >
                     {/* ST deviation, but LBBB, LVH, repolarization changes */}
-                    {patientInfo.value.modelDetails[0].modelInputKeyName}
+                    {/* {patientInfo.value.modelDetails[0].modelInputKeyName} */}
                   </label>
                 </div>
                 <br />
@@ -331,45 +331,9 @@ export default function AMICSInput(props) {
                   >
                     &nbsp;
                     {/* No ST deviation, but LBBB, LVH, repolarization changes */}
-                    {patientInfo.value.modelDetails[1].modelInputKeyName}
+                    {/* {patientInfo.value.modelDetails[1].modelInputKeyName} */}
                   </label>
                 </div>
-                {/* <RadioGroup
-                  aria-label="gender"
-                  defaultValue="female"
-                  name="radio-buttons-group"
-                >
-                  <FormControlLabel
-                    value="female"
-                    control={
-                      <Radio
-                        {...controlProps("d")}
-                        sx={{
-                          color: grey[800],
-                          "&.Mui-checked": {
-                            color: grey[600],
-                          },
-                        }}
-                      />
-                    }
-                    label="ST deviation, but LBBB, LVH, repolarization changes"
-                  />
-                  <FormControlLabel
-                    value="male"
-                    control={
-                      <Radio
-                        {...controlProps("e")}
-                        sx={{
-                          color: grey[800],
-                          "&.Mui-checked": {
-                            color: grey[600],
-                          },
-                        }}
-                      />
-                    }
-                    label="Male"
-                  />
-                </RadioGroup> */}
               </FormControl>
             </FormGroup>
           </Grid>
@@ -381,14 +345,7 @@ export default function AMICSInput(props) {
               className={classes.formgrop}
               style={{ marginTop: "14px" }}
             >
-              {/* <h4 style={{ marginLeft: "130px" }}>
-                hsTnl Results
-                <label style={{ marginLeft: "40px" }}>Draw Time</label>
-              </h4> */}
               <Grid container item>
-                {/* <Grid item xs={4} md={4}>
-                  <Typography variant="h9"></Typography>
-                </Grid> */}
                 <Grid item xs={6} md={6}>
                   <Typography
                     variant="h9"
@@ -434,7 +391,7 @@ export default function AMICSInput(props) {
                   }}
                   variant="filled"
                   // value="25 ng/L"
-                  value={`${patientInfo.result.troponins[0].value} ${patientInfo.result.troponins[0].units}`}
+                  // value={`${patientInfo.result.troponins[0].value} ${patientInfo.result.troponins[0].units}`}
                   type="text"
                   id="first-draw"
                   inputProps={{
@@ -451,7 +408,7 @@ export default function AMICSInput(props) {
                   }}
                   variant="filled"
                   // value="10/26/2021, 21:40"
-                  value={`${patientInfo.result.troponins[0].resultDateTime}`}
+                  // value={`${patientInfo.result.troponins[0].resultDateTime}`}
                   type="text"
                   id="first-draw-date"
                   inputProps={{
@@ -479,7 +436,7 @@ export default function AMICSInput(props) {
                   }}
                   variant="filled"
                   // value="35 ng/L"
-                  value={`${patientInfo.value.troponins[1].value} ${patientInfo.value.troponins[1].units}`}
+                  // value={`${patientInfo.value.troponins[1].value} ${patientInfo.value.troponins[1].units}`}
                   type="text"
                   id="second-draw"
                   inputProps={{
@@ -496,7 +453,7 @@ export default function AMICSInput(props) {
                   }}
                   variant="filled"
                   // value="10/26/2021, 21:40"
-                  value={`${patientInfo.value.troponins[1].resultDateTime}`}
+                  // value={`${patientInfo.value.troponins[1].resultDateTime}`}
                   type="text"
                   id="second-draw-date"
                   inputProps={{
@@ -527,7 +484,7 @@ export default function AMICSInput(props) {
                   }}
                   variant="filled"
                   // value="ng/L"
-                  value={`${patientInfo.value.troponins[2].value} ${patientInfo.value.troponins[2].units}`}
+                  // value={`${patientInfo.value.troponins[2].value} ${patientInfo.value.troponins[2].units}`}
                   type="text"
                   id="third-draw"
                 />
@@ -541,7 +498,7 @@ export default function AMICSInput(props) {
                   }}
                   variant="filled"
                   // value="mm/dd/yyyy,hh:mm"
-                  value={`${patientInfo.value.troponins[2].resultDateTime}`}
+                  // value={`${patientInfo.value.troponins[2].resultDateTime}`}
                   type="text"
                   id="third-draw-date"
                   inputProps={{
