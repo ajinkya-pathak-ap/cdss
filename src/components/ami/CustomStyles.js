@@ -21,6 +21,7 @@ export const amiOutputStyles = makeStyles((theme) => ({
     position: "absolute",
     left: "0",
     right: "0",
+
     margin: "auto",
     [theme.breakpoints.between("md", "lg")]: {
       width: "56%",
@@ -42,6 +43,29 @@ export const amiOutputStyles = makeStyles((theme) => ({
     color: "#fff",
     textAlign: "left",
     minHeight: "80px",
+
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center",
+    },
+  },
+
+  gridcontainer2: {
+    background: "#050038",
+    color: "#fff",
+    textAlign: "left",
+    minHeight: "80px",
+    marginTop: "-18px",
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center",
+    },
+  },
+
+  gridcontainer3: {
+    background: "#050038",
+    color: "#fff",
+    textAlign: "left",
+    minHeight: "80px",
+    marginTop: "-18px",
     [theme.breakpoints.down("sm")]: {
       justifyContent: "center",
     },
@@ -132,6 +156,7 @@ export const amiOutputStyles = makeStyles((theme) => ({
   },
 
   alignRight: {
+    marginTop: "-15px",
     justifyContent: "flex-end",
     [theme.breakpoints.down("sm")]: {
       justifyContent: "center",
