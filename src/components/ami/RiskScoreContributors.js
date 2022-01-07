@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { Card, CardContent, Typography } from "@material-ui/core";
@@ -61,14 +60,7 @@ export default function RiskScoreContributors(props) {
         alignItems="center"
       >
         <Grid item sm={12} xs={12} md={12}>
-          <Box
-            sx={{ bgcolor: "#6D7F9B", minHeight: "250px" }}
-            // margin={10}
-            // // paddingLeft={4}
-            // paddingRight={4}
-            // paddingTop={5}
-          >
-            {/* <Grid container item xs={12} spacing={2}> */}
+          <Box sx={{ bgcolor: "#6D7F9B", minHeight: "250px" }}>
             {/* *****************First container***************** */}
             <Grid
               container
@@ -109,8 +101,6 @@ export default function RiskScoreContributors(props) {
               </Button>
               <br />
             </Grid>
-            {/* </Grid> */}
-            {/* </Grid> */}
           </Box>
         </Grid>
       </Grid>
