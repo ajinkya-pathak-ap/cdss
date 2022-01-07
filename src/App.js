@@ -8,17 +8,14 @@ import ShellComponent from "./components/navigation/ShellComponent";
 import Login from "../src/components/common/Login";
 import { connect } from "react-redux";
 import BasicMenu from "../src/components/ami/dropdownmenu";
+import Errorboundry from "./shared/errorboundry/Errorboundry";
 
 function App(props) {
   return (
     <div className="App">
       {props.isLoggedIn === false ? (
         <Grid container spacing={2}>
-          <Grid item md={12} sm={12} xs={12}>
-            {/* Header */}
-            {/* <Header /> */}
-            {/* <BasicMenu /> */}
-          </Grid>
+          <Grid item md={12} sm={12} xs={12}></Grid>
           <Grid container>
             <Grid></Grid>
             {/* <Grid item md={4} sm={12} xs={12}>
@@ -26,22 +23,14 @@ function App(props) {
           </Grid> */}
             <Grid item md={12} sm={12} xs={12}>
               {/* sidenav&mainmenu */}
-              <ShellComponent />
+              <Errorboundry>
+                <ShellComponent />
+              </Errorboundry>
             </Grid>
           </Grid>
         </Grid>
       ) : (
         <React.Fragment>
-          {/* <Header />
-          <Grid container>
-            <Grid item sm={6} xs={6}>
-              <SideNav />
-            </Grid>
-            <Grid item sm={12} xs={12}>
-              <ShellComponent />
-            </Grid>
-          </Grid> */}
-
           <Grid container spacing={2}>
             <Grid item md={12} sm={12} xs={12}>
               {/* Header */}
@@ -54,7 +43,9 @@ function App(props) {
           </Grid> */}
               <Grid item md={12} sm={12} xs={12}>
                 {/* sidenav&mainmenu */}
-                <ShellComponent />
+                <Errorboundry>
+                  <ShellComponent />
+                </Errorboundry>
               </Grid>
             </Grid>
           </Grid>
@@ -66,9 +57,6 @@ function App(props) {
 const mapStateToProps = (rootReducer) => {
   return {
     isLoggedIn: rootReducer.login.isLoggedIn,
-    role: rootReducer.login.role,
-    authToken: rootReducer.login.authToken,
   };
 };
-// export default App;
 export default connect(mapStateToProps, null)(App);

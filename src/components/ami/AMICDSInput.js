@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
-import Checkbox from "@mui/material/Checkbox";
 import { Select, MenuItem, FormControl, InputLabel } from "@material-ui/core";
 import FormGroup from "@mui/material/FormGroup";
 import TextField from "@mui/material/TextField";
@@ -21,39 +20,6 @@ import { CDSInputStyles, bootstrappedInput } from "./CustomStyles";
 import { Card, CardContent, makeStyles } from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
 
-const riskFactor = [
-  {
-    value: "1",
-    label: "prior AMI",
-  },
-  {
-    value: "2",
-    label: "prior AMI2l",
-  },
-];
-
-const Race = [
-  {
-    value: "3",
-    label: "Asian",
-  },
-  {
-    value: "4",
-    label: "South",
-  },
-];
-
-const symptoms = [
-  {
-    value: "5",
-    label: "Left Hand Pain",
-  },
-  {
-    value: "6",
-    label: "Chest Pain",
-  },
-];
-
 const time = [
   {
     value: "7",
@@ -66,24 +32,12 @@ const time = [
 ];
 
 export default function AMICSInput(props) {
-  // const useStyles = CDSInputStyles((theme) => ({
-  //   firstinputspace: {
-  //     [theme.breakpoints.down("xs")]: {
-  //       paddingLeft: "10px",
-  //     },
-  //     [theme.breakpoints.down("xs")]: {
-  //       width: "70%",
-  //     },
-  //   },
-  // }));
-  // const classes = useStyles();
   const classes = CDSInputStyles();
 
   const resetFields = () => {};
   const [race, setRace] = useState("Asian");
-  const [presentingSymptoms, setPresentingSymptoms] = useState(
-    "Left Hand Pain"
-  );
+  const [presentingSymptoms, setPresentingSymptoms] =
+    useState("Left Hand Pain");
   const [symptomOnset, setSymptomOnset] = useState("1 Hrs");
   const [riskFactors, setrRiskFactors] = useState("prior AMI");
 
@@ -105,10 +59,9 @@ export default function AMICSInput(props) {
         (response) => {
           setPatientInfo(response.data);
           setIsFetching(false);
-          console.log(response.data);
         },
         (error) => {
-          return;
+          throw new Error("API Failure...");
         }
       );
     } else {
@@ -187,22 +140,20 @@ export default function AMICSInput(props) {
                 Patient Age*
               </InputLabel>
               <br></br>
-              {/* <label for="exampleFormControlInput1">Email address</label> */}
               <input
                 type="email"
                 class="form-control"
                 id="exampleFormControlInput1"
+                value={patientInfo.result.patientDetails.age}
                 style={{
                   // padding: "8px 3px",
                   paddingTop: "10px",
                   margin: "6px",
                   backgroundColor: "white",
                   border: "1px solid #808080",
+                  pointerEvents: "none",
                 }}
               ></input>
-              {/* <BootstrapInput id="bootstrap-input"> */}
-              {/* {patientInfo.value.patientDetails.age} */}
-              {/* </BootstrapInput> */}
             </FormControl>
 
             <TextField
@@ -218,7 +169,7 @@ export default function AMICSInput(props) {
               }}
             >
               <MenuItem style={{ textAlign: "center" }} value="Asian">
-                Male
+                {patientInfo.result.patientDetails.gender[0].description}
               </MenuItem>
             </TextField>
 
@@ -234,9 +185,15 @@ export default function AMICSInput(props) {
                 className: classes.fontTypeOne,
               }}
             >
-              <MenuItem style={{ textAlign: "center" }} value="Asian">
-                Asian
-              </MenuItem>
+              {patientInfo.result.patientDetails.race.map((v) => (
+                <MenuItem
+                  style={{ textAlign: "center" }}
+                  value={v.description}
+                  key={v.raceId}
+                >
+                  {v.description}
+                </MenuItem>
+              ))}
             </TextField>
 
             <TextField
@@ -251,7 +208,11 @@ export default function AMICSInput(props) {
                 className: classes.fontTypeOne,
               }}
             >
-              <MenuItem value="prior AMI">Chest pain</MenuItem>
+              {patientInfo.result.patientDetails.symptoms.map((v) => (
+                <MenuItem value={v} key={v}>
+                  {v}
+                </MenuItem>
+              ))}
             </TextField>
 
             <TextField
@@ -285,7 +246,11 @@ export default function AMICSInput(props) {
                 className: classes.fontTypeOne,
               }}
             >
-              <MenuItem value="prior AMI">Prior AMI</MenuItem>
+              {patientInfo.result.patientDetails.riskFactors.map((v) => (
+                <MenuItem value={v} key={v}>
+                  {v}
+                </MenuItem>
+              ))}
             </TextField>
           </form>
         </Grid>
@@ -318,85 +283,34 @@ export default function AMICSInput(props) {
                   EKG findings(Select One)
                 </FormLabel>
                 <br />
-                <div class="custom-control custom-radio custom-control-inline">
-                  <input
-                    style={{
-                      color: "#fff",
-                      borderColor: "#7B1FA2",
-                      backgroundColor: "red",
-                    }}
-                    type="radio"
-                    id="rd_1"
-                    name="rd"
-                    class="custom-control-input green"
-                    value="Yes"
-                  />
-                  &nbsp;
-                  <label
-                    style={{ fontSize: "14px" }}
-                    class="custom-control-label"
-                    for="rd_1"
-                  >
-                    {/* ST deviation, but LBBB, LVH, repolarization changes */}
-                    {/* {patientInfo.value.modelDetails[0].modelInputKeyName} */}
-                  </label>
-                </div>
-                <br />
 
-                <div class="custom-control custom-radio custom-control-inline">
-                  <input
-                    type="radio"
-                    id="rd_2"
-                    name="rd"
-                    class="custom-control-input red"
-                    value="No"
-                  />
-                  <label
-                    style={{ fontSize: "14px" }}
-                    class="custom-control-label"
-                    for="rd_2"
-                  >
-                    &nbsp;
-                    {/* No ST deviation, but LBBB, LVH, repolarization changes */}
-                    {/* {patientInfo.value.modelDetails[1].modelInputKeyName} */}
-                  </label>
-                </div>
-                {/* <RadioGroup
-                  aria-label="gender"
-                  defaultValue="female"
-                  name="radio-buttons-group"
-                >
-                  <FormControlLabel
-                    value="female"
-                    control={
-                      <Radio
-                        {...controlProps("d")}
-                        sx={{
-                          color: grey[800],
-                          "&.Mui-checked": {
-                            color: grey[600],
-                          },
+                {patientInfo.result.modelDetails.map((v, i) => (
+                  <>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input
+                        style={{
+                          color: "#fff",
+                          borderColor: "#7B1FA2",
+                          backgroundColor: "red",
                         }}
+                        type="radio"
+                        id={`rd_${i}`}
+                        name="rd"
+                        class="custom-control-input green"
+                        value="Yes"
                       />
-                    }
-                    label="ST deviation, but LBBB, LVH, repolarization changes"
-                  />
-                  <FormControlLabel
-                    value="male"
-                    control={
-                      <Radio
-                        {...controlProps("e")}
-                        sx={{
-                          color: grey[800],
-                          "&.Mui-checked": {
-                            color: grey[600],
-                          },
-                        }}
-                      />
-                    }
-                    label="Male"
-                  />
-                </RadioGroup> */}
+                      &nbsp;
+                      <label
+                        style={{ fontSize: "14px" }}
+                        class="custom-control-label"
+                        htmlFor={`rd_${i}`}
+                      >
+                        {v.modelInputKeyName}
+                      </label>
+                    </div>
+                    <br />
+                  </>
+                ))}
               </FormControl>
             </FormGroup>
           </Grid>
@@ -408,10 +322,6 @@ export default function AMICSInput(props) {
               className={classes.formgrop}
               style={{ marginTop: "14px" }}
             >
-              {/* <h4 style={{ marginLeft: "130px" }}>
-                hsTnl Results
-                <label style={{ marginLeft: "40px" }}>Draw Time</label>
-              </h4> */}
               <Grid
                 container
                 style={{
@@ -420,9 +330,6 @@ export default function AMICSInput(props) {
                 }}
                 spacing={2}
               >
-                {/* <Grid item xs={4} md={4}>
-                  <Typography variant="h9"></Typography>
-                </Grid> */}
                 <Grid item xs={6} md={6}>
                   <Typography
                     variant="h6"
@@ -447,21 +354,6 @@ export default function AMICSInput(props) {
                   </Typography>
                 </Grid>
                 <Grid xs={6} md={4}>
-                  {/* <TextField
-                  style={{
-                    backgroundColor: "#fff",
-                    width: "100px",
-                    // padding: "10px 20px",
-                  }}
-                  variant="filled"
-                  // value="25 ng/L"
-                  // value={`${patientInfo.result.troponins[0].value} ${patientInfo.result.troponins[0].units}`}
-                  type="text"
-                  id="first-draw"
-                  inputProps={{
-                    className: classes.inputFields,
-                  }}
-                /> */}
                   <input
                     type="email"
                     class="form-control"
@@ -473,20 +365,6 @@ export default function AMICSInput(props) {
                   ></input>
                 </Grid>
                 <Grid xs={6} md={4}>
-                  {/* <TextField
-                  style={{
-                    backgroundColor: "#fff",
-                    textAlign: "right",
-                  }}
-                  variant="filled"
-                  // value="10/26/2021, 21:40"
-                  // value={`${patientInfo.result.troponins[0].resultDateTime}`}
-                  type="text"
-                  id="first-draw-date"
-                  inputProps={{
-                    className: classes.inputFields,
-                  }}
-                /> */}
                   <input
                     type="email"
                     class="form-control"
@@ -501,7 +379,6 @@ export default function AMICSInput(props) {
                   <Typography
                     style={{
                       marginLeft: "20px",
-
                       fontSize: "14px",
                     }}
                   >
@@ -509,21 +386,6 @@ export default function AMICSInput(props) {
                   </Typography>
                 </Grid>
                 <Grid xs={6} md={4}>
-                  {/* <TextField
-                  style={{
-                    backgroundColor: "#fff",
-                    width: "100px",
-                    textAlign: "right",
-                  }}
-                  variant="filled"
-                  // value="35 ng/L"
-                  // value={`${patientInfo.value.troponins[1].value} ${patientInfo.value.troponins[1].units}`}
-                  type="text"
-                  id="second-draw"
-                  inputProps={{
-                    className: classes.inputFields,
-                  }}
-                /> */}
                   <input
                     type="email"
                     class="form-control"
@@ -535,20 +397,6 @@ export default function AMICSInput(props) {
                   ></input>
                 </Grid>
                 <Grid xs={6} md={4}>
-                  {/* <TextField
-                  style={{
-                    backgroundColor: "#fff",
-                    textAlign: "right",
-                  }}
-                  variant="filled"
-                  // value="10/26/2021, 21:40"
-                  // value={`${patientInfo.value.troponins[1].resultDateTime}`}
-                  type="text"
-                  id="second-draw-date"
-                  inputProps={{
-                    className: classes.inputFields,
-                  }}
-                /> */}
                   <input
                     type="email"
                     class="form-control"

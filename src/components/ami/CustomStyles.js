@@ -215,7 +215,6 @@ export const CDSInputStyles = makeStyles((theme) => ({
   holder: {
     backgroundColor: "#6D7F9B",
     width: "70%",
-
     position: "absolute",
     left: "0",
     right: "0",
@@ -293,10 +292,8 @@ export const CDSInputStyles = makeStyles((theme) => ({
   },
 
   firstinputspace: {
-    // padding: "8px 3px",
     paddingTop: "10px",
     width: "70%",
-    // margin: "6px",
     backgroundColor: "white",
     border: "1px solid #808080",
     [theme.breakpoints.down("xs")]: {

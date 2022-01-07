@@ -7,7 +7,6 @@ import AMIConfiguration from "../ami/AMIConfiguraton";
 import Login from "../common/Login";
 import RiskScoreContributors from "../ami/RiskScoreContributors";
 import ChestPainFlowchart from "../ami/ChestPainFlowchart";
-import Errorboundry from "../../shared/errorboundry/Errorboundry";
 
 function ShellComponent(props) {
   const [notify, setNotify] = useState({
