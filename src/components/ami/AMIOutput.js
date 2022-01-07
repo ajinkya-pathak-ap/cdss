@@ -31,6 +31,7 @@ const BootstrapButton = styled(Button)((props) => ({
   },
 }));
 
+//Close and Aknowledge button styles//
 const configData = {
   MRN: "1",
   EncounterNumber: "1",
