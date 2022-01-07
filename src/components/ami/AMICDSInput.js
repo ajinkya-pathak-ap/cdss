@@ -18,6 +18,7 @@ import { Typography } from "@material-ui/core";
 import { patientInfoService } from "../../services/patientInfo-service";
 import CircularIndeterminate from "../../shared/preloder/Preloder";
 import { CDSInputStyles, bootstrappedInput } from "./CustomStyles";
+import { Card, CardContent, makeStyles } from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
 
 const riskFactor = [
@@ -65,12 +66,24 @@ const time = [
 ];
 
 export default function AMICSInput(props) {
+  // const useStyles = CDSInputStyles((theme) => ({
+  //   firstinputspace: {
+  //     [theme.breakpoints.down("xs")]: {
+  //       paddingLeft: "10px",
+  //     },
+  //     [theme.breakpoints.down("xs")]: {
+  //       width: "70%",
+  //     },
+  //   },
+  // }));
+  // const classes = useStyles();
   const classes = CDSInputStyles();
 
   const resetFields = () => {};
   const [race, setRace] = useState("Asian");
-  const [presentingSymptoms, setPresentingSymptoms] =
-    useState("Left Hand Pain");
+  const [presentingSymptoms, setPresentingSymptoms] = useState(
+    "Left Hand Pain"
+  );
   const [symptomOnset, setSymptomOnset] = useState("1 Hrs");
   const [riskFactors, setrRiskFactors] = useState("prior AMI");
 
@@ -92,7 +105,7 @@ export default function AMICSInput(props) {
         (response) => {
           setPatientInfo(response.data);
           setIsFetching(false);
-          console.log(response.data)
+          console.log(response.data);
         },
         (error) => {
           return;
@@ -173,9 +186,23 @@ export default function AMICSInput(props) {
               >
                 Patient Age*
               </InputLabel>
-              <BootstrapInput id="bootstrap-input">
-                {/* {patientInfo.value.patientDetails.age} */}
-              </BootstrapInput>
+              <br></br>
+              {/* <label for="exampleFormControlInput1">Email address</label> */}
+              <input
+                type="email"
+                class="form-control"
+                id="exampleFormControlInput1"
+                style={{
+                  // padding: "8px 3px",
+                  paddingTop: "10px",
+                  margin: "6px",
+                  backgroundColor: "white",
+                  border: "1px solid #808080",
+                }}
+              ></input>
+              {/* <BootstrapInput id="bootstrap-input"> */}
+              {/* {patientInfo.value.patientDetails.age} */}
+              {/* </BootstrapInput> */}
             </FormControl>
 
             <TextField
@@ -334,6 +361,42 @@ export default function AMICSInput(props) {
                     {/* {patientInfo.value.modelDetails[1].modelInputKeyName} */}
                   </label>
                 </div>
+                {/* <RadioGroup
+                  aria-label="gender"
+                  defaultValue="female"
+                  name="radio-buttons-group"
+                >
+                  <FormControlLabel
+                    value="female"
+                    control={
+                      <Radio
+                        {...controlProps("d")}
+                        sx={{
+                          color: grey[800],
+                          "&.Mui-checked": {
+                            color: grey[600],
+                          },
+                        }}
+                      />
+                    }
+                    label="ST deviation, but LBBB, LVH, repolarization changes"
+                  />
+                  <FormControlLabel
+                    value="male"
+                    control={
+                      <Radio
+                        {...controlProps("e")}
+                        sx={{
+                          color: grey[800],
+                          "&.Mui-checked": {
+                            color: grey[600],
+                          },
+                        }}
+                      />
+                    }
+                    label="Male"
+                  />
+                </RadioGroup> */}
               </FormControl>
             </FormGroup>
           </Grid>
@@ -345,49 +408,50 @@ export default function AMICSInput(props) {
               className={classes.formgrop}
               style={{ marginTop: "14px" }}
             >
-              <Grid container item>
+              {/* <h4 style={{ marginLeft: "130px" }}>
+                hsTnl Results
+                <label style={{ marginLeft: "40px" }}>Draw Time</label>
+              </h4> */}
+              <Grid
+                container
+                style={{
+                  marginTop: "10px",
+                  marginBottom: "8px",
+                }}
+                spacing={2}
+              >
+                {/* <Grid item xs={4} md={4}>
+                  <Typography variant="h9"></Typography>
+                </Grid> */}
                 <Grid item xs={6} md={6}>
                   <Typography
-                    variant="h9"
+                    variant="h6"
                     style={{
                       fontWeight: "700",
                       marginLeft: "17px",
-                      marginTop: "10px",
+                      // marginTop: "20px",
                     }}
                   >
                     hsTnl Results
                   </Typography>
                 </Grid>
-                <Grid item xs={12} md={6}>
-                  <Typography
-                    variant="h9"
-                    style={{
-                      fontWeight: "700",
-                      marginLeft: "70px",
-                    }}
-                  >
+                <Grid item xs={6} md={6}>
+                  <Typography variant="h6" className={classes.drawtime}>
                     Draw Time
                   </Typography>
                 </Grid>
-                <br />
-              </Grid>
 
-              <Grid container item xs={12} md={4}>
-                <Typography
-                  style={{
-                    marginLeft: "20px",
-                    fontSize: "14px",
-                    marginTop: "20px",
-                  }}
-                >
-                  First draw
-                </Typography>
-              </Grid>
-              <Grid xs={12} md={4}>
-                <TextField
+                <Grid container item xs={12} md={4}>
+                  <Typography className={classes.firstdraw}>
+                    First draw
+                  </Typography>
+                </Grid>
+                <Grid xs={6} md={4}>
+                  {/* <TextField
                   style={{
                     backgroundColor: "#fff",
                     width: "100px",
+                    // padding: "10px 20px",
                   }}
                   variant="filled"
                   // value="25 ng/L"
@@ -397,11 +461,19 @@ export default function AMICSInput(props) {
                   inputProps={{
                     className: classes.inputFields,
                   }}
-                />
-              </Grid>
-              <br></br>
-              <Grid xs={12} md={4}>
-                <TextField
+                /> */}
+                  <input
+                    type="email"
+                    class="form-control"
+                    className={classes.firstinputspace}
+                    id="exampleFormControlInput1"
+                    inputProps={{
+                      className: classes.inputFields,
+                    }}
+                  ></input>
+                </Grid>
+                <Grid xs={6} md={4}>
+                  {/* <TextField
                   style={{
                     backgroundColor: "#fff",
                     textAlign: "right",
@@ -414,21 +486,30 @@ export default function AMICSInput(props) {
                   inputProps={{
                     className: classes.inputFields,
                   }}
-                />
-              </Grid>
-              <Grid container item xs={12} md={4}>
-                <Typography
-                  style={{
-                    marginLeft: "20px",
-                    marginTop: "20px",
-                    fontSize: "14px",
-                  }}
-                >
-                  Second draw
-                </Typography>
-              </Grid>
-              <Grid xs={12} md={4}>
-                <TextField
+                /> */}
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="exampleFormControlInput1"
+                    className={classes.firstinputspace2}
+                    inputProps={{
+                      className: classes.inputFields,
+                    }}
+                  ></input>
+                </Grid>
+                <Grid container item xs={12} md={4}>
+                  <Typography
+                    style={{
+                      marginLeft: "20px",
+
+                      fontSize: "14px",
+                    }}
+                  >
+                    Second draw
+                  </Typography>
+                </Grid>
+                <Grid xs={6} md={4}>
+                  {/* <TextField
                   style={{
                     backgroundColor: "#fff",
                     width: "100px",
@@ -442,11 +523,19 @@ export default function AMICSInput(props) {
                   inputProps={{
                     className: classes.inputFields,
                   }}
-                />
-              </Grid>
-              <br></br>
-              <Grid xs={12} md={4}>
-                <TextField
+                /> */}
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="exampleFormControlInput1"
+                    className={classes.secondinputspace1}
+                    inputProps={{
+                      className: classes.inputFields,
+                    }}
+                  ></input>
+                </Grid>
+                <Grid xs={6} md={4}>
+                  {/* <TextField
                   style={{
                     backgroundColor: "#fff",
                     textAlign: "right",
@@ -459,21 +548,30 @@ export default function AMICSInput(props) {
                   inputProps={{
                     className: classes.inputFields,
                   }}
-                />
-              </Grid>
-              <Grid container item xs={12} md={4}>
-                <Typography
-                  style={{
-                    marginLeft: "20px",
-                    fontSize: "14px",
-                    marginTop: "20px",
-                  }}
-                >
-                  Third draw
-                </Typography>
-              </Grid>
-              <Grid xs={12} md={4}>
-                <TextField
+                /> */}
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="exampleFormControlInput1"
+                    className={classes.secondinputspace2}
+                    inputProps={{
+                      className: classes.inputFields,
+                    }}
+                  ></input>
+                </Grid>
+                <Grid container item xs={12} md={4}>
+                  <Typography
+                    style={{
+                      marginLeft: "20px",
+                      fontSize: "14px",
+                      // marginTop: "5px",
+                    }}
+                  >
+                    Third draw
+                  </Typography>
+                </Grid>
+                <Grid xs={6} md={4}>
+                  {/* <TextField
                   style={{
                     backgroundColor: "#fff",
                     width: "100px",
@@ -487,11 +585,19 @@ export default function AMICSInput(props) {
                   // value={`${patientInfo.value.troponins[2].value} ${patientInfo.value.troponins[2].units}`}
                   type="text"
                   id="third-draw"
-                />
-              </Grid>
-              <br></br>
-              <Grid xs={12} md={4}>
-                <TextField
+                /> */}
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="exampleFormControlInput1"
+                    className={classes.thirdinputspace1}
+                    inputProps={{
+                      className: classes.inputFields,
+                    }}
+                  ></input>
+                </Grid>
+                <Grid xs={6} md={4}>
+                  {/* <TextField
                   style={{
                     backgroundColor: "#fff",
                     textAlign: "right",
@@ -504,31 +610,42 @@ export default function AMICSInput(props) {
                   inputProps={{
                     className: classes.inputFields,
                   }}
-                />
+                /> */}
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="exampleFormControlInput1"
+                    className={classes.thirdinputspace2}
+                    inputProps={{
+                      className: classes.inputFields,
+                    }}
+                  ></input>
+                </Grid>
               </Grid>
             </Grid>
+            <br />
           </form>
 
           {/* ***************** end of second Box *********************** */}
           {/* *****************  start third Box *********************** */}
-          <Grid item xs={12}>
+          <Grid container spacing={2}>
             {/* <Paper className={classes.paper}>1</Paper> */}
-            <Stack
-              xs={12}
-              direction="row"
-              justifycontent="flex-end"
-              spacing={2}
-            >
+            {/* <Grid item xs={12} md={4}> */}
+            <Grid item xs={4} md={3}>
               <Button
                 className={classes.buttonColor}
                 variant="contained"
                 style={{
                   textTransform: "none",
                   backgroundColor: "#414BB2",
+                  paddingLeft: "25px",
+                  paddingRight: "25px",
                 }}
               >
                 Exit
               </Button>
+            </Grid>
+            <Grid item xs={4} md={3}>
               <Button
                 className={classes.buttonColor}
                 variant="contained"
@@ -541,23 +658,26 @@ export default function AMICSInput(props) {
               >
                 Reset
               </Button>
+            </Grid>
+            <Grid item xs={4} md={6}>
               <Button
                 className={classes.buttonColor}
                 style={{
                   textTransform: "none",
                   backgroundColor: "#414BB2",
-                  padding: "12px 12px",
+                  // padding: "12px 12px",
                 }}
                 variant="contained"
                 href="#contained-buttons"
               >
                 Calculate Risk Score
               </Button>
-            </Stack>
+            </Grid>
           </Grid>
-          {/* ***************** end of third Box *********************** */}
         </Grid>
+        {/* ***************** end of third Box *********************** */}
       </Grid>
+      // </Grid>
     );
   }
 }

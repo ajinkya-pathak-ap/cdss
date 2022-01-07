@@ -31,6 +31,18 @@ ol {
   padding-inline-start: 13px;
 }
 
+input[type="email" i] {
+  padding: 6px 2px;
+}
+
+
+.css-10botns-MuiInputBase-input-MuiFilledInput-input {
+ 
+  padding-right: 50px !important;
+  padding-bottom: 16px !important;
+  padding-left: 2px;
+}
+
 
 label#firstDraw-label,
 label#secondDraw-label,
