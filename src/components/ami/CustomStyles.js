@@ -127,7 +127,6 @@ export const amiOutputStyles = makeStyles((theme) => ({
 
   buttonColor: {
     backgroundColor: "#414BB2",
-    // paddingLeft: "12px",
     textDecoration: "none",
     color: "#fff",
     "&:hover": {
@@ -138,8 +137,6 @@ export const amiOutputStyles = makeStyles((theme) => ({
 
   buttonColor1: {
     backgroundColor: "#414BB2",
-    // paddingLeft: "62px",
-    // paddingRight: "62px",
     textDecoration: "none",
     color: "#fff",
     "&:hover": {
@@ -212,9 +209,64 @@ export const amiOutputStyles = makeStyles((theme) => ({
 
 /**AMI CDS Input Screen Styles */
 export const CDSInputStyles = makeStyles((theme) => ({
+  patientHistory: {
+    backgroundColor: "#050038",
+  },
+
+  patientagelabel: {
+    color: "red",
+    marginTop: "5px",
+    marginLeft: "9px",
+  },
+
+  patientage: {
+    paddingTop: "10px",
+    margin: "6px",
+    backgroundColor: "white",
+    border: "1px solid #808080",
+  },
+
+  ekgfindingscont: {
+    backgroundColor: "#6D7F9B",
+  },
+
+  ekgfindingscont2: {
+    backgroundColor: "#050038",
+    paddingLeft: "16px",
+  },
+
+  ekgformlabel: {
+    textAlign: "left",
+    fontSize: "18px",
+    color: "#fff",
+    fontWeight: "800",
+  },
+
+  patientinfolabelfont: {
+    fontSize: "14px",
+  },
+
+  seconddrawtypo: {
+    marginLeft: "20px",
+    fontSize: "14px",
+  },
+
+  thirddrawtypo: {
+    marginLeft: "20px",
+    fontSize: "14px",
+  },
+
+  patientinfo: {
+    color: "#fff",
+    borderColor: "#7B1FA2",
+    backgroundColor: "red",
+  },
+
   holder: {
     backgroundColor: "#6D7F9B",
     width: "70%",
+    padding: "30px",
+    marginTop: "30px",
     position: "absolute",
     left: "0",
     right: "0",
@@ -302,14 +354,10 @@ export const CDSInputStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("md")]: {
       marginLeft: "20px",
     },
-    // inputProps={{
-    //   className: classes.inputFields,
-    // }}
   },
   firstinputspace2: {
     paddingTop: "10px",
     width: "80%",
-    // margin: "6px",
     backgroundColor: "white",
     border: "1px solid #808080",
   },
@@ -330,10 +378,10 @@ export const CDSInputStyles = makeStyles((theme) => ({
   secondinputspace2: {
     paddingTop: "10px",
     width: "80%",
-    // margin: "6px",
     backgroundColor: "white",
     border: "1px solid #808080",
   },
+
   thirdinputspace1: {
     paddingTop: "10px",
     width: "70%",
@@ -350,7 +398,6 @@ export const CDSInputStyles = makeStyles((theme) => ({
   thirdinputspace2: {
     paddingTop: "10px",
     width: "80%",
-    // margin: "6px",
     backgroundColor: "white",
     border: "1px solid #808080",
   },
@@ -468,11 +515,45 @@ export const AMIConfigStyles = makeStyles((theme) => ({
     },
   },
 
+  generaters: {
+    fontSize: "13px",
+    backgroundColor: "#fff",
+    width: "100px",
+    height: "40px",
+  },
+
   spacing: {
     [theme.breakpoints.down("md")]: {
       marginLeft: "47px",
       marginBottom: "5px",
     },
+  },
+
+  agedropdown: {
+    backgroundColor: "#fff",
+    width: "100px",
+  },
+
+  valuebox1: {
+    backgroundColor: "#fff",
+    width: "100px",
+  },
+
+  spacingandinmd: {
+    marginLeft: "30px",
+    marginTop: "83px",
+  },
+
+  spacingandinmd2: {
+    marginLeft: "0px",
+    marginTop: "82px",
+  },
+
+  hstnldropdown: {
+    fontSize: "13px",
+    backgroundColor: "#fff",
+    width: "100px",
+    height: "40px",
   },
 
   betweenspacing: {
@@ -562,13 +643,7 @@ export const riskContributorStyles = makeStyles((theme) => ({
   listpadding: {
     paddingInlineStart: "13px",
   },
-  // contribcontainer1: {
-  //   background: "#050038",
-  //   color: "#fff",
-  //   textAlign: "center",
-  //   minHeight: "50px",
-  //   borderRadius: "50px",
-  // },
+
   typo: {
     color: "red",
     fontSize: "12px",
@@ -592,7 +667,6 @@ export const riskContributorStyles = makeStyles((theme) => ({
     backgroundColor: "#6D7F9B",
     width: "60%",
     minHeight: "250px",
-    // position: "absolute",
     left: "0",
     right: "0",
     marginTop: "40px",

@@ -293,17 +293,12 @@ export default function AMIConfiguration(props) {
                         <Select
                           labelId="simple"
                           size="small"
-                          id="demo2"
+                          // id="demo2"
                           value={operatorOne}
                           label="Age"
                           autoWidth
                           onChange={changeOperatorOne}
-                          style={{
-                            fontSize: "13px",
-                            backgroundColor: "#fff",
-                            width: "100px",
-                            height: "40px",
-                          }}
+                          className={classes.generaters}
                           disabled={generateRS}
                         >
                           {operators.map((option) => {
@@ -320,10 +315,7 @@ export default function AMIConfiguration(props) {
                       <TextField
                         size="small"
                         disabled={generateRS}
-                        style={{
-                          backgroundColor: "#fff",
-                          width: "100px",
-                        }}
+                        className={classes.agedropdown}
                         onChange={(e) => handleGenerateRule(e)}
                         name="ageOne"
                         type="number"
@@ -340,10 +332,7 @@ export default function AMIConfiguration(props) {
                         <TextField
                           size="small"
                           disabled={generateRS}
-                          style={{
-                            backgroundColor: "#fff",
-                            width: "100px",
-                          }}
+                          className={classes.valuebox1}
                           onChange={(e) => handleGenerateRule(e)}
                           name="ageTwo"
                           type="number"
@@ -362,23 +351,9 @@ export default function AMIConfiguration(props) {
                 </Grid>
                 <Grid item xs={12} md={2} className={classes.spacingaboveand}>
                   {operatorOne === "Between" ? (
-                    <h3
-                      style={{
-                        marginLeft: "30px",
-                        marginTop: "83px",
-                      }}
-                    >
-                      AND
-                    </h3>
+                    <h3 className={classes.spacingandinmd}>AND</h3>
                   ) : (
-                    <h3
-                      style={{
-                        marginLeft: "0px",
-                        marginTop: "82px",
-                      }}
-                    >
-                      AND
-                    </h3>
+                    <h3 className={classes.spacingandinmd2}>AND</h3>
                   )}
                 </Grid>
                 <Grid item xs={12} md={5}>
@@ -399,12 +374,7 @@ export default function AMIConfiguration(props) {
                           label="Age"
                           autoWidth
                           onChange={changeOperatorTwo}
-                          style={{
-                            fontSize: "13px",
-                            backgroundColor: "#fff",
-                            width: "100px",
-                            height: "40px",
-                          }}
+                          className={classes.hstnldropdown}
                           disabled={generateRS}
                         >
                           {operators.map((option) => {
