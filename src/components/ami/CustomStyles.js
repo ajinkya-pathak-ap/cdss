@@ -534,6 +534,37 @@ export const AMIConfigStyles = makeStyles((theme) => ({
     width: "100px",
   },
 
+  ageelsedropdown: {
+    fontSize: "13px",
+    backgroundColor: "#fff",
+    width: "100px",
+    height: "40px",
+  },
+
+  ageElseBetweenValue1: {
+    backgroundColor: "#fff",
+    width: "100px",
+  },
+
+  ageElseBetweenValue2: {
+    backgroundColor: "#fff",
+    width: "100px",
+  },
+
+  andspacingifbetween1: {
+    marginLeft: "30px",
+    marginTop: "83px",
+  },
+
+  andspacingifbetween2: {
+    marginLeft: "0px",
+    marginTop: "82px",
+  },
+
+  ageelseheading: {
+    marginLeft: "30px",
+  },
+
   valuebox1: {
     backgroundColor: "#fff",
     width: "100px",
@@ -556,6 +587,33 @@ export const AMIConfigStyles = makeStyles((theme) => ({
     height: "40px",
   },
 
+  hstnldropdown2: {
+    fontSize: "13px",
+    backgroundColor: "#fff",
+    width: "100px",
+    height: "40px",
+  },
+
+  hstnlvalue1: {
+    backgroundColor: "#fff",
+    width: "100px",
+  },
+
+  hstnlvalue2: {
+    backgroundColor: "#fff",
+    width: "100px",
+  },
+
+  hstnlelsevalue1: {
+    backgroundColor: "#fff",
+    width: "100px",
+  },
+
+  hstnlelsevalue2: {
+    backgroundColor: "#fff",
+    width: "100px",
+  },
+
   betweenspacing: {
     [theme.breakpoints.down("xs")]: {
       marginTop: "0px",
@@ -576,6 +634,26 @@ export const AMIConfigStyles = makeStyles((theme) => ({
       marginTop: "-35px",
       marginLeft: "0px",
     },
+  },
+
+  //display risk score //
+  DisRiskbetween: {
+    marginLeft: "10px",
+  },
+
+  DisRiskinput: {
+    width: "80px",
+    textAlign: "right",
+  },
+
+  DisRiskinput2: {
+    marginLeft: "-20px",
+    width: "80px",
+  },
+
+  riskofmace: {
+    marginLeft: "5px",
+    fontSize: "18px",
   },
 }));
 
