@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import { Card, CardContent, Typography } from "@material-ui/core";
 import { Stack } from "@mui/material";
@@ -8,8 +8,21 @@ import {
   RiskContributorStyles,
 } from "./RiskscoreContributorStyles";
 
-const RiskscoreContributors = () => {
+const RiskscoreContributors = (props) => {
+  useEffect(() => {
+    riskScoreContributors();
+  }, []);
+
   const classes = RiskContributorStyles();
+  const { positiveContributors, negativeContributors } = props.result;
+
+  const [positiveCont, setPositiveCont] = useState([]);
+  const [negativeCont, setNegativeCont] = useState([]);
+
+  const riskScoreContributors = () => {
+    setPositiveCont(positiveContributors.split(","));
+    setNegativeCont(negativeContributors.split(","));
+  };
 
   return (
     <Grid container item xs={12}>
@@ -21,24 +34,23 @@ const RiskscoreContributors = () => {
             </Typography>
             <Typography className={`${classes.headerTextThree}`}>
               Factors that increase the 30-day MACE risk
-              {/* <ol>
+              <ol>
                 {positiveCont.map((v) => (
                   <li key={v}>{v}</li>
                 ))}
-              </ol> */}
+              </ol>
             </Typography>
             <Typography className={`${classes.headerTextThree}`}>
               Factors that decrease the 30-day MACE risk
-              {/* <ol>
+              <ol>
                 {negativeCont.map((v) => (
                   <li key={v}>{v}</li>
                 ))}
-              </ol> */}
+              </ol>
             </Typography>
           </CardContent>
         </Card>
       </Grid>
-
       <Grid
         container
         item
@@ -46,7 +58,6 @@ const RiskscoreContributors = () => {
         lg={4}
         className={`${classes.gridcontainer2} ${classes.moreInfo}`}
         direction="column"
-        alignItems="center"
       >
         <Stack spacing={4} direction="row">
           <BootstrapButton
@@ -54,7 +65,6 @@ const RiskscoreContributors = () => {
             className={classes.buttonColor}
             style={{
               marginBottom: "40px",
-              // marginRight: "20px",
             }}
           >
             <Link

@@ -1,4 +1,4 @@
-import React from "react";
+import { React } from "react";
 import Grid from "@material-ui/core/Grid";
 import { Card, CardContent, Typography } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
@@ -6,6 +6,17 @@ import { RiskScoreStyles } from "./RiskscoreStyles";
 
 const Riskscore = (props) => {
   const classes = RiskScoreStyles();
+  const { riskScoreDetails, probabilityRange, score } = props.result;
+
+  const details = riskScoreDetails.split("$");
+
+  const riskScoreRange = () => {
+    let probRange = probabilityRange;
+    probRange = probRange.replace("(", "");
+    probRange = probRange.replace(")", "");
+    probRange = probRange.replace(",", " -");
+    return probRange;
+  };
 
   return (
     <Grid container item xs={12}>
@@ -16,27 +27,18 @@ const Riskscore = (props) => {
               Risk Score
             </Typography>
             <Typography className={`${classes.headerText}`}>
-              {/* {details.text_1} */}
+              {details[0]}
             </Typography>
             <Typography className={`${classes.headerTextThree}`}>
-              {/* {details.text_2} */}
+              {details[1]}
             </Typography>
           </CardContent>
         </Card>
       </Grid>
-      <Grid
-        container
-        item
-        xs={4}
-        className={classes.gridcontainer1}
-        alignItems="center"
-        justifyContent="center"
-      >
+      <Grid container item xs={4} className={classes.gridcontainer1}>
         <Box textAlign="center" className={classes.smallMargin}>
           <Typography alignitems="center" className={classes.riskScoreShell}>
-            {/* {riskScoreRange()} */}
-            {/* {riskScore.result.score} */}
-            0% t0 10%
+            {riskScoreRange()}
           </Typography>
         </Box>
       </Grid>

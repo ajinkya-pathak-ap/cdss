@@ -35,6 +35,7 @@ export const RiskContributorStyles = makeStyles((theme) => ({
     textAlign: "left",
     minHeight: "80px",
     marginTop: "-18px",
+    alignItems: "center",
     [theme.breakpoints.down("sm")]: {
       justifyContent: "center",
     },

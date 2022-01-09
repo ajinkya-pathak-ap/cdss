@@ -14,7 +14,8 @@ export const RiskScoreStyles = makeStyles((theme) => ({
     color: "#fff",
     textAlign: "left",
     minHeight: "80px",
-
+    alignItems: "center",
+    justifyContent: "center",
     [theme.breakpoints.down("sm")]: {
       justifyContent: "center",
     },

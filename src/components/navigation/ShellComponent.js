@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Notification from "../../shared/notification/Notification";
-import AMIOutput from "../ami/AMIOutput";
-import AMICDSInput from "../ami/AMICDSInput";
-import AMIConfiguration from "../ami/AMIConfiguraton";
-import Login from "../common/Login";
-import RiskScoreContributors from "../ami/RiskScoreContributors";
-import ChestPainFlowchart from "../ami/ChestPainFlowchart";
+import AMIOutput from "../ami/amioutput/Amioutput";
+// import AMICDSInput from "../ami/AMICDSInput";
+// import AMIConfiguration from "../ami/AMIConfiguraton";
+// import Login from "../common/Login";
+// import RiskScoreContributors from "../ami/RiskScoreContributors";
+// import ChestPainFlowchart from "../ami/ChestPainFlowchart";
 
 function ShellComponent(props) {
   const [notify, setNotify] = useState({
@@ -33,22 +33,20 @@ function ShellComponent(props) {
           <Route
             exact
             path="/"
-            element={
-              <AMIConfiguration notify={snacksBar} localMode={localMode} />
-            }
+            element={<AMIOutput notify={snacksBar} localMode={localMode} />}
           />
-          <Route exact path="/login" element={<Login notify={snacksBar} />} />
-          <Route
+          {/* <Route exact path="/login" element={<Login notify={snacksBar} />} /> */}
+          {/* <Route
             path="/config"
             element={
               <AMIConfiguration notify={snacksBar} localMode={localMode} />
             }
-          />
+          /> */}
           <Route
             path="/amioutput"
             element={<AMIOutput notify={snacksBar} localMode={localMode} />}
           />
-          <Route
+          {/* <Route
             path="/contributors"
             element={
               <RiskScoreContributors notify={snacksBar} localMode={localMode} />
@@ -63,7 +61,7 @@ function ShellComponent(props) {
             element={
               <ChestPainFlowchart notify={snacksBar} localMode={localMode} />
             }
-          />
+          /> */}
         </Routes>
       </div>
     </>
