@@ -386,19 +386,11 @@ export default function AMIConfiguration(props) {
                       <TextField
                         size="small"
                         disabled={generateRS}
-                        style={{
-                          backgroundColor: "#fff",
-                          width: "100px",
-                        }}
+                        className={classes.hstnlvalue1}
                         onChange={(e) => handleGenerateRule(e)}
                         name="hstnlOne"
                         type="number"
                         value={generateRule.hstnlOne}
-                        // value={
-                        //   hstnlArr.values.length > 0
-                        //     ? hstnlArr.values[0]
-                        //     : generateRule.hstnlOne
-                        // }
                       />
                     </Grid>
                     {operatorTwo === "Between" ? (
@@ -406,18 +398,10 @@ export default function AMIConfiguration(props) {
                         <TextField
                           size="small"
                           disabled={generateRS}
-                          style={{
-                            backgroundColor: "#fff",
-                            width: "100px",
-                          }}
+                          className={classes.hstnlvalue2}
                           onChange={(e) => handleGenerateRule(e)}
                           name="hstnlTwo"
                           type="number"
-                          // value={
-                          //   hstnlArr.values.length > 0
-                          //     ? hstnlArr.values[1]
-                          //     : generateRule.hstnlTwo
-                          // }
                           value={generateRule.hstnlTwo}
                         />
                       </Grid>
@@ -435,7 +419,7 @@ export default function AMIConfiguration(props) {
               <Grid item xs={12} sm={5} md={5}>
                 <Grid container spacing={1}>
                   <Grid item xs={12} md={12}>
-                    <h4 style={{ marginLeft: "30px" }}>Age</h4>
+                    <h4 className={classes.ageelseheading}>Age</h4>
                   </Grid>
                   <Grid item xs={12} md={4}>
                     <FormControl fullWidth>
@@ -447,12 +431,7 @@ export default function AMIConfiguration(props) {
                         label="Age"
                         autoWidth
                         onChange={changeOperatorOne}
-                        style={{
-                          fontSize: "13px",
-                          backgroundColor: "#fff",
-                          width: "100px",
-                          height: "40px",
-                        }}
+                        className={classes.ageelsedropdown}
                         disabled={generateRS}
                       >
                         {operators.map((option) => {
@@ -469,19 +448,11 @@ export default function AMIConfiguration(props) {
                     <TextField
                       size="small"
                       disabled={generateRS}
-                      style={{
-                        backgroundColor: "#fff",
-                        width: "100px",
-                      }}
+                      className={classes.ageElseBetweenValue1}
                       onChange={(e) => handleGenerateRule(e)}
                       name="ageOne"
                       type="number"
                       value={generateRule.ageOne}
-                      // value={
-                      //   ageArr.values.length > 0
-                      //     ? ageArr.values[0]
-                      //     : generateRule.ageOne
-                      // }
                     />
                   </Grid>
                   {operatorOne === "Between" ? (
@@ -489,18 +460,10 @@ export default function AMIConfiguration(props) {
                       <TextField
                         size="small"
                         disabled={generateRS}
-                        style={{
-                          backgroundColor: "#fff",
-                          width: "100px",
-                        }}
+                        className={classes.ageElseBetweenValue2}
                         onChange={(e) => handleGenerateRule(e)}
                         name="ageTwo"
                         type="number"
-                        // value={
-                        //   ageArr.values.length > 0
-                        //     ? ageArr.values[1]
-                        //     : generateRule.ageTwo
-                        // }
                         value={generateRule.ageTwo}
                       />
                     </Grid>
@@ -511,23 +474,9 @@ export default function AMIConfiguration(props) {
               </Grid>
               <Grid item xs={12} md={2} className={classes.spacingaboveand}>
                 {operatorOne === "Between" ? (
-                  <h3
-                    style={{
-                      marginLeft: "30px",
-                      marginTop: "83px",
-                    }}
-                  >
-                    AND
-                  </h3>
+                  <h3 className={classes.andspacingifbetween1}>AND</h3>
                 ) : (
-                  <h3
-                    style={{
-                      marginLeft: "0px",
-                      marginTop: "82px",
-                    }}
-                  >
-                    AND
-                  </h3>
+                  <h3 className={classes.andspacingifbetween2}>AND</h3>
                 )}
               </Grid>
               <Grid item xs={12} md={5}>
@@ -548,12 +497,7 @@ export default function AMIConfiguration(props) {
                         label="Age"
                         autoWidth
                         onChange={changeOperatorTwo}
-                        style={{
-                          fontSize: "13px",
-                          backgroundColor: "#fff",
-                          width: "100px",
-                          height: "40px",
-                        }}
+                        className={classes.hstnldropdown2}
                         disabled={generateRS}
                       >
                         {operators.map((option) => {
@@ -570,18 +514,10 @@ export default function AMIConfiguration(props) {
                     <TextField
                       size="small"
                       disabled={generateRS}
-                      style={{
-                        backgroundColor: "#fff",
-                        width: "100px",
-                      }}
+                      className={classes.hstnlelsevalue1}
                       onChange={(e) => handleGenerateRule(e)}
                       name="hstnlOne"
                       type="number"
-                      // value={
-                      //   hstnlArr.values.length > 0
-                      //     ? hstnlArr.values[0]
-                      //     : generateRule.hstnlOne
-                      // }
                       value={generateRule.hstnlOne}
                     />
                   </Grid>
@@ -590,18 +526,10 @@ export default function AMIConfiguration(props) {
                       <TextField
                         size="small"
                         disabled={generateRS}
-                        style={{
-                          backgroundColor: "#fff",
-                          width: "100px",
-                        }}
+                        className={classes.hstnlelsevalue2}
                         onChange={(e) => handleGenerateRule(e)}
                         name="hstnlTwo"
                         type="number"
-                        // value={
-                        //   hstnlArr.values.length > 0
-                        //     ? hstnlArr.values[1]
-                        //     : generateRule.hstnlTwo
-                        // }
                         value={generateRule.hstnlTwo}
                       />
                     </Grid>
@@ -628,7 +556,10 @@ export default function AMIConfiguration(props) {
               <Grid container spacing={2}>
                 <Grid container spacing={0}>
                   <Grid item xs={12} md={1} className={classes.betweenspacing}>
-                    <Typography variant={"h6"} style={{ marginLeft: "10px" }}>
+                    <Typography
+                      variant={"h6"}
+                      className={classes.DisRiskbetween}
+                    >
                       Between
                     </Typography>
                   </Grid>
@@ -640,10 +571,7 @@ export default function AMIConfiguration(props) {
                       }}
                     >
                       <BootstrapInput
-                        style={{
-                          width: "80px",
-                          textAlign: "right",
-                        }}
+                        className={classes.DisRiskinput}
                         defaultValue="0%"
                         disabled={displayRS}
                         id="rangeOne"
@@ -665,10 +593,7 @@ export default function AMIConfiguration(props) {
                   <Grid item xs={12} md={1} className={classes.spacing}>
                     <FormControl variant="standard">
                       <BootstrapInput
-                        style={{
-                          marginLeft: "-20px",
-                          width: "80px",
-                        }}
+                        className={classes.DisRiskinput2}
                         defaultValue="1%"
                         disabled={displayRS}
                         id="rangeTwo"
@@ -678,13 +603,7 @@ export default function AMIConfiguration(props) {
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} md={4}>
-                    <Typography
-                      variant={"h6"}
-                      style={{
-                        marginLeft: "5px",
-                        fontSize: "18px",
-                      }}
-                    >
+                    <Typography variant={"h6"} className={classes.riskofmace}>
                       risk of MACE within 30 days
                     </Typography>
                   </Grid>
