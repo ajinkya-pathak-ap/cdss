@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Button, styled } from "@material-ui/core";
 
 export const AcknowledgeStyles = makeStyles((theme) => ({
   buttonColor: {
@@ -50,5 +50,26 @@ export const AcknowledgeStyles = makeStyles((theme) => ({
       padding: "10px !important",
       marginLeft: "4px !important",
     },
+  },
+}));
+
+export const BootstrapButton = styled(Button)((props) => ({
+  boxShadow: "none",
+  textTransform: "none",
+  fontSize: "14px",
+  color: "#fff",
+  padding: "6px 32px",
+  lineHeight: 1.9,
+  backgroundColor: "#414bb2",
+  fontFamily: ["Roboto"].join(","),
+  "&:active": {
+    boxShadow: "none",
+    backgroundColor: "#0062cc",
+  },
+  "&:focus": {
+    boxShadow: "0 0 0 0.2rem rgba(0,123,255,.5)",
+  },
+  [props.theme.breakpoints.down("md")]: {
+    fontSize: "12px",
   },
 }));

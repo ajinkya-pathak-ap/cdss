@@ -7,6 +7,7 @@ import {
   BootstrapButton,
   RiskContributorStyles,
 } from "./RiskscoreContributorStyles";
+import "../styles.css";
 
 const RiskscoreContributors = (props) => {
   useEffect(() => {
@@ -24,6 +25,16 @@ const RiskscoreContributors = (props) => {
     setNegativeCont(negativeContributors.split(","));
   };
 
+  const mapList = (_arr) => {
+    return (
+      <ol>
+        {_arr.map((v) => (
+          <li key={v}>{v}</li>
+        ))}
+      </ol>
+    );
+  };
+
   return (
     <Grid container item xs={12}>
       <Grid item xs={7} lg={8} className={classes.gridcontainer2}>
@@ -34,19 +45,11 @@ const RiskscoreContributors = (props) => {
             </Typography>
             <Typography className={`${classes.headerTextThree}`}>
               Factors that increase the 30-day MACE risk
-              <ol>
-                {positiveCont.map((v) => (
-                  <li key={v}>{v}</li>
-                ))}
-              </ol>
+              {mapList(positiveCont)}
             </Typography>
             <Typography className={`${classes.headerTextThree}`}>
               Factors that decrease the 30-day MACE risk
-              <ol>
-                {negativeCont.map((v) => (
-                  <li key={v}>{v}</li>
-                ))}
-              </ol>
+              {mapList(negativeCont)}
             </Typography>
           </CardContent>
         </Card>

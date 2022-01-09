@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
-import { Link } from "react-router-dom";
-import { Stack } from "@mui/material";
 import { riskScoreService } from "../../../services/riskScore-service";
 import CircularIndeterminate from "../../../shared/preloder/Preloder";
 import { amiOutputStyles } from "./AmioutputStyles";
 import Guidance from "./guidance/Guidance";
 import Riskscore from "./riskscore/Riskscore";
 import RiskscoreContributors from "./riskcontributors/RiskscoreContributors";
-import { BootstrapButton } from "./AmioutputStyles";
+import { Acknowledge } from "./acknowledge/Acknowledge";
 
 const configData = {
   MRN: "1",
@@ -58,37 +56,8 @@ export default function AMIOutput(props) {
         <RiskscoreContributors
           result={riskScore.result}
         ></RiskscoreContributors>
-        <Guidance></Guidance>
-        <Grid item xs={12} container className={classes.alignRight}>
-          <Stack spacing={2} direction="row" container>
-            <BootstrapButton
-              variant="contained"
-              className={`${classes.buttonColor} ${classes.acknowledgeBtn_1}`}
-            >
-              <Link className={classes.buttonColor} to="">
-                <span className="m-1">
-                  Acknowledge(Document Risk Contributors)
-                </span>
-              </Link>
-            </BootstrapButton>
-            <BootstrapButton
-              variant="contained"
-              className={`${classes.buttonColor} ${classes.acknowledgeBtn_2}`}
-            >
-              <Link className={classes.buttonColor} to="">
-                <span className="m-1">Acknowledge</span>
-              </Link>
-            </BootstrapButton>
-            <BootstrapButton
-              variant="contained"
-              className={classes.buttonColor1}
-            >
-              <Link className={classes.buttonColor1} to="/amioutput">
-                <span className="m-1">Close</span>
-              </Link>
-            </BootstrapButton>
-          </Stack>
-        </Grid>
+        <Guidance result={riskScore.result}></Guidance>
+        <Acknowledge></Acknowledge>
       </Grid>
     );
   }

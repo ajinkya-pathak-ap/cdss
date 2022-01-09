@@ -4,8 +4,15 @@ import { Link } from "react-router-dom";
 import { Card, CardContent, Typography } from "@material-ui/core";
 import { GuidanceStyles } from "./GuidanceStyles";
 
-const Guidance = () => {
+const Guidance = (props) => {
+  const { guidance } = props.result;
+
+  const guidanceTxt =
+    "to view patient's position of your institution's Chest Pain Management Care Flowchart";
+
+  const details = guidance.split("$");
   const classes = GuidanceStyles();
+
   return (
     <Grid container item xs={12}>
       <Grid container item xs={12} className={classes.gridcontainer3}>
@@ -15,22 +22,15 @@ const Guidance = () => {
               Guidance
             </Typography>
             <Typography className={`${classes.headerTextThree}`}>
-              {/* {guidance.text_1} */}
-              institution, the following course of action is recommended
+              {details[0]}
             </Typography>
-            <Typography className={classes.typo}>
-              institution, the following course of action is recommended
-              {/* {guidance.text_2} */}
-            </Typography>
+            <Typography className={classes.typo}>{details[1]}</Typography>
             <Typography>
               <Link className={classes.hyperLink} to="/carepath">
                 Click here
               </Link>
               &nbsp;
-              <span className={classes.headerTextThree}>
-                to view patient's position of your institution's Chest Pain
-                Management Care Flowchart
-              </span>
+              <span className={classes.headerTextThree}>{guidanceTxt}</span>
             </Typography>
           </CardContent>
         </Card>

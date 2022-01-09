@@ -2,10 +2,10 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
 import { Stack } from "@mui/material";
-import { Link } from "react-router-dom";
-import { AcknowledgeStyles } from "./AcknowledgeStyles";
+import { AcknowledgeStyles, BootstrapButton } from "./AcknowledgeStyles";
 
-const Acknowledge = () => {
+export const Acknowledge = () => {
+  const classes = AcknowledgeStyles();
   return (
     <Grid item xs={12} container className={classes.alignRight}>
       <Stack spacing={2} direction="row" container>
@@ -35,4 +35,3 @@ const Acknowledge = () => {
   );
 };
 
-export default Acknowledge;
