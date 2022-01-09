@@ -50,9 +50,10 @@ export default function AMICSInput(props) {
         (response) => {
           setPatientInfo(response.data);
           setIsFetching(false);
+          console.log(response.data);
         },
         (error) => {
-          throw new Error("API Failure...");
+          return;
         }
       );
     } else {
@@ -172,11 +173,7 @@ export default function AMICSInput(props) {
                 className: classes.fontTypeOne,
               }}
             >
-              {patientInfo.result.patientDetails.symptoms.map((v) => (
-                <MenuItem value={v} key={v}>
-                  {v}
-                </MenuItem>
-              ))}
+              <MenuItem value="prior AMI">Chest pain</MenuItem>
             </TextField>
 
             <TextField
@@ -210,11 +207,7 @@ export default function AMICSInput(props) {
                 className: classes.fontTypeOne,
               }}
             >
-              {patientInfo.result.patientDetails.riskFactors.map((v) => (
-                <MenuItem value={v} key={v}>
-                  {v}
-                </MenuItem>
-              ))}
+              <MenuItem value="prior AMI">Prior AMI</MenuItem>
             </TextField>
           </form>
         </Grid>

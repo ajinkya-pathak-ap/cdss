@@ -7,7 +7,6 @@ import SideNav from "./components/navigation/SideNavBar";
 import ShellComponent from "./components/navigation/ShellComponent";
 import Login from "../src/components/common/Login";
 import { connect } from "react-redux";
-import BasicMenu from "../src/components/ami/dropdownmenu";
 import Errorboundry from "./shared/errorboundry/Errorboundry";
 
 function App(props) {

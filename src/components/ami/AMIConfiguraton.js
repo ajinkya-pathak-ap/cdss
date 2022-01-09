@@ -41,14 +41,19 @@ export default function AMIConfiguration(props) {
   const [displayArr, setDisplayArr] = useState([]);
   const [otherArr, setOtherArr] = useState([]);
   const [apply, setApply] = useState(true);
+
   const [generateRule, setGenerateRule] = useState({
     ageOne: "",
     ageTwo: "",
     hstnlOne: "",
     hstnlTwo: "",
+  });
+
+  const [displayRule, setDisplayRule] = useState({
     displayOne: "",
     displayTwo: "",
   });
+
   const [ageValues, setAgeValues] = useState({
     categoryDefinition: "Age",
     operator: "",
@@ -100,14 +105,17 @@ export default function AMIConfiguration(props) {
       : setHstnlArr([generateRule.hstnlOne]);
     sethstnlValues({ ...hstnlValues, values: hstnlArr, operator: operatorTwo });
   };
+
   const handleDisplayRule = (e) => {
-    setGenerateRule({ ...generateRule, [e.target.name]: e.target.value });
+    setDisplayRule({ ...displayRule, [e.target.name]: e.target.value });
+    
     enableApply(e);
+
     setDisplayValues({
       ...displayValues,
       values: [
-        `${generateRule.displayOne}%`.split("%")[0],
-        `${generateRule.displayTwo}%`.split("%")[0],
+        `${displayRule.displayOne}%`.split("%")[0],
+        `${displayRule.displayTwo}%`.split("%")[0],
       ],
     });
   };
@@ -258,11 +266,9 @@ export default function AMIConfiguration(props) {
         }
       }
     });
-    console.log(ageArr);
-    console.log(hstnlArr);
-
     mapExistingRules();
   };
+
   const mapExistingRules = () => {
     ageArr.length > 1
       ? setGenerateRule({
@@ -275,6 +281,7 @@ export default function AMIConfiguration(props) {
           [generateRule.ageOne]: ageArr.values[0],
         });
   };
+
   const createGenerateRule = () => {
     let response;
     configData.result.configurations.forEach((v, i) => {
@@ -319,12 +326,12 @@ export default function AMIConfiguration(props) {
                         onChange={(e) => handleGenerateRule(e)}
                         name="ageOne"
                         type="number"
-                        // value={generateRule.ageOne}
-                        value={
-                          ageArr.values.length > 0
-                            ? ageArr.values[0]
-                            : generateRule.ageOne
-                        }
+                        value={generateRule.ageOne}
+                        // value={
+                        //   ageArr.values.length > 0
+                        //     ? ageArr.values[0]
+                        //     : generateRule.ageOne
+                        // }
                       />
                     </Grid>
                     {operatorOne === "Between" ? (
@@ -336,12 +343,12 @@ export default function AMIConfiguration(props) {
                           onChange={(e) => handleGenerateRule(e)}
                           name="ageTwo"
                           type="number"
-                          value={
-                            ageArr.values.length > 0
-                              ? ageArr.values[1]
-                              : generateRule.ageTwo
-                          }
-                          // value={generateRule.ageTwo}
+                          // value={
+                          //   ageArr.values.length > 0
+                          //     ? ageArr.values[1]
+                          //     : generateRule.ageTwo
+                          // }
+                          value={generateRule.ageTwo}
                         />
                       </Grid>
                     ) : (
@@ -398,12 +405,12 @@ export default function AMIConfiguration(props) {
                         onChange={(e) => handleGenerateRule(e)}
                         name="hstnlOne"
                         type="number"
-                        // value={generateRule.hstnlOne}
-                        value={
-                          hstnlArr.values.length > 0
-                            ? hstnlArr.values[0]
-                            : generateRule.hstnlOne
-                        }
+                        value={generateRule.hstnlOne}
+                        // value={
+                        //   hstnlArr.values.length > 0
+                        //     ? hstnlArr.values[0]
+                        //     : generateRule.hstnlOne
+                        // }
                       />
                     </Grid>
                     {operatorTwo === "Between" ? (
@@ -418,12 +425,12 @@ export default function AMIConfiguration(props) {
                           onChange={(e) => handleGenerateRule(e)}
                           name="hstnlTwo"
                           type="number"
-                          value={
-                            hstnlArr.values.length > 0
-                              ? hstnlArr.values[1]
-                              : generateRule.hstnlTwo
-                          }
-                          // value={generateRule.hstnlTwo}
+                          // value={
+                          //   hstnlArr.values.length > 0
+                          //     ? hstnlArr.values[1]
+                          //     : generateRule.hstnlTwo
+                          // }
+                          value={generateRule.hstnlTwo}
                         />
                       </Grid>
                     ) : (
@@ -775,6 +782,7 @@ export default function AMIConfiguration(props) {
 
   const saveStateValues = () => {
     /**generate rule-section */
+
     configData.result.configurations.forEach((item_0) => {
       if (item_0.ruleSectionName.toLocaleLowerCase() === "generate") {
         if (item_0.rules.length > 0) {
@@ -827,8 +835,8 @@ export default function AMIConfiguration(props) {
               if (item_1.categories.length > 0) {
                 /**values exists for textfields */
                 item_1.categories[0].values = [
-                  `${generateRule.displayOne}%`.split("%")[0],
-                  `${generateRule.displayTwo}%`.split("%")[0],
+                  `${displayRule.displayOne}%`.split("%")[0],
+                  `${displayRule.displayTwo}%`.split("%")[0],
                 ];
                 item_1.categories[0].operator = "Between";
               } else {
@@ -845,8 +853,8 @@ export default function AMIConfiguration(props) {
           if (displayRS === false) {
             /**checkbox not selected */
             item_0.rules[0].categories[0].values = [
-              `${generateRule.displayOne}%`.split("%")[0],
-              `${generateRule.displayTwo}%`.split("%")[0],
+              `${displayRule.displayOne}%`.split("%")[0],
+              `${displayRule.displayTwo}%`.split("%")[0],
             ];
             item_0.rules[0].isDefault = displayDefault;
             item_0.rules[0].isChecked = displayRS;

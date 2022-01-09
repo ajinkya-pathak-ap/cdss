@@ -58,8 +58,11 @@ export default function AMIOutput(props) {
 
   useEffect(() => {
     fetchRiskScore(configData);
-  }, [0]);
-
+  }, []);
+  /** 1.pass empty array for one time load
+   * 2.use env files for api urls
+   *
+   */
   const fetchRiskScore = (config) => {
     if (props.localMode) {
       riskScoreService.getRiskScoreLocal(config).then(
