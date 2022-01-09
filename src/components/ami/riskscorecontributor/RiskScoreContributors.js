@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Card, CardContent, Typography } from "@material-ui/core";
 import { riskScoreService } from "../../services/riskScore-service";
 import CircularIndeterminate from "../../shared/preloder/Preloder";
-import { riskContributorStyles } from "./CustomStyles";
+import { RiskContributorStyles } from "./RiskScoreContributorStyles";
 
 const configData = {
   MRN: "1",
@@ -14,7 +14,7 @@ const configData = {
 };
 
 export default function RiskScoreContributors(props) {
-  const classes = riskContributorStyles();
+  const classes = RiskContributorStyles();
   const [isFetching, setIsFetching] = useState(true);
   const [riskScoreContributors, setRiskScoreContributors] = useState({});
 
@@ -56,11 +56,14 @@ export default function RiskScoreContributors(props) {
         container
         spacing={4}
         className={classes.contrimainContainer}
-        justifyContent="center"
-        alignItems="center"
+        // justifyContent="center"
+        // alignItems="center"
       >
         <Grid item sm={12} xs={12} md={12}>
-          <Box sx={{ bgcolor: "#6D7F9B", minHeight: "250px" }}>
+          <Box
+            className={classes.sx}
+            // sx={{ bgcolor: "#6D7F9B", minHeight: "250px" }}
+          >
             {/* *****************First container***************** */}
             <Grid
               container
@@ -72,15 +75,10 @@ export default function RiskScoreContributors(props) {
             >
               <Grid item xs={10}>
                 <Card className={classes.contribcontainer}>
-                  <CardContent style={{ textAlign: "center" }}>
+                  <CardContent className={classes.cardcont}>
                     <Typography
                       variant={"h6"}
-                      style={{
-                        fontSize: "18px",
-                        textAlign: "center",
-                        paddingTop: "90px",
-                        textAlign: "center",
-                      }}
+                      className={classes.typoofriskscore}
                     >
                       {riskScoreContributors.value.riskScoreContributors}
                       {/* Provide the Details for the Risk Score Contributors */}
