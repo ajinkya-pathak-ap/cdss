@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Grid from "@material-ui/core/Grid";
+import { Grid } from "../../../shared/material/mui";
+
 import { riskScoreService } from "../../../services/riskScore-service";
 import CircularIndeterminate from "../../../shared/preloder/Preloder";
+
 import { amiOutputStyles } from "./AmioutputStyles";
+
 import Guidance from "./guidance/Guidance";
 import Riskscore from "./riskscore/Riskscore";
 import RiskscoreContributors from "./riskcontributors/RiskscoreContributors";

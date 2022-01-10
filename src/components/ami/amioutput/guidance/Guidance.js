@@ -1,7 +1,11 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
+import {
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+} from "../../../../shared/material/mui";
 import { Link } from "react-router-dom";
-import { Card, CardContent, Typography } from "@material-ui/core";
 import { GuidanceStyles } from "./GuidanceStyles";
 
 const Guidance = (props) => {

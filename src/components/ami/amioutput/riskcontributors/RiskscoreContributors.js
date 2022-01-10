@@ -1,14 +1,18 @@
 import { React, useState, useEffect } from "react";
-import Grid from "@material-ui/core/Grid";
-import { Card, CardContent, Typography } from "@material-ui/core";
-import { Stack } from "@mui/material";
+import {
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+  Stack,
+} from "../../../../shared/material/mui";
 import { Link } from "react-router-dom";
 import {
   BootstrapButton,
   RiskContributorStyles,
 } from "./RiskscoreContributorStyles";
 import "../styles.css";
-import { utilis } from "../AmiOutputUtils";
+import { utils } from "../AmiOutputUtils";
 
 const RiskscoreContributors = (props) => {
   useEffect(() => {
@@ -36,11 +40,11 @@ const RiskscoreContributors = (props) => {
             </Typography>
             <Typography className={`${classes.headerTextThree}`}>
               Factors that increase the 30-day MACE risk
-              {utilis.iterateOrderedList(positiveCont)}
+              {utils.iterateOrderedList(positiveCont)}
             </Typography>
             <Typography className={`${classes.headerTextThree}`}>
               Factors that decrease the 30-day MACE risk
-              {utilis.iterateOrderedList(negativeCont)}
+              {utils.iterateOrderedList(negativeCont)}
             </Typography>
           </CardContent>
         </Card>
