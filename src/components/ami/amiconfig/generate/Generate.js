@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
-import Grid from "@material-ui/core/Grid";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import { Card, CardContent, Typography, FormControl } from "@material-ui/core";
-import Select from "@mui/material/Select";
-import TextField from "@mui/material/TextField";
-import MenuItem from "@mui/material/MenuItem";
+import {
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+  MenuItem,
+  Checkbox,
+  FormControlLabel,
+  Select,
+  TextField,
+} from "../../../../shared/material/mui";
+
+import { FormControl } from "@material-ui/core";
 
 import { GenerateStyles } from "./GenerateStyles";
 import { utils } from "../AmiConfigUtils";
@@ -13,10 +19,6 @@ import { utils } from "../AmiConfigUtils";
 const Generate = (props) => {
   const classes = GenerateStyles();
   const { configurations } = props.config;
-  const label = {
-    inputProps: { "aria-label": "Checkbox demo" },
-  };
-  const operators = [">", "<", ">=", "<=", "=", "Between"];
 
   useEffect(() => {
     mapJsonResponse(configurations);
@@ -188,7 +190,7 @@ const Generate = (props) => {
                           className={classes.generaters}
                           disabled={generateRS}
                         >
-                          {operators.map((option) => {
+                          {utils.properties.operators.map((option) => {
                             return (
                               <MenuItem value={option} key={option}>
                                 {option}
@@ -218,11 +220,6 @@ const Generate = (props) => {
                           onChange={(e) => handleGenerateRule(e)}
                           name="ageTwo"
                           type="number"
-                          // value={
-                          //   ageArr.values.length > 0
-                          //     ? ageArr.values[1]
-                          //     : generateRule.ageTwo
-                          // }
                           value={generateRule.ageTwo}
                         />
                       </Grid>
@@ -259,7 +256,7 @@ const Generate = (props) => {
                           className={classes.hstnldropdown}
                           disabled={generateRS}
                         >
-                          {operators.map((option) => {
+                          {utils.properties.operators.map((option) => {
                             return (
                               <MenuItem value={option} key={option}>
                                 {option}
@@ -321,7 +318,7 @@ const Generate = (props) => {
                         className={classes.ageelsedropdown}
                         disabled={generateRS}
                       >
-                        {operators.map((option) => {
+                        {utils.properties.operators.map((option) => {
                           return (
                             <MenuItem value={option} key={option}>
                               {option}
@@ -339,12 +336,7 @@ const Generate = (props) => {
                       onChange={(e) => handleGenerateRule(e)}
                       name="ageOne"
                       type="number"
-                      // value={generateRule.ageOne}
-                      value={
-                        ageArr.values.length > 0
-                          ? ageArr.values[0]
-                          : generateRule.ageOne
-                      }
+                      value={generateRule.ageOne}
                     />
                   </Grid>
                   {operatorOne === "Between" ? (
@@ -356,12 +348,7 @@ const Generate = (props) => {
                         onChange={(e) => handleGenerateRule(e)}
                         name="ageTwo"
                         type="number"
-                        value={
-                          ageArr.values.length > 0
-                            ? ageArr.values[1]
-                            : generateRule.ageTwo
-                        }
-                        // value={generateRule.ageTwo}
+                        value={generateRule.ageTwo}
                       />
                     </Grid>
                   ) : (
@@ -397,7 +384,7 @@ const Generate = (props) => {
                         className={classes.hstnldropdown2}
                         disabled={generateRS}
                       >
-                        {operators.map((option) => {
+                        {utils.properties.operators.map((option) => {
                           return (
                             <MenuItem value={option} key={option}>
                               {option}
@@ -415,12 +402,7 @@ const Generate = (props) => {
                       onChange={(e) => handleGenerateRule(e)}
                       name="hstnlOne"
                       type="number"
-                      value={
-                        hstnlArr.values.length > 0
-                          ? hstnlArr.values[0]
-                          : generateRule.hstnlOne
-                      }
-                      // value={generateRule.hstnlOne}
+                      value={generateRule.hstnlOne}
                     />
                   </Grid>
                   {operatorTwo === "Between" ? (
@@ -432,12 +414,7 @@ const Generate = (props) => {
                         onChange={(e) => handleGenerateRule(e)}
                         name="hstnlTwo"
                         type="number"
-                        value={
-                          hstnlArr.values.length > 0
-                            ? hstnlArr.values[1]
-                            : generateRule.hstnlTwo
-                        }
-                        // value={generateRule.hstnlTwo}
+                        value={generateRule.hstnlTwo}
                       />
                     </Grid>
                   ) : (
@@ -465,7 +442,7 @@ const Generate = (props) => {
               control={
                 <Checkbox
                   onChange={(e) => handleGenerateRiskScore(e)}
-                  {...label}
+                  {...utils.properties.label}
                   defaultChecked={generateRS}
                   sx={{
                     color: "#fff",
