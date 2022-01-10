@@ -40,7 +40,7 @@ function ShellComponent(props) {
               exact
               path="/"
               element={
-                <LazyAmiOutput notify={snacksBar} localMode={localMode} />
+                <LazyAmiConfig notify={snacksBar} localMode={localMode} />
               }
             />
             <Route

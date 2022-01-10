@@ -1,10 +1,4 @@
-import {
-  Button,
-  InputBase,
-  makeStyles,
-  styled,
-  alpha,
-} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
 /**AMI CDS config Screen Styles */
 export const AMIConfigStyles = makeStyles((theme) => ({
@@ -224,5 +218,3 @@ export const AMIConfigStyles = makeStyles((theme) => ({
   //   fontSize: "18px",
   // },
 }));
-
-
