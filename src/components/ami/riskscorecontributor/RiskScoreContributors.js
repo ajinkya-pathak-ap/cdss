@@ -52,9 +52,18 @@ export default function RiskScoreContributors(props) {
     return <CircularIndeterminate />;
   } else {
     return (
-      <Grid container spacing={4} className={classes.contrimainContainer}>
+      <Grid
+        container
+        spacing={4}
+        className={classes.contrimainContainer}
+        // justifyContent="center"
+        // alignItems="center"
+      >
         <Grid item sm={12} xs={12} md={12}>
-          <Box className={classes.sx}>
+          <Box
+            className={classes.sx}
+            // sx={{ bgcolor: "#6D7F9B", minHeight: "250px" }}
+          >
             <Grid
               container
               item
@@ -71,6 +80,7 @@ export default function RiskScoreContributors(props) {
                       className={classes.typoofriskscore}
                     >
                       {riskScoreContributors.value.riskScoreContributors}
+                      {/* Provide the Details for the Risk Score Contributors */}
                     </Typography>
                   </CardContent>
                 </Card>
