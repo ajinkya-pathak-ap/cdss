@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Notification from "../../shared/notification/Notification";
-import AMIOutput from "../ami/amioutput/Amioutput";
-import Amiconfig from "../ami/amiconfig/AmiConfig";
 
-// import AMICDSInput from "../ami/AMICDSInput";
-// import AMIConfiguration from "../ami/AMIConfiguraton";
-// import Login from "../common/Login";
-// import RiskScoreContributors from "../ami/RiskScoreContributors";
-// import ChestPainFlowchart from "../ami/ChestPainFlowchart";
+// import AMIOutput from "../ami/amioutput/Amioutput";
+// import Amiconfig from "../ami/amiconfig/AmiConfig";
+
+const LazyAmiOutput = React.lazy(() => import("../ami/amioutput/Amioutput"));
+const LazyAmiConfig = React.lazy(() => import("../ami/amiconfig/AmiConfig"));
+const LazyAmiContriubutors = React.lazy(() =>
+  import("../ami/riskscorecontributor/RiskScoreContributors")
+);
+const LazyAmiChestCare = React.lazy(() =>
+  import("../ami/chestpainflowchart/ChestPainFlow")
+);
 
 function ShellComponent(props) {
   const [notify, setNotify] = useState({
@@ -31,38 +35,49 @@ function ShellComponent(props) {
     <>
       <div className="">
         <Notification notify={notify} setNotify={setNotify} />
-        <Routes>
-          <Route
-            exact
-            path="/"
-            element={<Amiconfig notify={snacksBar} localMode={localMode} />}
-          />
-          {/* <Route exact path="/login" element={<Login notify={snacksBar} />} /> */}
-          <Route
-            path="/config"
-            element={<Amiconfig notify={snacksBar} localMode={localMode} />}
-          />
-          <Route
-            path="/amioutput"
-            element={<AMIOutput notify={snacksBar} localMode={localMode} />}
-          />
-          {/* <Route
-            path="/contributors"
-            element={
-              <RiskScoreContributors notify={snacksBar} localMode={localMode} />
-            }
-          />
-          <Route
+        <React.Suspense fallback="Loading...">
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={
+                <LazyAmiOutput notify={snacksBar} localMode={localMode} />
+              }
+            />
+            <Route
+              path="/config"
+              element={
+                <LazyAmiConfig notify={snacksBar} localMode={localMode} />
+              }
+            />
+            <Route
+              path="/amioutput"
+              element={
+                <LazyAmiOutput notify={snacksBar} localMode={localMode} />
+              }
+            />
+            <Route
+              path="/contributors"
+              element={
+                <LazyAmiContriubutors
+                  notify={snacksBar}
+                  localMode={localMode}
+                />
+              }
+            />
+            <Route
+              path="/carepath"
+              element={
+                <LazyAmiChestCare notify={snacksBar} localMode={localMode} />
+              }
+            />
+            {/*   <Route
             path="/amiinput"
             element={<AMICDSInput notify={snacksBar} localMode={localMode} />}
           />
-          <Route
-            path="/carepath"
-            element={
-              <ChestPainFlowchart notify={snacksBar} localMode={localMode} />
-            }
-          /> */}
-        </Routes>
+       */}
+          </Routes>
+        </React.Suspense>
       </div>
     </>
   );

@@ -18,26 +18,21 @@ import {
 import { configurationService } from "../../../services/config-service";
 import CircularIndeterminate from "../../../shared/preloder/Preloder";
 
-import Display from "./display/Display";
-import Generate from "./generate/Generate";
-import Othersettings from "./others/OtherSettings";
-import SaveConfig from "./saveconfig/SaveConfig";
-
 const BootstrapButton = amiConfigBtns;
 const BootstrapInput = amiConfigInputs;
 
-export default function Amiconfig(props) {
-  //   const [operatorOne, setOperatorOne] = useState("");
-  //   const [operatorTwo, setOperatorTwo] = useState("");
+export default function AMIConfiguration(props) {
+  const [operatorOne, setOperatorOne] = useState("");
+  const [operatorTwo, setOperatorTwo] = useState("");
   const [isFetching, setIsFetching] = useState(true);
   /**fetch response */
   const [configData, setConfigData] = useState({});
   /**isChecked */
-  //   const [generateRS, setGenerateRS] = useState(true);
+  const [generateRS, setGenerateRS] = useState(true);
   const [displayRS, setDisplayRS] = useState(true);
   const [otherRS, setOtherRS] = useState(true);
   /**isDefault */
-  //   const [generateDefault, setGenrateDefault] = useState(true);
+  const [generateDefault, setGenrateDefault] = useState(true);
   const [displayDefault, setDisplayDefault] = useState(true);
   const [otherDefault, setOtherDefault] = useState(true);
   /**values arrays */
@@ -47,12 +42,12 @@ export default function Amiconfig(props) {
   const [otherArr, setOtherArr] = useState([]);
   const [apply, setApply] = useState(true);
 
-  //   const [generateRule, setGenerateRule] = useState({
-  //     ageOne: "",
-  //     ageTwo: "",
-  //     hstnlOne: "",
-  //     hstnlTwo: "",
-  //   });
+  const [generateRule, setGenerateRule] = useState({
+    ageOne: "",
+    ageTwo: "",
+    hstnlOne: "",
+    hstnlTwo: "",
+  });
 
   const [displayRule, setDisplayRule] = useState({
     displayOne: "",
@@ -88,63 +83,67 @@ export default function Amiconfig(props) {
     fetchConfigData(fetchRequestObject);
   }, []);
 
-  //   const changeOperatorOne = (event) => {
-  //     setOperatorOne(event.target.value);
-  //   };
+  useEffect(() => {
+    console.log(generateRule);
+  });
 
-  //   const changeOperatorTwo = (event) => {
-  //     setOperatorTwo(event.target.value);
-  //   };
+  const changeOperatorOne = (event) => {
+    setOperatorOne(event.target.value);
+  };
 
-  //   const handleGenerateRule = (e) => {
-  //     setGenerateRule({ ...generateRule, [e.target.name]: e.target.value });
-  //     enableApply(e);
+  const changeOperatorTwo = (event) => {
+    setOperatorTwo(event.target.value);
+  };
 
-  //     operatorOne.toLocaleLowerCase() === "between"
-  //       ? setAgeArr([generateRule.ageOne, generateRule.ageTwo])
-  //       : setAgeArr([generateRule.ageOne]);
-  //     setAgeValues({ ...ageValues, values: ageArr, operator: operatorOne });
+  const handleGenerateRule = (e) => {
+    setGenerateRule({ ...generateRule, [e.target.name]: e.target.value });
+    enableApply(e);
 
-  //     operatorTwo.toLocaleLowerCase() === "between"
-  //       ? setHstnlArr([generateRule.hstnlOne, generateRule.hstnlTwo])
-  //       : setHstnlArr([generateRule.hstnlOne]);
-  //     sethstnlValues({ ...hstnlValues, values: hstnlArr, operator: operatorTwo });
-  //   };
+    operatorOne.toLocaleLowerCase() === "between"
+      ? setAgeArr([generateRule.ageOne, generateRule.ageTwo])
+      : setAgeArr([generateRule.ageOne]);
+    setAgeValues({ ...ageValues, values: ageArr, operator: operatorOne });
 
-  //   const handleDisplayRule = (e) => {
-  //     setDisplayRule({ ...displayRule, [e.target.name]: e.target.value });
+    operatorTwo.toLocaleLowerCase() === "between"
+      ? setHstnlArr([generateRule.hstnlOne, generateRule.hstnlTwo])
+      : setHstnlArr([generateRule.hstnlOne]);
+    sethstnlValues({ ...hstnlValues, values: hstnlArr, operator: operatorTwo });
+  };
 
-  //     enableApply(e);
+  const handleDisplayRule = (e) => {
+    setDisplayRule({ ...displayRule, [e.target.name]: e.target.value });
 
-  //     setDisplayValues({
-  //       ...displayValues,
-  //       values: [
-  //         `${displayRule.displayOne}%`.split("%")[0],
-  //         `${displayRule.displayTwo}%`.split("%")[0],
-  //       ],
-  //     });
-  //   };
+    enableApply(e);
 
-  //   const handleGenerateRiskScore = (event) => {
-  //     const checkedValue = event.target.checked;
-  //     setGenerateRS(checkedValue);
-  //     setGenrateDefault(false);
-  //   };
+    setDisplayValues({
+      ...displayValues,
+      values: [
+        `${displayRule.displayOne}%`.split("%")[0],
+        `${displayRule.displayTwo}%`.split("%")[0],
+      ],
+    });
+  };
+  const handleGenerateRiskScore = (event) => {
+    const checkedValue = event.target.checked;
+    setGenerateRS(checkedValue);
+    setGenrateDefault(false);
+  };
 
-  //   const handleDisplayRiskScore = (event) => {
-  //     const checkedValue = event.target.checked;
-  //     setDisplayRS(checkedValue);
-  //     setDisplayDefault(false);
-  //     checkedValue ? setApply(false) : setApply(true);
-  //   };
+  const handleDisplayRiskScore = (event) => {
+    const checkedValue = event.target.checked;
+    setDisplayRS(checkedValue);
+    setDisplayDefault(false);
+    checkedValue ? setApply(false) : setApply(true);
+  };
 
   const fetchConfigData = (_config) => {
     if (props.localMode) {
       configurationService.getConfigurationLocal(_config).then(
         (response) => {
           setConfigData(response.data);
-          //   mapJsonResponse(response.data);
+          mapJsonResponse(response.data);
           setIsFetching(false);
+          ageRules();
         },
         (error) => {
           return;
@@ -157,671 +156,668 @@ export default function Amiconfig(props) {
     }
   };
 
-  //   const saveConfigData = (_config) => {
-  //     if (props.localMode) {
-  //       configurationService.saveConfiguration(_config).then(
-  //         (response) => {},
-  //         (error) => {
-  //           return;
-  //           /**
-  //            * error boundry
-  //            */
-  //         }
-  //       );
-  //     } else {
-  //     }
-  //   };
+  const saveConfigData = (_config) => {
+    if (props.localMode) {
+      configurationService.saveConfiguration(_config).then(
+        (response) => {},
+        (error) => {
+          return;
+          /**
+           * error boundry
+           */
+        }
+      );
+    } else {
+    }
+  };
 
-  //   const applySetings = () => {
-  //     saveStateValues();
-  //     console.log("..configData..", configData.result);
-  //     // saveConfigData(postRequestObject);
-  //   };
+  const applySetings = () => {
+    saveStateValues();
+    console.log("..configData..", configData.result);
+  };
 
-  //   const enableApply = (e) => {
-  //     if (generateRS === false) {
-  //       operatorOne === "Between"
-  //         ? (() => {
-  //             if (
-  //               generateRule.ageOne.length > 1 &&
-  //               generateRule.ageTwo.length > 1
-  //             ) {
-  //               setApply(false);
-  //             }
-  //           })()
-  //         : (() => {
-  //             if (generateRule.ageOne.length > 1) {
-  //               setApply(false);
-  //             }
-  //           })();
+  const enableApply = (e) => {
+    if (generateRS === false) {
+      operatorOne === "Between"
+        ? (() => {
+            if (
+              generateRule.ageOne.length > 1 &&
+              generateRule.ageTwo.length > 1
+            ) {
+              setApply(false);
+            }
+          })()
+        : (() => {
+            if (generateRule.ageOne.length > 1) {
+              setApply(false);
+            }
+          })();
 
-  //       operatorTwo === "Between"
-  //         ? (() => {
-  //             if (
-  //               generateRule.hstnlOne.length > 1 &&
-  //               generateRule.hstnlTwo.length > 1
-  //             ) {
-  //               setApply(false);
-  //             }
-  //           })()
-  //         : (() => {
-  //             if (generateRule.hstnlOne.length > 1) {
-  //               setApply(false);
-  //             }
-  //           })();
-  //     } else {
-  //     }
-  //   };
+      operatorTwo === "Between"
+        ? (() => {
+            if (
+              generateRule.hstnlOne.length > 1 &&
+              generateRule.hstnlTwo.length > 1
+            ) {
+              setApply(false);
+            }
+          })()
+        : (() => {
+            if (generateRule.hstnlOne.length > 1) {
+              setApply(false);
+            }
+          })();
+    } else {
+    }
+  };
 
-  //   const mapJsonResponse = (_obj) => {
-  //     _obj.result.configurations.forEach((items, index) => {
-  //       if (items.ruleSectionName.toLocaleLowerCase() === "generate") {
-  //         if (items.rules.length > 0) {
-  //           /**create rules dom here */
-  //           items.rules.forEach((item_0) => {
-  //             /**declare default & checked */
-  //             setGenrateDefault(item_0.isDefault);
-  //             setGenerateRS(item_0.isChecked);
-  //             if (item_0.categories.length > 0) {
-  //               item_0.categories.forEach((item_1) => {
-  //                 /**create values categories */
-  //                 if (item_1.categoryDefinition.toLocaleLowerCase() === "age") {
-  //                   setOperatorOne(item_1.operator);
-  //                   setAgeArr(item_1);
-  //                 } else {
-  //                   setOperatorTwo(item_1.operator);
-  //                   setHstnlArr(item_1);
-  //                 }
-  //               });
-  //             }
-  //           });
-  //         } else {
-  //           setGenrateDefault(true);
-  //           setGenerateRS(true);
-  //         }
-  //       } else if (items.ruleSectionName.toLocaleLowerCase() === "display") {
-  //         if (items.rules.length > 0) {
-  //           /**create rules dom here */
-  //           items.rules.forEach((item_0) => {
-  //             /**declare default & checked */
-  //             setDisplayDefault(item_0.isDefault);
-  //             setDisplayRS(item_0.isChecked);
-  //             if (item_0.categories.length > 0) {
-  //               item_0.categories.forEach((item_1, ind) => {
-  //                 /**create values categories */
-  //                 // setOperatorTwo(item_1.operator);
-  //                 setDisplayArr(item_1);
-  //               });
-  //             }
-  //           });
-  //         }
-  //       } else if (items.ruleSectionName.toLocaleLowerCase() === "other") {
-  //         if (items.rules.length > 0) {
-  //           /**create rules dom here */
-  //           items.rules.forEach((item_0) => {
-  //             /**declare default & checked */
-  //             setOtherDefault(item_0.isDefault);
-  //             setOtherRS(item_0.isChecked);
-  //             if (item_0.categories.length > 0) {
-  //               item_0.categories.forEach((item_1) => {
-  //                 /**create values categories */
-  //                 setOtherArr(item_1);
-  //               });
-  //             }
-  //           });
-  //         }
-  //       }
-  //     });
-  //     mapExistingRules();
-  //   };
+  const mapJsonResponse = (_obj) => {
+    _obj.result.configurations.forEach((configurationItem, index) => {
+      if (
+        configurationItem.ruleSectionName.toLocaleLowerCase() === "generate"
+      ) {
+        if (configurationItem.rules.length > 0) {
+          /**create rules dom here */
+          configurationItem.rules.forEach((ruleItem) => {
+            /**declare default & checked */
+            setGenrateDefault(ruleItem.isDefault);
+            setGenerateRS(ruleItem.isChecked);
+            if (ruleItem.categories.length > 0) {
+              ruleItem.categories.forEach((categoryItem) => {
+                /**create values categories */
+                if (
+                  categoryItem.categoryDefinition.toLocaleLowerCase() === "age"
+                ) {
+                  setOperatorOne(categoryItem.operator);
+                  setAgeArr(categoryItem);
+                } else {
+                  setOperatorTwo(categoryItem.operator);
+                  setHstnlArr(categoryItem);
+                }
+              });
+            }
+          });
+        } else {
+          setGenrateDefault(true);
+          setGenerateRS(true);
+        }
+      } else if (
+        configurationItem.ruleSectionName.toLocaleLowerCase() === "display"
+      ) {
+        if (configurationItem.rules.length > 0) {
+          /**create rules dom here */
+          configurationItem.rules.forEach((ruleItem) => {
+            /**declare default & checked */
+            setDisplayDefault(ruleItem.isDefault);
+            setDisplayRS(ruleItem.isChecked);
+            if (ruleItem.categories.length > 0) {
+              ruleItem.categories.forEach((categoryItem, ind) => {
+                /**create values categories */
+                // setOperatorTwo(categoryItem.operator);
+                setDisplayArr(categoryItem);
+              });
+            }
+          });
+        }
+      } else if (
+        configurationItem.ruleSectionName.toLocaleLowerCase() === "other"
+      ) {
+        if (configurationItem.rules.length > 0) {
+          /**create rules dom here */
+          configurationItem.rules.forEach((ruleItem) => {
+            /**declare default & checked */
+            setOtherDefault(ruleItem.isDefault);
+            setOtherRS(ruleItem.isChecked);
+            if (ruleItem.categories.length > 0) {
+              ruleItem.categories.forEach((categoryItem) => {
+                /**create values categories */
+                setOtherArr(categoryItem);
+              });
+            }
+          });
+        }
+      }
+    });
+  };
 
-  //   const mapExistingRules = () => {
-  //     ageArr.length > 1
-  //       ? setGenerateRule({
-  //           ...generateRule,
-  //           [generateRule.ageOne]: ageArr.values[0],
-  //           [generateRule.ageTwo]: ageArr.values[1],
-  //         })
-  //       : setGenerateRule({
-  //           ...generateRule,
-  //           [generateRule.ageOne]: ageArr.values[0],
-  //         });
-  //   };
+  const ageRules = () => {
+    if (ageArr.values.length > 0) {
+      setGenerateRule({
+        ...generateRule,
+        ageOne: ageArr.values[0],
+        ageTwo: ageArr.values[1],
+      });
+    } else {
+    }
+  };
 
-  //   const createGenerateRule = () => {
-  //     let response;
-  //     configData.result.configurations.forEach((v, i) => {
-  //       if (v.ruleSectionName.toLocaleLowerCase() === "generate") {
-  //         if (v.rules.length > 0) {
-  //           v.rules.forEach((w) => {
-  //             response = (
-  //               <Grid container spacing={1}>
-  //                 <Grid item xs={12} sm={5} md={5}>
-  //                   <Grid container spacing={1}>
-  //                     <Grid item xs={12} md={12}>
-  //                       <h4 style={{ marginLeft: "30px" }}>Age</h4>
-  //                     </Grid>
-  //                     <Grid item xs={12} md={4}>
-  //                       <FormControl fullWidth>
-  //                         <Select
-  //                           labelId="simple"
-  //                           size="small"
-  //                           // id="demo2"
-  //                           value={operatorOne}
-  //                           label="Age"
-  //                           autoWidth
-  //                           onChange={changeOperatorOne}
-  //                           className={classes.generaters}
-  //                           disabled={generateRS}
-  //                         >
-  //                           {operators.map((option) => {
-  //                             return (
-  //                               <MenuItem value={option} key={option}>
-  //                                 {option}
-  //                               </MenuItem>
-  //                             );
-  //                           })}
-  //                         </Select>
-  //                       </FormControl>
-  //                     </Grid>
-  //                     <Grid item xs={12} md={4}>
-  //                       <TextField
-  //                         size="small"
-  //                         disabled={generateRS}
-  //                         className={classes.agedropdown}
-  //                         onChange={(e) => handleGenerateRule(e)}
-  //                         name="ageOne"
-  //                         type="number"
-  //                         value={generateRule.ageOne}
-  //                         // value={
-  //                         //   ageArr.values.length > 0
-  //                         //     ? ageArr.values[0]
-  //                         //     : generateRule.ageOne
-  //                         // }
-  //                       />
-  //                     </Grid>
-  //                     {operatorOne === "Between" ? (
-  //                       <Grid item xs={12} md={4}>
-  //                         <TextField
-  //                           size="small"
-  //                           disabled={generateRS}
-  //                           className={classes.valuebox1}
-  //                           onChange={(e) => handleGenerateRule(e)}
-  //                           name="ageTwo"
-  //                           type="number"
-  //                           // value={
-  //                           //   ageArr.values.length > 0
-  //                           //     ? ageArr.values[1]
-  //                           //     : generateRule.ageTwo
-  //                           // }
-  //                           value={generateRule.ageTwo}
-  //                         />
-  //                       </Grid>
-  //                     ) : (
-  //                       ""
-  //                     )}
-  //                   </Grid>
-  //                 </Grid>
-  //                 <Grid item xs={12} md={2} className={classes.spacingaboveand}>
-  //                   {operatorOne === "Between" ? (
-  //                     <h3 className={classes.spacingandinmd}>AND</h3>
-  //                   ) : (
-  //                     <h3 className={classes.spacingandinmd2}>AND</h3>
-  //                   )}
-  //                 </Grid>
-  //                 <Grid item xs={12} md={5}>
-  //                   <Grid
-  //                     container
-  //                     spacing={1}
-  //                     className={classes.spacingabovehstnl}
-  //                   >
-  //                     <Grid item xs={12} md={12}>
-  //                       <h4>hsTnl Value</h4>
-  //                     </Grid>
-  //                     <Grid item xs={12} md={4}>
-  //                       <FormControl fullWidth>
-  //                         <Select
-  //                           labelId="simple2"
-  //                           id="demo"
-  //                           value={operatorTwo}
-  //                           label="Age"
-  //                           autoWidth
-  //                           onChange={changeOperatorTwo}
-  //                           className={classes.hstnldropdown}
-  //                           disabled={generateRS}
-  //                         >
-  //                           {operators.map((option) => {
-  //                             return (
-  //                               <MenuItem value={option} key={option}>
-  //                                 {option}
-  //                               </MenuItem>
-  //                             );
-  //                           })}
-  //                         </Select>
-  //                       </FormControl>
-  //                     </Grid>
-  //                     <Grid item xs={12} md={4}>
-  //                       <TextField
-  //                         size="small"
-  //                         disabled={generateRS}
-  //                         className={classes.hstnlvalue1}
-  //                         onChange={(e) => handleGenerateRule(e)}
-  //                         name="hstnlOne"
-  //                         type="number"
-  //                         value={generateRule.hstnlOne}
-  //                       />
-  //                     </Grid>
-  //                     {operatorTwo === "Between" ? (
-  //                       <Grid item md={4}>
-  //                         <TextField
-  //                           size="small"
-  //                           disabled={generateRS}
-  //                           className={classes.hstnlvalue2}
-  //                           onChange={(e) => handleGenerateRule(e)}
-  //                           name="hstnlTwo"
-  //                           type="number"
-  //                           value={generateRule.hstnlTwo}
-  //                         />
-  //                       </Grid>
-  //                     ) : (
-  //                       ""
-  //                     )}
-  //                   </Grid>
-  //                 </Grid>
-  //               </Grid>
-  //             );
-  //           });
-  //         } else {
-  //           response = (
-  //             <Grid container spacing={1}>
-  //               <Grid item xs={12} sm={5} md={5}>
-  //                 <Grid container spacing={1}>
-  //                   <Grid item xs={12} md={12}>
-  //                     <h4 className={classes.ageelseheading}>Age</h4>
-  //                   </Grid>
-  //                   <Grid item xs={12} md={4}>
-  //                     <FormControl fullWidth>
-  //                       <Select
-  //                         labelId="simple"
-  //                         size="small"
-  //                         id="demo2"
-  //                         value={operatorOne}
-  //                         label="Age"
-  //                         autoWidth
-  //                         onChange={changeOperatorOne}
-  //                         className={classes.ageelsedropdown}
-  //                         disabled={generateRS}
-  //                       >
-  //                         {operators.map((option) => {
-  //                           return (
-  //                             <MenuItem value={option} key={option}>
-  //                               {option}
-  //                             </MenuItem>
-  //                           );
-  //                         })}
-  //                       </Select>
-  //                     </FormControl>
-  //                   </Grid>
-  //                   <Grid item xs={12} md={4}>
-  //                     <TextField
-  //                       size="small"
-  //                       disabled={generateRS}
-  //                       className={classes.ageElseBetweenValue1}
-  //                       onChange={(e) => handleGenerateRule(e)}
-  //                       name="ageOne"
-  //                       type="number"
-  //                       // value={generateRule.ageOne}
-  //                       value={
-  //                         ageArr.values.length > 0
-  //                           ? ageArr.values[0]
-  //                           : generateRule.ageOne
-  //                       }
-  //                     />
-  //                   </Grid>
-  //                   {operatorOne === "Between" ? (
-  //                     <Grid item xs={12} md={4}>
-  //                       <TextField
-  //                         size="small"
-  //                         disabled={generateRS}
-  //                         className={classes.ageElseBetweenValue2}
-  //                         onChange={(e) => handleGenerateRule(e)}
-  //                         name="ageTwo"
-  //                         type="number"
-  //                         value={
-  //                           ageArr.values.length > 0
-  //                             ? ageArr.values[1]
-  //                             : generateRule.ageTwo
-  //                         }
-  //                         // value={generateRule.ageTwo}
-  //                       />
-  //                     </Grid>
-  //                   ) : (
-  //                     ""
-  //                   )}
-  //                 </Grid>
-  //               </Grid>
-  //               <Grid item xs={12} md={2} className={classes.spacingaboveand}>
-  //                 {operatorOne === "Between" ? (
-  //                   <h3 className={classes.andspacingifbetween1}>AND</h3>
-  //                 ) : (
-  //                   <h3 className={classes.andspacingifbetween2}>AND</h3>
-  //                 )}
-  //               </Grid>
-  //               <Grid item xs={12} md={5}>
-  //                 <Grid
-  //                   container
-  //                   spacing={1}
-  //                   className={classes.spacingabovehstnl}
-  //                 >
-  //                   <Grid item xs={12} md={12}>
-  //                     <h4>hsTnl Value</h4>
-  //                   </Grid>
-  //                   <Grid item xs={12} md={4}>
-  //                     <FormControl fullWidth>
-  //                       <Select
-  //                         labelId="simple2"
-  //                         id="demo"
-  //                         value={operatorTwo}
-  //                         label="Age"
-  //                         autoWidth
-  //                         onChange={changeOperatorTwo}
-  //                         className={classes.hstnldropdown2}
-  //                         disabled={generateRS}
-  //                       >
-  //                         {operators.map((option) => {
-  //                           return (
-  //                             <MenuItem value={option} key={option}>
-  //                               {option}
-  //                             </MenuItem>
-  //                           );
-  //                         })}
-  //                       </Select>
-  //                     </FormControl>
-  //                   </Grid>
-  //                   <Grid item xs={12} md={4}>
-  //                     <TextField
-  //                       size="small"
-  //                       disabled={generateRS}
-  //                       className={classes.hstnlelsevalue1}
-  //                       onChange={(e) => handleGenerateRule(e)}
-  //                       name="hstnlOne"
-  //                       type="number"
-  //                       value={
-  //                         hstnlArr.values.length > 0
-  //                           ? hstnlArr.values[0]
-  //                           : generateRule.hstnlOne
-  //                       }
-  //                       // value={generateRule.hstnlOne}
-  //                     />
-  //                   </Grid>
-  //                   {operatorTwo === "Between" ? (
-  //                     <Grid item md={4}>
-  //                       <TextField
-  //                         size="small"
-  //                         disabled={generateRS}
-  //                         className={classes.hstnlelsevalue2}
-  //                         onChange={(e) => handleGenerateRule(e)}
-  //                         name="hstnlTwo"
-  //                         type="number"
-  //                         value={
-  //                           hstnlArr.values.length > 0
-  //                             ? hstnlArr.values[1]
-  //                             : generateRule.hstnlTwo
-  //                         }
-  //                         // value={generateRule.hstnlTwo}
-  //                       />
-  //                     </Grid>
-  //                   ) : (
-  //                     ""
-  //                   )}
-  //                 </Grid>
-  //               </Grid>
-  //             </Grid>
-  //           );
-  //         }
-  //       }
-  //     });
-  //     return response;
-  //   };
+  const createGenerateRule = () => {
+    let response;
+    configData.result.configurations.forEach((v, i) => {
+      if (v.ruleSectionName.toLocaleLowerCase() === "generate") {
+        if (v.rules.length > 0) {
+          v.rules.forEach((w) => {
+            response = (
+              <Grid container spacing={1}>
+                <Grid item xs={12} sm={5} md={5}>
+                  <Grid container spacing={1}>
+                    <Grid item xs={12} md={12}>
+                      <h4 style={{ marginLeft: "30px" }}>Age</h4>
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                      <FormControl fullWidth>
+                        <Select
+                          labelId="simple"
+                          size="small"
+                          value={operatorOne}
+                          label="Age"
+                          autoWidth
+                          onChange={changeOperatorOne}
+                          className={classes.generaters}
+                          disabled={generateRS}
+                        >
+                          {operators.map((option) => {
+                            return (
+                              <MenuItem value={option} key={option}>
+                                {option}
+                              </MenuItem>
+                            );
+                          })}
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                      <TextField
+                        size="small"
+                        disabled={generateRS}
+                        className={classes.agedropdown}
+                        onChange={(e) => handleGenerateRule(e)}
+                        name="ageOne"
+                        type="number"
+                        value={generateRule.ageOne}
+                        // value={ageArr.values.length > 0 ? ageArr.values[0] : ""}
+                      />
+                    </Grid>
+                    {operatorOne === "Between" ? (
+                      <Grid item xs={12} md={4}>
+                        <TextField
+                          size="small"
+                          disabled={generateRS}
+                          className={classes.valuebox1}
+                          onChange={(e) => handleGenerateRule(e)}
+                          name="ageTwo"
+                          type="number"
+                          // value={
+                          //   ageArr.values.length > 0 ? ageArr.values[1] : ""
+                          // }
+                          value={generateRule.ageTwo}
+                        />
+                      </Grid>
+                    ) : (
+                      ""
+                    )}
+                  </Grid>
+                </Grid>
+                <Grid item xs={12} md={2} className={classes.spacingaboveand}>
+                  {operatorOne === "Between" ? (
+                    <h3 className={classes.spacingandinmd}>AND</h3>
+                  ) : (
+                    <h3 className={classes.spacingandinmd2}>AND</h3>
+                  )}
+                </Grid>
+                <Grid item xs={12} md={5}>
+                  <Grid
+                    container
+                    spacing={1}
+                    className={classes.spacingabovehstnl}
+                  >
+                    <Grid item xs={12} md={12}>
+                      <h4>hsTnl Value</h4>
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                      <FormControl fullWidth>
+                        <Select
+                          labelId="simple2"
+                          id="demo"
+                          value={operatorTwo}
+                          label="Age"
+                          autoWidth
+                          onChange={changeOperatorTwo}
+                          className={classes.hstnldropdown}
+                          disabled={generateRS}
+                        >
+                          {operators.map((option) => {
+                            return (
+                              <MenuItem value={option} key={option}>
+                                {option}
+                              </MenuItem>
+                            );
+                          })}
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                      <TextField
+                        size="small"
+                        disabled={generateRS}
+                        className={classes.hstnlvalue1}
+                        onChange={(e) => handleGenerateRule(e)}
+                        name="hstnlOne"
+                        type="number"
+                        value={generateRule.hstnlOne}
+                      />
+                    </Grid>
+                    {operatorTwo === "Between" ? (
+                      <Grid item md={4}>
+                        <TextField
+                          size="small"
+                          disabled={generateRS}
+                          className={classes.hstnlvalue2}
+                          onChange={(e) => handleGenerateRule(e)}
+                          name="hstnlTwo"
+                          type="number"
+                          value={generateRule.hstnlTwo}
+                        />
+                      </Grid>
+                    ) : (
+                      ""
+                    )}
+                  </Grid>
+                </Grid>
+              </Grid>
+            );
+          });
+        } else {
+          response = (
+            <Grid container spacing={1}>
+              <Grid item xs={12} sm={5} md={5}>
+                <Grid container spacing={1}>
+                  <Grid item xs={12} md={12}>
+                    <h4 className={classes.ageelseheading}>Age</h4>
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <FormControl fullWidth>
+                      <Select
+                        labelId="simple"
+                        size="small"
+                        id="demo2"
+                        value={operatorOne}
+                        label="Age"
+                        autoWidth
+                        onChange={changeOperatorOne}
+                        className={classes.ageelsedropdown}
+                        disabled={generateRS}
+                      >
+                        {operators.map((option) => {
+                          return (
+                            <MenuItem value={option} key={option}>
+                              {option}
+                            </MenuItem>
+                          );
+                        })}
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <TextField
+                      size="small"
+                      disabled={generateRS}
+                      className={classes.ageElseBetweenValue1}
+                      onChange={(e) => handleGenerateRule(e)}
+                      name="ageOne"
+                      type="number"
+                      // value={generateRule.ageOne}
+                      value={
+                        ageArr.values.length > 0
+                          ? ageArr.values[0]
+                          : generateRule.ageOne
+                      }
+                    />
+                  </Grid>
+                  {operatorOne === "Between" ? (
+                    <Grid item xs={12} md={4}>
+                      <TextField
+                        size="small"
+                        disabled={generateRS}
+                        className={classes.ageElseBetweenValue2}
+                        onChange={(e) => handleGenerateRule(e)}
+                        name="ageTwo"
+                        type="number"
+                        value={
+                          ageArr.values.length > 0
+                            ? ageArr.values[1]
+                            : generateRule.ageTwo
+                        }
+                        // value={generateRule.ageTwo}
+                      />
+                    </Grid>
+                  ) : (
+                    ""
+                  )}
+                </Grid>
+              </Grid>
+              <Grid item xs={12} md={2} className={classes.spacingaboveand}>
+                {operatorOne === "Between" ? (
+                  <h3 className={classes.andspacingifbetween1}>AND</h3>
+                ) : (
+                  <h3 className={classes.andspacingifbetween2}>AND</h3>
+                )}
+              </Grid>
+              <Grid item xs={12} md={5}>
+                <Grid
+                  container
+                  spacing={1}
+                  className={classes.spacingabovehstnl}
+                >
+                  <Grid item xs={12} md={12}>
+                    <h4>hsTnl Value</h4>
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <FormControl fullWidth>
+                      <Select
+                        labelId="simple2"
+                        id="demo"
+                        value={operatorTwo}
+                        label="Age"
+                        autoWidth
+                        onChange={changeOperatorTwo}
+                        className={classes.hstnldropdown2}
+                        disabled={generateRS}
+                      >
+                        {operators.map((option) => {
+                          return (
+                            <MenuItem value={option} key={option}>
+                              {option}
+                            </MenuItem>
+                          );
+                        })}
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <TextField
+                      size="small"
+                      disabled={generateRS}
+                      className={classes.hstnlelsevalue1}
+                      onChange={(e) => handleGenerateRule(e)}
+                      name="hstnlOne"
+                      type="number"
+                      value={
+                        hstnlArr.values.length > 0
+                          ? hstnlArr.values[0]
+                          : generateRule.hstnlOne
+                      }
+                      // value={generateRule.hstnlOne}
+                    />
+                  </Grid>
+                  {operatorTwo === "Between" ? (
+                    <Grid item md={4}>
+                      <TextField
+                        size="small"
+                        disabled={generateRS}
+                        className={classes.hstnlelsevalue2}
+                        onChange={(e) => handleGenerateRule(e)}
+                        name="hstnlTwo"
+                        type="number"
+                        value={
+                          hstnlArr.values.length > 0
+                            ? hstnlArr.values[1]
+                            : generateRule.hstnlTwo
+                        }
+                        // value={generateRule.hstnlTwo}
+                      />
+                    </Grid>
+                  ) : (
+                    ""
+                  )}
+                </Grid>
+              </Grid>
+            </Grid>
+          );
+        }
+      }
+    });
+    return response;
+  };
 
-  //   const createDisplayRule = () => {
-  //     let response;
-  //     configData.result.configurations.forEach((v, i) => {
-  //       if (v.ruleSectionName.toLocaleLowerCase() === "display") {
-  //         if (v.rules.length > 0) {
-  //           v.rules.forEach((w) => {
-  //             response = (
-  //               <Grid container spacing={2}>
-  //                 <Grid container spacing={0}>
-  //                   <Grid item xs={12} md={1} className={classes.betweenspacing}>
-  //                     <Typography
-  //                       variant={"h6"}
-  //                       className={classes.DisRiskbetween}
-  //                     >
-  //                       Between
-  //                     </Typography>
-  //                   </Grid>
-  //                   <Grid item xs={12} md={1}>
-  //                     <FormControl
-  //                       variant="standard"
-  //                       style={{
-  //                         marginLeft: "28px",
-  //                       }}
-  //                     >
-  //                       <BootstrapInput
-  //                         className={classes.DisRiskinput}
-  //                         defaultValue="0%"
-  //                         disabled={displayRS}
-  //                         id="rangeOne"
-  //                         name="displayOne"
-  //                         onChange={(e) => handleDisplayRule(e)}
-  //                       />
-  //                     </FormControl>
-  //                   </Grid>
-  //                   <Grid
-  //                     item
-  //                     xs={12}
-  //                     md={1}
-  //                     style={{
-  //                       marginLeft: "50px",
-  //                     }}
-  //                   >
-  //                     <Typography variant={"h6"}>And</Typography>
-  //                   </Grid>
-  //                   <Grid item xs={12} md={1} className={classes.spacing}>
-  //                     <FormControl variant="standard">
-  //                       <BootstrapInput
-  //                         className={classes.DisRiskinput2}
-  //                         defaultValue="1%"
-  //                         disabled={displayRS}
-  //                         id="rangeTwo"
-  //                         name="displayTwo"
-  //                         onChange={(e) => handleDisplayRule(e)}
-  //                       />
-  //                     </FormControl>
-  //                   </Grid>
-  //                   <Grid item xs={12} md={4}>
-  //                     <Typography variant={"h6"} className={classes.riskofmace}>
-  //                       risk of MACE within 30 days
-  //                     </Typography>
-  //                   </Grid>
-  //                 </Grid>
-  //                 <Grid item xs={12} md={4}></Grid>
-  //               </Grid>
-  //             );
-  //           });
-  //         } else {
-  //           response = (
-  //             <Grid container spacing={2}>
-  //               <Grid container spacing={0}>
-  //                 <Grid item xs={12} md={1} className={classes.betweenspacing}>
-  //                   <Typography variant={"h6"} style={{ marginLeft: "10px" }}>
-  //                     Between
-  //                   </Typography>
-  //                 </Grid>
-  //                 <Grid item xs={12} md={1}>
-  //                   <FormControl
-  //                     variant="standard"
-  //                     style={{
-  //                       marginLeft: "28px",
-  //                     }}
-  //                   >
-  //                     <BootstrapInput
-  //                       style={{
-  //                         width: "80px",
-  //                         textAlign: "right",
-  //                       }}
-  //                       defaultValue="0%"
-  //                       disabled={displayRS}
-  //                       id="rangeOne"
-  //                       name="displayOne"
-  //                       onChange={(e) => handleDisplayRule(e)}
-  //                     />
-  //                   </FormControl>
-  //                 </Grid>
-  //                 <Grid
-  //                   item
-  //                   xs={12}
-  //                   md={1}
-  //                   style={{
-  //                     marginLeft: "50px",
-  //                   }}
-  //                 >
-  //                   <Typography variant={"h6"}>And</Typography>
-  //                 </Grid>
-  //                 <Grid item xs={12} md={1} className={classes.spacing}>
-  //                   <FormControl variant="standard">
-  //                     <BootstrapInput
-  //                       style={{
-  //                         marginLeft: "-20px",
-  //                         width: "80px",
-  //                       }}
-  //                       defaultValue="1%"
-  //                       disabled={displayRS}
-  //                       id="rangeTwo"
-  //                       name="displayTwo"
-  //                       onChange={(e) => handleDisplayRule(e)}
-  //                     />
-  //                   </FormControl>
-  //                 </Grid>
-  //                 <Grid item xs={12} md={4}>
-  //                   <Typography
-  //                     variant={"h6"}
-  //                     style={{
-  //                       marginLeft: "5px",
-  //                       fontSize: "18px",
-  //                     }}
-  //                   >
-  //                     risk of MACE within 30 days
-  //                   </Typography>
-  //                 </Grid>
-  //               </Grid>
-  //               <Grid item xs={12} md={4}></Grid>
-  //             </Grid>
-  //           );
-  //         }
-  //       }
-  //     });
-  //     return response;
-  //   };
+  const createDisplayRule = () => {
+    let response;
+    configData.result.configurations.forEach((v, i) => {
+      if (v.ruleSectionName.toLocaleLowerCase() === "display") {
+        if (v.rules.length > 0) {
+          v.rules.forEach((w) => {
+            response = (
+              <Grid container spacing={2}>
+                <Grid container spacing={0}>
+                  <Grid item xs={12} md={1} className={classes.betweenspacing}>
+                    <Typography
+                      variant={"h6"}
+                      className={classes.DisRiskbetween}
+                    >
+                      Between
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} md={1}>
+                    <FormControl
+                      variant="standard"
+                      style={{
+                        marginLeft: "28px",
+                      }}
+                    >
+                      <BootstrapInput
+                        className={classes.DisRiskinput}
+                        defaultValue="0%"
+                        disabled={displayRS}
+                        id="rangeOne"
+                        name="displayOne"
+                        onChange={(e) => handleDisplayRule(e)}
+                      />
+                    </FormControl>
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    md={1}
+                    style={{
+                      marginLeft: "50px",
+                    }}
+                  >
+                    <Typography variant={"h6"}>And</Typography>
+                  </Grid>
+                  <Grid item xs={12} md={1} className={classes.spacing}>
+                    <FormControl variant="standard">
+                      <BootstrapInput
+                        className={classes.DisRiskinput2}
+                        defaultValue="1%"
+                        disabled={displayRS}
+                        id="rangeTwo"
+                        name="displayTwo"
+                        onChange={(e) => handleDisplayRule(e)}
+                      />
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <Typography variant={"h6"} className={classes.riskofmace}>
+                      risk of MACE within 30 days
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid item xs={12} md={4}></Grid>
+              </Grid>
+            );
+          });
+        } else {
+          response = (
+            <Grid container spacing={2}>
+              <Grid container spacing={0}>
+                <Grid item xs={12} md={1} className={classes.betweenspacing}>
+                  <Typography variant={"h6"} style={{ marginLeft: "10px" }}>
+                    Between
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} md={1}>
+                  <FormControl
+                    variant="standard"
+                    style={{
+                      marginLeft: "28px",
+                    }}
+                  >
+                    <BootstrapInput
+                      style={{
+                        width: "80px",
+                        textAlign: "right",
+                      }}
+                      defaultValue="0%"
+                      disabled={displayRS}
+                      id="rangeOne"
+                      name="displayOne"
+                      onChange={(e) => handleDisplayRule(e)}
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  md={1}
+                  style={{
+                    marginLeft: "50px",
+                  }}
+                >
+                  <Typography variant={"h6"}>And</Typography>
+                </Grid>
+                <Grid item xs={12} md={1} className={classes.spacing}>
+                  <FormControl variant="standard">
+                    <BootstrapInput
+                      style={{
+                        marginLeft: "-20px",
+                        width: "80px",
+                      }}
+                      defaultValue="1%"
+                      disabled={displayRS}
+                      id="rangeTwo"
+                      name="displayTwo"
+                      onChange={(e) => handleDisplayRule(e)}
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12} md={4}>
+                  <Typography
+                    variant={"h6"}
+                    style={{
+                      marginLeft: "5px",
+                      fontSize: "18px",
+                    }}
+                  >
+                    risk of MACE within 30 days
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid item xs={12} md={4}></Grid>
+            </Grid>
+          );
+        }
+      }
+    });
+    return response;
+  };
 
-  //   const saveStateValues = () => {
-  //     /**generate rule-section */
+  const saveStateValues = () => {
+    /**generate rule-section */
 
-  //     configData.result.configurations.forEach((item_0) => {
-  //       if (item_0.ruleSectionName.toLocaleLowerCase() === "generate") {
-  //         if (item_0.rules.length > 0) {
-  //           /** if rules exists*/
-  //           item_0.rules.forEach((item_1) => {
-  //             if (generateRS === false) {
-  //               /** if checkbox is not checked */
-  //               item_1.isDefault = generateDefault;
-  //               item_1.isChecked = generateRS;
+    configData.result.configurations.forEach((item_0) => {
+      if (item_0.ruleSectionName.toLocaleLowerCase() === "generate") {
+        if (item_0.rules.length > 0) {
+          /** if rules exists*/
+          item_0.rules.forEach((item_1) => {
+            if (generateRS === false) {
+              /** if checkbox is not checked */
+              item_1.isDefault = generateDefault;
+              item_1.isChecked = generateRS;
 
-  //               if (item_1.categories.length > 0) {
-  //                 /**values exists for textfields */
-  //                 item_1.categories[0].values = ageArr;
-  //                 item_1.categories[0].operator = operatorOne;
-  //                 item_1.categories[1].values = hstnlArr;
-  //                 item_1.categories[1].operator = operatorTwo;
-  //               } else {
-  //                 /**values doesnt exists for textfields */
-  //                 item_1.categories.push(ageValues);
-  //                 item_1.categories.push(hstnlValues);
-  //               }
-  //             } else {
-  //               /**if checkbox selected */
-  //               item_1.categories = [];
-  //             }
-  //           });
-  //         } else {
-  //           /**no rules */
-  //           if (generateRS === false) {
-  //             /**checkbox not selected */
-  //             item_0.rules[0].categories.push(ageValues);
-  //             item_0.rules[0].categories.push(hstnlValues);
-  //             item_0.rules[0].isDefault = generateDefault;
-  //             item_0.rules[0].isChecked = generateRS;
-  //           } else {
-  //             /**checkbox selected */
-  //             item_0.rules[0].isDefault = generateDefault;
-  //             item_0.rules[0].isChecked = generateRS;
-  //             item_0.rules[0].categories = [];
-  //           }
-  //         }
-  //       } else if (item_0.ruleSectionName.toLocaleLowerCase() === "display") {
-  //         if (item_0.rules.length > 0) {
-  //           /** if rules exists*/
-  //           item_0.rules.forEach((item_1) => {
-  //             if (displayRS === false) {
-  //               /** if checkbox is not checked */
-  //               item_1.isDefault = displayDefault;
-  //               item_1.isChecked = displayRS;
-  //               if (item_1.categories.length > 0) {
-  //                 /**values exists for textfields */
-  //                 item_1.categories[0].values = [
-  //                   `${displayRule.displayOne}%`.split("%")[0],
-  //                   `${displayRule.displayTwo}%`.split("%")[0],
-  //                 ];
-  //                 item_1.categories[0].operator = "Between";
-  //               } else {
-  //                 /**values doesnt exists for textfields */
-  //                 item_1.categories = displayValues;
-  //               }
-  //             } else {
-  //               /**if checkbox selected */
-  //               item_1.categories = [];
-  //             }
-  //           });
-  //         } else {
-  //           /**no rules */
-  //           if (displayRS === false) {
-  //             /**checkbox not selected */
-  //             item_0.rules[0].categories[0].values = [
-  //               `${displayRule.displayOne}%`.split("%")[0],
-  //               `${displayRule.displayTwo}%`.split("%")[0],
-  //             ];
-  //             item_0.rules[0].isDefault = displayDefault;
-  //             item_0.rules[0].isChecked = displayRS;
-  //           } else {
-  //             /**checkbox selected */
-  //             item_0.rules[0].isDefault = generateDefault;
-  //             item_0.rules[0].isChecked = generateRS;
-  //             item_0.rules[0].categories = [];
-  //           }
-  //         }
-  //       }
-  //     });
+              if (item_1.categories.length > 0) {
+                /**values exists for textfields */
+                item_1.categories[0].values = ageArr;
+                item_1.categories[0].operator = operatorOne;
+                item_1.categories[1].values = hstnlArr;
+                item_1.categories[1].operator = operatorTwo;
+              } else {
+                /**values doesnt exists for textfields */
+                item_1.categories.push(ageValues);
+                item_1.categories.push(hstnlValues);
+              }
+            } else {
+              /**if checkbox selected */
+              item_1.categories = [];
+            }
+          });
+        } else {
+          /**no rules */
+          if (generateRS === false) {
+            /**checkbox not selected */
+            item_0.rules[0].categories.push(ageValues);
+            item_0.rules[0].categories.push(hstnlValues);
+            item_0.rules[0].isDefault = generateDefault;
+            item_0.rules[0].isChecked = generateRS;
+          } else {
+            /**checkbox selected */
+            item_0.rules[0].isDefault = generateDefault;
+            item_0.rules[0].isChecked = generateRS;
+            item_0.rules[0].categories = [];
+          }
+        }
+      } else if (item_0.ruleSectionName.toLocaleLowerCase() === "display") {
+        if (item_0.rules.length > 0) {
+          /** if rules exists*/
+          item_0.rules.forEach((item_1) => {
+            if (displayRS === false) {
+              /** if checkbox is not checked */
+              item_1.isDefault = displayDefault;
+              item_1.isChecked = displayRS;
+              if (item_1.categories.length > 0) {
+                /**values exists for textfields */
+                item_1.categories[0].values = [
+                  `${displayRule.displayOne}%`.split("%")[0],
+                  `${displayRule.displayTwo}%`.split("%")[0],
+                ];
+                item_1.categories[0].operator = "Between";
+              } else {
+                /**values doesnt exists for textfields */
+                item_1.categories = displayValues;
+              }
+            } else {
+              /**if checkbox selected */
+              item_1.categories = [];
+            }
+          });
+        } else {
+          /**no rules */
+          if (displayRS === false) {
+            /**checkbox not selected */
+            item_0.rules[0].categories[0].values = [
+              `${displayRule.displayOne}%`.split("%")[0],
+              `${displayRule.displayTwo}%`.split("%")[0],
+            ];
+            item_0.rules[0].isDefault = displayDefault;
+            item_0.rules[0].isChecked = displayRS;
+          } else {
+            /**checkbox selected */
+            item_0.rules[0].isDefault = generateDefault;
+            item_0.rules[0].isChecked = generateRS;
+            item_0.rules[0].categories = [];
+          }
+        }
+      }
+    });
 
-  //     /**others settings */
-  //     if (configData.result.configurations[2].rules.length) {
-  //       configData.result.configurations[2].rules[0].isDefault = otherDefault;
-  //       configData.result.configurations[2].rules[0].isChecked = otherRS;
-  //       configData.result.configurations[2].rules[0].categories = otherArr;
-  //     } else {
-  //       configData.result.configurations[2].rules[0].categories[0] = [];
-  //     }
-  //   };
+    /**others settings */
+    if (configData.result.configurations[2].rules.length) {
+      configData.result.configurations[2].rules[0].isDefault = otherDefault;
+      configData.result.configurations[2].rules[0].isChecked = otherRS;
+      configData.result.configurations[2].rules[0].categories = otherArr;
+    } else {
+      configData.result.configurations[2].rules[0].categories[0] = [];
+    }
+  };
   /*************config api stuff***************/
 
   if (isFetching) {
@@ -846,12 +842,52 @@ export default function Amiconfig(props) {
           >
             <Grid container item xs={12} spacing={2}>
               {/******************First container******************/}
-
-              <Display></Display>
+              <Grid container item xs={12}>
+                <Grid item xs={12} className={classes.gridcontainer1}>
+                  <Card className={classes.gridcontainer}>
+                    <CardContent>
+                      <Typography className={classes.headerText}>
+                        Generate Risk Score for only Patients meeting criteria
+                      </Typography>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            onChange={(e) => handleGenerateRiskScore(e)}
+                            {...label}
+                            defaultChecked={generateRS}
+                            sx={{
+                              color: "#fff",
+                              "&.Mui-checked": {
+                                color: "#fff",
+                              },
+                            }}
+                          />
+                        }
+                        label="All ED admits > 18 years with at least one hsTnl test result  "
+                      />
+                      <Typography
+                        style={{ fontSize: "19px", paddingLeft: "10%" }}
+                        className={classes.headerText}
+                      >
+                        Or
+                      </Typography>
+                      <Typography
+                        style={{
+                          textAlign: "left",
+                        }}
+                        className={classes.headerText}
+                      >
+                        User Defined Rule
+                      </Typography>
+                      {createGenerateRule()}
+                    </CardContent>
+                  </Card>
+                </Grid>
+              </Grid>
               {/******************First container******************/}
 
               {/******************Second container******************/}
-              {/* <Grid container item xs={12}>
+              <Grid container item xs={12}>
                 <Grid item xs={12} className={classes.gridcontainer1}>
                   <Card className={classes.gridcontainer}>
                     <CardContent>
@@ -897,11 +933,10 @@ export default function Amiconfig(props) {
                     </CardContent>
                   </Card>
                 </Grid>
-              </Grid> */}
-              <Generate></Generate>
+              </Grid>
               {/******************Second container******************/}
               {/******************third container******************/}
-              {/* <Grid item xs={12}>
+              <Grid item xs={12}>
                 <Card className={classes.gridcontainer}>
                   <CardContent>
                     <Typography className={classes.headerText}>
@@ -929,11 +964,10 @@ export default function Amiconfig(props) {
                     </FormGroup>
                   </CardContent>
                 </Card>
-              </Grid> */}
-              <Othersettings></Othersettings>
+              </Grid>
               {/******************third container******************/}
               {/******************bottom buttons******************/}
-              {/* <Grid item xs={12} container className={classes.alignRight}>
+              <Grid item xs={12} container className={classes.alignRight}>
                 <Grid item xs={12} md={4}>
                   <Stack spacing={2} direction="row" justifyContent="end">
                     <BootstrapButton
@@ -961,8 +995,7 @@ export default function Amiconfig(props) {
                     </BootstrapButton>
                   </Stack>
                 </Grid>
-              </Grid> */}
-              <SaveConfig></SaveConfig>
+              </Grid>
               {/******************bottom buttons******************/}
             </Grid>
           </Box>
