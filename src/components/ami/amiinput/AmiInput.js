@@ -2,15 +2,22 @@ import React from "react";
 import EKGFindings from "./ekgfindings/EKGFindings";
 import PatientHistory from "./patienthistory/PatientHistory";
 import HsTnlResults from "./hstnlresults/HsTnlResults";
+import { Grid } from "../../../shared/material/mui";
+import AmiInputStyles from "./AmiInputStyles";
 
-const AmiInput = () => {
+export default function AMiInput(props) {
+  const classes = AmiInputStyles();
+
   return (
     <div>
-      <EKGFindings></EKGFindings>
+      {/* <EKGFindings></EKGFindings>
       <PatientHistory></PatientHistory>
-      <HsTnlResults></HsTnlResults>
+      <HsTnlResults></HsTnlResults> */}
+      <Grid container spacing={3} className={classes.mainContainer}>
+        <PatientHistory></PatientHistory>
+        <EKGFindings></EKGFindings>
+        <HsTnlResults></HsTnlResults>
+      </Grid>
     </div>
   );
-};
-
-export default AmiInput;
+}
