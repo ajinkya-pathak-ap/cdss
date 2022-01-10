@@ -23,6 +23,7 @@ export const ChestpainStyles = makeStyles((theme) => ({
     borderRadius: "10px",
     marginRight: "auto",
     marginLeft: "auto",
+    alignItems: "center",
     background: "#fff",
     marginBottom: "50px",
     [theme.breakpoints.up("md")]: {
@@ -38,6 +39,7 @@ export const ChestpainStyles = makeStyles((theme) => ({
 
   typoofhospitalhead: {
     fontSize: "16px",
+    justifyContent: "center",
   },
 
   buttonColor: {

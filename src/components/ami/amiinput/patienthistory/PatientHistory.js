@@ -4,7 +4,33 @@ import { Typography } from "@material-ui/core";
 import { Select, MenuItem, FormControl, InputLabel } from "@material-ui/core";
 import { PatientHistoryStyles } from "./PatientHistoryStyles";
 import TextField from "@mui/material/TextField";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import { useTheme } from "@mui/material/styles";
 import "../styles.css";
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+const names = [
+  "Oliver Hansen",
+  "Van Henry",
+  "April Tucker",
+  "Ralph Hubbard",
+  "Omar Alexander",
+  "Carlos Abbott",
+  "Miriam Wagner",
+  "Bradley Wilkerson",
+  "Virginia Andrews",
+  "Kelly Snyder",
+];
 
 const Race = [
   {
@@ -17,17 +43,30 @@ const Race = [
   },
 ];
 
+function getStyles(name, personName, theme) {
+  return {
+    fontWeight:
+      personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  };
+}
+
 const PatientHistory = () => {
   const classes = PatientHistoryStyles();
+  const theme = useTheme();
+  const [personName, setPersonName] = React.useState([]);
+
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setPersonName(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
   return (
-    // <Grid
-    //   md={12}
-    //   xs={12}
-    //   item
-    //   container
-    //   spacing={4}
-    //   className={`${classes.root} ${classes.holder}`}
-    // >
     <Grid item container md={12} xs={12} className={classes.patientHistory}>
       <form className={classes.firstform}>
         <Typography className={classes.headerText}>Patient History</Typography>
@@ -85,7 +124,7 @@ const PatientHistory = () => {
           <MenuItem value="Asian">Asian</MenuItem>
         </TextField>
 
-        <TextField
+        {/* <TextField
           className={classes.textFieldColor}
           id="riskFactors"
           select
@@ -98,7 +137,36 @@ const PatientHistory = () => {
           }}
         >
           <MenuItem value="prior AMI">Chest pain</MenuItem>
-        </TextField>
+        </TextField> */}
+
+        <FormControl sx={{ m: 1, width: 300 }}>
+          <InputLabel id="demo-multiple-name-label">Name</InputLabel>
+          <Select
+            className={classes.textFieldColor}
+            labelId="demo-multiple-name-label"
+            id="demo-multiple-name"
+            label="Presenting Symptoms"
+            multiple
+            variant="standard"
+            value={personName}
+            onChange={handleChange}
+            inputProps={{
+              className: classes.fontTypePresentingSymptoms,
+            }}
+            input={<OutlinedInput label="Name" />}
+            MenuProps={MenuProps}
+          >
+            {names.map((name) => (
+              <MenuItem
+                key={name}
+                value={name}
+                style={getStyles(name, personName, theme)}
+              >
+                {name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
         <TextField
           className={classes.textFieldColor}
