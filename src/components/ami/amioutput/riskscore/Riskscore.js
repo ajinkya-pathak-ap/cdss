@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import { Card, CardContent, Typography } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import { RiskScoreStyles } from "./RiskscoreStyles";
+import { utils } from "../../amiconfig/AmiConfigUtils";
 
 const Riskscore = (props) => {
   const classes = RiskScoreStyles();

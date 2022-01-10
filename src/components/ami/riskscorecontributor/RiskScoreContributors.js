@@ -4,8 +4,8 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { Card, CardContent, Typography } from "@material-ui/core";
-import { riskScoreService } from "../../services/riskScore-service";
-import CircularIndeterminate from "../../shared/preloder/Preloder";
+import { riskScoreService } from "../../../services/riskScore-service";
+import CircularIndeterminate from "../../../shared/preloder/Preloder";
 import { RiskContributorStyles } from "./RiskScoreContributorStyles";
 
 const configData = {
@@ -52,19 +52,9 @@ export default function RiskScoreContributors(props) {
     return <CircularIndeterminate />;
   } else {
     return (
-      <Grid
-        container
-        spacing={4}
-        className={classes.contrimainContainer}
-        // justifyContent="center"
-        // alignItems="center"
-      >
+      <Grid container spacing={4} className={classes.contrimainContainer}>
         <Grid item sm={12} xs={12} md={12}>
-          <Box
-            className={classes.sx}
-            // sx={{ bgcolor: "#6D7F9B", minHeight: "250px" }}
-          >
-            {/* *****************First container***************** */}
+          <Box className={classes.sx}>
             <Grid
               container
               item
@@ -81,7 +71,6 @@ export default function RiskScoreContributors(props) {
                       className={classes.typoofriskscore}
                     >
                       {riskScoreContributors.value.riskScoreContributors}
-                      {/* Provide the Details for the Risk Score Contributors */}
                     </Typography>
                   </CardContent>
                 </Card>

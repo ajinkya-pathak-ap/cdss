@@ -8,6 +8,7 @@ import {
   RiskContributorStyles,
 } from "./RiskscoreContributorStyles";
 import "../styles.css";
+import { utilis } from "../AmiOutputUtils";
 
 const RiskscoreContributors = (props) => {
   useEffect(() => {
@@ -25,16 +26,6 @@ const RiskscoreContributors = (props) => {
     setNegativeCont(negativeContributors.split(","));
   };
 
-  const mapList = (_arr) => {
-    return (
-      <ol>
-        {_arr.map((v) => (
-          <li key={v}>{v}</li>
-        ))}
-      </ol>
-    );
-  };
-
   return (
     <Grid container item xs={12}>
       <Grid item xs={7} lg={8} className={classes.gridcontainer2}>
@@ -45,11 +36,11 @@ const RiskscoreContributors = (props) => {
             </Typography>
             <Typography className={`${classes.headerTextThree}`}>
               Factors that increase the 30-day MACE risk
-              {mapList(positiveCont)}
+              {utilis.iterateOrderedList(positiveCont)}
             </Typography>
             <Typography className={`${classes.headerTextThree}`}>
               Factors that decrease the 30-day MACE risk
-              {mapList(negativeCont)}
+              {utilis.iterateOrderedList(negativeCont)}
             </Typography>
           </CardContent>
         </Card>

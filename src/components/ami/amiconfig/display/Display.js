@@ -3,384 +3,216 @@ import Grid from "@material-ui/core/Grid";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { Card, CardContent, Typography, FormControl } from "@material-ui/core";
-import Select from "@mui/material/Select";
-import TextField from "@mui/material/TextField";
-import MenuItem from "@mui/material/MenuItem";
 
-import { DisplayStyles } from "./DisplayStyles";
+import { DisplayStyles, displayRuleInput } from "./DisplayStyles";
 
-const Display = () => {
+const BootstrapInput = displayRuleInput;
+
+const Display = (props) => {
   const classes = DisplayStyles();
 
+  const { configurations } = props.config;
   const label = {
     inputProps: { "aria-label": "Checkbox demo" },
   };
-  const operators = [">", "<", ">=", "<=", "=", "Between"];
 
-  const [generateRS, setGenerateRS] = useState(true);
-  const [generateDefault, setGenrateDefault] = useState(true);
-  const [operatorOne, setOperatorOne] = useState("");
-  const [operatorTwo, setOperatorTwo] = useState("");
+  const [displayRS, setDisplayRS] = useState(true);
+  const [displayDefault, setDisplayDefault] = useState(true);
 
-  const [generateRule, setGenerateRule] = useState({
-    ageOne: "",
-    ageTwo: "",
-    hstnlOne: "",
-    hstnlTwo: "",
+  const [displayArr, setDisplayArr] = useState([]);
+  const [displayRule, setDisplayRule] = useState({
+    displayOne: "",
+    displayTwo: "",
   });
 
-  const handleGenerateRule = (e) => {
-    setGenerateRule({ ...generateRule, [e.target.name]: e.target.value });
-    enableApply(e);
+  const [displayValues, setDisplayValues] = useState({
+    categoryDefinition: "hstnl",
+    operator: "Between",
+    values: [],
+  });
 
-    operatorOne.toLocaleLowerCase() === "between"
-      ? setAgeArr([generateRule.ageOne, generateRule.ageTwo])
-      : setAgeArr([generateRule.ageOne]);
-    setAgeValues({ ...ageValues, values: ageArr, operator: operatorOne });
+  useEffect(() => {
+    mapJsonResponse(configurations);
+  }, []);
 
-    operatorTwo.toLocaleLowerCase() === "between"
-      ? setHstnlArr([generateRule.hstnlOne, generateRule.hstnlTwo])
-      : setHstnlArr([generateRule.hstnlOne]);
-    sethstnlValues({ ...hstnlValues, values: hstnlArr, operator: operatorTwo });
-  };
+  const [apply, setApply] = useState(true);
 
-  const handleGenerateRiskScore = (event) => {
+  const handleDisplayRuleCheck = (event) => {
     const checkedValue = event.target.checked;
-    setGenerateRS(checkedValue);
-    setGenrateDefault(false);
+    setDisplayRS(checkedValue);
+    setDisplayDefault(false);
+    checkedValue ? setApply(false) : setApply(true);
   };
 
-  const changeOperatorOne = (event) => {
-    setOperatorOne(event.target.value);
+  const handleDisplayRule = (e) => {
+    setDisplayRule({ ...displayRule, [e.target.name]: e.target.value });
+
+    setDisplayValues({
+      ...displayValues,
+      values: [
+        `${displayRule.displayOne}%`.split("%")[0],
+        `${displayRule.displayTwo}%`.split("%")[0],
+      ],
+    });
   };
 
-  const changeOperatorTwo = (event) => {
-    setOperatorTwo(event.target.value);
+  const mapJsonResponse = (_obj) => {
+    _obj.forEach((configurationsItem, index) => {
+      if (
+        configurationsItem.ruleSectionName.toLocaleLowerCase() === "display"
+      ) {
+        if (configurationsItem.rules.length > 0) {
+          /**create rules dom here */
+          configurationsItem.rules.forEach((ruleIteam) => {
+            /**declare default & checked */
+            setDisplayDefault(ruleIteam.isDefault);
+            setDisplayRS(ruleIteam.isChecked);
+            if (ruleIteam.categories.length > 0) {
+              ruleIteam.categories.forEach((categoryItem, ind) => {
+                /**create values categories */
+                // setOperatorTwo(categoryItem.operator);
+                setDisplayArr(categoryItem);
+              });
+            }
+          });
+        }
+      }
+    });
   };
 
-  const enableApply = (e) => {
-    if (generateRS === false) {
-      operatorOne === "Between"
-        ? (() => {
-            if (
-              generateRule.ageOne.length > 1 &&
-              generateRule.ageTwo.length > 1
-            ) {
-              setApply(false);
-            }
-          })()
-        : (() => {
-            if (generateRule.ageOne.length > 1) {
-              setApply(false);
-            }
-          })();
-
-      operatorTwo === "Between"
-        ? (() => {
-            if (
-              generateRule.hstnlOne.length > 1 &&
-              generateRule.hstnlTwo.length > 1
-            ) {
-              setApply(false);
-            }
-          })()
-        : (() => {
-            if (generateRule.hstnlOne.length > 1) {
-              setApply(false);
-            }
-          })();
-    } else {
-    }
-  };
-
-  const createGenerateRule = (props) => {
+  const createDisplayRule = () => {
     let response;
-    configData.result.configurations.forEach((v, i) => {
-      if (v.ruleSectionName.toLocaleLowerCase() === "generate") {
+    configurations.forEach((v, i) => {
+      if (v.ruleSectionName.toLocaleLowerCase() === "display") {
         if (v.rules.length > 0) {
           v.rules.forEach((w) => {
             response = (
-              <Grid container spacing={1}>
-                <Grid item xs={12} sm={5} md={5}>
-                  <Grid container spacing={1}>
-                    <Grid item xs={12} md={12}>
-                      <h4 style={{ marginLeft: "30px" }}>Age</h4>
-                    </Grid>
-                    <Grid item xs={12} md={4}>
-                      <FormControl fullWidth>
-                        <Select
-                          labelId="simple"
-                          size="small"
-                          // id="demo2"
-                          value={operatorOne}
-                          label="Age"
-                          autoWidth
-                          onChange={changeOperatorOne}
-                          className={classes.generaters}
-                          disabled={generateRS}
-                        >
-                          {operators.map((option) => {
-                            return (
-                              <MenuItem value={option} key={option}>
-                                {option}
-                              </MenuItem>
-                            );
-                          })}
-                        </Select>
-                      </FormControl>
-                    </Grid>
-                    <Grid item xs={12} md={4}>
-                      <TextField
-                        size="small"
-                        disabled={generateRS}
-                        className={classes.agedropdown}
-                        onChange={(e) => handleGenerateRule(e)}
-                        name="ageOne"
-                        type="number"
-                        value={generateRule.ageOne}
-                        // value={
-                        //   ageArr.values.length > 0
-                        //     ? ageArr.values[0]
-                        //     : generateRule.ageOne
-                        // }
-                      />
-                    </Grid>
-                    {operatorOne === "Between" ? (
-                      <Grid item xs={12} md={4}>
-                        <TextField
-                          size="small"
-                          disabled={generateRS}
-                          className={classes.valuebox1}
-                          onChange={(e) => handleGenerateRule(e)}
-                          name="ageTwo"
-                          type="number"
-                          // value={
-                          //   ageArr.values.length > 0
-                          //     ? ageArr.values[1]
-                          //     : generateRule.ageTwo
-                          // }
-                          value={generateRule.ageTwo}
-                        />
-                      </Grid>
-                    ) : (
-                      ""
-                    )}
+              <Grid container spacing={2}>
+                <Grid container spacing={0}>
+                  <Grid item xs={12} md={1} className={classes.betweenspacing}>
+                    <Typography
+                      variant={"h6"}
+                      className={classes.DisRiskbetween}
+                    >
+                      Between
+                    </Typography>
                   </Grid>
-                </Grid>
-                <Grid item xs={12} md={2} className={classes.spacingaboveand}>
-                  {operatorOne === "Between" ? (
-                    <h3 className={classes.spacingandinmd}>AND</h3>
-                  ) : (
-                    <h3 className={classes.spacingandinmd2}>AND</h3>
-                  )}
-                </Grid>
-                <Grid item xs={12} md={5}>
+                  <Grid item xs={12} md={1}>
+                    <FormControl
+                      variant="standard"
+                      style={{
+                        marginLeft: "28px",
+                      }}
+                    >
+                      <BootstrapInput
+                        className={classes.DisRiskinput}
+                        defaultValue="0%"
+                        disabled={displayRS}
+                        id="rangeOne"
+                        name="displayOne"
+                        onChange={(e) => handleDisplayRule(e)}
+                      />
+                    </FormControl>
+                  </Grid>
                   <Grid
-                    container
-                    spacing={1}
-                    className={classes.spacingabovehstnl}
+                    item
+                    xs={12}
+                    md={1}
+                    style={{
+                      marginLeft: "50px",
+                    }}
                   >
-                    <Grid item xs={12} md={12}>
-                      <h4>hsTnl Value</h4>
-                    </Grid>
-                    <Grid item xs={12} md={4}>
-                      <FormControl fullWidth>
-                        <Select
-                          labelId="simple2"
-                          id="demo"
-                          value={operatorTwo}
-                          label="Age"
-                          autoWidth
-                          onChange={changeOperatorTwo}
-                          className={classes.hstnldropdown}
-                          disabled={generateRS}
-                        >
-                          {operators.map((option) => {
-                            return (
-                              <MenuItem value={option} key={option}>
-                                {option}
-                              </MenuItem>
-                            );
-                          })}
-                        </Select>
-                      </FormControl>
-                    </Grid>
-                    <Grid item xs={12} md={4}>
-                      <TextField
-                        size="small"
-                        disabled={generateRS}
-                        className={classes.hstnlvalue1}
-                        onChange={(e) => handleGenerateRule(e)}
-                        name="hstnlOne"
-                        type="number"
-                        value={generateRule.hstnlOne}
+                    <Typography variant={"h6"}>And</Typography>
+                  </Grid>
+                  <Grid item xs={12} md={1} className={classes.spacing}>
+                    <FormControl variant="standard">
+                      <BootstrapInput
+                        className={classes.DisRiskinput2}
+                        defaultValue="1%"
+                        disabled={displayRS}
+                        id="rangeTwo"
+                        name="displayTwo"
+                        onChange={(e) => handleDisplayRule(e)}
                       />
-                    </Grid>
-                    {operatorTwo === "Between" ? (
-                      <Grid item md={4}>
-                        <TextField
-                          size="small"
-                          disabled={generateRS}
-                          className={classes.hstnlvalue2}
-                          onChange={(e) => handleGenerateRule(e)}
-                          name="hstnlTwo"
-                          type="number"
-                          value={generateRule.hstnlTwo}
-                        />
-                      </Grid>
-                    ) : (
-                      ""
-                    )}
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <Typography variant={"h6"} className={classes.riskofmace}>
+                      risk of MACE within 30 days
+                    </Typography>
                   </Grid>
                 </Grid>
+                <Grid item xs={12} md={4}></Grid>
               </Grid>
             );
           });
         } else {
           response = (
-            <Grid container spacing={1}>
-              <Grid item xs={12} sm={5} md={5}>
-                <Grid container spacing={1}>
-                  <Grid item xs={12} md={12}>
-                    <h4 className={classes.ageelseheading}>Age</h4>
-                  </Grid>
-                  <Grid item xs={12} md={4}>
-                    <FormControl fullWidth>
-                      <Select
-                        labelId="simple"
-                        size="small"
-                        id="demo2"
-                        value={operatorOne}
-                        label="Age"
-                        autoWidth
-                        onChange={changeOperatorOne}
-                        className={classes.ageelsedropdown}
-                        disabled={generateRS}
-                      >
-                        {operators.map((option) => {
-                          return (
-                            <MenuItem value={option} key={option}>
-                              {option}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={12} md={4}>
-                    <TextField
-                      size="small"
-                      disabled={generateRS}
-                      className={classes.ageElseBetweenValue1}
-                      onChange={(e) => handleGenerateRule(e)}
-                      name="ageOne"
-                      type="number"
-                      // value={generateRule.ageOne}
-                      value={
-                        ageArr.values.length > 0
-                          ? ageArr.values[0]
-                          : generateRule.ageOne
-                      }
-                    />
-                  </Grid>
-                  {operatorOne === "Between" ? (
-                    <Grid item xs={12} md={4}>
-                      <TextField
-                        size="small"
-                        disabled={generateRS}
-                        className={classes.ageElseBetweenValue2}
-                        onChange={(e) => handleGenerateRule(e)}
-                        name="ageTwo"
-                        type="number"
-                        value={
-                          ageArr.values.length > 0
-                            ? ageArr.values[1]
-                            : generateRule.ageTwo
-                        }
-                        // value={generateRule.ageTwo}
-                      />
-                    </Grid>
-                  ) : (
-                    ""
-                  )}
+            <Grid container spacing={2}>
+              <Grid container spacing={0}>
+                <Grid item xs={12} md={1} className={classes.betweenspacing}>
+                  <Typography variant={"h6"} style={{ marginLeft: "10px" }}>
+                    Between
+                  </Typography>
                 </Grid>
-              </Grid>
-              <Grid item xs={12} md={2} className={classes.spacingaboveand}>
-                {operatorOne === "Between" ? (
-                  <h3 className={classes.andspacingifbetween1}>AND</h3>
-                ) : (
-                  <h3 className={classes.andspacingifbetween2}>AND</h3>
-                )}
-              </Grid>
-              <Grid item xs={12} md={5}>
+                <Grid item xs={12} md={1}>
+                  <FormControl
+                    variant="standard"
+                    style={{
+                      marginLeft: "28px",
+                    }}
+                  >
+                    <BootstrapInput
+                      style={{
+                        width: "80px",
+                        textAlign: "right",
+                      }}
+                      defaultValue="0%"
+                      disabled={displayRS}
+                      id="rangeOne"
+                      name="displayOne"
+                      onChange={(e) => handleDisplayRule(e)}
+                    />
+                  </FormControl>
+                </Grid>
                 <Grid
-                  container
-                  spacing={1}
-                  className={classes.spacingabovehstnl}
+                  item
+                  xs={12}
+                  md={1}
+                  style={{
+                    marginLeft: "50px",
+                  }}
                 >
-                  <Grid item xs={12} md={12}>
-                    <h4>hsTnl Value</h4>
-                  </Grid>
-                  <Grid item xs={12} md={4}>
-                    <FormControl fullWidth>
-                      <Select
-                        labelId="simple2"
-                        id="demo"
-                        value={operatorTwo}
-                        label="Age"
-                        autoWidth
-                        onChange={changeOperatorTwo}
-                        className={classes.hstnldropdown2}
-                        disabled={generateRS}
-                      >
-                        {operators.map((option) => {
-                          return (
-                            <MenuItem value={option} key={option}>
-                              {option}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={12} md={4}>
-                    <TextField
-                      size="small"
-                      disabled={generateRS}
-                      className={classes.hstnlelsevalue1}
-                      onChange={(e) => handleGenerateRule(e)}
-                      name="hstnlOne"
-                      type="number"
-                      value={
-                        hstnlArr.values.length > 0
-                          ? hstnlArr.values[0]
-                          : generateRule.hstnlOne
-                      }
-                      // value={generateRule.hstnlOne}
+                  <Typography variant={"h6"}>And</Typography>
+                </Grid>
+                <Grid item xs={12} md={1} className={classes.spacing}>
+                  <FormControl variant="standard">
+                    <BootstrapInput
+                      style={{
+                        marginLeft: "-20px",
+                        width: "80px",
+                      }}
+                      defaultValue="1%"
+                      disabled={displayRS}
+                      id="rangeTwo"
+                      name="displayTwo"
+                      onChange={(e) => handleDisplayRule(e)}
                     />
-                  </Grid>
-                  {operatorTwo === "Between" ? (
-                    <Grid item md={4}>
-                      <TextField
-                        size="small"
-                        disabled={generateRS}
-                        className={classes.hstnlelsevalue2}
-                        onChange={(e) => handleGenerateRule(e)}
-                        name="hstnlTwo"
-                        type="number"
-                        value={
-                          hstnlArr.values.length > 0
-                            ? hstnlArr.values[1]
-                            : generateRule.hstnlTwo
-                        }
-                        // value={generateRule.hstnlTwo}
-                      />
-                    </Grid>
-                  ) : (
-                    ""
-                  )}
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12} md={4}>
+                  <Typography
+                    variant={"h6"}
+                    style={{
+                      marginLeft: "5px",
+                      fontSize: "18px",
+                    }}
+                  >
+                    risk of MACE within 30 days
+                  </Typography>
                 </Grid>
               </Grid>
+              <Grid item xs={12} md={4}></Grid>
             </Grid>
           );
         }
@@ -395,14 +227,14 @@ const Display = () => {
         <Card className={classes.gridcontainer}>
           <CardContent>
             <Typography className={classes.headerText}>
-              Generate Risk Score for only Patients meeting criteria
+              Display Risk Score for only Patients meeting the following
             </Typography>
             <FormControlLabel
               control={
                 <Checkbox
-                  onChange={(e) => handleGenerateRiskScore(e)}
+                  onChange={(e) => handleDisplayRuleCheck(e)}
                   {...label}
-                  defaultChecked={generateRS}
+                  defaultChecked={displayRS}
                   sx={{
                     color: "#fff",
                     "&.Mui-checked": {
@@ -411,23 +243,27 @@ const Display = () => {
                   }}
                 />
               }
-              label="All ED admits > 18 years with at least one hsTnl test result  "
+              label="Display All Risk Scores"
             />
+            <br />
+            <br />
             <Typography
               style={{ fontSize: "19px", paddingLeft: "10%" }}
               className={classes.headerText}
             >
               Or
             </Typography>
+            <br />
             <Typography
               style={{
                 textAlign: "left",
               }}
               className={classes.headerText}
             >
-              User Defined Rule
+              User Defined Range
             </Typography>
-            {createGenerateRule()}
+            <br />
+            {createDisplayRule()}
           </CardContent>
         </Card>
       </Grid>
