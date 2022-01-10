@@ -9,8 +9,6 @@ import Login from "../src/components/common/Login";
 import { connect } from "react-redux";
 import Errorboundry from "./shared/errorboundry/Errorboundry";
 
-//test changes for git test
-
 function App(props) {
   return (
     <div className="App">
