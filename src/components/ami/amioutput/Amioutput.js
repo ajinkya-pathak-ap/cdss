@@ -34,7 +34,7 @@ export default function AMIOutput(props) {
           setIsFetching(false);
         },
         (error) => {
-          return;
+          console.log("error", error);
         }
       );
     } else {
