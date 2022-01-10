@@ -1,0 +1,63 @@
+.bg-white {
+  background-color: white;
+}
+
+label#age-label {
+  margin-top: 10px;
+  margin-left: -1px;
+  font-size: 16px !important;
+  color: red;
+}
+
+label#gender-label,
+label#Race-label,
+label#symptoms-label,
+label#time-label,
+label#riskFactors-label {
+  margin-top: 12px;
+  color: #000;
+  margin-left: 12px;
+  font-size: 18px !important;
+}
+
+ol {
+  display: block;
+  font-size: 11px;
+  list-style-type: decimal;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 13px;
+}
+
+input[type="email" i] {
+  padding: 6px 2px;
+}
+
+
+.css-10botns-MuiInputBase-input-MuiFilledInput-input {
+ 
+  padding-right: 50px !important;
+  padding-bottom: 16px !important;
+  padding-left: 2px;
+}
+
+
+label#firstDraw-label,
+label#secondDraw-label,
+label#thirdDraw-label,
+label#date1-label,
+label#date2-label,
+label#date3-label {
+  color: black;
+}
+input[type="radio" i] {
+  background-color: white;
+  cursor: default;
+  appearance: auto;
+  box-sizing: border-box;
+  margin: 3px 3px 0px 5px;
+  padding: white;
+  border: white;
+}
