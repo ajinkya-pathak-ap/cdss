@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Notification from "../../shared/notification/Notification";
 import AMIOutput from "../ami/amioutput/Amioutput";
-import Amiconfig from "../ami/amiconfig/AmiConfig";
+// import Amiconfig from "../ami/amiconfig/AmiConfig";
 
 // import AMICDSInput from "../ami/AMICDSInput";
 // import AMIConfiguration from "../ami/AMIConfiguraton";
@@ -35,13 +35,13 @@ function ShellComponent(props) {
           <Route
             exact
             path="/"
-            element={<Amiconfig notify={snacksBar} localMode={localMode} />}
+            element={<AMIOutput notify={snacksBar} localMode={localMode} />}
           />
           {/* <Route exact path="/login" element={<Login notify={snacksBar} />} /> */}
-          <Route
+          {/* <Route
             path="/config"
             element={<Amiconfig notify={snacksBar} localMode={localMode} />}
-          />
+          /> */}
           <Route
             path="/amioutput"
             element={<AMIOutput notify={snacksBar} localMode={localMode} />}
