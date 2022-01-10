@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Notification from "../../shared/notification/Notification";
 
-// import AMIOutput from "../ami/amioutput/Amioutput";
-// import Amiconfig from "../ami/amiconfig/AmiConfig";
-
 const LazyAmiOutput = React.lazy(() => import("../ami/amioutput/Amioutput"));
 const LazyAmiConfig = React.lazy(() => import("../ami/amiconfig/AmiConfig"));
 const LazyAmiContriubutors = React.lazy(() =>
@@ -43,7 +40,7 @@ function ShellComponent(props) {
               exact
               path="/"
               element={
-                <LazyAmiOutput notify={snacksBar} localMode={localMode} />
+                <LazyAmiConfig notify={snacksBar} localMode={localMode} />
               }
             />
             <Route
