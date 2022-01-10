@@ -59,6 +59,7 @@ export default function AMIConfiguration(props) {
     operator: "",
     values: [],
   });
+
   const [hstnlValues, sethstnlValues] = useState({
     categoryDefinition: "hstnl",
     operator: "",
@@ -83,9 +84,6 @@ export default function AMIConfiguration(props) {
     fetchConfigData(fetchRequestObject);
   }, []);
 
-  useEffect(() => {
-    console.log(generateRule);
-  });
 
   const changeOperatorOne = (event) => {
     setOperatorOne(event.target.value);

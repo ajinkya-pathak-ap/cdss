@@ -8,7 +8,7 @@ import {
   RiskContributorStyles,
 } from "./RiskscoreContributorStyles";
 import "../styles.css";
-import { utilis } from "../AmiOutputUtils";
+import { utils } from "../AmiOutputUtils";
 
 const RiskscoreContributors = (props) => {
   useEffect(() => {
@@ -36,11 +36,11 @@ const RiskscoreContributors = (props) => {
             </Typography>
             <Typography className={`${classes.headerTextThree}`}>
               Factors that increase the 30-day MACE risk
-              {utilis.iterateOrderedList(positiveCont)}
+              {utils.iterateOrderedList(positiveCont)}
             </Typography>
             <Typography className={`${classes.headerTextThree}`}>
               Factors that decrease the 30-day MACE risk
-              {utilis.iterateOrderedList(negativeCont)}
+              {utils.iterateOrderedList(negativeCont)}
             </Typography>
           </CardContent>
         </Card>

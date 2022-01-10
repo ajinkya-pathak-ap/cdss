@@ -1,9 +1,9 @@
 import { React } from "react";
-import Grid from "@material-ui/core/Grid";
+import { Grid, Box } from "../../../../shared/material/mui";
 import { Card, CardContent, Typography } from "@material-ui/core";
-import Box from "@material-ui/core/Box";
+// import Box from "@material-ui/core/Box";
 import { RiskScoreStyles } from "./RiskscoreStyles";
-import { utils } from "../../amiconfig/AmiConfigUtils";
+import { utils } from "../AmiOutputUtils";
 
 const Riskscore = (props) => {
   const classes = RiskScoreStyles();
@@ -11,13 +11,13 @@ const Riskscore = (props) => {
 
   const details = riskScoreDetails.split("$");
 
-  const riskScoreRange = () => {
-    let probRange = probabilityRange;
-    probRange = probRange.replace("(", "");
-    probRange = probRange.replace(")", "");
-    probRange = probRange.replace(",", " -");
-    return probRange;
-  };
+  // const riskScoreRange = () => {
+  //   let probRange = probabilityRange;
+  //   probRange = probRange.replace("(", "");
+  //   probRange = probRange.replace(")", "");
+  //   probRange = probRange.replace(",", " -");
+  //   return probRange;
+  // };
 
   return (
     <Grid container item xs={12}>
@@ -39,7 +39,7 @@ const Riskscore = (props) => {
       <Grid container item xs={4} className={classes.gridcontainer1}>
         <Box textAlign="center" className={classes.smallMargin}>
           <Typography alignitems="center" className={classes.riskScoreShell}>
-            {riskScoreRange()}
+            {utils.riskScoreRange(probabilityRange)}
           </Typography>
         </Box>
       </Grid>

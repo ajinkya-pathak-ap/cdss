@@ -1,4 +1,4 @@
-export const utilis = {
+export const utils = {
   iterateOrderedList: (_arr) => {
     return (
       <ol>
@@ -7,5 +7,12 @@ export const utilis = {
         ))}
       </ol>
     );
+  },
+  riskScoreRange: (_range) => {
+    let probRange = _range;
+    probRange = probRange.replace("(", "");
+    probRange = probRange.replace(")", "");
+    probRange = probRange.replace(",", " -");
+    return probRange;
   },
 };
