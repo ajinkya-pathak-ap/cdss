@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core";
 export const PatientHistoryStyles = makeStyles((theme) => ({
   patientHistory: {
     backgroundColor: "#050038",
+    paddingLeft: "20px",
   },
 
   patientagelabel: {
@@ -41,6 +42,7 @@ export const PatientHistoryStyles = makeStyles((theme) => ({
     marginBottom: "15px",
     color: "#fff",
     textAlign: "left",
+    paddingLeft: "10px",
   },
 
   headerTextThree: {
@@ -53,5 +55,9 @@ export const PatientHistoryStyles = makeStyles((theme) => ({
   fontTypeOne: {
     fontSize: "14px !important",
     marginTop: "-10px !important",
+  },
+
+  fontTypePresentingSymptoms: {
+    fontSize: "14px !important",
   },
 }));

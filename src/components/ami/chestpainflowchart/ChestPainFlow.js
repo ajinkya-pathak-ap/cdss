@@ -9,38 +9,32 @@ export default function ChestPainFlow() {
   const classes = ChestpainStyles();
 
   return (
-    <Grid container>
-      <Grid item sm={12} xs={12} md={12} marginTop={10}>
+    <Grid
+      container
+      className={classes.outsidecontainer}
+      alignItems="center"
+      justify="center"
+    >
+      <Grid lg={12} md={12} xs={12} item>
         <Grid container justify="center">
           <Grid
             container
-            className={classes.outsidecontainer}
-            // alignItems="center"
-            // justify="center"
+            className={classes.insidecontainer}
+            //   alignItems="center"
+            //   justify="center"
           >
-            <Grid lg={12} md={12} xs={12} item>
-              <Grid container justify="center">
-                <Grid
-                  container
-                  className={classes.insidecontainer}
-                  //   alignItems="center"
-                  //   justify="center"
-                >
-                  <Grid lg={12} xs={12} item>
-                    <Typography className={classes.typoofhospitalhead}>
-                      Hospital's Chest Pain Management Flow Chart
-                    </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container justify="flex-end" lg={12} xs={12} item>
-                  <Button variant="contained" className={classes.buttonColor}>
-                    <Link className={classes.whiteBtn} to="/amioutput">
-                      <span className="m-3">OK</span>
-                    </Link>
-                  </Button>
-                </Grid>
-              </Grid>
+            <Grid lg={12} xs={12} item alignItems="center">
+              <Typography className={classes.typoofhospitalhead}>
+                Hospital's Chest Pain Management Flow Chart
+              </Typography>
             </Grid>
+          </Grid>
+          <Grid container justify="flex-end" lg={12} xs={12} item>
+            <Button variant="contained" className={classes.buttonColor}>
+              <Link className={classes.whiteBtn} to="/amioutput">
+                <span className="m-3">OK</span>
+              </Link>
+            </Button>
           </Grid>
         </Grid>
       </Grid>
