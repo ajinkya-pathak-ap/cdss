@@ -7,14 +7,13 @@ import {
 } from "../../../../shared/material/mui";
 import { Link } from "react-router-dom";
 import { GuidanceStyles } from "./GuidanceStyles";
+import { utils } from "../AmiOutputUtils";
 
 const Guidance = (props) => {
   const { guidance } = props.result;
-
   const guidanceTxt =
     "to view patient's position of your institution's Chest Pain Management Care Flowchart";
 
-  const details = guidance.split("$");
   const classes = GuidanceStyles();
 
   return (
@@ -25,17 +24,26 @@ const Guidance = (props) => {
             <Typography className={`${classes.headerText}`}>
               Guidance
             </Typography>
-            <Typography className={`${classes.headerTextThree}`}>
-              {details[0]}
-            </Typography>
-            <Typography className={classes.typo}>{details[1]}</Typography>
-            <Typography>
-              <Link className={classes.hyperLink} to="/carepath">
-                Click here
-              </Link>
-              &nbsp;
-              <span className={classes.headerTextThree}>{guidanceTxt}</span>
-            </Typography>
+            {guidance ? (
+              <>
+                <Typography className={`${classes.headerTextThree}`}>
+                  {utils.splitString(guidance, "$")[0]}
+                </Typography>
+                <Typography className={classes.typo}>
+                  {utils.splitString(guidance, "$")[1]}
+                </Typography>
+
+                <Typography>
+                  <Link className={classes.hyperLink} to="/carepath">
+                    Click here
+                  </Link>
+                  &nbsp;
+                  <span className={classes.headerTextThree}>{guidanceTxt}</span>
+                </Typography>
+              </>
+            ) : (
+              ""
+            )}
           </CardContent>
         </Card>
       </Grid>

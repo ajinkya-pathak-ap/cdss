@@ -8,6 +8,7 @@ export const utils = {
       </ol>
     );
   },
+
   riskScoreRange: (_range) => {
     let probRange = _range;
     probRange = probRange.replace("(", "");
@@ -15,4 +16,6 @@ export const utils = {
     probRange = probRange.replace(",", " -");
     return probRange;
   },
+
+  splitString: (_str, _char) => _str.split(_char),
 };
