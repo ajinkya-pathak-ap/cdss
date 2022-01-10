@@ -1,7 +1,6 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
+import { Grid, Stack } from "../../../../shared/material/mui";
 import { Link } from "react-router-dom";
-import { Stack } from "@mui/material";
 import { AcknowledgeStyles, BootstrapButton } from "./AcknowledgeStyles";
 
 export const Acknowledge = () => {

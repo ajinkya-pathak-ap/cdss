@@ -21,6 +21,8 @@ export { default as MenuItem } from "@material-ui/core/MenuItem";
 export { default as ImageList } from "@material-ui/core/ImageList";
 export { default as ImageListItem } from "@material-ui/core/ImageListItem";
 export { default as ImageListItemBar } from "@material-ui/core/ImageListItemBar";
+export { default as Stack } from "@mui/material/Stack";
+
 
 /**dialogue Imports */
 export { default as Dialog } from "@material-ui/core/Dialog";

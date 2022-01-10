@@ -1,7 +1,11 @@
 import { React, useState, useEffect } from "react";
-import Grid from "@material-ui/core/Grid";
-import { Card, CardContent, Typography } from "@material-ui/core";
-import { Stack } from "@mui/material";
+import {
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+  Stack,
+} from "../../../../shared/material/mui";
 import { Link } from "react-router-dom";
 import {
   BootstrapButton,

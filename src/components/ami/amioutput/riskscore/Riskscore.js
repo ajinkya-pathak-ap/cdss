@@ -1,7 +1,6 @@
 import { React } from "react";
 import { Grid, Box } from "../../../../shared/material/mui";
 import { Card, CardContent, Typography } from "@material-ui/core";
-// import Box from "@material-ui/core/Box";
 import { RiskScoreStyles } from "./RiskscoreStyles";
 import { utils } from "../AmiOutputUtils";
 
@@ -10,14 +9,6 @@ const Riskscore = (props) => {
   const { riskScoreDetails, probabilityRange, score } = props.result;
 
   const details = riskScoreDetails.split("$");
-
-  // const riskScoreRange = () => {
-  //   let probRange = probabilityRange;
-  //   probRange = probRange.replace("(", "");
-  //   probRange = probRange.replace(")", "");
-  //   probRange = probRange.replace(",", " -");
-  //   return probRange;
-  // };
 
   return (
     <Grid container item xs={12}>
