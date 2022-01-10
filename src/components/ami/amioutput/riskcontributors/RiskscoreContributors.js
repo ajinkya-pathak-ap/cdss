@@ -15,20 +15,8 @@ import "../styles.css";
 import { utils } from "../AmiOutputUtils";
 
 const RiskscoreContributors = (props) => {
-  useEffect(() => {
-    riskScoreContributors();
-  }, []);
-
   const classes = RiskContributorStyles();
   const { positiveContributors, negativeContributors } = props.result;
-
-  const [positiveCont, setPositiveCont] = useState([]);
-  const [negativeCont, setNegativeCont] = useState([]);
-
-  const riskScoreContributors = () => {
-    setPositiveCont(positiveContributors.split(","));
-    setNegativeCont(negativeContributors.split(","));
-  };
 
   return (
     <Grid container item xs={12}>
@@ -40,11 +28,19 @@ const RiskscoreContributors = (props) => {
             </Typography>
             <Typography className={`${classes.headerTextThree}`}>
               Factors that increase the 30-day MACE risk
-              {utils.iterateOrderedList(positiveCont)}
+              {positiveContributors
+                ? utils.iterateOrderedList(
+                    utils.splitString(positiveContributors, ",")
+                  )
+                : ""}
             </Typography>
             <Typography className={`${classes.headerTextThree}`}>
               Factors that decrease the 30-day MACE risk
-              {utils.iterateOrderedList(negativeCont)}
+              {negativeContributors
+                ? utils.iterateOrderedList(
+                    utils.splitString(negativeContributors, ",")
+                  )
+                : ""}
             </Typography>
           </CardContent>
         </Card>

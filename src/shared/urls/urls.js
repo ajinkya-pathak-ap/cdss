@@ -7,7 +7,7 @@ export const localUrl = {
   saveConfig: "/Configuration/SaveConfigurations",
 };
 export const urls = {
-  baseUrl: "https://localhost:44371/api/",
+  baseUrl: "http://192.168.1.105/CDSSInterface/api/",
   versionOne: "v1/",
   riskScore: "v1/ami/RiskDetails/RiskScoreInfo",
   riskScoreContr: "v1/ami/RiskDetails/RiskScoreContributorsInfo",
@@ -15,6 +15,5 @@ export const urls = {
   fetchConfig: "v1/ami/configuration/Configurations",
   saveConfig: "v1/ami/Configuration/SaveConfigurations",
 };
-
 
 
