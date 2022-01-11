@@ -13,6 +13,7 @@ import {
 } from "./RiskscoreContributorStyles";
 import "../styles.css";
 import { utils } from "../AmiOutputUtils";
+import Contributors from "./contributors/Contributors";
 
 const RiskscoreContributors = (props) => {
   const classes = RiskContributorStyles();
@@ -45,7 +46,7 @@ const RiskscoreContributors = (props) => {
           </CardContent>
         </Card>
       </Grid>
-
+      {/* <Contributors ></Contributors> */}
       <Grid
         container
         item

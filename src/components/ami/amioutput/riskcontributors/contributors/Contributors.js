@@ -5,12 +5,12 @@ import {
   CardContent,
   Typography,
 } from "../../../../../shared/material/mui";
-import { RiskScoreStyles } from "./RiskScoreStyles";
+import { ContributorsStyles } from "./ContributorsStyles";
 // import "../styles.css";
-// import { utils } from "../AmiOutputUtils";
+import { utils } from "../../AmiOutputUtils";
 
-const RiskScore = () => {
-  const classes = RiskScoreStyles();
+const Contributors = (props) => {
+  const classes = ContributorsStyles();
   //   const { positiveContributors, negativeContributors } = props.result;
   return (
     <Grid item xs={7} lg={8} className={classes.gridcontainer2}>
@@ -41,4 +41,4 @@ const RiskScore = () => {
   );
 };
 
-export default RiskScore;
+export default Contributors;
