@@ -1,12 +1,39 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import EKGFindings from "./ekgfindings/EKGFindings";
 import PatientHistory from "./patienthistory/PatientHistory";
 import HsTnlResults from "./hstnlresults/HsTnlResults";
 import Calculatescore from "./calculateriskscore/CalculateScore";
-import Grid from "@material-ui/core/Grid";
+import { Grid } from "../../../shared/material/mui";
 import { AmiInputStyles } from "./AmiInputStyles";
 
-const AmiInput = () => {
+const AmiInput = (props) => {
+  const [data, setData] = useState({});
+
+
+  const fetchRiskScoreContributors = (config) => {
+    if (props.localMode) {
+      riskScoreService.getRiskScoreContributorsLocal(config).then(
+        (response) => {
+          setRiskScoreContributors(response.data);
+          setIsFetching(false);
+        },
+        (error) => {
+          return;
+        }
+      );
+    } else {
+      riskScoreService.getRiskScoreContributors(config).then(
+        (response) => {
+          setRiskScoreContributors(response.data);
+          setIsFetching(false);
+        },
+        (error) => {
+          return;
+        }
+      );
+    }
+  };
+
   const classes = AmiInputStyles();
   return (
     <div>
