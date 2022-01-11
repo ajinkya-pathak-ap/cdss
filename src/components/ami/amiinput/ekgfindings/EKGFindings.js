@@ -30,7 +30,8 @@ const EKGFindings = (props) => {
 
           {modelDetails.map((v, i) => (
             <div
-              key={v} className={`custom-control custom-radio custom-control-inline`}
+              key={v}
+              className={`custom-control custom-radio custom-control-inline`}
             >
               <input
                 className={`custom-control-input green ${classes.patientinfo}`}

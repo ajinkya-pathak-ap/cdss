@@ -13,7 +13,20 @@ const riskScoreCalculate = () => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={4} md={3}>
-        <Button className={classes.buttonColor} variant="contained">
+        <Button
+          style={{
+            backgroundColor: "#414bb2",
+            color: "#fff",
+            "&:hover": {
+              backgroundColor: "#414BB2",
+            },
+            paddingLeft: "25px",
+            paddingRight: "25px",
+            textTransform: "none",
+          }}
+          className={classes.buttonColor}
+          variant="contained"
+        >
           Exit
         </Button>
       </Grid>

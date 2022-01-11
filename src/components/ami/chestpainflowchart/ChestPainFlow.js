@@ -12,8 +12,8 @@ export default function ChestPainFlow() {
     <Grid
       container
       className={classes.outsidecontainer}
-      alignItems="center"
-      justify="center"
+      // alignItems="center"
+      // justify="center"
     >
       <Grid lg={12} md={12} xs={12} item>
         <Grid container justify="center">
