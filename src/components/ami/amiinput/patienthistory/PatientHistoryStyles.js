@@ -60,4 +60,11 @@ export const PatientHistoryStyles = makeStyles((theme) => ({
   fontTypePresentingSymptoms: {
     fontSize: "14px !important",
   },
+  multiSelectDdLabel:{
+    zIndex:"1",
+    transform: "translate(0,15px) scale(1)",
+    fontSize: "14px",
+    marginLeft: "10px",
+    color: "#000"
+  }
 }));

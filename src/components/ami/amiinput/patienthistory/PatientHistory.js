@@ -112,6 +112,7 @@ const PatientHistory = (props) => {
             value={patientDetails.age ? patientDetails.age : "NA"}
           ></input>
         </FormControl>
+
         <TextField
           className={classes.textFieldColor}
           id="gender"
@@ -145,7 +146,7 @@ const PatientHistory = (props) => {
         </TextField>
 
         <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="label-presenting-symptoms">Name</InputLabel>
+          <InputLabel id="label-presenting-symptoms"  className={classes.multiSelectDdLabel}>Presenting Symptoms</InputLabel>
           <Select
             className={classes.textFieldColor}
             labelId="label-presenting-symptoms"
@@ -174,7 +175,7 @@ const PatientHistory = (props) => {
         </FormControl>
 
         <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="label-symptom-onset">
+          <InputLabel id="label-symptom-onset" className={classes.multiSelectDdLabel}>
             Time since symptom onset
           </InputLabel>
           <Select
@@ -203,8 +204,9 @@ const PatientHistory = (props) => {
             ))}
           </Select>
         </FormControl>
+
         <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="label-risk-factors">Risk Factors</InputLabel>
+          <InputLabel id="label-risk-factors" className={classes.multiSelectDdLabel}>Risk Factors</InputLabel>
           <Select
             className={classes.textFieldColor}
             labelId="label-risk-factors"
