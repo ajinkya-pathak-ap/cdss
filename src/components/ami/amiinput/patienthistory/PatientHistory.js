@@ -1,9 +1,13 @@
-import React, { useState } from "react";
-import Grid from "@material-ui/core/Grid";
-import { Typography } from "@material-ui/core";
-import { Select, MenuItem, FormControl, InputLabel } from "@material-ui/core";
+import { React, useState } from "react";
+import {
+  Grid,
+  Typography,
+  MenuItem,
+  Select,
+  TextField,
+} from "../../../../shared/material/mui";
+import { FormControl, InputLabel } from "@material-ui/core";
 import { PatientHistoryStyles } from "./PatientHistoryStyles";
-import TextField from "@mui/material/TextField";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { useTheme } from "@mui/material/styles";
 import "../styles.css";
@@ -32,17 +36,6 @@ const names = [
   "Kelly Snyder",
 ];
 
-const Race = [
-  {
-    value: "3",
-    label: "Asian",
-  },
-  {
-    value: "4",
-    label: "South",
-  },
-];
-
 function getStyles(name, personName, theme) {
   return {
     fontWeight:
@@ -52,11 +45,16 @@ function getStyles(name, personName, theme) {
   };
 }
 
-const PatientHistory = () => {
+const PatientHistory = (props) => {
   const classes = PatientHistoryStyles();
+
+  const { patientDetails } = props.result;
+
+  const [gender, setGender] = useState("Male");
+
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
-  const [gender, setGender] = useState("");
+  const [personName, setPersonName] = useState([]);
+
   const handleChange = (event) => {
     const {
       target: { value },
@@ -88,16 +86,12 @@ const PatientHistory = () => {
             Patient Age*
           </InputLabel>
           <br></br>
-
           <input
             type="email"
-            class="form-control"
-            className={classes.patientage}
+            className={`form-control ${classes.patientage}`}
+            value={patientDetails.age ? patientDetails.age : "NA"}
           ></input>
-
-          {/* {patientInfo.value.patientDetails.age} */}
         </FormControl>
-
         <TextField
           className={classes.textFieldColor}
           id="gender"
@@ -110,8 +104,8 @@ const PatientHistory = () => {
             className: classes.fontTypeOne,
           }}
         >
-          <MenuItem value="male">Male</MenuItem>
-          <MenuItem value="female">FeMale</MenuItem>
+          <MenuItem value="Male">Male</MenuItem>
+          <MenuItem value="Female">Female</MenuItem>
         </TextField>
 
         <TextField
@@ -120,37 +114,21 @@ const PatientHistory = () => {
           select
           label="Race"
           variant="standard"
-          // value={race}
+          value="Asian"
           // onChange={handleRace}
           inputProps={{
             className: classes.fontTypeOne,
           }}
         >
-          <MenuItem value="Asian">Asian</MenuItem>
-          <MenuItem value="Asian2">Asian2</MenuItem>
+          <MenuItem value="">Asian</MenuItem>
         </TextField>
 
-        {/* <TextField
-          className={classes.textFieldColor}
-          id="riskFactors"
-          select
-          label="Presenting Symptoms"
-          variant="standard"
-          // value={riskFactors}
-          // onChange={handleRiskFactors}
-          inputProps={{
-            className: classes.fontTypeOne,
-          }}
-        >
-          <MenuItem value="prior AMI">Chest pain</MenuItem>
-        </TextField> */}
-
         <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="demo-multiple-name-label">Name</InputLabel>
+          <InputLabel id="label-presenting-symptoms">Name</InputLabel>
           <Select
             className={classes.textFieldColor}
-            labelId="demo-multiple-name-label"
-            id="demo-multiple-name"
+            labelId="label-presenting-symptoms"
+            id="presenting-symptoms"
             label="Presenting Symptoms"
             multiple
             variant="standard"
@@ -174,31 +152,14 @@ const PatientHistory = () => {
           </Select>
         </FormControl>
 
-        {/* <TextField
-          className={classes.textFieldColor}
-          id="time"
-          select
-          label="Time since symptom onset"
-          variant="standard"
-          value={symptomOnset}
-          onChange={handleSymptomOnset}
-          inputProps={{
-            className: classes.fontTypeOne,
-          }}
-        >
-          {time.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-        </TextField> */}
-
         <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="demo2">Time since symptom onset</InputLabel>
+          <InputLabel id="label-symptom-onset">
+            Time since symptom onset
+          </InputLabel>
           <Select
             className={classes.textFieldColor}
-            labelId="demo-multiple-name-label"
-            id="demo2"
+            labelId="label-symptom-onset"
+            id="symptom-onset"
             label="Time since symptom onset"
             multiple
             variant="standard"
@@ -221,29 +182,13 @@ const PatientHistory = () => {
             ))}
           </Select>
         </FormControl>
-
-        {/* <TextField
-          className={classes.textFieldColor}
-          id="riskFactors"
-          select
-          label="Risk Factors"
-          variant="standard"
-          value={riskFactors}
-          onChange={handleRiskFactors}
-          inputProps={{
-            className: classes.fontTypeOne,
-          }}
-        >
-          <MenuItem value="prior AMI">Prior AMI</MenuItem>
-        </TextField> */}
-
         <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="demo3">Risk Factors</InputLabel>
+          <InputLabel id="label-risk-factors">Risk Factors</InputLabel>
           <Select
             className={classes.textFieldColor}
-            labelId="demo-multiple-name-label"
-            id="demo3"
-            label="Time since symptom onset"
+            labelId="label-risk-factors"
+            id="risk-factors"
+            label="Risk Factors"
             multiple
             variant="standard"
             value={personName}

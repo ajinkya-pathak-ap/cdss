@@ -7,8 +7,9 @@ import FormGroup from "@mui/material/FormGroup";
 
 import "../styles.css";
 
-const EKGFindings = () => {
+const EKGFindings = (props) => {
   const classes = EKGFindingsStyles();
+  const { modelDetails } = props.result;
   return (
     <Grid item xs={12} md={12} className={classes.ekgfindingscont2}>
       <FormGroup className={classes.formgrop}>
@@ -26,46 +27,27 @@ const EKGFindings = () => {
             EKG findings(Select One)
           </FormLabel>
           <br />
-          <div class="custom-control custom-radio custom-control-inline">
-            <input
-              className={classes.patientinfo}
-              style={{}}
-              type="radio"
-              id="rd_1"
-              name="rd"
-              class="custom-control-input green"
-              value="Yes"
-            />
-            &nbsp;
-            <label
-              className={classes.patientinfolabelfont}
-              class="custom-control-label"
-              for="rd_1"
-            >
-              {/* ST deviation, but LBBB, LVH, repolarization changes */}
-              {/* {patientInfo.value.modelDetails[0].modelInputKeyName} */}
-            </label>
-          </div>
-          <br />
 
-          <div class="custom-control custom-radio custom-control-inline">
-            <input
-              type="radio"
-              id="rd_2"
-              name="rd"
-              class="custom-control-input red"
-              value="No"
-            />
-            <label
-              style={{ fontSize: "14px" }}
-              class="custom-control-label"
-              for="rd_2"
+          {modelDetails.map((v, i) => (
+            <div
+              className={`custom-control custom-radio custom-control-inline`}
             >
+              <input
+                className={`custom-control-input green ${classes.patientinfo}`}
+                type="radio"
+                id={`rd_${i}`}
+                name={`rd_${i}`}
+                value={v.modelInputValue ? "Yes" : "No"}
+              />
               &nbsp;
-              {/* No ST deviation, but LBBB, LVH, repolarization changes */}
-              {/* {patientInfo.value.modelDetails[1].modelInputKeyName} */}
-            </label>
-          </div>
+              <label
+                className={`custom-control-label ${classes.patientinfolabelfont}`}
+                for={`rd_${i}`}
+              >
+                {v.modelInputKeyName}
+              </label>
+            </div>
+          ))}
         </FormControl>
       </FormGroup>
     </Grid>

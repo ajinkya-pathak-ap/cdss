@@ -15,10 +15,6 @@ export default function Amiconfig(props) {
   const [configData, setConfigData] = useState({});
   const [apply, setApply] = useState(true);
 
-  const label = {
-    inputProps: { "aria-label": "Checkbox demo" },
-  };
-
   const classes = AMIConfigStyles();
 
   const fetchRequestObject = {
@@ -47,6 +43,9 @@ export default function Amiconfig(props) {
     } else {
     }
   };
+  const propDrill = (_compoName) => {
+    console.log("Called from the ", _compoName);
+  };
   /*************config api stuff***************/
 
   if (isFetching) {
@@ -70,10 +69,10 @@ export default function Amiconfig(props) {
             paddingTop={1}
           >
             <Grid container item xs={12} spacing={2}>
-              <Generate config={configData.result}></Generate>
-              {/* <Display config={configData.result}></Display>
+              <Generate config={configData.result} popUp={propDrill}></Generate>
+              <Display config={configData.result}></Display>
               <Othersettings config={configData.result}></Othersettings>
-              <SaveConfig></SaveConfig> */}
+              <SaveConfig></SaveConfig>
             </Grid>
           </Box>
         </Grid>

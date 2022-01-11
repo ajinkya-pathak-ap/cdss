@@ -38,11 +38,10 @@ export { default as makeStyles } from "@material-ui/styles/makeStyles";
 export { default as Alert } from "@material-ui/lab/Alert";
 export { default as Divider } from "@material-ui/core/Divider";
 export { default as Paper } from "@material-ui/core/Paper";
-export { default as Table } from "@material-ui/core/Table";
-export { default as TableBody } from "@material-ui/core/TableBody";
-export { default as TableCell } from "@material-ui/core/TableCell";
-export { default as TableContainer } from "@material-ui/core/TableContainer";
-export { default as TableHead } from "@material-ui/core/TableHead";
-export { default as TablePagination } from "@material-ui/core/TablePagination";
-export { default as TableRow } from "@material-ui/core/TableRow";
 export { default as Box } from "@material-ui/core/Box";
+export { default as Checkbox } from "@mui/material/Checkbox";
+export { default as FormControlLabel } from "@mui/material/FormControlLabel";
+export { default as Select } from "@mui/material/Select";
+export { default as TextField } from "@mui/material/TextField";
+
+

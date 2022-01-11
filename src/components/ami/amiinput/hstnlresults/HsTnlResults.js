@@ -45,8 +45,7 @@ const HsTnlResults = () => {
           <Grid xs={6} md={4}>
             <input
               type="email"
-              class="form-control"
-              className={classes.firstinputspace}
+              className={`form-control ${classes.firstinputspace}`}
               inputProps={{
                 className: classes.inputFields,
               }}
@@ -55,8 +54,7 @@ const HsTnlResults = () => {
           <Grid xs={6} md={4}>
             <input
               type="email"
-              class="form-control"
-              className={classes.firstinputspace2}
+              className={`form-control ${classes.firstinputspace2}`}
               inputProps={{
                 className: classes.inputFields,
               }}
@@ -70,8 +68,7 @@ const HsTnlResults = () => {
           <Grid xs={6} md={4}>
             <input
               type="email"
-              class="form-control"
-              className={classes.secondinputspace1}
+              className={`form-control ${classes.secondinputspace1}`}
               inputProps={{
                 className: classes.inputFields,
               }}
@@ -80,8 +77,7 @@ const HsTnlResults = () => {
           <Grid xs={6} md={4}>
             <input
               type="email"
-              class="form-control"
-              className={classes.secondinputspace2}
+              className={`form-control ${classes.secondinputspace2}`}
               inputProps={{
                 className: classes.inputFields,
               }}
@@ -95,8 +91,8 @@ const HsTnlResults = () => {
           <Grid xs={6} md={4}>
             <input
               type="email"
-              class="form-control"
-              className={classes.thirdinputspace1}
+              class=""
+              className={`form-control ${classes.thirdinputspace1}`}
               inputProps={{
                 className: classes.inputFields,
               }}
