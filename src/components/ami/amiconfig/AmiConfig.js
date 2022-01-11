@@ -70,9 +70,9 @@ export default function Amiconfig(props) {
           >
             <Grid container item xs={12} spacing={2}>
               <Generate config={configData.result} popUp={propDrill}></Generate>
-              {/* <Display config={configData.result}></Display>
+              <Display config={configData.result}></Display>
               <Othersettings config={configData.result}></Othersettings>
-              <SaveConfig></SaveConfig> */}
+              <SaveConfig></SaveConfig>
             </Grid>
           </Box>
         </Grid>

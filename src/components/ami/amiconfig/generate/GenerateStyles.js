@@ -20,6 +20,12 @@ export const GenerateStyles = makeStyles((theme) => ({
     fontSize: "20px",
   },
 
+  paddingLarge: {
+    paddingLeft: "10%",
+  },
+  leftAlignedText: {
+    textAlign: "left",
+  },
   generaters: {
     fontSize: "13px",
     backgroundColor: "#fff",
