@@ -168,39 +168,97 @@ const PatientHistory = () => {
           </Select>
         </FormControl>
 
-        <TextField
+        {/* <TextField
           className={classes.textFieldColor}
           id="time"
           select
           label="Time since symptom onset"
           variant="standard"
-          // value={symptomOnset}
-          // onChange={handleSymptomOnset}
+          value={symptomOnset}
+          onChange={handleSymptomOnset}
           inputProps={{
             className: classes.fontTypeOne,
           }}
         >
-          {/* {time.map((option) => (
+          {time.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
-            ))} */}
-        </TextField>
+            ))}
+        </TextField> */}
 
-        <TextField
+        <FormControl sx={{ m: 1, width: 300 }}>
+          <InputLabel id="demo2">Time since symptom onset</InputLabel>
+          <Select
+            className={classes.textFieldColor}
+            labelId="demo-multiple-name-label"
+            id="demo2"
+            label="Time since symptom onset"
+            multiple
+            variant="standard"
+            value={personName}
+            onChange={handleChange}
+            inputProps={{
+              className: classes.fontTypePresentingSymptoms,
+            }}
+            input={<OutlinedInput label="Name" />}
+            MenuProps={MenuProps}
+          >
+            {names.map((name) => (
+              <MenuItem
+                key={name}
+                value={name}
+                style={getStyles(name, personName, theme)}
+              >
+                {name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        {/* <TextField
           className={classes.textFieldColor}
           id="riskFactors"
           select
           label="Risk Factors"
           variant="standard"
-          // value={riskFactors}
-          // onChange={handleRiskFactors}
+          value={riskFactors}
+          onChange={handleRiskFactors}
           inputProps={{
             className: classes.fontTypeOne,
           }}
         >
           <MenuItem value="prior AMI">Prior AMI</MenuItem>
-        </TextField>
+        </TextField> */}
+
+        <FormControl sx={{ m: 1, width: 300 }}>
+          <InputLabel id="demo3">Risk Factors</InputLabel>
+          <Select
+            className={classes.textFieldColor}
+            labelId="demo-multiple-name-label"
+            id="demo3"
+            label="Time since symptom onset"
+            multiple
+            variant="standard"
+            value={personName}
+            onChange={handleChange}
+            inputProps={{
+              className: classes.fontTypePresentingSymptoms,
+            }}
+            input={<OutlinedInput label="Name" />}
+            MenuProps={MenuProps}
+          >
+            {names.map((name2) => (
+              <MenuItem
+                key={name2}
+                value={name2}
+                style={getStyles(name2, personName, theme)}
+              >
+                {name2}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       </form>
       <br />
     </Grid>

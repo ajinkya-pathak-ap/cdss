@@ -7,6 +7,24 @@ export const CalculateScoreStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: "#414BB2",
     },
+    textTransform: "none",
+    backgroundColor: "#414BB2",
+  },
+
+  riskScore1: {
+    display: "block",
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+
+  riskScore2: {
+    display: "none",
+    [theme.breakpoints.down("sm")]: {
+      display: "block",
+      padding: "10px !important",
+      marginLeft: "4px !important",
+    },
   },
 }));
 
