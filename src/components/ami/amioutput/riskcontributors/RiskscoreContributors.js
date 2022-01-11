@@ -45,6 +45,7 @@ const RiskscoreContributors = (props) => {
           </CardContent>
         </Card>
       </Grid>
+
       <Grid
         container
         item

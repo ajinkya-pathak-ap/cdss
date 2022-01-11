@@ -9,6 +9,7 @@ import { amiOutputStyles } from "./AmioutputStyles";
 import Guidance from "./guidance/Guidance";
 import Riskscore from "./riskscore/Riskscore";
 import RiskscoreContributors from "./riskcontributors/RiskscoreContributors";
+import RiskScore from "./riskcontributors/riskscore/RiskScore";
 import { Acknowledge } from "./acknowledge/Acknowledge";
 
 const configData = {
@@ -56,6 +57,16 @@ export default function AMIOutput(props) {
     return (
       <Grid container spacing={3} className={classes.mainContainer}>
         <Riskscore result={riskScore.result}></Riskscore>
+        {/* <Grid container spacing={2}>
+          <Grid item md={6} xs={12}>
+            <RiskScore></RiskScore>
+          </Grid>
+          <Grid item md={6} xs={12}>
+            <RiskscoreContributors
+              result={riskScore.result}
+            ></RiskscoreContributors>
+          </Grid>
+        </Grid> */}
         <RiskscoreContributors
           result={riskScore.result}
         ></RiskscoreContributors>
