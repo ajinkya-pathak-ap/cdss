@@ -6,7 +6,7 @@ import {
   Typography,
   Stack,
 } from "../../../../shared/material/mui";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   BootstrapButton,
   RiskContributorStyles,
@@ -18,6 +18,10 @@ import Contributors from "./contributors/Contributors";
 const RiskscoreContributors = (props) => {
   const classes = RiskContributorStyles();
   const { positiveContributors, negativeContributors } = props.result;
+  const navigate = useNavigate();
+  const loadMoreInfo = () => {
+    navigate("/contributors");
+  };
 
   return (
     <Grid container item xs={12}>
@@ -65,19 +69,19 @@ const RiskscoreContributors = (props) => {
             style={{
               marginBottom: "40px",
             }}
+            onClick={loadMoreInfo}
           >
-            <Link
-              className={`${classes.buttonColor} ${classes.moreInfoBtn_1}`}
-              to="/contributors"
+            <span
+              className={`${classes.buttonColor} ${classes.moreInfoBtn_1} m-2`}
             >
-              <span className="m-2">More Info</span>
-            </Link>
-            <Link
-              className={`${classes.buttonColor} ${classes.moreInfoBtn_2}`}
-              to="/contributors"
+              More Info
+            </span>
+
+            <span
+              className={`${classes.buttonColor} ${classes.moreInfoBtn_2} m-2`}
             >
-              <span className="m-2">More</span>
-            </Link>
+              More
+            </span>
           </BootstrapButton>
         </Stack>
       </Grid>

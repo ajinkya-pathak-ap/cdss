@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Card, CardContent, Typography } from "@material-ui/core";
 import { riskScoreService } from "../../../services/riskScore-service";
 import CircularIndeterminate from "../../../shared/preloder/Preloder";
@@ -18,6 +18,7 @@ export default function RiskScoreContributors(props) {
   const classes = RiskContributorStyles();
   const [isFetching, setIsFetching] = useState(true);
   const [riskScore, setRiskScore] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchRiskScoreContributors(configData);
@@ -47,6 +48,12 @@ export default function RiskScoreContributors(props) {
     }
   };
 
+  
+  const loadOutput = () => {
+    navigate("/amioutput");
+  };
+
+
   if (isFetching) {
     return <CircularIndeterminate />;
   } else {
@@ -72,10 +79,12 @@ export default function RiskScoreContributors(props) {
             <br></br>
             <br></br>
             <Grid item xs={12} container className={classes.alignRight}>
-              <Button variant="contained" className={classes.buttonColor}>
-                <Link className={classes.whiteBtn} to="/amioutput">
-                  <span className="m-2">OK</span>
-                </Link>
+              <Button
+                onClick={loadOutput}
+                variant="contained"
+                className={classes.buttonColor}
+              >
+                <span className={`${classes.whiteBtn} m-2`}>OK</span>
               </Button>
               <br />
             </Grid>
