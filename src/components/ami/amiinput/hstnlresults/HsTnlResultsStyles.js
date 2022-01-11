@@ -35,6 +35,7 @@ export const HsTnlResultsStyles = makeStyles((theme) => ({
     width: "70%",
     backgroundColor: "white",
     border: "1px solid #808080",
+    textAlign:"right",
     [theme.breakpoints.down("xs")]: {
       marginLeft: "20px",
     },

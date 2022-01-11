@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import {
   Grid,
   Typography,
@@ -10,6 +10,7 @@ import { FormControl, InputLabel } from "@material-ui/core";
 import { PatientHistoryStyles } from "./PatientHistoryStyles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { useTheme } from "@mui/material/styles";
+import { mlInputUtils } from "../AmiInutUtils";
 import "../styles.css";
 
 const ITEM_HEIGHT = 48;
@@ -47,27 +48,46 @@ function getStyles(name, personName, theme) {
 
 const PatientHistory = (props) => {
   const classes = PatientHistoryStyles();
-
   const { patientDetails } = props.result;
+  const [gender, setGender] = useState("");
+  const [race, setRace] = useState("");
 
-  const [gender, setGender] = useState("Male");
+  useEffect(() => {
+    mapValues();
+  }, []);
 
-  const theme = useTheme();
   const [personName, setPersonName] = useState([]);
 
+  const theme = useTheme();
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
+    setPersonName(typeof value === "string" ? value.split(",") : value);
   };
 
   const handleGender = (e) => {
     setGender(e.target.value);
   };
+
+  const genderValue = () => {
+    if (gender) {
+      return <MenuItem value={gender}>{gender}</MenuItem>;
+    } else {
+    }
+  };
+
+  const handleRace = (e) => {
+    setRace(e.target.value);
+  };
+
+  const mapValues = () => {
+    if (patientDetails.gender.length > 0) {
+      setGender(patientDetails.gender[0].description);
+    }
+    patientDetails.race.length > 0 ? setRace(patientDetails.race[0].description) : setRace("")
+  };
+
   return (
     <Grid item container md={12} xs={12} className={classes.patientHistory}>
       <form className={classes.firstform}>
@@ -104,8 +124,7 @@ const PatientHistory = (props) => {
             className: classes.fontTypeOne,
           }}
         >
-          <MenuItem value="Male">Male</MenuItem>
-          <MenuItem value="Female">Female</MenuItem>
+          {genderValue()}
         </TextField>
 
         <TextField
@@ -114,13 +133,15 @@ const PatientHistory = (props) => {
           select
           label="Race"
           variant="standard"
-          value="Asian"
-          // onChange={handleRace}
+          value={race}
+          onChange={handleRace}
           inputProps={{
             className: classes.fontTypeOne,
           }}
         >
-          <MenuItem value="">Asian</MenuItem>
+          {patientDetails.race.map((v) => (
+            <MenuItem value={v.description}>{v.description}</MenuItem>
+          ))}
         </TextField>
 
         <FormControl sx={{ m: 1, width: 300 }}>
