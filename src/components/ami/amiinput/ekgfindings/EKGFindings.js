@@ -26,20 +26,18 @@ const EKGFindings = () => {
             EKG findings(Select One)
           </FormLabel>
           <br />
-          <div class="custom-control custom-radio custom-control-inline">
+          <div className={`custom-control custom-radio custom-control-inline`}>
             <input
-              className={classes.patientinfo}
+              className={`custom-control-input green ${classes.patientinfo}`}
               style={{}}
               type="radio"
               id="rd_1"
               name="rd"
-              class="custom-control-input green"
               value="Yes"
             />
             &nbsp;
             <label
-              className={classes.patientinfolabelfont}
-              class="custom-control-label"
+              className={`custom-control-label ${classes.patientinfolabelfont}`}
               for="rd_1"
             >
               {/* ST deviation, but LBBB, LVH, repolarization changes */}
@@ -48,17 +46,17 @@ const EKGFindings = () => {
           </div>
           <br />
 
-          <div class="custom-control custom-radio custom-control-inline">
+          <div className={`custom-control custom-radio custom-control-inline`}>
             <input
               type="radio"
               id="rd_2"
               name="rd"
-              class="custom-control-input red"
+              className={`custom-control-input red`}
               value="No"
             />
             <label
               style={{ fontSize: "14px" }}
-              class="custom-control-label"
+              className={`custom-control-label`}
               for="rd_2"
             >
               &nbsp;

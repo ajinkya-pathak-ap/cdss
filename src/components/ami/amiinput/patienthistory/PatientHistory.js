@@ -1,9 +1,13 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
-import { Typography } from "@material-ui/core";
-import { Select, MenuItem, FormControl, InputLabel } from "@material-ui/core";
+import {
+  Grid,
+  Typography,
+  MenuItem,
+  Select,
+  TextField
+} from "../../../../shared/material/mui";
+import { FormControl, InputLabel } from "@material-ui/core";
 import { PatientHistoryStyles } from "./PatientHistoryStyles";
-import TextField from "@mui/material/TextField";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { useTheme } from "@mui/material/styles";
 import "../styles.css";
@@ -30,17 +34,6 @@ const names = [
   "Bradley Wilkerson",
   "Virginia Andrews",
   "Kelly Snyder",
-];
-
-const Race = [
-  {
-    value: "3",
-    label: "Asian",
-  },
-  {
-    value: "4",
-    label: "South",
-  },
 ];
 
 function getStyles(name, personName, theme) {
@@ -87,8 +80,7 @@ const PatientHistory = () => {
 
           <input
             type="email"
-            class="form-control"
-            className={classes.patientage}
+            className={`form-control ${classes.patientage}`}
           ></input>
 
           {/* {patientInfo.value.patientDetails.age} */}

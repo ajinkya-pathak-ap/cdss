@@ -56,13 +56,10 @@ export default function RiskScoreContributors(props) {
         container
         spacing={4}
         className={classes.contrimainContainer}
-        // justifyContent="center"
-        // alignItems="center"
       >
         <Grid item sm={12} xs={12} md={12}>
           <Box
             className={classes.sx}
-            // sx={{ bgcolor: "#6D7F9B", minHeight: "250px" }}
           >
             <Grid
               container
