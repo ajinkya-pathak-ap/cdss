@@ -7,7 +7,7 @@ import FormGroup from "@mui/material/FormGroup";
 
 import "../styles.css";
 
-const EKGFindings = () => {
+const EKGFindings = (props) => {
   const classes = EKGFindingsStyles();
   return (
     <Grid item xs={12} md={12} className={classes.ekgfindingscont2}>

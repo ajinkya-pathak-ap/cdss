@@ -4,7 +4,7 @@ import {
   Typography,
   MenuItem,
   Select,
-  TextField
+  TextField,
 } from "../../../../shared/material/mui";
 import { FormControl, InputLabel } from "@material-ui/core";
 import { PatientHistoryStyles } from "./PatientHistoryStyles";
@@ -45,8 +45,11 @@ function getStyles(name, personName, theme) {
   };
 }
 
-const PatientHistory = () => {
+const PatientHistory = (props) => {
   const classes = PatientHistoryStyles();
+
+  const { patientDetails } = props.result;
+
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
 
@@ -77,28 +80,25 @@ const PatientHistory = () => {
             Patient Age*
           </InputLabel>
           <br></br>
-
           <input
             type="email"
             className={`form-control ${classes.patientage}`}
+            value={patientDetails.age ? patientDetails.age : "NA"}
           ></input>
-
-          {/* {patientInfo.value.patientDetails.age} */}
         </FormControl>
-
         <TextField
           className={classes.textFieldColor}
-          id="Race"
+          id="gender"
           select
           label="Gender"
           variant="standard"
-          // value={race}
-          // onChange={handleRace}
+          value="Male"
+          onChange=""
           inputProps={{
             className: classes.fontTypeOne,
           }}
         >
-          <MenuItem value="Asian">Male</MenuItem>
+          <MenuItem value="">Male</MenuItem>
         </TextField>
 
         <TextField
@@ -107,36 +107,21 @@ const PatientHistory = () => {
           select
           label="Race"
           variant="standard"
-          // value={race}
+          value="Asian"
           // onChange={handleRace}
           inputProps={{
             className: classes.fontTypeOne,
           }}
         >
-          <MenuItem value="Asian">Asian</MenuItem>
+          <MenuItem value="">Asian</MenuItem>
         </TextField>
 
-        {/* <TextField
-          className={classes.textFieldColor}
-          id="riskFactors"
-          select
-          label="Presenting Symptoms"
-          variant="standard"
-          // value={riskFactors}
-          // onChange={handleRiskFactors}
-          inputProps={{
-            className: classes.fontTypeOne,
-          }}
-        >
-          <MenuItem value="prior AMI">Chest pain</MenuItem>
-        </TextField> */}
-
         <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="demo-multiple-name-label">Name</InputLabel>
+          <InputLabel id="label-presenting-symptoms">Name</InputLabel>
           <Select
             className={classes.textFieldColor}
-            labelId="demo-multiple-name-label"
-            id="demo-multiple-name"
+            labelId="label-presenting-symptoms"
+            id="presenting-symptoms"
             label="Presenting Symptoms"
             multiple
             variant="standard"
@@ -160,31 +145,13 @@ const PatientHistory = () => {
           </Select>
         </FormControl>
 
-        {/* <TextField
-          className={classes.textFieldColor}
-          id="time"
-          select
-          label="Time since symptom onset"
-          variant="standard"
-          value={symptomOnset}
-          onChange={handleSymptomOnset}
-          inputProps={{
-            className: classes.fontTypeOne,
-          }}
-        >
-          {time.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-        </TextField> */}
-
+       
         <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="demo2">Time since symptom onset</InputLabel>
+          <InputLabel id="label-symptom-onset">Time since symptom onset</InputLabel>
           <Select
             className={classes.textFieldColor}
-            labelId="demo-multiple-name-label"
-            id="demo2"
+            labelId="label-symptom-onset"
+            id="symptom-onset"
             label="Time since symptom onset"
             multiple
             variant="standard"
@@ -207,29 +174,13 @@ const PatientHistory = () => {
             ))}
           </Select>
         </FormControl>
-
-        {/* <TextField
-          className={classes.textFieldColor}
-          id="riskFactors"
-          select
-          label="Risk Factors"
-          variant="standard"
-          value={riskFactors}
-          onChange={handleRiskFactors}
-          inputProps={{
-            className: classes.fontTypeOne,
-          }}
-        >
-          <MenuItem value="prior AMI">Prior AMI</MenuItem>
-        </TextField> */}
-
         <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="demo3">Risk Factors</InputLabel>
+          <InputLabel id="label-risk-factors">Risk Factors</InputLabel>
           <Select
             className={classes.textFieldColor}
-            labelId="demo-multiple-name-label"
-            id="demo3"
-            label="Time since symptom onset"
+            labelId="label-risk-factors"
+            id="risk-factors"
+            label="Risk Factors"
             multiple
             variant="standard"
             value={personName}
