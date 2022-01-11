@@ -180,25 +180,6 @@ const PatientHistory = (props) => {
             ))}
           </TextField>
 
-          {/* trial */}
-          <TextField
-            className={classes.textFieldColor}
-            id="Race1"
-            select
-            label="Race1"
-            variant="standard"
-            value={handleRace1}
-            onChange={handleRace1}
-            inputProps={{
-              className: classes.fontTypeOne,
-            }}
-          >
-            {patientDetails.race1.map((v) => (
-              <MenuItem value={v.description}>{v.description}</MenuItem>
-            ))}
-          </TextField>
-          {/* trail */}
-
           <FormControl sx={{ m: 1, width: 300 }}>
             <InputLabel
               id="label-presenting-symptoms"
