@@ -7,6 +7,7 @@ import { Card, CardContent, Typography } from "@material-ui/core";
 import { riskScoreService } from "../../../services/riskScore-service";
 import CircularIndeterminate from "../../../shared/preloder/Preloder";
 import { RiskContributorStyles } from "./RiskScoreContributorStyles";
+import Contributors from "../amioutput/riskcontributors/contributors/Contributors"
 
 const configData = {
   MRN: "1",
@@ -17,6 +18,7 @@ export default function RiskScoreContributors(props) {
   const classes = RiskContributorStyles();
   const [isFetching, setIsFetching] = useState(true);
   const [riskScoreContributors, setRiskScoreContributors] = useState({});
+  const [riskScore,setRiskScore] = useState({})
 
   useEffect(() => {
     fetchRiskScoreContributors(configData);
@@ -24,19 +26,19 @@ export default function RiskScoreContributors(props) {
 
   const fetchRiskScoreContributors = (config) => {
     if (props.localMode) {
-      riskScoreService.getRiskScoreContributorsLocal(config).then(
+      riskScoreService.getRiskScoreLocal(config).then(
         (response) => {
-          setRiskScoreContributors(response.data);
+          setRiskScore(response.data);
           setIsFetching(false);
         },
         (error) => {
-          return;
+          console.log("error", error);
         }
       );
     } else {
-      riskScoreService.getRiskScoreContributors(config).then(
+      riskScoreService.getRiskScore(config).then(
         (response) => {
-          setRiskScoreContributors(response.data);
+          setRiskScore(response.data);
           setIsFetching(false);
         },
         (error) => {
@@ -61,6 +63,8 @@ export default function RiskScoreContributors(props) {
           <Box
             className={classes.sx}
           >
+          {/* <Contributors positiveContr={riskScore.result.positiveContributors} negativeContr={riskScore.result.negativeContributors}></Contributors> */}
+
             <Grid
               container
               item
@@ -70,17 +74,18 @@ export default function RiskScoreContributors(props) {
               alignItems="center"
             >
               <Grid item xs={10}>
-                <Card className={classes.contribcontainer}>
+          <Contributors positiveContr={riskScore.result.positiveContributors} negativeContr={riskScore.result.negativeContributors}></Contributors>
+
+                {/* <Card className={classes.contribcontainer}>
                   <CardContent className={classes.cardcont}>
                     <Typography
                       variant={"h6"}
                       className={classes.typoofriskscore}
                     >
                       {riskScoreContributors.value.riskScoreContributors}
-                      {/* Provide the Details for the Risk Score Contributors */}
                     </Typography>
                   </CardContent>
-                </Card>
+                </Card> */}
               </Grid>
             </Grid>
             <br></br>

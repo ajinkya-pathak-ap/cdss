@@ -6,38 +6,35 @@ import {
   Typography,
 } from "../../../../../shared/material/mui";
 import { ContributorsStyles } from "./ContributorsStyles";
-// import "../styles.css";
+import "../../styles.css";
 import { utils } from "../../AmiOutputUtils";
 
 const Contributors = (props) => {
   const classes = ContributorsStyles();
-  //   const { positiveContributors, negativeContributors } = props.result;
   return (
-    <Grid item xs={7} lg={8} className={classes.gridcontainer2}>
-      <Card className={classes.gridcontainer}>
-        <CardContent>
-          <Typography className={`${classes.headerText}`}>
-            Risk Score Contributors
-          </Typography>
-          <Typography className={`${classes.headerTextThree}`}>
-            Factors that increase the 30-day MACE risk
-            {/* {positiveContributors
-              ? utils.iterateOrderedList(
-                  utils.splitString(positiveContributors, ",")
-                )
-              : ""} */}
-          </Typography>
-          <Typography className={`${classes.headerTextThree}`}>
-            Factors that decrease the 30-day MACE risk
-            {/* {negativeContributors
-              ? utils.iterateOrderedList(
-                  utils.splitString(negativeContributors, ",")
-                )
-              : ""} */}
-          </Typography>
-        </CardContent>
-      </Card>
-    </Grid>
+    <Card className={classes.gridcontainer}>
+      <CardContent>
+        <Typography className={`${classes.headerText}`}>
+          Risk Score Contributors
+        </Typography>
+        <Typography className={`${classes.headerTextThree}`}>
+          Factors that increase the 30-day MACE risk
+          {props.positiveContr
+            ? utils.iterateOrderedList(
+                utils.splitString(props.positiveContr, ",")
+              )
+            : ""}
+        </Typography>
+        <Typography className={`${classes.headerTextThree}`}>
+          Factors that decrease the 30-day MACE risk
+          {props.negativeContr
+            ? utils.iterateOrderedList(
+                utils.splitString(props.negativeContr, ",")
+              )
+            : ""}
+        </Typography>
+      </CardContent>
+    </Card>
   );
 };
 

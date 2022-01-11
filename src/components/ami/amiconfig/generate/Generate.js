@@ -12,7 +12,6 @@ import {
 } from "../../../../shared/material/mui";
 
 import { FormControl } from "@material-ui/core";
-
 import { GenerateStyles } from "./GenerateStyles";
 import { utils } from "../AmiConfigUtils";
 
@@ -251,7 +250,6 @@ const Generate = (props) => {
             )}
           </Grid>
         </Grid>
-        {console.log("--------", ageValues)}
       </Grid>
     );
     return response;
