@@ -10,11 +10,12 @@ export const EKGFindingsStyles = makeStyles((theme) => ({
     backgroundColor: "#050038",
     paddingLeft: "16px",
     paddingBottom: "16px",
+    borderRadius: "10px",
   },
 
   ekgformlabel: {
     textAlign: "left",
-    fontSize: "18px",
+    fontSize: "19px",
     color: "#fff",
     fontWeight: "800",
   },

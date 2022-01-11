@@ -54,9 +54,9 @@ export const RiskScoreStyles = makeStyles((theme) => ({
     height: "9rem",
     [theme.breakpoints.up("md")]: {
       fontSize: "15px",
-      lineHeight: "8.5",
-      width: "9rem",
-      height: "8rem",
+      lineHeight: "8.0",
+      width: "8rem",
+      height: "7rem",
     },
 
     [theme.breakpoints.down("md")]: {

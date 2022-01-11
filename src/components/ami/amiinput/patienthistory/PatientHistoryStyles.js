@@ -5,6 +5,7 @@ export const PatientHistoryStyles = makeStyles((theme) => ({
   patientHistory: {
     backgroundColor: "#050038",
     paddingLeft: "20px",
+    borderRadius: "10px",
   },
 
   patientagelabel: {
@@ -43,6 +44,7 @@ export const PatientHistoryStyles = makeStyles((theme) => ({
     color: "#fff",
     textAlign: "left",
     paddingLeft: "10px",
+    paddingTop: "10px",
   },
 
   headerTextThree: {
@@ -60,11 +62,14 @@ export const PatientHistoryStyles = makeStyles((theme) => ({
   fontTypePresentingSymptoms: {
     fontSize: "14px !important",
   },
-  multiSelectDdLabel:{
-    zIndex:"1",
+  multiSelectDdLabel: {
+    zIndex: "1",
     transform: "translate(0,15px) scale(1)",
     fontSize: "14px",
     marginLeft: "10px",
-    color: "#000"
-  }
+    color: "#000",
+  },
+  MuiSvgIconRoot: {
+    top: "-5px",
+  },
 }));

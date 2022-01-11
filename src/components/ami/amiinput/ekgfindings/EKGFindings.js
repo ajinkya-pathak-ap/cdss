@@ -18,9 +18,11 @@ const EKGFindings = (props) => {
             className={classes.ekgformlabel}
             style={{
               textAlign: "left",
-              fontSize: "18px",
+              fontSize: "20px",
               color: "#fff",
               fontWeight: "800",
+              paddingTop: "11px",
+              borderRadius: "10px",
             }}
             component="legend"
           >
