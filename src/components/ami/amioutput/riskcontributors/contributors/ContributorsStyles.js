@@ -1,6 +1,6 @@
 import { Button, makeStyles, styled } from "@material-ui/core";
 
-export const RiskScoreStyles = makeStyles((theme) => ({
+export const ContributorsStyles = makeStyles((theme) => ({
   gridcontainer: {
     background: "#050038",
     color: "#fff",
