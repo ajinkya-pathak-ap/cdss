@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
 import { Select, MenuItem, FormControl, InputLabel } from "@material-ui/core";
@@ -56,7 +56,7 @@ const PatientHistory = () => {
   const classes = PatientHistoryStyles();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
-
+  const [gender, setGender] = useState("");
   const handleChange = (event) => {
     const {
       target: { value },
@@ -65,6 +65,10 @@ const PatientHistory = () => {
       // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
     );
+  };
+
+  const handleGender = (e) => {
+    setGender(e.target.value);
   };
   return (
     <Grid item container md={12} xs={12} className={classes.patientHistory}>
@@ -96,17 +100,18 @@ const PatientHistory = () => {
 
         <TextField
           className={classes.textFieldColor}
-          id="Race"
+          id="gender"
           select
           label="Gender"
           variant="standard"
-          // value={race}
-          // onChange={handleRace}
+          value={gender}
+          onChange={handleGender}
           inputProps={{
             className: classes.fontTypeOne,
           }}
         >
-          <MenuItem value="Asian">Male</MenuItem>
+          <MenuItem value="male">Male</MenuItem>
+          <MenuItem value="female">FeMale</MenuItem>
         </TextField>
 
         <TextField
@@ -122,6 +127,7 @@ const PatientHistory = () => {
           }}
         >
           <MenuItem value="Asian">Asian</MenuItem>
+          <MenuItem value="Asian2">Asian2</MenuItem>
         </TextField>
 
         {/* <TextField
