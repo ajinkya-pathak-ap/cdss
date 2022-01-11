@@ -51,7 +51,7 @@ const PatientHistory = (props) => {
   const { patientDetails } = props.result;
   const [gender, setGender] = useState("");
   const [race, setRace] = useState("");
-  const [presymptom, setPresymptom] = useState("");
+  const [race1, setRace1] = useState("");
 
   useEffect(() => {
     mapValues();
@@ -82,8 +82,8 @@ const PatientHistory = (props) => {
     setRace(e.target.value);
   };
 
-  const handlePreSymptoms = (e) => {
-    setPresymptom(e.target.value);
+  const handleRace1 = (e) => {
+    setRace1(e.target.value);
   };
 
   const mapValues = () => {
@@ -92,6 +92,10 @@ const PatientHistory = (props) => {
     }
     patientDetails.race.length > 0
       ? setRace(patientDetails.race[0].description)
+      : setRace("");
+
+    patientDetails.race1.length > 0
+      ? setRace1(patientDetails.race1[0].description)
       : setRace("");
   };
 
@@ -151,22 +155,24 @@ const PatientHistory = (props) => {
           ))}
         </TextField>
 
+        {/* trial */}
         <TextField
           className={classes.textFieldColor}
-          id="presenting-symptoms"
+          id="Race1"
           select
-          label="Race"
+          label="Race1"
           variant="standard"
-          value={race}
-          onChange={handlePreSymptoms}
+          value={handleRace1}
+          onChange={handleRace1}
           inputProps={{
             className: classes.fontTypeOne,
           }}
         >
-          {patientDetails.race.map((v) => (
+          {patientDetails.race1.map((v) => (
             <MenuItem value={v.description}>{v.description}</MenuItem>
           ))}
         </TextField>
+        {/* trail */}
 
         <FormControl sx={{ m: 1, width: 300 }}>
           <InputLabel id="label-presenting-symptoms">Name</InputLabel>
