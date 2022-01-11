@@ -48,11 +48,9 @@ export default function RiskScoreContributors(props) {
     }
   };
 
-  
   const loadOutput = () => {
     navigate("/amioutput");
   };
-
 
   if (isFetching) {
     return <CircularIndeterminate />;
@@ -76,7 +74,7 @@ export default function RiskScoreContributors(props) {
                 ></Contributors>
               </Grid>
             </Grid>
-            <br></br>
+
             <br></br>
             <Grid item xs={12} container className={classes.alignRight}>
               <Button
@@ -86,7 +84,6 @@ export default function RiskScoreContributors(props) {
               >
                 <span className={`${classes.whiteBtn} m-2`}>OK</span>
               </Button>
-              <br />
             </Grid>
           </Box>
         </Grid>

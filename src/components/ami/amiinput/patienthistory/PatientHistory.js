@@ -11,7 +11,7 @@ import { PatientHistoryStyles } from "./PatientHistoryStyles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { useTheme } from "@mui/material/styles";
 import { mlInputUtils } from "../AmiInutUtils";
-import "../styles.css";
+import "./styles.css";
 
 const names = [
   "Oliver Hansen",
@@ -140,6 +140,7 @@ const PatientHistory = (props) => {
             </InputLabel>
             <br></br>
             <input
+              disabled
               type="email"
               className={`form-control ${classes.patientage}`}
               value={patientDetails.age ? patientDetails.age : "NA"}
