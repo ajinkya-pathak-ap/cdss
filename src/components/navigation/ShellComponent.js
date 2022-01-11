@@ -28,7 +28,7 @@ function ShellComponent(props) {
     });
   };
 
-  const localMode = false;
+  const localMode = true;
 
   return (
     <>

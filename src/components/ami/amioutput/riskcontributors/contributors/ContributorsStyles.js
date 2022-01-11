@@ -6,19 +6,20 @@ export const ContributorsStyles = makeStyles((theme) => ({
     color: "#fff",
     textAlign: "left",
     minHeight: "80px",
+    marginTop: "10px",
   },
 
-  gridcontainer2: {
-    background: "#050038",
-    color: "#fff",
-    textAlign: "left",
-    minHeight: "80px",
-    marginTop: "-18px",
-    alignItems: "center",
-    [theme.breakpoints.down("sm")]: {
-      justifyContent: "center",
-    },
-  },
+  // gridcontainer2: {
+  //   background: "#050038",
+  //   color: "#fff",
+  //   textAlign: "left",
+  //   minHeight: "80px",
+  //   marginTop: "-18px",
+  //   alignItems: "center",
+  //   [theme.breakpoints.down("sm")]: {
+  //     justifyContent: "center",
+  //   },
+  // },
 
   headerText: {
     fontWeight: "bold",
