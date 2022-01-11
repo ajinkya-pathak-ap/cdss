@@ -22,7 +22,7 @@ const RiskscoreContributors = (props) => {
   return (
     <Grid container item xs={12}>
       <Grid item xs={7} lg={8} className={classes.gridcontainer2}>
-        <Card className={classes.gridcontainer}>
+        {/* <Card className={classes.gridcontainer}>
           <CardContent>
             <Typography className={`${classes.headerText}`}>
               Risk Score Contributors
@@ -44,9 +44,12 @@ const RiskscoreContributors = (props) => {
                 : ""}
             </Typography>
           </CardContent>
-        </Card>
+        </Card> */}
+        <Contributors
+          positiveContr={positiveContributors}
+          negativeContr={negativeContributors}
+        ></Contributors>
       </Grid>
-      {/* <Contributors ></Contributors> */}
       <Grid
         container
         item

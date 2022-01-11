@@ -13,17 +13,6 @@ import { useTheme } from "@mui/material/styles";
 import { mlInputUtils } from "../AmiInutUtils";
 import "../styles.css";
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
 const names = [
   "Oliver Hansen",
   "Van Henry",
@@ -46,6 +35,20 @@ function getStyles(name, personName, theme) {
   };
 }
 
+const menuProps = () => {
+  const ITEM_HEIGHT = 48,
+    ITEM_PADDING_TOP = 8;
+
+  return {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
+};
+
 const PatientHistory = (props) => {
   const classes = PatientHistoryStyles();
   const { patientDetails } = props.result;
@@ -57,14 +60,32 @@ const PatientHistory = (props) => {
     mapValues();
   }, []);
 
-  const [personName, setPersonName] = useState([]);
+  const [presentingSysmptoms, setPresentingSysmptoms] = useState([]);
+  const [symptomOnset, setSymptomOnset] = useState([]);
+  const [riskFsctors, setRiskFactors] = useState([]);
 
   const theme = useTheme();
-  const handleChange = (event) => {
+  const handlePresentingSysmptoms = (event) => {
     const {
       target: { value },
     } = event;
-    setPersonName(typeof value === "string" ? value.split(",") : value);
+    setPresentingSysmptoms(
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+
+  const handleSymptomOnset = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setSymptomOnset(typeof value === "string" ? value.split(",") : value);
+  };
+
+  const handleRiskFsctors = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setRiskFactors(typeof value === "string" ? value.split(",") : value);
   };
 
   const handleGender = (e) => {
@@ -93,178 +114,196 @@ const PatientHistory = (props) => {
     patientDetails.race.length > 0
       ? setRace(patientDetails.race[0].description)
       : setRace("");
-
-    patientDetails.race1.length > 0
-      ? setRace1(patientDetails.race1[0].description)
-      : setRace("");
   };
 
+  const displayVal = () => {};
+
   return (
-    <Grid item container md={12} xs={12} className={classes.patientHistory}>
-      <form className={classes.firstform}>
-        <Typography className={classes.headerText}>Patient History</Typography>
+    <>
+      <Grid item container md={12} xs={12} className={classes.patientHistory}>
+        <form className={classes.firstform}>
+          <Typography className={classes.headerText}>
+            Patient History
+          </Typography>
 
-        <Typography className={classes.headerTextThree}>
-          Demographics Information pulled from EHR
-        </Typography>
+          <Typography className={classes.headerTextThree}>
+            Demographics Information pulled from EHR
+          </Typography>
 
-        <FormControl variant="standard" style={{ backgroundColor: "#fff" }}>
-          <InputLabel
-            className={classes.patientagelabel}
-            shrink
-            htmlFor="bootstrap-input"
-          >
-            Patient Age*
-          </InputLabel>
-          <br></br>
-          <input
-            type="email"
-            className={`form-control ${classes.patientage}`}
-            value={patientDetails.age ? patientDetails.age : "NA"}
-          ></input>
-        </FormControl>
-        <TextField
-          className={classes.textFieldColor}
-          id="gender"
-          select
-          label="Gender"
-          variant="standard"
-          value={gender}
-          onChange={handleGender}
-          inputProps={{
-            className: classes.fontTypeOne,
-          }}
-        >
-          {genderValue()}
-        </TextField>
+          <FormControl variant="standard" style={{ backgroundColor: "#fff" }}>
+            <InputLabel
+              className={classes.patientagelabel}
+              shrink
+              htmlFor="bootstrap-input"
+            >
+              Patient Age*
+            </InputLabel>
+            <br></br>
+            <input
+              type="email"
+              className={`form-control ${classes.patientage}`}
+              value={patientDetails.age ? patientDetails.age : "NA"}
+            ></input>
+          </FormControl>
 
-        <TextField
-          className={classes.textFieldColor}
-          id="Race"
-          select
-          label="Race"
-          variant="standard"
-          value={race}
-          onChange={handleRace}
-          inputProps={{
-            className: classes.fontTypeOne,
-          }}
-        >
-          {patientDetails.race.map((v) => (
-            <MenuItem value={v.description}>{v.description}</MenuItem>
-          ))}
-        </TextField>
-
-        {/* trial */}
-        <TextField
-          className={classes.textFieldColor}
-          id="Race1"
-          select
-          label="Race1"
-          variant="standard"
-          value={handleRace1}
-          onChange={handleRace1}
-          inputProps={{
-            className: classes.fontTypeOne,
-          }}
-        >
-          {patientDetails.race1.map((v) => (
-            <MenuItem value={v.description}>{v.description}</MenuItem>
-          ))}
-        </TextField>
-        {/* trail */}
-
-        <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="label-presenting-symptoms">Name</InputLabel>
-          <Select
+          <TextField
             className={classes.textFieldColor}
-            labelId="label-presenting-symptoms"
-            id="presenting-symptoms"
-            label="Presenting Symptoms"
-            multiple
+            id="gender"
+            select
+            label="Gender"
             variant="standard"
-            value={personName}
-            onChange={handleChange}
+            value={gender}
+            onChange={handleGender}
             inputProps={{
-              className: classes.fontTypePresentingSymptoms,
+              className: classes.fontTypeOne,
             }}
-            input={<OutlinedInput label="Name" />}
-            MenuProps={MenuProps}
           >
-            {names.map((name) => (
-              <MenuItem
-                key={name}
-                value={name}
-                style={getStyles(name, personName, theme)}
-              >
-                {name}
+            {genderValue()}
+          </TextField>
+
+          <TextField
+            className={classes.textFieldColor}
+            id="Race"
+            select
+            label="Race"
+            variant="standard"
+            value={race}
+            onChange={handleRace}
+            inputProps={{
+              className: classes.fontTypeOne,
+            }}
+          >
+            {patientDetails.race.map((v) => (
+              <MenuItem key={v} value={v.description}>
+                {v.description}
               </MenuItem>
             ))}
-          </Select>
-        </FormControl>
+          </TextField>
 
-        <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="label-symptom-onset">
-            Time since symptom onset
-          </InputLabel>
-          <Select
+          {/* trial */}
+          <TextField
             className={classes.textFieldColor}
-            labelId="label-symptom-onset"
-            id="symptom-onset"
-            label="Time since symptom onset"
-            multiple
+            id="Race1"
+            select
+            label="Race1"
             variant="standard"
-            value={personName}
-            onChange={handleChange}
+            value={handleRace1}
+            onChange={handleRace1}
             inputProps={{
-              className: classes.fontTypePresentingSymptoms,
+              className: classes.fontTypeOne,
             }}
-            input={<OutlinedInput label="Name" />}
-            MenuProps={MenuProps}
           >
-            {names.map((name) => (
-              <MenuItem
-                key={name}
-                value={name}
-                style={getStyles(name, personName, theme)}
-              >
-                {name}
-              </MenuItem>
+            {patientDetails.race1.map((v) => (
+              <MenuItem value={v.description}>{v.description}</MenuItem>
             ))}
-          </Select>
-        </FormControl>
-        <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="label-risk-factors">Risk Factors</InputLabel>
-          <Select
-            className={classes.textFieldColor}
-            labelId="label-risk-factors"
-            id="risk-factors"
-            label="Risk Factors"
-            multiple
-            variant="standard"
-            value={personName}
-            onChange={handleChange}
-            inputProps={{
-              className: classes.fontTypePresentingSymptoms,
-            }}
-            input={<OutlinedInput label="Name" />}
-            MenuProps={MenuProps}
-          >
-            {names.map((name2) => (
-              <MenuItem
-                key={name2}
-                value={name2}
-                style={getStyles(name2, personName, theme)}
-              >
-                {name2}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </form>
-      <br />
-    </Grid>
-    // </Grid>
+          </TextField>
+          {/* trail */}
+
+          <FormControl sx={{ m: 1, width: 300 }}>
+            <InputLabel
+              id="label-presenting-symptoms"
+              className={classes.multiSelectDdLabel}
+            >
+              Presenting Symptoms
+            </InputLabel>
+            <Select
+              className={classes.textFieldColor}
+              labelId="label-presenting-symptoms"
+              id="presenting-symptoms"
+              label="Presenting Symptoms"
+              multiple
+              variant="standard"
+              value={presentingSysmptoms}
+              onChange={handlePresentingSysmptoms}
+              inputProps={{
+                className: classes.fontTypePresentingSymptoms,
+              }}
+              input={<OutlinedInput label="Name" />}
+              MenuProps={menuProps()}
+            >
+              {patientDetails.symptoms.map((symptom) => (
+                <MenuItem
+                  key={symptom}
+                  value={symptom}
+                  style={getStyles(symptom, presentingSysmptoms, theme)}
+                >
+                  {symptom}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          <FormControl sx={{ m: 1, width: 300 }}>
+            <InputLabel
+              id="label-symptom-onset"
+              className={classes.multiSelectDdLabel}
+            >
+              Time since symptom onset
+            </InputLabel>
+            <Select
+              className={classes.textFieldColor}
+              labelId="label-symptom-onset"
+              id="symptom-onset"
+              label="Time since symptom onset"
+              multiple
+              variant="standard"
+              value={symptomOnset}
+              onChange={handleSymptomOnset}
+              inputProps={{
+                className: classes.fontTypePresentingSymptoms,
+              }}
+              input={<OutlinedInput label="Name" />}
+              MenuProps={menuProps()}
+            >
+              {names.map((name) => (
+                <MenuItem
+                  key={name}
+                  value={name}
+                  style={getStyles(name, symptomOnset, theme)}
+                >
+                  {name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          <FormControl sx={{ m: 1, width: 300 }}>
+            <InputLabel
+              id="label-risk-factors"
+              className={classes.multiSelectDdLabel}
+            >
+              Risk Factors
+            </InputLabel>
+            <Select
+              className={classes.textFieldColor}
+              labelId="label-risk-factors"
+              id="risk-factors"
+              label="Risk Factors"
+              multiple
+              variant="standard"
+              value={riskFsctors}
+              onChange={handleRiskFsctors}
+              inputProps={{
+                className: classes.fontTypePresentingSymptoms,
+              }}
+              input={<OutlinedInput label="Name" />}
+              MenuProps={menuProps()}
+            >
+              {patientDetails.riskFactors.map((rFactor) => (
+                <MenuItem
+                  key={rFactor}
+                  value={rFactor}
+                  style={getStyles(rFactor, riskFsctors, theme)}
+                >
+                  {rFactor}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </form>
+        <br />
+      </Grid>
+    </>
   );
 };
 

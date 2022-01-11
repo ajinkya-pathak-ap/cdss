@@ -7,6 +7,7 @@ import { Card, CardContent, Typography } from "@material-ui/core";
 import { riskScoreService } from "../../../services/riskScore-service";
 import CircularIndeterminate from "../../../shared/preloder/Preloder";
 import { RiskContributorStyles } from "./RiskScoreContributorStyles";
+import Contributors from "../amioutput/riskcontributors/contributors/Contributors";
 
 const configData = {
   MRN: "1",
@@ -16,27 +17,27 @@ const configData = {
 export default function RiskScoreContributors(props) {
   const classes = RiskContributorStyles();
   const [isFetching, setIsFetching] = useState(true);
-  const [riskScoreContributors, setRiskScoreContributors] = useState({});
+  const [riskScore, setRiskScore] = useState({});
 
   useEffect(() => {
     fetchRiskScoreContributors(configData);
-  }, [0]);
+  }, []);
 
   const fetchRiskScoreContributors = (config) => {
     if (props.localMode) {
-      riskScoreService.getRiskScoreContributorsLocal(config).then(
+      riskScoreService.getRiskScoreLocal(config).then(
         (response) => {
-          setRiskScoreContributors(response.data);
+          setRiskScore(response.data);
           setIsFetching(false);
         },
         (error) => {
-          return;
+          console.log("error", error);
         }
       );
     } else {
-      riskScoreService.getRiskScoreContributors(config).then(
+      riskScoreService.getRiskScore(config).then(
         (response) => {
-          setRiskScoreContributors(response.data);
+          setRiskScore(response.data);
           setIsFetching(false);
         },
         (error) => {
@@ -46,21 +47,13 @@ export default function RiskScoreContributors(props) {
     }
   };
 
-  /****************methods**************/
-
   if (isFetching) {
     return <CircularIndeterminate />;
   } else {
     return (
-      <Grid
-        container
-        spacing={4}
-        className={classes.contrimainContainer}
-      >
+      <Grid container spacing={4} className={classes.contrimainContainer}>
         <Grid item sm={12} xs={12} md={12}>
-          <Box
-            className={classes.sx}
-          >
+          <Box className={classes.sx}>
             <Grid
               container
               item
@@ -70,22 +63,14 @@ export default function RiskScoreContributors(props) {
               alignItems="center"
             >
               <Grid item xs={10}>
-                <Card className={classes.contribcontainer}>
-                  <CardContent className={classes.cardcont}>
-                    <Typography
-                      variant={"h6"}
-                      className={classes.typoofriskscore}
-                    >
-                      {riskScoreContributors.value.riskScoreContributors}
-                      {/* Provide the Details for the Risk Score Contributors */}
-                    </Typography>
-                  </CardContent>
-                </Card>
+                <Contributors
+                  positiveContr={riskScore.result.positiveContributors}
+                  negativeContr={riskScore.result.negativeContributors}
+                ></Contributors>
               </Grid>
             </Grid>
             <br></br>
             <br></br>
-
             <Grid item xs={12} container className={classes.alignRight}>
               <Button variant="contained" className={classes.buttonColor}>
                 <Link className={classes.whiteBtn} to="/amioutput">

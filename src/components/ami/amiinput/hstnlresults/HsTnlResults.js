@@ -43,12 +43,12 @@ const HsTnlResults = (props) => {
 
           {props.result.troponins.map((v,i) => (
             <>
-              <Grid container item xs={12} md={4}>
+              <Grid key={`${v}_1`} container item xs={12} md={4}>
                 <Typography className={classes.firstdraw}>
                  {mlInputUtils.hstnlHeadings[i]}
                 </Typography>
               </Grid>
-              <Grid xs={6} md={4}>
+              <Grid key={`${v}_2`} xs={6} md={4}>
                 <input
                   type="email"
                   className={`form-control ${classes.firstinputspace}`}
@@ -58,7 +58,7 @@ const HsTnlResults = (props) => {
                   value={`${v.value}${v.units}`}
                 ></input>
               </Grid>
-              <Grid xs={6} md={4}>
+              <Grid key={`${v}_3`} xs={6} md={4}>
                 <input
                   type="email"
                   className={`form-control ${classes.firstinputspace2}`}

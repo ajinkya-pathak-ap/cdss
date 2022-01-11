@@ -12,10 +12,22 @@ const AmiInput = (props) => {
   const classes = AmiInputStyles();
   const [data, setData] = useState({});
   const [isFetching, setIsFetching] = useState(true);
+  const [patientData, setPatientData] = useState({
+    age: "",
+    gender: "",
+    race: [],
+    presentingSymptoms: [],
+    timeSymptomsOnSet: [],
+    riskFactors: [],
+  });
 
   const configData = {
     MRN: "1",
     EncounterNumber: "1",
+  };
+
+  const patientInfo = (_obj) => {
+    console.log(_obj);
   };
 
   useEffect(() => {
@@ -48,7 +60,7 @@ const AmiInput = (props) => {
 
   if (isFetching) {
     return <CircularIndeterminate />;
-  } else{
+  } else {
     return (
       <div>
         <Grid
@@ -74,8 +86,6 @@ const AmiInput = (props) => {
       </div>
     );
   }
-
- 
 };
 
 export default AmiInput;
