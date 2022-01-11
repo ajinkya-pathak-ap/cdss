@@ -1,10 +1,12 @@
 import React from "react";
 import { Grid, Stack } from "../../../../shared/material/mui";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AcknowledgeStyles, BootstrapButton } from "./AcknowledgeStyles";
 
 export const Acknowledge = () => {
   const classes = AcknowledgeStyles();
+  const history = useNavigate();
+
   return (
     <Grid item xs={12} container className={classes.alignRight}>
       <Stack spacing={2} direction="row" container>
@@ -25,9 +27,9 @@ export const Acknowledge = () => {
           </Link>
         </BootstrapButton>
         <BootstrapButton variant="contained" className={classes.buttonColor1}>
-          <Link className={classes.buttonColor1} to="/amioutput">
+          {/* <Link className={classes.buttonColor1} to="/amioutput"> */}
             <span className="m-1">Close</span>
-          </Link>
+          {/* </Link> */}
         </BootstrapButton>
       </Stack>
     </Grid>
