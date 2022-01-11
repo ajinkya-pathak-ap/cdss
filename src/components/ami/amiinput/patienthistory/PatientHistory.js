@@ -13,17 +13,6 @@ import { useTheme } from "@mui/material/styles";
 import { mlInputUtils } from "../AmiInutUtils";
 import "../styles.css";
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
 const names = [
   "Oliver Hansen",
   "Van Henry",
@@ -46,6 +35,20 @@ function getStyles(name, personName, theme) {
   };
 }
 
+const menuProps = () => {
+  const ITEM_HEIGHT = 48,
+    ITEM_PADDING_TOP = 8;
+
+  return {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
+};
+
 const PatientHistory = (props) => {
   const classes = PatientHistoryStyles();
   const { patientDetails } = props.result;
@@ -56,14 +59,32 @@ const PatientHistory = (props) => {
     mapValues();
   }, []);
 
-  const [personName, setPersonName] = useState([]);
+  const [presentingSysmptoms, setPresentingSysmptoms] = useState([]);
+  const [symptomOnset, setSymptomOnset] = useState([]);
+  const [riskFsctors, setRiskFactors] = useState([]);
 
   const theme = useTheme();
-  const handleChange = (event) => {
+  const handlePresentingSysmptoms = (event) => {
     const {
       target: { value },
     } = event;
-    setPersonName(typeof value === "string" ? value.split(",") : value);
+    setPresentingSysmptoms(
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+
+  const handleSymptomOnset = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setSymptomOnset(typeof value === "string" ? value.split(",") : value);
+  };
+
+  const handleRiskFsctors = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setRiskFactors(typeof value === "string" ? value.split(",") : value);
   };
 
   const handleGender = (e) => {
@@ -85,10 +106,17 @@ const PatientHistory = (props) => {
     if (patientDetails.gender.length > 0) {
       setGender(patientDetails.gender[0].description);
     }
-    patientDetails.race.length > 0 ? setRace(patientDetails.race[0].description) : setRace("")
+    patientDetails.race.length > 0
+      ? setRace(patientDetails.race[0].description)
+      : setRace("");
   };
 
+  const displayVal = () => {
+
+  }
+
   return (
+    <>
     <Grid item container md={12} xs={12} className={classes.patientHistory}>
       <form className={classes.firstform}>
         <Typography className={classes.headerText}>Patient History</Typography>
@@ -141,12 +169,17 @@ const PatientHistory = (props) => {
           }}
         >
           {patientDetails.race.map((v) => (
-            <MenuItem value={v.description}>{v.description}</MenuItem>
+            <MenuItem key={v} value={v.description}>{v.description}</MenuItem>
           ))}
         </TextField>
 
         <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="label-presenting-symptoms"  className={classes.multiSelectDdLabel}>Presenting Symptoms</InputLabel>
+          <InputLabel
+            id="label-presenting-symptoms"
+            className={classes.multiSelectDdLabel}
+          >
+            Presenting Symptoms
+          </InputLabel>
           <Select
             className={classes.textFieldColor}
             labelId="label-presenting-symptoms"
@@ -154,28 +187,31 @@ const PatientHistory = (props) => {
             label="Presenting Symptoms"
             multiple
             variant="standard"
-            value={personName}
-            onChange={handleChange}
+            value={presentingSysmptoms}
+            onChange={handlePresentingSysmptoms}
             inputProps={{
               className: classes.fontTypePresentingSymptoms,
             }}
             input={<OutlinedInput label="Name" />}
-            MenuProps={MenuProps}
+            MenuProps={menuProps()}
           >
-            {names.map((name) => (
+            {patientDetails.symptoms.map((symptom) => (
               <MenuItem
-                key={name}
-                value={name}
-                style={getStyles(name, personName, theme)}
+                key={symptom}
+                value={symptom}
+                style={getStyles(symptom, presentingSysmptoms, theme)}
               >
-                {name}
+                {symptom}
               </MenuItem>
             ))}
           </Select>
         </FormControl>
 
         <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="label-symptom-onset" className={classes.multiSelectDdLabel}>
+          <InputLabel
+            id="label-symptom-onset"
+            className={classes.multiSelectDdLabel}
+          >
             Time since symptom onset
           </InputLabel>
           <Select
@@ -185,19 +221,19 @@ const PatientHistory = (props) => {
             label="Time since symptom onset"
             multiple
             variant="standard"
-            value={personName}
-            onChange={handleChange}
+            value={symptomOnset}
+            onChange={handleSymptomOnset}
             inputProps={{
               className: classes.fontTypePresentingSymptoms,
             }}
             input={<OutlinedInput label="Name" />}
-            MenuProps={MenuProps}
+            MenuProps={menuProps()}
           >
             {names.map((name) => (
               <MenuItem
                 key={name}
                 value={name}
-                style={getStyles(name, personName, theme)}
+                style={getStyles(name, symptomOnset, theme)}
               >
                 {name}
               </MenuItem>
@@ -206,7 +242,12 @@ const PatientHistory = (props) => {
         </FormControl>
 
         <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="label-risk-factors" className={classes.multiSelectDdLabel}>Risk Factors</InputLabel>
+          <InputLabel
+            id="label-risk-factors"
+            className={classes.multiSelectDdLabel}
+          >
+            Risk Factors
+          </InputLabel>
           <Select
             className={classes.textFieldColor}
             labelId="label-risk-factors"
@@ -214,21 +255,21 @@ const PatientHistory = (props) => {
             label="Risk Factors"
             multiple
             variant="standard"
-            value={personName}
-            onChange={handleChange}
+            value={riskFsctors}
+            onChange={handleRiskFsctors}
             inputProps={{
               className: classes.fontTypePresentingSymptoms,
             }}
             input={<OutlinedInput label="Name" />}
-            MenuProps={MenuProps}
+            MenuProps={menuProps()}
           >
-            {names.map((name2) => (
+            {patientDetails.riskFactors.map((rFactor) => (
               <MenuItem
-                key={name2}
-                value={name2}
-                style={getStyles(name2, personName, theme)}
+                key={rFactor}
+                value={rFactor}
+                style={getStyles(rFactor, riskFsctors, theme)}
               >
-                {name2}
+                {rFactor}
               </MenuItem>
             ))}
           </Select>
@@ -236,7 +277,7 @@ const PatientHistory = (props) => {
       </form>
       <br />
     </Grid>
-    // </Grid>
+    </>
   );
 };
 
