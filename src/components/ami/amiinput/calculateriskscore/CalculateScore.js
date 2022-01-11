@@ -3,12 +3,12 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@mui/material/Button";
 import { btnStyles } from "./CalculateScoreStyles";
 
-const Calculatescore = () => {
+const Calculatescore = (props) => {
   const classes = btnStyles();
 
-const riskScoreCalculate = () => {
+  const riskScoreCalculate = () => {
 
-}
+  };
 
   return (
     <Grid container spacing={2}>
@@ -38,8 +38,8 @@ const riskScoreCalculate = () => {
             backgroundColor: "#414BB2",
           }}
           variant="contained"
-          onClick={riskScoreCalculate}
->
+          onClick=""
+        >
           Calculate Risk Score
         </Button>
         <Button
@@ -50,8 +50,8 @@ const riskScoreCalculate = () => {
             display: "none",
           }}
           variant="contained"
-          onClick={riskScoreCalculate}
->
+          onClick=""
+        >
           RiskScore
         </Button>
       </Grid>
