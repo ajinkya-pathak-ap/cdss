@@ -51,6 +51,7 @@ const PatientHistory = (props) => {
   const { patientDetails } = props.result;
   const [gender, setGender] = useState("");
   const [race, setRace] = useState("");
+  const [presymptom, setPresymptom] = useState("");
 
   useEffect(() => {
     mapValues();
@@ -81,11 +82,17 @@ const PatientHistory = (props) => {
     setRace(e.target.value);
   };
 
+  const handlePreSymptoms = (e) => {
+    setPresymptom(e.target.value);
+  };
+
   const mapValues = () => {
     if (patientDetails.gender.length > 0) {
       setGender(patientDetails.gender[0].description);
     }
-    patientDetails.race.length > 0 ? setRace(patientDetails.race[0].description) : setRace("")
+    patientDetails.race.length > 0
+      ? setRace(patientDetails.race[0].description)
+      : setRace("");
   };
 
   return (
@@ -135,6 +142,23 @@ const PatientHistory = (props) => {
           variant="standard"
           value={race}
           onChange={handleRace}
+          inputProps={{
+            className: classes.fontTypeOne,
+          }}
+        >
+          {patientDetails.race.map((v) => (
+            <MenuItem value={v.description}>{v.description}</MenuItem>
+          ))}
+        </TextField>
+
+        <TextField
+          className={classes.textFieldColor}
+          id="presenting-symptoms"
+          select
+          label="Race"
+          variant="standard"
+          value={race}
+          onChange={handlePreSymptoms}
           inputProps={{
             className: classes.fontTypeOne,
           }}
