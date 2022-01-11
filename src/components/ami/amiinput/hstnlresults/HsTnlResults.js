@@ -4,9 +4,11 @@ import { Typography } from "@material-ui/core";
 import { HsTnlResultsStyles } from "./HsTnlResultsStyles";
 
 import "../styles.css";
+import { mlInputUtils } from "../AmiInutUtils";
 
-const HsTnlResults = () => {
+const HsTnlResults = (props) => {
   const classes = HsTnlResultsStyles();
+
   return (
     <form className={classes.secondform}>
       <Grid
@@ -39,7 +41,37 @@ const HsTnlResults = () => {
             </Typography>
           </Grid>
 
-          <Grid container item xs={12} md={4}>
+          {props.result.troponins.map((v,i) => (
+            <>
+              <Grid container item xs={12} md={4}>
+                <Typography className={classes.firstdraw}>
+                 {mlInputUtils.hstnlHeadings[i]}
+                </Typography>
+              </Grid>
+              <Grid xs={6} md={4}>
+                <input
+                  type="email"
+                  className={`form-control ${classes.firstinputspace}`}
+                  inputProps={{
+                    className: classes.inputFields,
+                  }}
+                  value={`${v.value}${v.units}`}
+                ></input>
+              </Grid>
+              <Grid xs={6} md={4}>
+                <input
+                  type="email"
+                  className={`form-control ${classes.firstinputspace2}`}
+                  inputProps={{
+                    className: classes.inputFields,
+                  }}
+                  value={`${v.resultDateTime}`}
+                ></input>
+              </Grid>
+            </>
+          ))}
+
+          {/* <Grid container item xs={12} md={4}>
             <Typography className={classes.firstdraw}>First draw</Typography>
           </Grid>
           <Grid xs={6} md={4}>
@@ -49,6 +81,7 @@ const HsTnlResults = () => {
               inputProps={{
                 className: classes.inputFields,
               }}
+              value=""
             ></input>
           </Grid>
           <Grid xs={6} md={4}>
@@ -58,8 +91,10 @@ const HsTnlResults = () => {
               inputProps={{
                 className: classes.inputFields,
               }}
+              value=""
             ></input>
           </Grid>
+
           <Grid container item xs={12} md={4}>
             <Typography className={classes.seconddrawtypo}>
               Second draw
@@ -83,6 +118,7 @@ const HsTnlResults = () => {
               }}
             ></input>
           </Grid>
+
           <Grid container item xs={12} md={4}>
             <Typography className={classes.thirddrawtypo}>
               Third draw
@@ -107,7 +143,7 @@ const HsTnlResults = () => {
                 className: classes.inputFields,
               }}
             ></input>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Grid>
       <br />
