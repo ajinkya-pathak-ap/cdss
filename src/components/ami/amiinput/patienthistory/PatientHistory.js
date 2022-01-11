@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import {
   Grid,
   Typography,
@@ -50,8 +50,10 @@ const PatientHistory = (props) => {
 
   const { patientDetails } = props.result;
 
+  const [gender, setGender] = useState("Male");
+
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
+  const [personName, setPersonName] = useState([]);
 
   const handleChange = (event) => {
     const {
@@ -62,6 +64,11 @@ const PatientHistory = (props) => {
       typeof value === "string" ? value.split(",") : value
     );
   };
+
+  const handleGender = (e) => {
+    setGender(e.target.value);
+  };
+
   return (
     <Grid item container md={12} xs={12} className={classes.patientHistory}>
       <form className={classes.firstform}>
@@ -92,13 +99,14 @@ const PatientHistory = (props) => {
           select
           label="Gender"
           variant="standard"
-          value="Male"
-          onChange=""
+          value={gender}
+          onChange={handleGender}
           inputProps={{
             className: classes.fontTypeOne,
           }}
         >
-          <MenuItem value="">Male</MenuItem>
+          <MenuItem value="Male">Male</MenuItem>
+          <MenuItem value="Female">Female</MenuItem>
         </TextField>
 
         <TextField
@@ -145,9 +153,10 @@ const PatientHistory = (props) => {
           </Select>
         </FormControl>
 
-       
         <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="label-symptom-onset">Time since symptom onset</InputLabel>
+          <InputLabel id="label-symptom-onset">
+            Time since symptom onset
+          </InputLabel>
           <Select
             className={classes.textFieldColor}
             labelId="label-symptom-onset"

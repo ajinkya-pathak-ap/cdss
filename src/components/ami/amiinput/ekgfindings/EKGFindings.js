@@ -9,6 +9,7 @@ import "../styles.css";
 
 const EKGFindings = (props) => {
   const classes = EKGFindingsStyles();
+  const { modelDetails } = props.result;
   return (
     <Grid item xs={12} md={12} className={classes.ekgfindingscont2}>
       <FormGroup className={classes.formgrop}>
@@ -26,44 +27,27 @@ const EKGFindings = (props) => {
             EKG findings(Select One)
           </FormLabel>
           <br />
-          <div className={`custom-control custom-radio custom-control-inline`}>
-            <input
-              className={`custom-control-input green ${classes.patientinfo}`}
-              style={{}}
-              type="radio"
-              id="rd_1"
-              name="rd"
-              value="Yes"
-            />
-            &nbsp;
-            <label
-              className={`custom-control-label ${classes.patientinfolabelfont}`}
-              for="rd_1"
-            >
-              {/* ST deviation, but LBBB, LVH, repolarization changes */}
-              {/* {patientInfo.value.modelDetails[0].modelInputKeyName} */}
-            </label>
-          </div>
-          <br />
 
-          <div className={`custom-control custom-radio custom-control-inline`}>
-            <input
-              type="radio"
-              id="rd_2"
-              name="rd"
-              className={`custom-control-input red`}
-              value="No"
-            />
-            <label
-              style={{ fontSize: "14px" }}
-              className={`custom-control-label`}
-              for="rd_2"
+          {modelDetails.map((v, i) => (
+            <div
+              className={`custom-control custom-radio custom-control-inline`}
             >
+              <input
+                className={`custom-control-input green ${classes.patientinfo}`}
+                type="radio"
+                id={`rd_${i}`}
+                name={`rd_${i}`}
+                value={v.modelInputValue ? "Yes" : "No"}
+              />
               &nbsp;
-              {/* No ST deviation, but LBBB, LVH, repolarization changes */}
-              {/* {patientInfo.value.modelDetails[1].modelInputKeyName} */}
-            </label>
-          </div>
+              <label
+                className={`custom-control-label ${classes.patientinfolabelfont}`}
+                for={`rd_${i}`}
+              >
+                {v.modelInputKeyName}
+              </label>
+            </div>
+          ))}
         </FormControl>
       </FormGroup>
     </Grid>

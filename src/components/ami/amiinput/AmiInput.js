@@ -61,7 +61,7 @@ const AmiInput = (props) => {
           </Grid>
           <Grid container item md={6} xs={12}>
             <Grid item md={12} xs={12} sm={6}>
-              <EKGFindings result={data.modelDetails}></EKGFindings>
+              <EKGFindings result={data.result}></EKGFindings>
             </Grid>
             <Grid item md={12} xs={12} sm={6}>
               <HsTnlResults result={data.result}></HsTnlResults>
