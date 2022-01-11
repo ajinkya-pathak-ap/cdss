@@ -44,23 +44,23 @@ export const RiskScoreStyles = makeStyles((theme) => ({
   },
 
   riskScoreShell: {
-    fontSize: "42px",
+    fontSize: "38px",
     lineHeight: "3.5",
     fontWeight: "bold",
     color: "black",
     backgroundColor: "#f24726",
     borderRadius: "50%",
-    width: "9rem",
+    width: "8rem",
     height: "9rem",
     [theme.breakpoints.up("md")]: {
       fontSize: "15px",
-      lineHeight: "8.3",
+      lineHeight: "8.0",
       width: "8rem",
-      height: "8rem",
+      height: "7rem",
     },
 
     [theme.breakpoints.down("md")]: {
-      width: "6rem",
+      width: "7rem",
       height: "6rem",
       fontSize: "12px",
       lineHeight: "8.4",

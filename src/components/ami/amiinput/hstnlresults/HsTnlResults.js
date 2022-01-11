@@ -14,7 +14,7 @@ const HsTnlResults = (props) => {
       <Grid
         container
         className={classes.formgrop}
-        style={{ marginTop: "14px" }}
+        style={{ marginTop: "14px", borderRadius: "10px" }}
       >
         <Grid
           container
@@ -41,11 +41,11 @@ const HsTnlResults = (props) => {
             </Typography>
           </Grid>
 
-          {props.result.troponins.map((v,i) => (
+          {props.result.troponins.map((v, i) => (
             <>
               <Grid key={`${v}_1`} container item xs={12} md={4}>
                 <Typography className={classes.firstdraw}>
-                 {mlInputUtils.hstnlHeadings[i]}
+                  {mlInputUtils.hstnlHeadings[i]}
                 </Typography>
               </Grid>
               <Grid key={`${v}_2`} xs={6} md={4}>

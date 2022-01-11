@@ -18,9 +18,11 @@ const EKGFindings = (props) => {
             className={classes.ekgformlabel}
             style={{
               textAlign: "left",
-              fontSize: "18px",
+              fontSize: "20px",
               color: "#fff",
               fontWeight: "800",
+              paddingTop: "11px",
+              borderRadius: "10px",
             }}
             component="legend"
           >
@@ -30,7 +32,8 @@ const EKGFindings = (props) => {
 
           {modelDetails.map((v, i) => (
             <div
-              key={v} className={`custom-control custom-radio custom-control-inline`}
+              key={v}
+              className={`custom-control custom-radio custom-control-inline`}
             >
               <input
                 className={`custom-control-input green ${classes.patientinfo}`}

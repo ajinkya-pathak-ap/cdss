@@ -11,7 +11,7 @@ import { PatientHistoryStyles } from "./PatientHistoryStyles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { useTheme } from "@mui/material/styles";
 import { mlInputUtils } from "../AmiInutUtils";
-import "../styles.css";
+import "./styles.css";
 
 const names = [
   "Oliver Hansen",
@@ -54,6 +54,7 @@ const PatientHistory = (props) => {
   const { patientDetails } = props.result;
   const [gender, setGender] = useState("");
   const [race, setRace] = useState("");
+  const [race1, setRace1] = useState("");
 
   useEffect(() => {
     mapValues();
@@ -102,6 +103,10 @@ const PatientHistory = (props) => {
     setRace(e.target.value);
   };
 
+  const handleRace1 = (e) => {
+    setRace1(e.target.value);
+  };
+
   const mapValues = () => {
     if (patientDetails.gender.length > 0) {
       setGender(patientDetails.gender[0].description);
@@ -111,9 +116,7 @@ const PatientHistory = (props) => {
       : setRace("");
   };
 
-  const reset = () => {
-    alert("Reset!!!");
-  };
+  const displayVal = () => {};
 
   return (
     <>
@@ -137,6 +140,7 @@ const PatientHistory = (props) => {
             </InputLabel>
             <br></br>
             <input
+              disabled
               type="email"
               className={`form-control ${classes.patientage}`}
               value={patientDetails.age ? patientDetails.age : "NA"}
