@@ -4,38 +4,13 @@ import {
   Typography,
   MenuItem,
   Select,
-  TextField,
 } from "../../../../shared/material/mui";
 import { FormControl, InputLabel } from "@material-ui/core";
 import { PatientHistoryStyles } from "./PatientHistoryStyles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { useTheme } from "@mui/material/styles";
-import { mlInputUtils } from "../AmiInutUtils";
 import "./styles.css";
-
-function getStyles(name, personName, theme) {
-  return {
-    fontSize: "14px",
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
-
-const menuProps = () => {
-  const ITEM_HEIGHT = 48,
-    ITEM_PADDING_TOP = 8;
-
-  return {
-    PaperProps: {
-      style: {
-        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-        width: 250,
-      },
-    },
-  };
-};
+import { mlInputUtils } from "../AmiInutUtils";
 
 const PatientHistory = (props) => {
   const classes = PatientHistoryStyles();
@@ -52,6 +27,7 @@ const PatientHistory = (props) => {
   const [riskFsctors, setRiskFactors] = useState([]);
 
   const theme = useTheme();
+
   const handlePresentingSysmptoms = (event) => {
     const {
       target: { value },
@@ -83,6 +59,11 @@ const PatientHistory = (props) => {
     if (gender) {
       return <MenuItem value={gender}>{gender}</MenuItem>;
     } else {
+      patientDetails.gender.map((v) => (
+        <MenuItem
+          style={mlInputUtils.getStyles(v.description, gender, theme)}
+        ></MenuItem>
+      ));
     }
   };
 
@@ -91,12 +72,12 @@ const PatientHistory = (props) => {
   };
 
   const mapValues = () => {
-    if (patientDetails.gender.length > 0) {
+    if (patientDetails.gender.length === 1) {
       setGender(patientDetails.gender[0].description);
+    } else {
     }
-    patientDetails.race.length > 0
-      ? setRace(patientDetails.race[0].description)
-      : setRace("");
+
+    patientDetails.race.length > 0 ? setRace("Select One") : setRace("");
   };
 
   const resetFields = () => {
@@ -134,20 +115,6 @@ const PatientHistory = (props) => {
             ></input>
           </FormControl>
 
-          {/* <TextField
-            className={classes.textFieldColor}
-            id="gender"
-            select
-            label="Gender"
-            variant="standard"
-            value={gender}
-            onChange={handleGender}
-            inputProps={{
-              className: classes.fontTypeOne,
-            }}
-          >
-            {genderValue()}
-          </TextField> */}
           <FormControl sx={{ m: 1, width: 300 }}>
             <InputLabel id="gender" className={classes.multiSelectDdLabel}>
               Gender
@@ -164,10 +131,10 @@ const PatientHistory = (props) => {
                 className: classes.fontTypePresentingSymptoms,
               }}
               input={<OutlinedInput label="Name" />}
-              MenuProps={menuProps()}
+              MenuProps={mlInputUtils.menuProps()}
             >
               {/* {patientDetails.gender.map((v) => (
-                <MenuItem style={getStyles(v.description, gender, theme)}> */}
+                <MenuItem style={mlInputUtils.getStyles(v.description, gender, theme)}> */}
               {genderValue()}
               {/* </MenuItem>
               ))} */}
@@ -190,13 +157,13 @@ const PatientHistory = (props) => {
                 className: classes.fontTypePresentingSymptoms,
               }}
               input={<OutlinedInput label="Name" />}
-              MenuProps={menuProps()}
+              MenuProps={mlInputUtils.menuProps()}
             >
               {patientDetails.race.map((v) => (
                 <MenuItem
                   key={v}
                   value={v.description}
-                  style={getStyles(v.description, race, theme)}
+                  style={mlInputUtils.getStyles(v.description, race, theme)}
                 >
                   {v.description}
                 </MenuItem>
@@ -224,13 +191,17 @@ const PatientHistory = (props) => {
                 className: classes.fontTypePresentingSymptoms,
               }}
               input={<OutlinedInput label="Name" />}
-              MenuProps={menuProps()}
+              MenuProps={mlInputUtils.menuProps()}
             >
               {patientDetails.symptoms.map((symptom) => (
                 <MenuItem
                   key={symptom}
                   value={symptom}
-                  style={getStyles(symptom, presentingSysmptoms, theme)}
+                  style={mlInputUtils.getStyles(
+                    symptom,
+                    presentingSysmptoms,
+                    theme
+                  )}
                 >
                   {symptom}
                 </MenuItem>
@@ -258,13 +229,13 @@ const PatientHistory = (props) => {
                 className: classes.fontTypePresentingSymptoms,
               }}
               input={<OutlinedInput label="Name" />}
-              MenuProps={menuProps()}
+              MenuProps={mlInputUtils.menuProps()}
             >
               {patientDetails.symptomOnset.map((onset) => (
                 <MenuItem
                   key={onset}
                   value={onset}
-                  style={getStyles(onset, symptomOnset, theme)}
+                  style={mlInputUtils.getStyles(onset, symptomOnset, theme)}
                 >
                   {onset}
                 </MenuItem>
@@ -292,13 +263,13 @@ const PatientHistory = (props) => {
                 className: classes.fontTypePresentingSymptoms,
               }}
               input={<OutlinedInput label="Name" />}
-              MenuProps={menuProps()}
+              MenuProps={mlInputUtils.menuProps()}
             >
               {patientDetails.riskFactors.map((rFactor) => (
                 <MenuItem
                   key={rFactor}
                   value={rFactor}
-                  style={getStyles(rFactor, riskFsctors, theme)}
+                  style={mlInputUtils.getStyles(rFactor, riskFsctors, theme)}
                 >
                   {rFactor}
                 </MenuItem>
