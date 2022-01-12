@@ -12,6 +12,7 @@ export const GuidanceStyles = makeStyles((theme) => ({
   gridcontainer3: {
     background: "#050038",
     color: "#fff",
+    borderRadius: "4px",
     textAlign: "left",
     minHeight: "80px",
     marginTop: "-18px",

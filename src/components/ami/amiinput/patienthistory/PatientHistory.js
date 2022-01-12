@@ -179,7 +179,7 @@ const PatientHistory = (props) => {
             </Select>
           </FormControl>
 
-          <FormControl sx={{ m: 1, width: 300 }}>
+          <FormControl sx={{ m: 1, width: 100 }}>
             <InputLabel
               id="label-presenting-symptoms"
               className={classes.multiSelectDdLabel}

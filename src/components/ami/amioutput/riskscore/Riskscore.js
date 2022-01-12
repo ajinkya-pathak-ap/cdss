@@ -27,7 +27,7 @@ const Riskscore = (props) => {
           </CardContent>
         </Card>
       </Grid>
-      <Grid container item xs={4} className={classes.gridcontainer1}>
+      <Grid container item xs={4} className={classes.gridcontainer2}>
         <Box textAlign="center" className={classes.smallMargin}>
           <Typography alignitems="center" className={classes.riskScoreShell}>
             {utils.riskScoreRange(probabilityRange)}

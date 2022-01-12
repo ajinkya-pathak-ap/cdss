@@ -25,7 +25,7 @@ const RiskscoreContributors = (props) => {
 
   return (
     <Grid container item xs={12}>
-      <Grid item xs={7} lg={8} className={classes.gridcontainer2}>
+      <Grid item xs={7} lg={8} className={classes.gridcontainer1}>
         <Contributors
           positiveContr={positiveContributors}
           negativeContr={negativeContributors}
