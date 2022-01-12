@@ -83,12 +83,12 @@ const Generate = (props) => {
         setGenerateRule(configurationsItem);
         if (configurationsItem.rules.length > 0) {
           /**no empty rules */
-          configurationsItem.rules.forEach((ruleIteam) => {
-            setGenrateDefault(ruleIteam.isDefault);
-            setGenerateRS(ruleIteam.isChecked);
-            if (ruleIteam.categories.length > 0) {
+          configurationsItem.rules.forEach((ruleItem) => {
+            setGenrateDefault(ruleItem.isDefault);
+            setGenerateRS(ruleItem.isChecked);
+            if (ruleItem.categories.length > 0) {
               /**non-empty category */
-              ruleIteam.categories.forEach((categoryItem) => {
+              ruleItem.categories.forEach((categoryItem) => {
                 /**value categories */
                 if (
                   categoryItem.categoryDefinition.toLocaleLowerCase() === "age"
@@ -97,6 +97,7 @@ const Generate = (props) => {
                   setOperatorOne(categoryItem.operator);
                   if (categoryItem.values.length > 0) {
                     /**non-empty values */
+                    setGenerateRS(false);
                     setAgeArr(categoryItem.values);
                     if (categoryItem.values.length > 1) {
                       setAgeRule({
@@ -138,7 +139,7 @@ const Generate = (props) => {
               });
             } else {
               /**empty category */
-              ruleIteam.categories = [];
+              ruleItem.categories = [];
             }
           });
         } else {

@@ -135,7 +135,7 @@ const PatientHistory = (props) => {
           </FormControl>
 
           <TextField
-            className={classes.textFieldColor}
+            className={`${classes.textFieldColor}`}
             id="gender"
             select
             label="Gender"

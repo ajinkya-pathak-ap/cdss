@@ -40,10 +40,12 @@ const Display = (props) => {
 
   const handleDisplayRule = (e) => {
     setRiskScoreRule({ ...riskScoreRule, [e.target.name]: e.target.value });
+
     setDisplayArr([
       `${riskScoreRule.displayOne}%`.split("%")[0],
       `${riskScoreRule.displayTwo}%`.split("%")[0],
     ]);
+
     setDisplayValues({
       ...displayValues,
       values: displayArr,
@@ -51,7 +53,6 @@ const Display = (props) => {
   };
 
   const mapJsonResponse = (_obj) => {
-    debugger;
     _obj.forEach((configurationsItem, index) => {
       if (
         configurationsItem.ruleSectionName.toLocaleLowerCase() === "display"
@@ -68,6 +69,7 @@ const Display = (props) => {
                 /**create values categories */
                 if (categoryItem.values.length > 0) {
                   /**non-empty values */
+                  setDisplayRS(false);
                   setDisplayArr(categoryItem.values);
                   if (categoryItem.values.length > 1) {
                     setRiskScoreRule({
@@ -159,7 +161,6 @@ const Display = (props) => {
                   width: "80px",
                   textAlign: "right",
                 }}
-                // defaultValue="0%"
                 disabled={displayRS}
                 id="rangeOne"
                 name="displayOne"
@@ -188,7 +189,6 @@ const Display = (props) => {
                   marginLeft: "-20px",
                   width: "80px",
                 }}
-                // defaultValue="1%"
                 disabled={displayRS}
                 id="rangeTwo"
                 name="displayTwo"
@@ -231,7 +231,7 @@ const Display = (props) => {
                 <Checkbox
                   onChange={(e) => handleDisplayRuleCheck(e)}
                   {...utils.properties.label}
-                  defaultChecked={displayRS}
+                  checked={displayRS}
                   sx={{
                     color: "#fff",
                     "&.Mui-checked": {

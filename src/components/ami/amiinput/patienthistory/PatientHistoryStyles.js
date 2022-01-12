@@ -70,6 +70,18 @@ export const PatientHistoryStyles = makeStyles((theme) => ({
     color: "#000",
   },
   MuiSvgIconRoot: {
-    top: "-5px",
+    top: "-5px !important",
+  },
+
+  select: {
+    "&:before": {
+      borderColor: "red",
+    },
+    "&:after": {
+      borderColor: "red",
+    },
+  },
+  icon: {
+    fill: "red",
   },
 }));
