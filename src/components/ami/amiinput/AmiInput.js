@@ -72,11 +72,12 @@ const AmiInput = (props) => {
           container
           spacing={1}
           className={`${classes.root} ${classes.holder}`}
+          direction="row"
         >
           <Grid item md={6} xs={12}>
             <PatientHistory result={data.result}></PatientHistory>
           </Grid>
-          <Grid container item md={6} xs={12}>
+          <Grid container spacing={2} item md={6} xs={12}>
             <Grid item md={12} xs={12} sm={6}>
               <EKGFindings result={data.result}></EKGFindings>
             </Grid>

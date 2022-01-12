@@ -6,9 +6,7 @@ import { btnStyles } from "./CalculateScoreStyles";
 const Calculatescore = (props) => {
   const classes = btnStyles();
 
-  const riskScoreCalculate = () => {
-
-  };
+  const riskScoreCalculate = () => {};
 
   return (
     <Grid container spacing={2}>
@@ -51,7 +49,7 @@ const Calculatescore = (props) => {
             backgroundColor: "#414BB2",
           }}
           variant="contained"
-          onClick=""
+          onClick={riskScoreCalculate}
         >
           Calculate Risk Score
         </Button>
@@ -63,7 +61,7 @@ const Calculatescore = (props) => {
             display: "none",
           }}
           variant="contained"
-          onClick=""
+          onClick={riskScoreCalculate}
         >
           RiskScore
         </Button>

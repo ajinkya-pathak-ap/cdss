@@ -73,3 +73,7 @@ input[type="radio" i] {
   padding: white;
   border: white;
 }
+
+ .MuiSvgIcon-root{
+  margin-top:"-4px !important";
+}

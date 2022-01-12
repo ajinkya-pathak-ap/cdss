@@ -48,7 +48,7 @@ export const PatientHistoryStyles = makeStyles((theme) => ({
   },
 
   headerTextThree: {
-    fontSize: "14px",
+    fontSize: "12px",
     color: "#fff",
     textAlign: "left",
     marginLeft: "8px",

@@ -54,7 +54,7 @@ const HsTnlResults = (props) => {
               {mlInputUtils.hstnlHeadings[0]}
             </Typography>
           </Grid>
-          <Grid xs={6} md={4}>
+          <Grid xs={6} md={3}>
             <input
               type="email"
               className={`form-control ${classes.firstinputspace}`}
@@ -69,7 +69,7 @@ const HsTnlResults = (props) => {
               disabled
             ></input>
           </Grid>
-          <Grid xs={6} md={4}>
+          <Grid xs={6} md={5}>
             <input
               type="email"
               className={`form-control ${classes.firstinputspace2}`}
@@ -90,7 +90,7 @@ const HsTnlResults = (props) => {
               {mlInputUtils.hstnlHeadings[1]}
             </Typography>
           </Grid>
-          <Grid xs={6} md={4}>
+          <Grid xs={6} md={3}>
             <input
               type="email"
               className={`form-control ${classes.secondinputspace1}`}
@@ -104,7 +104,7 @@ const HsTnlResults = (props) => {
               }
             ></input>
           </Grid>
-          <Grid xs={6} md={4}>
+          <Grid xs={6} md={5}>
             <input
               type="email"
               className={`form-control ${classes.secondinputspace2}`}
@@ -124,7 +124,7 @@ const HsTnlResults = (props) => {
               {mlInputUtils.hstnlHeadings[2]}
             </Typography>
           </Grid>
-          <Grid xs={6} md={4}>
+          <Grid xs={6} md={3}>
             <input
               type="email"
               className={`form-control ${classes.thirdinputspace1}`}
@@ -138,7 +138,7 @@ const HsTnlResults = (props) => {
               }
             ></input>
           </Grid>
-          <Grid xs={6} md={4}>
+          <Grid xs={6} md={5}>
             <input
               type="email"
               class="form-control"
