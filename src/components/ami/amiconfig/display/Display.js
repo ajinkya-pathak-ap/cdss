@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Grid from "@material-ui/core/Grid";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import { Card, CardContent, Typography, FormControl } from "@material-ui/core";
+import {
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+  Checkbox,
+  FormControlLabel,
+} from "../../../../shared/material/mui";
+import { FormControl } from "@material-ui/core";
 import { DisplayStyles, displayRuleInput } from "./DisplayStyles";
 import { utils } from "../AmiConfigUtils";
 

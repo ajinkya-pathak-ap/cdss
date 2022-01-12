@@ -25,7 +25,6 @@ const Generate = (props) => {
   }, []);
 
   const [ageArr, setAgeArr] = useState([]);
-
   const [generateRule, setGenerateRule] = useState({});
   const [generateRS, setGenerateRS] = useState(true);
   const [generateDefault, setGenrateDefault] = useState(true);

@@ -20,20 +20,25 @@ const AmiInput = (props) => {
     timeSymptomsOnSet: [],
     riskFactors: [],
   });
-  const [arr, setArr] = useState(false);
+
+  const [resetClick, setResetClick] = useState(false);
 
   const configData = {
     MRN: "1",
     EncounterNumber: "1",
   };
 
-  const patientInfo = (_obj) => {
-    console.log(_obj);
-  };
-
   useEffect(() => {
     getPatientInfo(configData);
   }, []);
+
+  const resetBtnClick = () => {
+    setResetClick(true);
+  };
+
+  const resetAcknowledge = () => {
+    setResetClick(false);
+  };
 
   const getPatientInfo = (config) => {
     if (props.localMode) {
@@ -59,10 +64,6 @@ const AmiInput = (props) => {
     }
   };
 
-  function reset() {
-    setArr(true);
-  }
-
   if (isFetching) {
     return <CircularIndeterminate />;
   } else {
@@ -75,7 +76,11 @@ const AmiInput = (props) => {
           direction="row"
         >
           <Grid item md={6} xs={12}>
-            <PatientHistory result={data.result}></PatientHistory>
+            <PatientHistory
+              result={data.result}
+              resetFlag={resetClick}
+              resetAck={resetAcknowledge}
+            ></PatientHistory>
           </Grid>
           <Grid container spacing={2} item md={6} xs={12}>
             <Grid item md={12} xs={12} sm={6}>
@@ -85,7 +90,7 @@ const AmiInput = (props) => {
               <HsTnlResults result={data.result}></HsTnlResults>
             </Grid>
             <Grid item md={12} xs={12} sm={6}>
-              <Calculatescore reset={reset}></Calculatescore>
+              <Calculatescore resetAll={resetBtnClick}></Calculatescore>
             </Grid>
           </Grid>
         </Grid>
