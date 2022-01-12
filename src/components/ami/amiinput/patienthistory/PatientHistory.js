@@ -14,6 +14,7 @@ import { mlInputUtils } from "../AmiInutUtils";
 import "./styles.css";
 
 function getStyles(name, personName, theme) {
+  debugger;
   return {
     fontWeight:
       personName.indexOf(name) === -1
@@ -41,7 +42,6 @@ const PatientHistory = (props) => {
   const { patientDetails } = props.result;
   const [gender, setGender] = useState("");
   const [race, setRace] = useState("");
-  const [race1, setRace1] = useState("");
 
   useEffect(() => {
     mapValues();
@@ -134,8 +134,8 @@ const PatientHistory = (props) => {
             ></input>
           </FormControl>
 
-          <TextField
-            className={`${classes.textFieldColor}`}
+          {/* <TextField
+            className={classes.textFieldColor}
             id="gender"
             select
             label="Gender"
@@ -147,26 +147,62 @@ const PatientHistory = (props) => {
             }}
           >
             {genderValue()}
-          </TextField>
+          </TextField> */}
+          <FormControl sx={{ m: 1, width: 300 }}>
+            <InputLabel id="gender" className={classes.multiSelectDdLabel}>
+              Gender
+            </InputLabel>
+            <Select
+              className={classes.textFieldColor}
+              labelId="gender"
+              id="gender"
+              label="Gender"
+              variant="standard"
+              value={gender}
+              onChange={handleGender}
+              inputProps={{
+                className: classes.fontTypePresentingSymptoms,
+              }}
+              input={<OutlinedInput label="Name" />}
+              MenuProps={menuProps()}
+            >
+              {/* {patientDetails.gender.map((v) => (
+                <MenuItem style={getStyles(v.description, gender, theme)}> */}
+              {genderValue()}
+              {/* </MenuItem>
+              ))} */}
+            </Select>
+          </FormControl>
 
-          <TextField
-            className={classes.textFieldColor}
-            id="Race"
-            select
-            label="Race"
-            variant="standard"
-            value={race}
-            onChange={handleRace}
-            inputProps={{
-              className: classes.fontTypeOne,
-            }}
-          >
-            {patientDetails.race.map((v) => (
-              <MenuItem key={v} value={v.description}>
-                {v.description}
-              </MenuItem>
-            ))}
-          </TextField>
+          <FormControl sx={{ m: 1, width: 300 }}>
+            <InputLabel id="Race" className={classes.multiSelectDdLabel}>
+              Race
+            </InputLabel>
+            <Select
+              className={classes.textFieldColor}
+              labelId="Race"
+              id="Race"
+              label="Race"
+              variant="standard"
+              value={race}
+              onChange={handleRace}
+              inputProps={{
+                className: classes.fontTypePresentingSymptoms,
+              }}
+              input={<OutlinedInput label="Name" />}
+              MenuProps={menuProps()}
+            >
+              {patientDetails.race.map((v) => (
+                <MenuItem
+                  key={v}
+                  value={v.description}
+                  style={getStyles(v.description, race, theme)}
+                >
+                  {v.description}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
 
           <FormControl sx={{ m: 1, width: 300 }}>
             <InputLabel
@@ -269,7 +305,7 @@ const PatientHistory = (props) => {
               ))}
             </Select>
           </FormControl>
-          <button onClick={resetFields}>Reset</button>
+          {/* <button onClick={resetFields}>Reset</button> */}
         </form>
         <br />
       </Grid>
