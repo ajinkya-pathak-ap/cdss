@@ -35,8 +35,13 @@ const EKGFindings = (props) => {
               type="radio"
               id="rd_1"
               name="rd"
+              defaultChecked={modelDetails[0].modelInputValue}
               class="custom-control-input green"
-              value="Yes"
+              value={
+                modelDetails[0].modelInputValue
+                  ? modelDetails[0].modelInputValue
+                  : ""
+              }
             />
             &nbsp;
             <label
@@ -54,14 +59,15 @@ const EKGFindings = (props) => {
               type="radio"
               id="rd_2"
               name="rd"
+              defaultChecked={modelDetails[1].modelInputValue}
               class="custom-control-input red"
-              value="No"
+              value={
+                modelDetails[1].modelInputValue
+                  ? modelDetails[1].modelInputValue
+                  : ""
+              }
             />
-            <label
-              style={{ fontSize: "14px" }}
-              class="custom-control-label"
-              for="rd_2"
-            >
+            <label class="custom-control-label" for="rd_2">
               &nbsp; {modelDetails[1].modelInputKeyName}
             </label>
           </div>
