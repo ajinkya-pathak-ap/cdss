@@ -166,7 +166,7 @@ const Display = (props) => {
                 onChange={handleDisplayRule}
                 type="number"
                 value={
-                  riskScoreRule.displayOne ? setRiskScoreRule.displayOne : "0%"
+                  riskScoreRule.displayOne ? riskScoreRule.displayOne : "0%"
                 }
               />
             </FormControl>

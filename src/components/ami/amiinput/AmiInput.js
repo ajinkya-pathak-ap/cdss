@@ -20,6 +20,7 @@ const AmiInput = (props) => {
     timeSymptomsOnSet: [],
     riskFactors: [],
   });
+  const [arr, setArr] = useState(false);
 
   const configData = {
     MRN: "1",
@@ -58,6 +59,9 @@ const AmiInput = (props) => {
     }
   };
 
+  function reset() {
+    setArr(true);
+  }
 
   if (isFetching) {
     return <CircularIndeterminate />;
@@ -80,7 +84,7 @@ const AmiInput = (props) => {
               <HsTnlResults result={data.result}></HsTnlResults>
             </Grid>
             <Grid item md={12} xs={12} sm={6}>
-              <Calculatescore></Calculatescore>
+              <Calculatescore reset={reset}></Calculatescore>
             </Grid>
           </Grid>
         </Grid>
