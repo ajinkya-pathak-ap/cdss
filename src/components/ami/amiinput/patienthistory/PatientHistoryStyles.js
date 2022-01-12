@@ -29,74 +29,12 @@ export const PatientHistoryStyles = makeStyles((theme) => ({
     },
   },
 
-  textFieldColorGender: {
-    // backgroundColor: "white",
-    // textAlign: "right",
-    // height: " 3.10em",
-    // borderRadius: "3px",
-    // color: "#000",
-    // fontSize: "14px",
-    // border: "none",
-    backgroundColor: "white",
-    textAlign: "right",
-    height: " 2.65em",
-    color: "#000",
-    fontSize: "14px",
-    borderRadius: "3px",
-  },
-
-  textFieldColorTrial: {
-    // backgroundColor: "white",
-    // textAlign: "right",
-    // height: " 3.10em",
-    // borderRadius: "3px",
-    // color: "#000",
-    // fontSize: "14px",
-    // border: "none",
-    backgroundColor: "white",
-    textAlign: "right",
-    height: " 3.35em",
-    color: "#000",
-    fontSize: "14px",
-    borderRadius: "3px",
-    paddingBottom: "10px",
-    border: "none",
-  },
-
-  fontTypeOneTrial: {
-    fontSize: "14px !important",
-    // marginTop: "-10px !important",
-  },
-
-  textFieldColorRace: {
-    // backgroundColor: "white",
-    // textAlign: "right",
-    // justifyItems: "center",
-    // paddingTop: "5px",
-    // marginTop: "5px",
-
-    // height: " 3.10em",
-    // borderRadius: "3px",
-    // color: "#000",
-    // fontSize: "14px",
-    // border: "none",
-    backgroundColor: "white",
-    textAlign: "right",
-    height: " 2.65em",
-    color: "#000",
-    fontSize: "14px",
-    borderRadius: "3px",
-    border: "none",
-    paddingBottom: "10px",
-  },
-
   textFieldColor: {
     backgroundColor: "white",
     textAlign: "right",
     height: " 2.65em",
     color: "#000",
     fontSize: "14px",
-    border: "none",
   },
 
   headerText: {
@@ -110,7 +48,7 @@ export const PatientHistoryStyles = makeStyles((theme) => ({
   },
 
   headerTextThree: {
-    fontSize: "14px",
+    fontSize: "12px",
     color: "#fff",
     textAlign: "left",
     marginLeft: "8px",
