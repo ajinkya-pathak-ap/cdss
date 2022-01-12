@@ -17,50 +17,46 @@ import { utils } from "../AmiConfigUtils";
 
 const Generate = (props) => {
   const classes = GenerateStyles();
+  let generateUtils = utils.properties.generateRule;
   const { configurations } = props.config;
 
   useEffect(() => {
     mapJsonResponse(configurations);
   }, []);
 
+  const [ageArr, setAgeArr] = useState([]);
+
+  const [generateRule, setGenerateRule] = useState({});
   const [generateRS, setGenerateRS] = useState(true);
   const [generateDefault, setGenrateDefault] = useState(true);
   const [operatorOne, setOperatorOne] = useState("");
   const [operatorTwo, setOperatorTwo] = useState("");
-  const [ageArr, setAgeArr] = useState([]);
   const [hstnlArr, setHstnlArr] = useState([]);
 
-  const [generateRule, setGenerateRule] = useState({
-    ageOne: "",
-    ageTwo: "",
-    hstnlOne: "",
-    hstnlTwo: "",
-  });
+  const [ageRule, setAgeRule] = useState(generateUtils.ageRule);
+  const [troponinRule, setTroponinRule] = useState(generateUtils.troponinRule);
+  const [ageValues, setAgeValues] = useState(generateUtils.ageValues);
+  const [hstnlValues, sethstnlValues] = useState(generateUtils.hstnlValues);
 
-  const [ageValues, setAgeValues] = useState({
-    categoryDefinition: "Age",
-    operator: "",
-    values: [],
-  });
+  const handleAgeRule = (e) => {
+    setAgeRule({ ...ageRule, [e.target.name]: e.target.value });
+    saveAgeValues();
+  };
 
-  const [hstnlValues, sethstnlValues] = useState({
-    categoryDefinition: "hstnl",
-    operator: "",
-    values: [],
-  });
-
-  const handleGenerateRule = (e) => {
-    setGenerateRule({ ...generateRule, [e.target.name]: e.target.value });
-
+  const saveAgeValues = () => {
     operatorOne.toLocaleLowerCase() === "between"
-      ? setAgeArr([generateRule.ageOne, generateRule.ageTwo])
-      : setAgeArr([generateRule.ageOne]);
+      ? setAgeArr([ageRule.ageOne, ageRule.ageTwo])
+      : setAgeArr([ageRule.ageOne]);
 
     setAgeValues({ ...ageValues, values: ageArr, operator: operatorOne });
+  };
+
+  const handleTroponinRule = (e) => {
+    setTroponinRule({ ...troponinRule, [e.target.name]: e.target.value });
 
     operatorTwo.toLocaleLowerCase() === "between"
-      ? setHstnlArr([generateRule.hstnlOne, generateRule.hstnlTwo])
-      : setHstnlArr([generateRule.hstnlOne]);
+      ? setHstnlArr([troponinRule.hstnlOne, troponinRule.hstnlTwo])
+      : setHstnlArr([troponinRule.hstnlOne]);
 
     sethstnlValues({ ...hstnlValues, values: hstnlArr, operator: operatorTwo });
   };
@@ -84,6 +80,7 @@ const Generate = (props) => {
       if (
         configurationsItem.ruleSectionName.toLocaleLowerCase() === "generate"
       ) {
+        setGenerateRule(configurationsItem);
         if (configurationsItem.rules.length > 0) {
           /**no empty rules */
           configurationsItem.rules.forEach((ruleIteam) => {
@@ -100,7 +97,19 @@ const Generate = (props) => {
                   setOperatorOne(categoryItem.operator);
                   if (categoryItem.values.length > 0) {
                     /**non-empty values */
-                    setAgeArr(categoryItem);
+                    setAgeArr(categoryItem.values);
+                    if (categoryItem.values.length > 1) {
+                      setAgeRule({
+                        ...ageRule,
+                        ageOne: categoryItem.values[0],
+                        ageTwo: categoryItem.values[1],
+                      });
+                    } else {
+                      setAgeRule({
+                        ...ageRule,
+                        ageOne: categoryItem.values[0],
+                      });
+                    }
                   } else {
                     /**empty values */
                     setAgeArr([]);
@@ -109,7 +118,19 @@ const Generate = (props) => {
                   /**hstnl category */
                   setOperatorTwo(categoryItem.operator);
                   if (categoryItem.values.length > 0) {
-                    setHstnlArr(categoryItem);
+                    setHstnlArr(categoryItem.values);
+                    if (categoryItem.values.length > 1) {
+                      setTroponinRule({
+                        ...troponinRule,
+                        hstnlOne: categoryItem.values[0],
+                        hstnlTwo: categoryItem.values[1],
+                      });
+                    } else {
+                      setTroponinRule({
+                        ...troponinRule,
+                        hstnlOne: categoryItem.values[0],
+                      });
+                    }
                   } else {
                     setHstnlArr([]);
                   }
@@ -127,6 +148,59 @@ const Generate = (props) => {
         }
       }
     });
+  };
+
+  const saveStateValues = () => {
+    if (generateRule.rules.length > 0) {
+      /** rules available already*/
+      generateRule.rules.forEach((ruleItem) => {
+        if (generateRS === false) {
+          /***save the values if checkbox is not selected*/
+          ruleItem.isDefault = generateDefault;
+          ruleItem.isChecked = generateRS;
+          if (ruleItem.categories.length > 0) {
+            /*check for the multiple categories */
+            ruleItem.categories.forEach((categoryItem) => {
+              if (
+                categoryItem.categoryDefinition.toLocaleLowerCase() === "age"
+              ) {
+                /**added age rule here */
+                categoryItem.operator = operatorOne;
+                categoryItem.values = ageArr;
+              } else {
+                /**added troponin rule heere */
+                categoryItem.operator = operatorTwo;
+                categoryItem.values = hstnlArr;
+              }
+            });
+          } else {
+            /**values doesnt exists for textfields */
+            ruleItem.categories.push(ageValues);
+            ruleItem.categories.push(hstnlValues);
+          }
+        } else {
+          /**
+           * send empty values when checkbox is checked
+           */
+          ruleItem.categories = [];
+        }
+      });
+    } else {
+      /**no rules available */
+      if (generateRS === false) {
+        /**checkbox not selected */
+        generateRule.rules.categories.push(ageValues);
+        generateRule.rules.categories.push(hstnlValues);
+        generateRule.rules.isDefault = generateDefault;
+        generateRule.rules.isChecked = generateRS;
+      } else {
+        /**checkbox selected */
+        generateRule.rules.isDefault = generateDefault;
+        generateRule.rules.isChecked = generateRS;
+        generateRule.rules.categories = [];
+      }
+    }
+    props.popUp(generateRule);
   };
 
   const createGenerateRule = () => {
@@ -165,10 +239,10 @@ const Generate = (props) => {
                 size="small"
                 disabled={generateRS}
                 className={classes.ageElseBetweenValue}
-                onChange={handleGenerateRule}
+                onChange={handleAgeRule}
                 name="ageOne"
                 type="number"
-                value={generateRule.ageOne}
+                value={ageRule.ageOne}
               />
             </Grid>
             {operatorOne === "Between" ? (
@@ -177,10 +251,10 @@ const Generate = (props) => {
                   size="small"
                   disabled={generateRS}
                   className={classes.ageElseBetweenValue}
-                  onChange={handleGenerateRule}
+                  onChange={handleAgeRule}
                   name="ageTwo"
                   type="number"
-                  value={generateRule.ageTwo}
+                  value={ageRule.ageTwo}
                 />
               </Grid>
             ) : (
@@ -227,10 +301,10 @@ const Generate = (props) => {
                 size="small"
                 disabled={generateRS}
                 className={classes.hstnlelsevalue1}
-                onChange={handleGenerateRule}
+                onChange={handleTroponinRule}
                 name="hstnlOne"
                 type="number"
-                value={generateRule.hstnlOne}
+                value={troponinRule.hstnlOne}
               />
             </Grid>
             {operatorTwo === "Between" ? (
@@ -239,10 +313,10 @@ const Generate = (props) => {
                   size="small"
                   disabled={generateRS}
                   className={classes.hstnlelsevalue2}
-                  onChange={handleGenerateRule}
+                  onChange={handleTroponinRule}
                   name="hstnlTwo"
                   type="number"
-                  value={generateRule.hstnlTwo}
+                  value={troponinRule.hstnlTwo}
                 />
               </Grid>
             ) : (
@@ -253,6 +327,10 @@ const Generate = (props) => {
       </Grid>
     );
     return response;
+  };
+
+  const displayValues = () => {
+    saveStateValues();
   };
 
   return (
@@ -268,7 +346,7 @@ const Generate = (props) => {
                 <Checkbox
                   onChange={(e) => generateCheckbox(e)}
                   {...utils.properties.label}
-                  defaultChecked={generateRS}
+                  checked={generateRS}
                   sx={{
                     color: "#fff",
                     "&.Mui-checked": {
@@ -290,6 +368,7 @@ const Generate = (props) => {
               User Defined Rule
             </Typography>
             {createGenerateRule()}
+            <button onClick={displayValues}>Display Values</button>
           </CardContent>
         </Card>
       </Grid>

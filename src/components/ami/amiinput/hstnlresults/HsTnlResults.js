@@ -56,6 +56,7 @@ const HsTnlResults = (props) => {
                     className: classes.inputFields,
                   }}
                   value={`${v.value}${v.units}`}
+                  disabled
                 ></input>
               </Grid>
               <Grid key={`${v}_3`} xs={6} md={4}>
@@ -66,6 +67,7 @@ const HsTnlResults = (props) => {
                     className: classes.inputFields,
                   }}
                   value={`${v.resultDateTime}`}
+                  disabled
                 ></input>
               </Grid>
             </>
