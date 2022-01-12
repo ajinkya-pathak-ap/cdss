@@ -26,10 +26,16 @@ label#riskFactors-label {
   color: gray;
 }
 
-.MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon{
-  top:-5px;
+.MuiSvgIcon-root{
+  top:"-13px";
 }
 
+label#gender-label, label#Race-label, label#symptoms-label, label#time-label, label#riskFactors-label {
+  margin-top: 22px;
+  color: #000;
+  margin-left: 12px;
+  font-size: 18px !important;
+}
 
 ol {
   display: block;

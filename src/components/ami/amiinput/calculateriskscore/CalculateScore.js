@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@mui/material/Button";
 import { btnStyles } from "./CalculateScoreStyles";
 
-const Calculatescore = () => {
+const Calculatescore = (props) => {
   const classes = btnStyles();
 
   const riskScoreCalculate = () => {};

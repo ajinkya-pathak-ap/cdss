@@ -147,7 +147,7 @@ const PatientHistory = (props) => {
             ></input>
           </FormControl>
 
-          <TextField
+          {/* <TextField
             className={classes.textFieldColorGender}
             id="gender"
             select
@@ -160,9 +160,47 @@ const PatientHistory = (props) => {
             }}
           >
             {genderValue()}
-          </TextField>
+          </TextField> */}
 
+          {/* trial Gender */}
           <TextField
+            className={classes.textFieldColorTrial}
+            id="gender"
+            select
+            label="Gender"
+            variant="standard"
+            value={gender}
+            onChange={handleGender}
+            inputProps={{
+              className: classes.fontTypeOneTrial,
+            }}
+          >
+            {genderValue()}
+          </TextField>
+          {/* trial Gender */}
+
+          {/* trial Race */}
+          <TextField
+            className={classes.textFieldColorTrial}
+            id="Race"
+            select
+            label="Race"
+            variant="standard"
+            value={race}
+            onChange={handleRace}
+            inputProps={{
+              className: classes.fontTypeOneTrial,
+            }}
+          >
+            {patientDetails.race.map((v) => (
+              <MenuItem key={v} value={v.description}>
+                {v.description}
+              </MenuItem>
+            ))}
+          </TextField>
+          {/* trial */}
+
+          {/* <TextField
             className={classes.textFieldColorRace}
             id="Race"
             select
@@ -179,7 +217,7 @@ const PatientHistory = (props) => {
                 {v.description}
               </MenuItem>
             ))}
-          </TextField>
+          </TextField> */}
 
           <FormControl sx={{ m: 1, width: 300 }}>
             <InputLabel
@@ -237,13 +275,13 @@ const PatientHistory = (props) => {
               input={<OutlinedInput label="Name" />}
               MenuProps={menuProps()}
             >
-              {names.map((name) => (
+              {patientDetails.symptomOnset.map((onset) => (
                 <MenuItem
-                  key={name}
-                  value={name}
-                  style={getStyles(name, symptomOnset, theme)}
+                  key={onset}
+                  value={onset}
+                  style={getStyles(onset, symptomOnset, theme)}
                 >
-                  {name}
+                  {onset}
                 </MenuItem>
               ))}
             </Select>

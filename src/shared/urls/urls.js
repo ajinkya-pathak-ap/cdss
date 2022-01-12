@@ -11,7 +11,7 @@ export const urls = {
   versionOne: "v1/",
   riskScore: "v1/ami/RiskDetails/RiskScoreInfo",
   riskScoreContr: "v1/ami/RiskDetails/RiskScoreContributorsInfo",
-  patientInfo: "v1/ami/PatientDetails/PatientInfo",
+  patientInfo: "v1/ami/RiskDetails/PatientInfo",
   fetchConfig: "v1/ami/configuration/Configurations",
   saveConfig: "v1/ami/Configuration/SaveConfigurations",
 };

@@ -41,38 +41,10 @@ const HsTnlResults = (props) => {
             </Typography>
           </Grid>
 
-          {props.result.troponins.map((v, i) => (
-            <>
-              <Grid key={`${v}_1`} container item xs={12} md={4}>
-                <Typography className={classes.firstdraw}>
-                  {mlInputUtils.hstnlHeadings[i]}
-                </Typography>
-              </Grid>
-              <Grid key={`${v}_2`} xs={6} md={4}>
-                <input
-                  type="email"
-                  className={`form-control ${classes.firstinputspace}`}
-                  inputProps={{
-                    className: classes.inputFields,
-                  }}
-                  value={`${v.value}${v.units}`}
-                ></input>
-              </Grid>
-              <Grid key={`${v}_3`} xs={6} md={4}>
-                <input
-                  type="email"
-                  className={`form-control ${classes.firstinputspace2}`}
-                  inputProps={{
-                    className: classes.inputFields,
-                  }}
-                  value={`${v.resultDateTime}`}
-                ></input>
-              </Grid>
-            </>
-          ))}
-
-          {/* <Grid container item xs={12} md={4}>
-            <Typography className={classes.firstdraw}>First draw</Typography>
+          <Grid container item xs={12} md={4}>
+            <Typography className={classes.firstdraw}>
+              {mlInputUtils.hstnlHeadings[0]}
+            </Typography>
           </Grid>
           <Grid xs={6} md={4}>
             <input
@@ -81,7 +53,12 @@ const HsTnlResults = (props) => {
               inputProps={{
                 className: classes.inputFields,
               }}
-              value=""
+              value={
+                props.result.troponins[0].value
+                  ? `${props.result.troponins[0].value}${props.result.troponins[0].units}`
+                  : "ng/L"
+              }
+              disabled
             ></input>
           </Grid>
           <Grid xs={6} md={4}>
@@ -91,13 +68,18 @@ const HsTnlResults = (props) => {
               inputProps={{
                 className: classes.inputFields,
               }}
-              value=""
+              value={
+                props.result.troponins[0].resultDateTime
+                  ? `${props.result.troponins[0].resultDateTime}`
+                  : "mm/dd/yy,hh:mm"
+              }
+              disabled
             ></input>
           </Grid>
 
           <Grid container item xs={12} md={4}>
             <Typography className={classes.seconddrawtypo}>
-              Second draw
+              {mlInputUtils.hstnlHeadings[1]}
             </Typography>
           </Grid>
           <Grid xs={6} md={4}>
@@ -107,6 +89,11 @@ const HsTnlResults = (props) => {
               inputProps={{
                 className: classes.inputFields,
               }}
+              value={
+                props.result.troponins[1]
+                  ? `${props.result.troponins[1].value}${props.result.troponins[1].units}`
+                  : "ng/L"
+              }
             ></input>
           </Grid>
           <Grid xs={6} md={4}>
@@ -116,12 +103,17 @@ const HsTnlResults = (props) => {
               inputProps={{
                 className: classes.inputFields,
               }}
+              value={
+                props.result.troponins[1]
+                  ? `${props.result.troponins[1].resultDateTime}`
+                  : "mm/dd/yy,hh:mm"
+              }
             ></input>
           </Grid>
 
           <Grid container item xs={12} md={4}>
             <Typography className={classes.thirddrawtypo}>
-              Third draw
+              {mlInputUtils.hstnlHeadings[2]}
             </Typography>
           </Grid>
           <Grid xs={6} md={4}>
@@ -132,6 +124,11 @@ const HsTnlResults = (props) => {
               inputProps={{
                 className: classes.inputFields,
               }}
+              value={
+                props.result.troponins[2]
+                  ? `${props.result.troponins[2].value}${props.result.troponins[2].units}`
+                  : "ng/L"
+              }
             ></input>
           </Grid>
           <Grid xs={6} md={4}>
@@ -142,8 +139,13 @@ const HsTnlResults = (props) => {
               inputProps={{
                 className: classes.inputFields,
               }}
+              value={
+                props.result.troponins[2]
+                  ? `${props.result.troponins[2].resultDateTime}`
+                  : "mm/dd/yy,hh:mm"
+              }
             ></input>
-          </Grid> */}
+          </Grid>
         </Grid>
       </Grid>
       <br />

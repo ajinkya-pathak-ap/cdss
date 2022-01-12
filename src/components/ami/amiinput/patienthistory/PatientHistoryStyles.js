@@ -45,6 +45,29 @@ export const PatientHistoryStyles = makeStyles((theme) => ({
     borderRadius: "3px",
   },
 
+  textFieldColorTrial: {
+    // backgroundColor: "white",
+    // textAlign: "right",
+    // height: " 3.10em",
+    // borderRadius: "3px",
+    // color: "#000",
+    // fontSize: "14px",
+    // border: "none",
+    backgroundColor: "white",
+    textAlign: "right",
+    height: " 3.35em",
+    color: "#000",
+    fontSize: "14px",
+    borderRadius: "3px",
+    paddingBottom: "10px",
+    border: "none",
+  },
+
+  fontTypeOneTrial: {
+    fontSize: "14px !important",
+    // marginTop: "-10px !important",
+  },
+
   textFieldColorRace: {
     // backgroundColor: "white",
     // textAlign: "right",

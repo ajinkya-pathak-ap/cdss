@@ -58,6 +58,7 @@ const AmiInput = (props) => {
     }
   };
 
+
   if (isFetching) {
     return <CircularIndeterminate />;
   } else {
