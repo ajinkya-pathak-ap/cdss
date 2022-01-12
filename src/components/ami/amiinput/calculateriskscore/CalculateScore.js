@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Button from "@mui/material/Button";
 import { btnStyles } from "./CalculateScoreStyles";
@@ -36,7 +36,7 @@ const Calculatescore = (props) => {
             textTransform: "none",
             backgroundColor: "#414BB2",
           }}
-          //   onClick={resetFields}
+          onClick={() => props.resetAll()}
         >
           Reset
         </Button>

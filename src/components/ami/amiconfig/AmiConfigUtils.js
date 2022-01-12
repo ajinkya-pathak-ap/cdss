@@ -39,6 +39,8 @@ export const utils = {
         values: [],
       },
     },
+
+    othersRule: {},
   },
   methods: {},
 };

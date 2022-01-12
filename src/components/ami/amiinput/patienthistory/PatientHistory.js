@@ -22,6 +22,12 @@ const PatientHistory = (props) => {
     mapValues();
   }, []);
 
+  useEffect(() => {
+    if (props.resetFlag) {
+      resetFields();
+    }
+  }, [props.resetFlag]);
+
   const [presentingSysmptoms, setPresentingSysmptoms] = useState([]);
   const [symptomOnset, setSymptomOnset] = useState([]);
   const [riskFsctors, setRiskFactors] = useState([]);
@@ -84,6 +90,8 @@ const PatientHistory = (props) => {
     setPresentingSysmptoms([]);
     setSymptomOnset([]);
     setRiskFactors([]);
+
+    props.resetAck();
   };
 
   return (

@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
-import Grid from "@material-ui/core/Grid";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
+import {
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+  Checkbox,
+  FormControlLabel,
+} from "../../../../shared/material/mui";
+
 import FormGroup from "@mui/material/FormGroup";
-import { Card, CardContent, Typography } from "@material-ui/core";
 import { OtherSettingStyles } from "./OtherSettingStyles";
+import { utils } from "../AmiConfigUtils";
 
 const Othersettings = (props) => {
   const classes = OtherSettingStyles();
   const { configurations } = props.config;
-
-  const label = {
-    inputProps: { "aria-label": "Checkbox demo" },
-  };
 
   useEffect(() => {
     mapJsonResponse(configurations);
@@ -21,14 +23,15 @@ const Othersettings = (props) => {
   const [otherRS, setOtherRS] = useState(true);
   const [otherDefault, setOtherDefault] = useState(true);
   const [otherArr, setOtherArr] = useState([]);
+  const [othersRule, setOthersRule] = useState({});
 
   const mapJsonResponse = (_obj) => {
     _obj.forEach((configurationsItem, index) => {
       if (configurationsItem.ruleSectionName.toLocaleLowerCase() === "other") {
+        setOthersRule(configurationsItem);
         if (configurationsItem.rules.length > 0) {
-          /**create rules dom here */
+          /**non-emprty rule */
           configurationsItem.rules.forEach((ruleItem) => {
-            /**declare default & checked */
             setOtherDefault(ruleItem.isDefault);
             setOtherRS(ruleItem.isChecked);
             if (ruleItem.categories.length > 0) {
@@ -41,6 +44,8 @@ const Othersettings = (props) => {
             }
           });
         } else {
+          setOtherDefault(true);
+          setOtherRS(true);
         }
       }
     });
@@ -55,7 +60,7 @@ const Othersettings = (props) => {
             <FormControlLabel
               control={
                 <Checkbox
-                  {...label}
+                  {...utils.properties.label}
                   defaultChecked={otherRS}
                   sx={{
                     color: "#fff",
