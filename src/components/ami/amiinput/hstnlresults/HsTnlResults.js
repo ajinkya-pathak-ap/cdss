@@ -9,6 +9,14 @@ import { mlInputUtils } from "../AmiInutUtils";
 const HsTnlResults = (props) => {
   const classes = HsTnlResultsStyles();
 
+  const convertDate = (_date) => {
+    let dateTimeArr = _date.split("T"),
+      date = dateTimeArr[0],
+      hrsTemp = dateTimeArr[1].split(":"),
+      hrs = `${hrsTemp[0]}:${hrsTemp[1]}`;
+    return `${date},${hrs}`;
+  };
+
   return (
     <form className={classes.secondform}>
       <Grid
@@ -70,7 +78,7 @@ const HsTnlResults = (props) => {
               }}
               value={
                 props.result.troponins[0].resultDateTime
-                  ? `${props.result.troponins[0].resultDateTime}`
+                  ? convertDate(props.result.troponins[0].resultDateTime)
                   : "mm/dd/yy,hh:mm"
               }
               disabled
@@ -105,7 +113,7 @@ const HsTnlResults = (props) => {
               }}
               value={
                 props.result.troponins[1]
-                  ? `${props.result.troponins[1].resultDateTime}`
+                  ? convertDate(props.result.troponins[1].resultDateTime)
                   : "mm/dd/yy,hh:mm"
               }
             ></input>
@@ -119,7 +127,6 @@ const HsTnlResults = (props) => {
           <Grid xs={6} md={4}>
             <input
               type="email"
-              class=""
               className={`form-control ${classes.thirdinputspace1}`}
               inputProps={{
                 className: classes.inputFields,
@@ -141,7 +148,7 @@ const HsTnlResults = (props) => {
               }}
               value={
                 props.result.troponins[2]
-                  ? `${props.result.troponins[2].resultDateTime}`
+                  ? convertDate(props.result.troponins[2].resultDateTime)
                   : "mm/dd/yy,hh:mm"
               }
             ></input>

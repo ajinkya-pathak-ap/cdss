@@ -13,19 +13,6 @@ import { useTheme } from "@mui/material/styles";
 import { mlInputUtils } from "../AmiInutUtils";
 import "./styles.css";
 
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
-];
-
 function getStyles(name, personName, theme) {
   return {
     fontWeight:
@@ -103,10 +90,6 @@ const PatientHistory = (props) => {
     setRace(e.target.value);
   };
 
-  const handleRace1 = (e) => {
-    setRace1(e.target.value);
-  };
-
   const mapValues = () => {
     if (patientDetails.gender.length > 0) {
       setGender(patientDetails.gender[0].description);
@@ -116,7 +99,11 @@ const PatientHistory = (props) => {
       : setRace("");
   };
 
-  const displayVal = () => {};
+  const resetFields = () => {
+    setPresentingSysmptoms([]);
+    setSymptomOnset([]);
+    setRiskFactors([]);
+  };
 
   return (
     <>
@@ -320,6 +307,7 @@ const PatientHistory = (props) => {
               ))}
             </Select>
           </FormControl>
+          <button onClick={resetFields}>Reset</button>
         </form>
         <br />
       </Grid>
