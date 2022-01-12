@@ -12,6 +12,23 @@ export const RiskScoreStyles = makeStyles((theme) => ({
   gridcontainer1: {
     background: "#050038",
     color: "#fff",
+    borderTopLeftRadius: "4px",
+    borderBottomLeftRadius: "4px",
+    textAlign: "left",
+    minHeight: "80px",
+    alignItems: "center",
+    justifyContent: "center",
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center",
+    },
+  },
+
+  gridcontainer2: {
+    background: "#050038",
+    color: "#fff",
+    borderTopRightRadius: "4px",
+    borderBottomRightRadius: "4px",
+    border: "4px",
     textAlign: "left",
     minHeight: "80px",
     alignItems: "center",
@@ -60,10 +77,11 @@ export const RiskScoreStyles = makeStyles((theme) => ({
     },
 
     [theme.breakpoints.down("md")]: {
-      width: "7rem",
-      height: "6rem",
+      width: "5.5rem",
+      height: "5.8rem",
       fontSize: "12px",
       lineHeight: "8.4",
+      marginRight: "28px",
     },
   },
 }));

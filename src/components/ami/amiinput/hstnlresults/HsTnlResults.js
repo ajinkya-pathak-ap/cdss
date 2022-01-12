@@ -16,13 +16,13 @@ const HsTnlResults = (props) => {
       hrs = `${hrsTemp[0]}:${hrsTemp[1]}`;
     return `${date},${hrs}`;
   };
-
+  const onInputChange = () => {};
   return (
     <form className={classes.secondform}>
       <Grid
         container
         className={classes.formgrop}
-        style={{ marginTop: "14px", borderRadius: "10px" }}
+        style={{ marginTop: "14px", borderRadius: "4px" }}
       >
         <Grid
           container
@@ -58,28 +58,30 @@ const HsTnlResults = (props) => {
             <input
               type="email"
               className={`form-control ${classes.firstinputspace}`}
-              inputProps={{
-                className: classes.inputFields,
-              }}
+              // inputProps={{
+              //   className: classes.inputFields,
+              // }}
               value={
                 props.result.troponins[0].value
                   ? `${props.result.troponins[0].value}${props.result.troponins[0].units}`
                   : "ng/L"
               }
+              onChange={onInputChange}
             ></input>
           </Grid>
           <Grid xs={6} md={5}>
             <input
               type="email"
               className={`form-control ${classes.firstinputspace2}`}
-              inputProps={{
-                className: classes.inputFields,
-              }}
+              // inputProps={{
+              //   className: classes.inputFields,
+              // }}
               value={
                 props.result.troponins[0].resultDateTime
                   ? convertDate(props.result.troponins[0].resultDateTime)
                   : "mm/dd/yy,hh:mm"
               }
+              onChange={onInputChange}
             ></input>
           </Grid>
 
@@ -92,23 +94,25 @@ const HsTnlResults = (props) => {
             <input
               type="email"
               className={`form-control ${classes.secondinputspace1}`}
-              inputProps={{
-                className: classes.inputFields,
-              }}
+              // inputProps={{
+              //   className: classes.inputFields,
+              // }}
               value={
                 props.result.troponins[1]
                   ? `${props.result.troponins[1].value}${props.result.troponins[1].units}`
                   : "ng/L"
               }
+              onChange={onInputChange}
             ></input>
           </Grid>
           <Grid xs={6} md={5}>
             <input
               type="email"
               className={`form-control ${classes.secondinputspace2}`}
-              inputProps={{
-                className: classes.inputFields,
-              }}
+              // inputProps={{
+              //   className: classes.inputFields,
+              // }}
+              onChange={onInputChange}
               value={
                 props.result.troponins[1]
                   ? convertDate(props.result.troponins[1].resultDateTime)
@@ -126,29 +130,30 @@ const HsTnlResults = (props) => {
             <input
               type="email"
               className={`form-control ${classes.thirdinputspace1}`}
-              inputProps={{
-                className: classes.inputFields,
-              }}
+              // inputProps={{
+              //   className: classes.inputFields,
+              // }}
               value={
                 props.result.troponins[2]
                   ? `${props.result.troponins[2].value}${props.result.troponins[2].units}`
                   : "ng/L"
               }
+              onChange={onInputChange}
             ></input>
           </Grid>
           <Grid xs={6} md={5}>
             <input
               type="email"
-              class="form-control"
-              className={classes.thirdinputspace2}
-              inputProps={{
-                className: classes.inputFields,
-              }}
+              className={`${classes.thirdinputspace2} form-control`}
+              // inputProps={{
+              //   className: classes.inputFields,
+              // }}
               value={
                 props.result.troponins[2]
                   ? convertDate(props.result.troponins[2].resultDateTime)
                   : "mm/dd/yy,hh:mm"
               }
+              onChange={onInputChange}
             ></input>
           </Grid>
         </Grid>

@@ -22,21 +22,42 @@ const EKGFindings = (props) => {
               color: "#fff",
               fontWeight: "800",
               paddingTop: "11px",
-              borderRadius: "10px",
             }}
             component="legend"
           >
             EKG findings(Select One)
           </FormLabel>
           <br />
-          <div class="custom-control custom-radio custom-control-inline">
+
+          {/* {modelDetails.map((v, i) => (
+            <div
+              key={v}
+              className={`custom-control custom-radio custom-control-inline`}
+            >
+              <input
+                className={`custom-control-input green ${classes.patientinfo}`}
+                type="radio"
+                id={`rd_${i}`}
+                name={`rd_${i}`}
+                value={v.modelInputValue ? "Yes" : "No"}
+              />
+              &nbsp;
+              <label
+                className={`custom-control-label ${classes.patientinfolabelfont}`}
+                htmlFor={`rd_${i}`}
+              >
+                {v.modelInputKeyName}
+              </label>
+            </div>
+          ))} */}
+
+          <div className={`custom-control custom-radio custom-control-inline`}>
             <input
-              className={classes.patientinfo}
+              className={`${classes.patientinfo} custom-control-input green`}
               type="radio"
               id="rd_1"
               name="rd"
               defaultChecked={modelDetails[0].modelInputValue}
-              class="custom-control-input green"
               value={
                 modelDetails[0].modelInputValue
                   ? modelDetails[0].modelInputValue
@@ -45,29 +66,27 @@ const EKGFindings = (props) => {
             />
             &nbsp;
             <label
-              className={classes.patientinfolabelfont}
-              class="custom-control-label"
-              for="rd_1"
+              className={`${classes.patientinfolabelfont} custom-control-label`}
+              htmlFor="rd_1"
             >
               {modelDetails[0].modelInputKeyName}
             </label>
           </div>
           <br />
-
-          <div class="custom-control custom-radio custom-control-inline">
+          <div className={`custom-control custom-radio custom-control-inline`}>
             <input
               type="radio"
               id="rd_2"
               name="rd"
               defaultChecked={modelDetails[1].modelInputValue}
-              class="custom-control-input red"
+              className={`custom-control-input red`}
               value={
                 modelDetails[1].modelInputValue
                   ? modelDetails[1].modelInputValue
                   : ""
               }
             />
-            <label class="custom-control-label" for="rd_2">
+            <label className="custom-control-label" for="rd_2">
               &nbsp; {modelDetails[1].modelInputKeyName}
             </label>
           </div>

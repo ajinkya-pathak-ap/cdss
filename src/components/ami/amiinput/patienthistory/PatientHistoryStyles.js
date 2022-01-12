@@ -5,7 +5,7 @@ export const PatientHistoryStyles = makeStyles((theme) => ({
   patientHistory: {
     backgroundColor: "#050038",
     paddingLeft: "20px",
-    borderRadius: "10px",
+    borderRadius: "4px",
     // paddingBottom:"10px",
   },
 

@@ -29,9 +29,25 @@ export const RiskContributorStyles = makeStyles((theme) => ({
     minHeight: "80px",
   },
 
+  gridcontainer1: {
+    background: "#050038",
+    color: "#fff",
+    borderTopLeftRadius: "4px",
+    borderBottomLeftRadius: "4px",
+
+    textAlign: "left",
+    minHeight: "80px",
+    marginTop: "-18px",
+    alignItems: "center",
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center",
+    },
+  },
   gridcontainer2: {
     background: "#050038",
     color: "#fff",
+    borderTopRightRadius: "4px",
+    borderBottomRightRadius: "4px",
     textAlign: "left",
     minHeight: "80px",
     marginTop: "-18px",
