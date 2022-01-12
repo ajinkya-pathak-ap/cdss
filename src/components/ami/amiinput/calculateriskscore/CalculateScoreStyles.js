@@ -1,4 +1,4 @@
-import { makeStyles, styled, InputBase } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
 export const btnStyles = makeStyles((theme) => ({
   buttonColor: {
