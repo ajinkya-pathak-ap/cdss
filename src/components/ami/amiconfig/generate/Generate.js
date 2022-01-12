@@ -99,18 +99,7 @@ const Generate = (props) => {
                     /**non-empty values */
                     setGenerateRS(false);
                     setAgeArr(categoryItem.values);
-                    if (categoryItem.values.length > 1) {
-                      setAgeRule({
-                        ...ageRule,
-                        ageOne: categoryItem.values[0],
-                        ageTwo: categoryItem.values[1],
-                      });
-                    } else {
-                      setAgeRule({
-                        ...ageRule,
-                        ageOne: categoryItem.values[0],
-                      });
-                    }
+                    setAgeRuleValues(categoryItem);
                   } else {
                     /**empty values */
                     setAgeArr([]);
@@ -120,18 +109,7 @@ const Generate = (props) => {
                   setOperatorTwo(categoryItem.operator);
                   if (categoryItem.values.length > 0) {
                     setHstnlArr(categoryItem.values);
-                    if (categoryItem.values.length > 1) {
-                      setTroponinRule({
-                        ...troponinRule,
-                        hstnlOne: categoryItem.values[0],
-                        hstnlTwo: categoryItem.values[1],
-                      });
-                    } else {
-                      setTroponinRule({
-                        ...troponinRule,
-                        hstnlOne: categoryItem.values[0],
-                      });
-                    }
+                    setTroponinValues(categoryItem);
                   } else {
                     setHstnlArr([]);
                   }
@@ -332,6 +310,36 @@ const Generate = (props) => {
 
   const displayValues = () => {
     saveStateValues();
+  };
+
+  const setTroponinValues = (_itm) => {
+    if (_itm.values.length > 1) {
+      setTroponinRule({
+        ...troponinRule,
+        hstnlOne: _itm.values[0],
+        hstnlTwo: _itm.values[1],
+      });
+    } else {
+      setTroponinRule({
+        ...troponinRule,
+        hstnlOne: _itm.values[0],
+      });
+    }
+  };
+
+  const setAgeRuleValues = (_itm) => {
+    if (_itm.values.length > 1) {
+      setAgeRule({
+        ...ageRule,
+        ageOne: _itm.values[0],
+        ageTwo: _itm.values[1],
+      });
+    } else {
+      setAgeRule({
+        ...ageRule,
+        ageOne: _itm.values[0],
+      });
+    }
   };
 
   return (
