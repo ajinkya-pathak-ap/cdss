@@ -6,6 +6,7 @@ export const PatientHistoryStyles = makeStyles((theme) => ({
     backgroundColor: "#050038",
     paddingLeft: "20px",
     borderRadius: "10px",
+    // paddingBottom:"10px",
   },
 
   patientagelabel: {
@@ -22,6 +23,7 @@ export const PatientHistoryStyles = makeStyles((theme) => ({
   },
 
   firstform: {
+    paddingBottom: "15px",
     "& .MuiFormControl-root": {
       width: "90%",
       margin: theme.spacing(1),
@@ -34,7 +36,7 @@ export const PatientHistoryStyles = makeStyles((theme) => ({
     textAlign: "right",
     height: " 2.65em",
     color: "#000",
-    fontSize: "14px",
+    fontSize: "12px",
   },
 
   headerText: {
@@ -55,17 +57,17 @@ export const PatientHistoryStyles = makeStyles((theme) => ({
   },
 
   fontTypeOne: {
-    fontSize: "14px !important",
+    fontSize: "12px !important",
     marginTop: "-10px !important",
   },
 
   fontTypePresentingSymptoms: {
-    fontSize: "14px !important",
+    fontSize: "12px !important",
   },
   multiSelectDdLabel: {
     zIndex: "1",
     transform: "translate(0,15px) scale(1)",
-    fontSize: "14px",
+    fontSize: "12px",
     marginLeft: "10px",
     color: "#000",
   },

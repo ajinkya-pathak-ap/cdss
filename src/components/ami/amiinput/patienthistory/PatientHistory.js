@@ -14,8 +14,8 @@ import { mlInputUtils } from "../AmiInutUtils";
 import "./styles.css";
 
 function getStyles(name, personName, theme) {
-  debugger;
   return {
+    fontSize: "14px",
     fontWeight:
       personName.indexOf(name) === -1
         ? theme.typography.fontWeightRegular
