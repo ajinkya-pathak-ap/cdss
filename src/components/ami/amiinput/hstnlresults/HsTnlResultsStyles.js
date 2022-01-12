@@ -35,7 +35,8 @@ export const HsTnlResultsStyles = makeStyles((theme) => ({
     width: "70%",
     backgroundColor: "white",
     border: "1px solid #808080",
-    textAlign:"right",
+    textAlign: "right",
+    pointerEvents: "none",
     [theme.breakpoints.down("xs")]: {
       marginLeft: "20px",
     },
@@ -49,6 +50,7 @@ export const HsTnlResultsStyles = makeStyles((theme) => ({
     width: "80%",
     backgroundColor: "white",
     border: "1px solid #808080",
+    textAlign: "right",
   },
 
   secondinputspace1: {
@@ -56,6 +58,8 @@ export const HsTnlResultsStyles = makeStyles((theme) => ({
     width: "70%",
     backgroundColor: "white",
     border: "1px solid #808080",
+    textAlign: "right",
+    pointerEvents: "none",
     [theme.breakpoints.down("xs")]: {
       marginLeft: "20px",
     },
@@ -69,6 +73,8 @@ export const HsTnlResultsStyles = makeStyles((theme) => ({
     width: "80%",
     backgroundColor: "white",
     border: "1px solid #808080",
+    pointerEvents: "none",
+    textAlign: "right",
   },
 
   thirdinputspace1: {
@@ -76,6 +82,8 @@ export const HsTnlResultsStyles = makeStyles((theme) => ({
     width: "70%",
     backgroundColor: "white",
     border: "1px solid #808080",
+    textAlign: "right",
+    pointerEvents: "none",
     [theme.breakpoints.down("xs")]: {
       marginLeft: "20px",
     },
@@ -89,6 +97,8 @@ export const HsTnlResultsStyles = makeStyles((theme) => ({
     width: "80%",
     backgroundColor: "white",
     border: "1px solid #808080",
+    pointerEvents: "none",
+    textAlign: "right",
   },
 
   firstdraw: {
