@@ -51,6 +51,7 @@ export const HsTnlResultsStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     border: "1px solid #808080",
     textAlign: "right",
+    pointerEvents: "none",
   },
 
   secondinputspace1: {

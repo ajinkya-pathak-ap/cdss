@@ -66,7 +66,6 @@ const HsTnlResults = (props) => {
                   ? `${props.result.troponins[0].value}${props.result.troponins[0].units}`
                   : "ng/L"
               }
-              disabled
             ></input>
           </Grid>
           <Grid xs={6} md={5}>
@@ -81,7 +80,6 @@ const HsTnlResults = (props) => {
                   ? convertDate(props.result.troponins[0].resultDateTime)
                   : "mm/dd/yy,hh:mm"
               }
-              disabled
             ></input>
           </Grid>
 
