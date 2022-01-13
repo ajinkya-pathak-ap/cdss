@@ -54,7 +54,7 @@ const HsTnlResults = (props) => {
               {mlInputUtils.hstnlHeadings[0]}
             </Typography>
           </Grid>
-          <Grid xs={6} md={3}>
+          <Grid item xs={6} md={3}>
             <input
               type="email"
               className={`form-control ${classes.firstinputspace}`}
@@ -69,7 +69,7 @@ const HsTnlResults = (props) => {
               onChange={onInputChange}
             ></input>
           </Grid>
-          <Grid xs={6} md={5}>
+          <Grid item xs={6} md={5}>
             <input
               type="email"
               className={`form-control ${classes.firstinputspace2}`}
@@ -90,7 +90,7 @@ const HsTnlResults = (props) => {
               {mlInputUtils.hstnlHeadings[1]}
             </Typography>
           </Grid>
-          <Grid xs={6} md={3}>
+          <Grid item xs={6} md={3}>
             <input
               type="email"
               className={`form-control ${classes.secondinputspace1}`}
@@ -105,7 +105,7 @@ const HsTnlResults = (props) => {
               onChange={onInputChange}
             ></input>
           </Grid>
-          <Grid xs={6} md={5}>
+          <Grid item xs={6} md={5}>
             <input
               type="email"
               className={`form-control ${classes.secondinputspace2}`}
@@ -126,7 +126,7 @@ const HsTnlResults = (props) => {
               {mlInputUtils.hstnlHeadings[2]}
             </Typography>
           </Grid>
-          <Grid xs={6} md={3}>
+          <Grid item xs={6} md={3}>
             <input
               type="email"
               className={`form-control ${classes.thirdinputspace1}`}
@@ -141,7 +141,7 @@ const HsTnlResults = (props) => {
               onChange={onInputChange}
             ></input>
           </Grid>
-          <Grid xs={6} md={5}>
+          <Grid item xs={6} md={5}>
             <input
               type="email"
               className={`${classes.thirdinputspace2} form-control`}
