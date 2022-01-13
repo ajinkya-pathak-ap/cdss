@@ -101,6 +101,7 @@ const PatientHistory = (props) => {
           <Typography className={classes.headerText}>
             Patient History
           </Typography>
+          <br />
 
           <Typography className={classes.headerTextThree}>
             Demographics Information pulled from EHR
