@@ -106,7 +106,10 @@ const PatientHistory = (props) => {
             Demographics Information pulled from EHR
           </Typography>
 
-          <FormControl variant="standard" style={{ backgroundColor: "#fff" }}>
+          <FormControl
+            variant="standard"
+            style={{ backgroundColor: "#fff", borderRadius: "3px" }}
+          >
             <InputLabel
               className={classes.patientagelabel}
               shrink
@@ -222,7 +225,7 @@ const PatientHistory = (props) => {
               id="label-symptom-onset"
               className={classes.multiSelectDdLabel}
             >
-              Time since symptom onset
+              Time since Symptom onset
             </InputLabel>
             <Select
               className={classes.textFieldColor}

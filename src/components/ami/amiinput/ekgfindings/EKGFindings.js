@@ -25,31 +25,9 @@ const EKGFindings = (props) => {
             }}
             component="legend"
           >
-            EKG findings(Select One)
+            EKG Findings(Select One)
           </FormLabel>
           <br />
-
-          {/* {modelDetails.map((v, i) => (
-            <div
-              key={v}
-              className={`custom-control custom-radio custom-control-inline`}
-            >
-              <input
-                className={`custom-control-input green ${classes.patientinfo}`}
-                type="radio"
-                id={`rd_${i}`}
-                name={`rd_${i}`}
-                value={v.modelInputValue ? "Yes" : "No"}
-              />
-              &nbsp;
-              <label
-                className={`custom-control-label ${classes.patientinfolabelfont}`}
-                htmlFor={`rd_${i}`}
-              >
-                {v.modelInputKeyName}
-              </label>
-            </div>
-          ))} */}
 
           <div className={`custom-control custom-radio custom-control-inline`}>
             <input
@@ -86,7 +64,10 @@ const EKGFindings = (props) => {
                   : ""
               }
             />
-            <label className="custom-control-label" htmlFor="rd_2">
+            <label
+              className={`${classes.patientinfolabelfont} custom-control-label`}
+              htmlFor="rd_2"
+            >
               &nbsp; {modelDetails[1].modelInputKeyName}
             </label>
           </div>
