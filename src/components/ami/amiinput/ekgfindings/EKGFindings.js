@@ -5,7 +5,7 @@ import { FormControl } from "@material-ui/core";
 import { EKGFindingsStyles } from "./EKGFindingStyles";
 import FormGroup from "@mui/material/FormGroup";
 
-import "../styles.css";
+import "./styles.css";
 
 const EKGFindings = (props) => {
   const classes = EKGFindingsStyles();
@@ -20,57 +20,75 @@ const EKGFindings = (props) => {
               textAlign: "left",
               fontSize: "20px",
               color: "#fff",
+
               fontWeight: "800",
               paddingTop: "11px",
+              textAlign: "justify",
             }}
             component="legend"
           >
             EKG Findings(Select One)
           </FormLabel>
-          <br />
 
-          <div className={`custom-control custom-radio custom-control-inline`}>
-            <input
-              className={`${classes.patientinfo} custom-control-input green`}
-              type="radio"
-              id="rd_1"
-              name="rd"
-              defaultChecked={modelDetails[0].modelInputValue}
-              value={
-                modelDetails[0].modelInputValue
-                  ? modelDetails[0].modelInputValue
-                  : ""
-              }
-            />
-            &nbsp;
-            <label
-              className={`${classes.patientinfolabelfont} custom-control-label`}
-              htmlFor="rd_1"
+          <ul className="list-group">
+            <li
+              className={`${classes.firstradioindent} list-group-item`}
+              className="list-group-item"
+              style={{
+                textIndent: "-20px",
+                listStyleType: "none",
+                marginLeft: "-25px",
+                fontSize: "14px",
+              }}
             >
-              {modelDetails[0].modelInputKeyName}
-            </label>
-          </div>
-          <br />
-          <div className={`custom-control custom-radio custom-control-inline`}>
-            <input
-              type="radio"
-              id="rd_2"
-              name="rd"
-              defaultChecked={modelDetails[1].modelInputValue}
-              className={`custom-control-input red`}
-              value={
-                modelDetails[1].modelInputValue
-                  ? modelDetails[1].modelInputValue
-                  : ""
-              }
-            />
-            <label
-              className={`${classes.patientinfolabelfont} custom-control-label`}
-              htmlFor="rd_2"
+              <input
+                className="makeStyles-patientinfo-21 custom-control-input green"
+                type="radio"
+                id="rd_1"
+                name="rd"
+                defaultChecked={modelDetails[0].modelInputValue}
+                value={
+                  modelDetails[0].modelInputValue
+                    ? modelDetails[0].modelInputValue
+                    : ""
+                }
+              />
+              <label
+                className={`${classes.patientinfolabelfont} custom-control-label`}
+                htmlFor="rd_1"
+              >
+                {modelDetails[0].modelInputKeyName}
+              </label>
+            </li>
+            <br />
+            <li
+              className="list-group-item"
+              style={{
+                textIndent: "-22px",
+                listStyleType: "none",
+                marginLeft: "-25px",
+                fontSize: "14px",
+              }}
             >
-              &nbsp; {modelDetails[1].modelInputKeyName}
-            </label>
-          </div>
+              <input
+                className="makeStyles-patientinfo-21 custom-control-input green"
+                type="radio"
+                id="rd_2"
+                name="rd"
+                defaultChecked={modelDetails[1].modelInputValue}
+                className={`custom-control-input red`}
+                value={
+                  modelDetails[1].modelInputValue
+                    ? modelDetails[1].modelInputValue
+                    : ""
+                }
+              />
+
+              <label className="custom-control-label" htmlFor="rd_2">
+                {modelDetails[1].modelInputKeyName}
+              </label>
+            </li>
+          </ul>
         </FormControl>
       </FormGroup>
     </Grid>
