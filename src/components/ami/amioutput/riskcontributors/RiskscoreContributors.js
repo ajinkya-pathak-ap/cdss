@@ -1,12 +1,6 @@
 import { React, useState, useEffect } from "react";
-import {
-  Grid,
-  Card,
-  CardContent,
-  Typography,
-  Stack,
-} from "../../../../shared/material/mui";
-import { Link, useNavigate } from "react-router-dom";
+import { Grid, Typography, Stack } from "../../../../shared/material/mui";
+import { useNavigate } from "react-router-dom";
 import {
   BootstrapButton,
   RiskContributorStyles,

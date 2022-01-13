@@ -86,7 +86,7 @@ const EKGFindings = (props) => {
                   : ""
               }
             />
-            <label className="custom-control-label" for="rd_2">
+            <label className="custom-control-label" htmlFor="rd_2">
               &nbsp; {modelDetails[1].modelInputKeyName}
             </label>
           </div>
