@@ -26,7 +26,7 @@ export const HsTnlResultsStyles = makeStyles((theme) => ({
   },
 
   inputFields: {
-    textAlign: "right",
+    textAlign: "left",
     fontSize: "14px !important",
   },
 
@@ -35,7 +35,7 @@ export const HsTnlResultsStyles = makeStyles((theme) => ({
     width: "70%",
     backgroundColor: "white",
     border: "1px solid #808080",
-    textAlign: "right",
+    textAlign: "left",
     pointerEvents: "none",
     [theme.breakpoints.down("xs")]: {
       marginLeft: "20px",
@@ -47,10 +47,12 @@ export const HsTnlResultsStyles = makeStyles((theme) => ({
 
   firstinputspace2: {
     paddingTop: "10px",
+
     width: "80%",
     backgroundColor: "white",
     border: "1px solid #808080",
-    textAlign: "right",
+    textAlign: "left",
+    paddingLeft: "20px",
     pointerEvents: "none",
   },
 
@@ -59,7 +61,7 @@ export const HsTnlResultsStyles = makeStyles((theme) => ({
     width: "70%",
     backgroundColor: "white",
     border: "1px solid #808080",
-    textAlign: "right",
+    textAlign: "left",
     pointerEvents: "none",
     [theme.breakpoints.down("xs")]: {
       marginLeft: "20px",
@@ -75,7 +77,7 @@ export const HsTnlResultsStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     border: "1px solid #808080",
     pointerEvents: "none",
-    textAlign: "right",
+    textAlign: "left",
   },
 
   thirdinputspace1: {
@@ -83,7 +85,7 @@ export const HsTnlResultsStyles = makeStyles((theme) => ({
     width: "70%",
     backgroundColor: "white",
     border: "1px solid #808080",
-    textAlign: "right",
+    textAlign: "left",
     pointerEvents: "none",
     [theme.breakpoints.down("xs")]: {
       marginLeft: "20px",
@@ -99,7 +101,7 @@ export const HsTnlResultsStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     border: "1px solid #808080",
     pointerEvents: "none",
-    textAlign: "right",
+    textAlign: "left",
   },
 
   firstdraw: {
@@ -110,7 +112,7 @@ export const HsTnlResultsStyles = makeStyles((theme) => ({
 
   drawtime: {
     fontWeight: "700",
-    marginLeft: "50px",
+    marginLeft: "80px",
 
     [theme.breakpoints.down("xs")]: {
       marginLeft: "40px",

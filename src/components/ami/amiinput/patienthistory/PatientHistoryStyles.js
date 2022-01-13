@@ -18,6 +18,7 @@ export const PatientHistoryStyles = makeStyles((theme) => ({
   patientage: {
     paddingTop: "10px",
     margin: "6px",
+    borderRadius: "3px",
     backgroundColor: "white",
     border: "1px solid #808080",
   },
