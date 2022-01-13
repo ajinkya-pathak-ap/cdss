@@ -5,8 +5,6 @@ import { FormControl } from "@material-ui/core";
 import { EKGFindingsStyles } from "./EKGFindingStyles";
 import FormGroup from "@mui/material/FormGroup";
 
-import "./styles.css";
-
 const EKGFindings = (props) => {
   const classes = EKGFindingsStyles();
   const { modelDetails } = props.result;
@@ -38,7 +36,7 @@ const EKGFindings = (props) => {
                 textIndent: "-20px",
                 listStyleType: "none",
                 marginLeft: "-25px",
-                fontSize: "14px",
+                fontSize: "15px",
               }}
             >
               <input
@@ -67,7 +65,7 @@ const EKGFindings = (props) => {
                 textIndent: "-22px",
                 listStyleType: "none",
                 marginLeft: "-25px",
-                fontSize: "14px",
+                fontSize: "15px",
               }}
             >
               <input
@@ -84,7 +82,10 @@ const EKGFindings = (props) => {
                 }
               />
 
-              <label className="custom-control-label" htmlFor="rd_2">
+              <label
+                className={`${classes.patientinfolabelfont} custom-control-label`}
+                htmlFor="rd_2"
+              >
                 {modelDetails[1].modelInputKeyName}
               </label>
             </li>

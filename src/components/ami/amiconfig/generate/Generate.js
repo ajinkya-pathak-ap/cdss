@@ -365,11 +365,14 @@ const Generate = (props) => {
               }
               label="All ED admits > 18 years with at least one hsTnl test result  "
             />
+            <br />
+            <br />
             <Typography
               className={`${classes.headerText} ${classes.paddingLarge}`}
             >
               Or
             </Typography>
+            <br />
             <Typography
               className={`${classes.headerText} ${classes.leftAlignedText}`}
             >

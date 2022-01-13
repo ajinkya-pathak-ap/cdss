@@ -22,7 +22,7 @@ export const EKGFindingsStyles = makeStyles((theme) => ({
   },
 
   patientinfolabelfont: {
-    fontSize: "14px",
+    // fontSize: "15px",
   },
 
   patientinfo: {

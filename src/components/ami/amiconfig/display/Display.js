@@ -5,6 +5,7 @@ import {
   CardContent,
   Typography,
   Checkbox,
+  TextField,
   FormControlLabel,
 } from "../../../../shared/material/mui";
 import { FormControl } from "@material-ui/core";
@@ -159,16 +160,23 @@ const Display = (props) => {
               variant="standard"
               style={{
                 marginLeft: "28px",
+                height: "35px",
               }}
             >
-              <BootstrapInput
+              <TextField
                 style={{
-                  width: "80px",
-                  textAlign: "right",
+                  // marginLeft: "28px",
+                  // height: "35px",
+                  backgroundColor: "#fff",
+                  width: "85px",
+                  borderRadius: "4px",
                 }}
                 disabled={displayRS}
                 id="rangeOne"
+                size="small"
                 name="displayOne"
+                // disabled={generateRS}
+                className={classes.hstnlelsevalue1}
                 onChange={handleDisplayRule}
                 type="number"
                 value={
@@ -189,7 +197,28 @@ const Display = (props) => {
           </Grid>
           <Grid item xs={12} md={1} className={classes.spacing}>
             <FormControl variant="standard">
-              <BootstrapInput
+              <TextField
+                style={{
+                  // marginLeft: "28px",
+                  // height: "35px",
+                  marginLeft: "-24px",
+                  backgroundColor: "#fff",
+                  width: "85px",
+                  borderRadius: "4px",
+                }}
+                disabled={displayRS}
+                id="rangeTwo"
+                size="small"
+                name="displayTwo"
+                // disabled={generateRS}
+                className={classes.hstnlelsevalue1}
+                onChange={handleDisplayRule}
+                type="number"
+                value={
+                  riskScoreRule.displayTwo ? riskScoreRule.displayTwo : "1%"
+                }
+              />
+              {/* <BootstrapInput
                 style={{
                   marginLeft: "-20px",
                   width: "80px",
@@ -202,7 +231,7 @@ const Display = (props) => {
                 value={
                   riskScoreRule.displayTwo ? riskScoreRule.displayTwo : "1%"
                 }
-              />
+              /> */}
             </FormControl>
           </Grid>
           <Grid item xs={12} md={4}>
@@ -264,6 +293,7 @@ const Display = (props) => {
             >
               User Defined Range
             </Typography>
+            <br />
             <br />
             {createDisplayRule()}
             <button onClick={displayValue}>Display Values</button>
