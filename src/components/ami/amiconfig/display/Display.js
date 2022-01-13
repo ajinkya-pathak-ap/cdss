@@ -34,6 +34,21 @@ const Display = (props) => {
     mapJsonResponse(configurations);
   }, []);
 
+  
+  useEffect(() => {
+    if (props.resetFlag) {
+      resetFields();
+    }
+  }, [props.resetFlag]);
+
+  const resetFields = () => {
+    setRiskScoreRule(displayUtils.displayValues);
+    setDisplayRS(true);
+    setDisplayDefault(true);
+
+    props.resetAck();
+  };
+
   const [apply, setApply] = useState(true);
 
   const handleDisplayRuleCheck = (event) => {
@@ -41,6 +56,8 @@ const Display = (props) => {
     setDisplayRS(checkedValue);
     setDisplayDefault(false);
     checkedValue ? setApply(false) : setApply(true);
+
+    props.getData(saveStateValues(), "display");
   };
 
   const handleDisplayRule = (e) => {
@@ -55,6 +72,8 @@ const Display = (props) => {
       ...displayValues,
       values: displayArr,
     });
+
+    props.getData(saveStateValues(), "display");
   };
 
   const mapJsonResponse = (_obj) => {
@@ -138,7 +157,7 @@ const Display = (props) => {
         displayRule.rules.categories = [];
       }
     }
-    props.popUp(displayRule);
+    return displayRule;
   };
 
   const displayValue = () => {
@@ -266,7 +285,7 @@ const Display = (props) => {
             </Typography>
             <br />
             {createDisplayRule()}
-            <button onClick={displayValue}>Display Values</button>
+            {/* <button onClick={displayValue}>Display Values</button> */}
           </CardContent>
         </Card>
       </Grid>

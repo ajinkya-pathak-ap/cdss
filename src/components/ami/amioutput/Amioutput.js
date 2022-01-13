@@ -9,8 +9,8 @@ import RiskscoreContributors from "./riskcontributors/RiskscoreContributors";
 import { Acknowledge } from "./acknowledge/Acknowledge";
 
 const configData = {
-  MRN: "1",
-  EncounterNumber: "1",
+  MRN: "203710",
+  EncounterNumber: "2323",
 };
 
 export default function AMIOutput(props) {

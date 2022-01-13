@@ -24,8 +24,8 @@ const AmiInput = (props) => {
   const [resetClick, setResetClick] = useState(false);
 
   const configData = {
-    MRN: "1",
-    EncounterNumber: "1",
+    MRN: "203710",
+    EncounterNumber: "2323",
   };
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const AmiInput = (props) => {
         }
       );
     } else {
-      patientInfoService.getRiskScoreContributors(config).then(
+      patientInfoService.getPatientInfoLocal(config).then(
         (response) => {
           setData(response.data);
           setIsFetching(false);

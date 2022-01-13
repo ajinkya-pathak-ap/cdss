@@ -28,7 +28,7 @@ class ConfigurationServices {
 
   saveConfigurationLocal(config) {
     const url = `${localUrl.baseUrl}${localUrl.saveConfig}`;
-    return axiosService.get(url);
+    return axiosService.post(url);
   }
 }
 

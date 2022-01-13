@@ -9,12 +9,6 @@ const BootstrapButton = saveConfigBtns;
 const SaveConfig = (props) => {
   const classes = SaveConfigStyles();
 
-  const applySetings = () => {
-    // saveStateValues();
-    // console.log("..configData..", configData.result);
-    // saveConfigData(postRequestObject);
-  };
-
   return (
     <Grid item xs={12} container className={classes.alignRight}>
       <Grid item xs={12} md={4}>
@@ -23,12 +17,15 @@ const SaveConfig = (props) => {
             style={{ marginLeft: "10px" }}
             variant="contained"
             className={classes.buttonColor}
-            onClick={applySetings}
-            // disabled={apply}
+            onClick={() => props.addApplyFlag()}
           >
             Apply
           </BootstrapButton>
-          <BootstrapButton variant="contained" className={classes.buttonColor}>
+          <BootstrapButton
+            variant="contained"
+            className={classes.buttonColor}
+            onClick={() => props.resetAll()}
+          >
             Reset
           </BootstrapButton>
           <BootstrapButton variant="contained" className={classes.buttonColor}>

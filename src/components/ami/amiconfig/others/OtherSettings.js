@@ -19,10 +19,22 @@ const Othersettings = (props) => {
     mapJsonResponse(configurations);
   }, []);
 
+  useEffect(() => {
+    if (props.resetFlag) {
+      resetFields();
+    }
+  }, [props.resetFlag]);
+
   const [otherRS, setOtherRS] = useState(true);
   const [otherDefault, setOtherDefault] = useState(true);
   const [otherArr, setOtherArr] = useState([]);
   const [othersRule, setOthersRule] = useState({});
+
+  const resetFields = () => {
+    setOtherRS(true);
+    setOtherDefault(true);
+    props.resetAck();
+  };
 
   const mapJsonResponse = (_obj) => {
     _obj.forEach((configurationsItem, index) => {
@@ -88,14 +100,15 @@ const Othersettings = (props) => {
         othersRule.rules.categories = [];
       }
     }
-    // props.popUp(othersRule);
-    console.log("Current Values", othersRule);
+    return othersRule;
   };
 
   const otherCheckbox = (event) => {
     const checkedValue = event.target.checked;
     setOtherRS(checkedValue);
     setOtherDefault(false);
+
+    props.getData(saveStateValues(), "other");
   };
 
   const applyOtherRule = () => {
@@ -127,7 +140,7 @@ const Othersettings = (props) => {
             />
           </FormGroup>
         </CardContent>
-        <button onClick={applyOtherRule}>Apply Other</button>
+        {/* <button onClick={applyOtherRule}>Apply Other</button> */}
       </Card>
     </Grid>
   );

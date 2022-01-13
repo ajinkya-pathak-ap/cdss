@@ -24,6 +24,12 @@ const Generate = (props) => {
     mapJsonResponse(configurations);
   }, []);
 
+  useEffect(() => {
+    if (props.resetFlag) {
+      resetFields();
+    }
+  }, [props.resetFlag]);
+
   const [ageArr, setAgeArr] = useState([]);
   const [generateRule, setGenerateRule] = useState({});
   const [generateRS, setGenerateRS] = useState(true);
@@ -40,6 +46,7 @@ const Generate = (props) => {
   const handleAgeRule = (e) => {
     setAgeRule({ ...ageRule, [e.target.name]: e.target.value });
     saveAgeValues();
+    props.getData(saveStateValues(), "generate");
   };
 
   const saveAgeValues = () => {
@@ -50,6 +57,17 @@ const Generate = (props) => {
     setAgeValues({ ...ageValues, values: ageArr, operator: operatorOne });
   };
 
+  const resetFields = () => {
+    setAgeRule(generateUtils.ageRule);
+    setTroponinRule(generateUtils.troponinRule);
+    setAgeValues(generateUtils.hstnlValues);
+    sethstnlValues(generateUtils.hstnlValues);
+    setGenerateRS(true);
+    setGenrateDefault(true);
+
+    props.resetAck();
+  };
+
   const handleTroponinRule = (e) => {
     setTroponinRule({ ...troponinRule, [e.target.name]: e.target.value });
 
@@ -58,20 +76,27 @@ const Generate = (props) => {
       : setHstnlArr([troponinRule.hstnlOne]);
 
     sethstnlValues({ ...hstnlValues, values: hstnlArr, operator: operatorTwo });
+
+    props.getData(saveStateValues(), "generate");
   };
 
   const generateCheckbox = (event) => {
     const checkedValue = event.target.checked;
     setGenerateRS(checkedValue);
     setGenrateDefault(false);
+
+    props.getData(saveStateValues(), "generate");
   };
 
   const changeOperatorOne = (event) => {
     setOperatorOne(event.target.value);
+    props.getData(saveStateValues(), "generate");
   };
 
   const changeOperatorTwo = (event) => {
     setOperatorTwo(event.target.value);
+
+    props.getData(saveStateValues(), "generate");
   };
 
   const mapJsonResponse = (_obj) => {
@@ -178,8 +203,7 @@ const Generate = (props) => {
         generateRule.rules.categories = [];
       }
     }
-    // props.popUp(generateRule);
-    console.log("<----->", generateRule);
+    return generateRule;
   };
 
   const createGenerateRule = () => {
@@ -377,7 +401,6 @@ const Generate = (props) => {
               User Defined Rule
             </Typography>
             {createGenerateRule()}
-            <button onClick={displayValues}>Display Values</button>
           </CardContent>
         </Card>
       </Grid>

@@ -9,8 +9,8 @@ import { RiskContributorStyles } from "./RiskScoreContributorStyles";
 import Contributors from "../amioutput/riskcontributors/contributors/Contributors";
 
 const configData = {
-  MRN: "1",
-  EncounterNumber: "1",
+  MRN: "203710",
+  EncounterNumber: "2323",
 };
 
 export default function RiskScoreContributors(props) {
