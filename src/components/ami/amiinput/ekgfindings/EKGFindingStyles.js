@@ -10,7 +10,7 @@ export const EKGFindingsStyles = makeStyles((theme) => ({
     backgroundColor: "#050038",
     paddingLeft: "16px",
     paddingBottom: "16px",
-    borderRadius: "10px",
+    borderRadius: "4px",
     paddingRight: "10px",
   },
 

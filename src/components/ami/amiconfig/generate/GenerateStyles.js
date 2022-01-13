@@ -68,7 +68,7 @@ export const GenerateStyles = makeStyles((theme) => ({
   },
 
   hstnldropdown: {
-    fontSize: "13px",
+    fontSize: "13px !important",
     backgroundColor: "#fff",
     width: "100px",
     height: "40px",

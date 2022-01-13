@@ -110,7 +110,7 @@ export const HsTnlResultsStyles = makeStyles((theme) => ({
 
   drawtime: {
     fontWeight: "700",
-    marginLeft: "70px",
+    marginLeft: "50px",
 
     [theme.breakpoints.down("xs")]: {
       marginLeft: "40px",

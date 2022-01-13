@@ -1,10 +1,4 @@
-import {
-  Button,
-  InputBase,
-  makeStyles,
-  styled,
-  alpha,
-} from "@material-ui/core";
+import { Button, makeStyles, styled } from "@material-ui/core";
 
 export const saveConfigBtns = styled(Button)((props) => ({
   boxShadow: "none",

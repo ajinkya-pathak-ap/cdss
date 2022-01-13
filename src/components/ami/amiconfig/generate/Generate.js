@@ -10,7 +10,7 @@ import {
   Select,
   TextField,
 } from "../../../../shared/material/mui";
-
+import "./style.css";
 import { FormControl } from "@material-ui/core";
 import { GenerateStyles } from "./GenerateStyles";
 import { utils } from "../AmiConfigUtils";

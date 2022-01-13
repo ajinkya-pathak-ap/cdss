@@ -1,12 +1,6 @@
 import { React, useState, useEffect } from "react";
-import {
-  Grid,
-  Card,
-  CardContent,
-  Typography,
-  Stack,
-} from "../../../../shared/material/mui";
-import { Link, useNavigate } from "react-router-dom";
+import { Grid, Typography, Stack } from "../../../../shared/material/mui";
+import { useNavigate } from "react-router-dom";
 import {
   BootstrapButton,
   RiskContributorStyles,
@@ -25,7 +19,7 @@ const RiskscoreContributors = (props) => {
 
   return (
     <Grid container item xs={12}>
-      <Grid item xs={7} lg={8} className={classes.gridcontainer2}>
+      <Grid item xs={7} lg={8} className={classes.gridcontainer1}>
         <Contributors
           positiveContr={positiveContributors}
           negativeContr={negativeContributors}
