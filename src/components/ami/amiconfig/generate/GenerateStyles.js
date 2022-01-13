@@ -89,7 +89,7 @@ export const GenerateStyles = makeStyles((theme) => ({
   },
 
   ageelsedropdown: {
-    fontSize: "13px",
+    fontSize: "13px !important",
     backgroundColor: "#fff",
     width: "100px",
     height: "40px",
@@ -98,6 +98,7 @@ export const GenerateStyles = makeStyles((theme) => ({
   ageElseBetweenValue: {
     backgroundColor: "#fff",
     width: "100px",
+    fontSize: "13px !important",
   },
 
   andspacingifbetween1: {

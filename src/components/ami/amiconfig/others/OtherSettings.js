@@ -7,7 +7,6 @@ import {
   Checkbox,
   FormControlLabel,
 } from "../../../../shared/material/mui";
-
 import FormGroup from "@mui/material/FormGroup";
 import { OtherSettingStyles } from "./OtherSettingStyles";
 import { utils } from "../AmiConfigUtils";
@@ -51,6 +50,58 @@ const Othersettings = (props) => {
     });
   };
 
+  const saveStateValues = () => {
+    if (othersRule.rules.length > 0) {
+      /** rules available already*/
+      othersRule.rules.forEach((ruleItem) => {
+        if (otherRS === false) {
+          /***save the values if checkbox is not selected*/
+          ruleItem.isDefault = otherDefault;
+          ruleItem.isChecked = otherRS;
+          if (ruleItem.categories.length > 0) {
+            /*check for the multiple categories */
+            ruleItem.categories.forEach((categoryItem) => {
+              ruleItem.categories = [];
+            });
+          } else {
+            /**values doesnt exists for textfields */
+            ruleItem.categories = [];
+          }
+        } else {
+          /**
+           * send empty values when checkbox is checked
+           */
+          ruleItem.categories = [];
+        }
+      });
+    } else {
+      /**no rules available */
+      if (otherRS === false) {
+        /**checkbox not selected */
+        othersRule.rules.categories = [];
+        othersRule.rules.isDefault = otherDefault;
+        othersRule.rules.isChecked = otherRS;
+      } else {
+        /**checkbox selected */
+        othersRule.rules.isDefault = otherDefault;
+        othersRule.rules.isChecked = otherRS;
+        othersRule.rules.categories = [];
+      }
+    }
+    // props.popUp(othersRule);
+    console.log("Current Values", othersRule);
+  };
+
+  const otherCheckbox = (event) => {
+    const checkedValue = event.target.checked;
+    setOtherRS(checkedValue);
+    setOtherDefault(false);
+  };
+
+  const applyOtherRule = () => {
+    saveStateValues();
+  };
+
   return (
     <Grid item xs={12}>
       <Card className={classes.gridcontainer}>
@@ -61,7 +112,8 @@ const Othersettings = (props) => {
               control={
                 <Checkbox
                   {...utils.properties.label}
-                  defaultChecked={otherRS}
+                  checked={otherRS}
+                  onChange={(e) => otherCheckbox(e)}
                   sx={{
                     color: "#fff",
                     "&.Mui-checked": {
@@ -75,6 +127,7 @@ const Othersettings = (props) => {
             />
           </FormGroup>
         </CardContent>
+        <button onClick={applyOtherRule}>Apply Other</button>
       </Card>
     </Grid>
   );

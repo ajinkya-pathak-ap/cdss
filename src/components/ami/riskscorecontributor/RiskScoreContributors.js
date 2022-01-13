@@ -3,7 +3,6 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { Card, CardContent, Typography } from "@material-ui/core";
 import { riskScoreService } from "../../../services/riskScore-service";
 import CircularIndeterminate from "../../../shared/preloder/Preloder";
 import { RiskContributorStyles } from "./RiskScoreContributorStyles";

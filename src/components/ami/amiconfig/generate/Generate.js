@@ -178,7 +178,8 @@ const Generate = (props) => {
         generateRule.rules.categories = [];
       }
     }
-    props.popUp(generateRule);
+    // props.popUp(generateRule);
+    console.log("<----->", generateRule);
   };
 
   const createGenerateRule = () => {
