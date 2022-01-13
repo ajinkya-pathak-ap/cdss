@@ -72,10 +72,11 @@ const Generate = (props) => {
       : setAgeArr([tempAgeArr.ageOne]);
 
     tempAgeArr = [tempAgeObj.ageOne, tempAgeObj.ageTwo];
+
     if (operatorOne.toLocaleLowerCase() === "between") {
       tempAgeArr = [tempAgeObj.ageOne, tempAgeObj.ageTwo];
     } else {
-      tempAgeArr.pop();
+      if (tempAgeArr.length > 1) tempAgeArr.pop();
       tempAgeArr = [tempAgeObj.ageOne];
     }
     setAgeValues({ ...ageValues, values: tempAgeArr, operator: operatorOne });
@@ -100,7 +101,7 @@ const Generate = (props) => {
     if (operatorTwo.toLocaleLowerCase() === "between") {
       tempHstnlArr = [tempHstnlObj.hstnlOne, tempHstnlObj.hstnlTwo];
     } else {
-      tempHstnlArr.pop();
+      if (tempHstnlArr.length > 1) tempHstnlArr.pop();
       tempHstnlArr = [tempHstnlObj.hstnlOne];
     }
     setAgeValues({ ...ageValues, values: tempHstnlArr, operator: operatorTwo });
@@ -127,12 +128,13 @@ const Generate = (props) => {
 
   const changeOperatorOne = (event) => {
     setOperatorOne(event.target.value);
+    saveAgeValues();
     props.getData(saveStateValues(), "generate");
   };
 
   const changeOperatorTwo = (event) => {
     setOperatorTwo(event.target.value);
-
+    saveHstnlValues();
     props.getData(saveStateValues(), "generate");
   };
 
