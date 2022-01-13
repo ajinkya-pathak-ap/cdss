@@ -71,7 +71,7 @@ export const GenerateStyles = makeStyles((theme) => ({
     fontSize: "13px !important",
     backgroundColor: "#fff",
     width: "100px",
-    height: "40px",
+    height: "36px",
   },
 
   hstnlvalue1: {
@@ -92,12 +92,13 @@ export const GenerateStyles = makeStyles((theme) => ({
     fontSize: "13px !important",
     backgroundColor: "#fff",
     width: "100px",
-    height: "40px",
+    height: "35px",
   },
 
   ageElseBetweenValue: {
     backgroundColor: "#fff",
     width: "100px",
+    borderRadius: "4px",
   },
 
   andspacingifbetween1: {
@@ -114,16 +115,18 @@ export const GenerateStyles = makeStyles((theme) => ({
     fontSize: "13px",
     backgroundColor: "#fff",
     width: "100px",
-    height: "40px",
+    height: "35px",
   },
   hstnlelsevalue1: {
     backgroundColor: "#fff",
     width: "100px",
+    borderRadius: "4px",
   },
 
   hstnlelsevalue2: {
     backgroundColor: "#fff",
     width: "100px",
+    borderRadius: "4px",
   },
 
   betweenspacing: {
