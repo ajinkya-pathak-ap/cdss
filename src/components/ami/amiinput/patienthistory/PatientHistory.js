@@ -47,6 +47,7 @@ const PatientHistory = (props) => {
     const {
       target: { value },
     } = event;
+
     setSymptomOnset(typeof value === "string" ? value.split(",") : value);
   };
 
@@ -93,6 +94,8 @@ const PatientHistory = (props) => {
 
     props.resetAck();
   };
+
+  const displayVals = (_arr) => {};
 
   return (
     <>
@@ -297,3 +300,4 @@ const PatientHistory = (props) => {
 };
 
 export default PatientHistory;
+

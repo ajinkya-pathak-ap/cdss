@@ -102,7 +102,7 @@ export const GenerateStyles = makeStyles((theme) => ({
   },
 
   andspacingifbetween1: {
-    marginLeft: "30px",
+    marginLeft: "3px",
     marginTop: "83px",
   },
 

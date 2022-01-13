@@ -61,10 +61,10 @@ export default function Amiconfig(props) {
   };
 
   const saveConfigData = (_config) => {
-    props.notify({
-      message: "Rules Applied Successfully...",
-      type: "success",
-    });
+    // props.notify({
+    //   message: "Rules Applied Successfully...",
+    //   type: "success",
+    // });
 
     if (props.localMode) {
       // configurationService.saveConfigurationLocal(_config).then(
@@ -86,7 +86,7 @@ export default function Amiconfig(props) {
   };
 
   const addApplyFlag = () => {
-    console.log(configDataCopy.result);
+    console.log(configDataCopy.result.configurations[0]);
     saveConfigData(configDataCopy.result);
   };
 

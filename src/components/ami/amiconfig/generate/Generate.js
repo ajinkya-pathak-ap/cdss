@@ -79,6 +79,7 @@ const Generate = (props) => {
       if (tempAgeArr.length > 1) tempAgeArr.pop();
       tempAgeArr = [tempAgeObj.ageOne];
     }
+
     setAgeValues({ ...ageValues, values: tempAgeArr, operator: operatorOne });
   };
 
@@ -128,13 +129,11 @@ const Generate = (props) => {
 
   const changeOperatorOne = (event) => {
     setOperatorOne(event.target.value);
-    saveAgeValues();
     props.getData(saveStateValues(), "generate");
   };
 
   const changeOperatorTwo = (event) => {
     setOperatorTwo(event.target.value);
-    saveHstnlValues();
     props.getData(saveStateValues(), "generate");
   };
 
@@ -306,6 +305,7 @@ const Generate = (props) => {
             )}
           </Grid>
         </Grid>
+
         <Grid item xs={12} md={2} className={classes.spacingaboveand}>
           {operatorOne === "Between" ? (
             <h3 className={classes.andspacingifbetween1}>AND</h3>
@@ -313,6 +313,7 @@ const Generate = (props) => {
             <h3 className={classes.andspacingifbetween2}>AND</h3>
           )}
         </Grid>
+
         <Grid item xs={12} md={5}>
           <Grid container spacing={1} className={classes.spacingabovehstnl}>
             <Grid item xs={12} md={12}>
@@ -420,7 +421,7 @@ const Generate = (props) => {
                 <Checkbox
                   onChange={(e) => generateCheckbox(e)}
                   {...utils.properties.label}
-                  checked={generateRS}
+                  checked={generateDefault}
                   sx={{
                     color: "#fff",
                     "&.Mui-checked": {

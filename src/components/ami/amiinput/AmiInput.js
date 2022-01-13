@@ -52,7 +52,7 @@ const AmiInput = (props) => {
         }
       );
     } else {
-      patientInfoService.getPatientInfoLocal(config).then(
+      patientInfoService.getPatientInfo(config).then(
         (response) => {
           setData(response.data);
           setIsFetching(false);
