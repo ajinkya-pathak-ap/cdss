@@ -86,7 +86,7 @@ export default function Amiconfig(props) {
   };
 
   const addApplyFlag = () => {
-    // console.log(configDataCopy.result);
+    console.log(configDataCopy.result);
     saveConfigData(configDataCopy.result);
   };
 

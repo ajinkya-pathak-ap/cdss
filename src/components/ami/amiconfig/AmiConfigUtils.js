@@ -40,7 +40,13 @@ export const utils = {
       },
     },
 
-    othersRule: {},
+    otherRule: {
+      otherValues: {
+        categoryDefinition: "other",
+        operator: "",
+        values: [],
+      },
+    },
   },
   methods: {},
 };

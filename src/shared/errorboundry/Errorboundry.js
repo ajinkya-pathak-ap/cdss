@@ -8,7 +8,6 @@ export class Errorboundry extends Component {
   }
 
   static componentDidCatch(error, errorInfo) {
-    debugger;
     this.setState({
       error: error,
       errorInfo: errorInfo,

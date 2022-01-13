@@ -28,7 +28,10 @@ const Othersettings = (props) => {
   const [otherRS, setOtherRS] = useState(true);
   const [otherDefault, setOtherDefault] = useState(true);
   const [otherArr, setOtherArr] = useState([]);
-  const [othersRule, setOthersRule] = useState({});
+  const [otherRule, setOtherRule] = useState({});
+  const [otherValue, setOtherValue] = useState(
+    utils.properties.otherRule.otherValues
+  );
 
   const resetFields = () => {
     setOtherRS(true);
@@ -39,7 +42,7 @@ const Othersettings = (props) => {
   const mapJsonResponse = (_obj) => {
     _obj.forEach((configurationsItem, index) => {
       if (configurationsItem.ruleSectionName.toLocaleLowerCase() === "other") {
-        setOthersRule(configurationsItem);
+        setOtherRule(configurationsItem);
         if (configurationsItem.rules.length > 0) {
           /**non-emprty rule */
           configurationsItem.rules.forEach((ruleItem) => {
@@ -58,14 +61,15 @@ const Othersettings = (props) => {
           setOtherDefault(true);
           setOtherRS(true);
         }
+      } else {
       }
     });
   };
 
   const saveStateValues = () => {
-    if (othersRule.rules.length > 0) {
+    if (otherRule.rules.length > 0) {
       /** rules available already*/
-      othersRule.rules.forEach((ruleItem) => {
+      otherRule.rules.forEach((ruleItem) => {
         if (otherRS === false) {
           /***save the values if checkbox is not selected*/
           ruleItem.isDefault = otherDefault;
@@ -90,17 +94,17 @@ const Othersettings = (props) => {
       /**no rules available */
       if (otherRS === false) {
         /**checkbox not selected */
-        othersRule.rules.categories = [];
-        othersRule.rules.isDefault = otherDefault;
-        othersRule.rules.isChecked = otherRS;
+        otherRule.rules.categories = [];
+        otherRule.rules.isDefault = otherDefault;
+        otherRule.rules.isChecked = otherRS;
       } else {
         /**checkbox selected */
-        othersRule.rules.isDefault = otherDefault;
-        othersRule.rules.isChecked = otherRS;
-        othersRule.rules.categories = [];
+        otherRule.rules.isDefault = otherDefault;
+        otherRule.rules.isChecked = otherRS;
+        otherRule.rules.categories = [];
       }
     }
-    return othersRule;
+    return otherRule;
   };
 
   const otherCheckbox = (event) => {

@@ -43,18 +43,67 @@ const Generate = (props) => {
   const [ageValues, setAgeValues] = useState(generateUtils.ageValues);
   const [hstnlValues, sethstnlValues] = useState(generateUtils.hstnlValues);
 
+  let tempAgeObj = generateUtils.ageRule,
+    tempAgeArr = [],
+    tempHstnlArr = [],
+    tempHstnlObj = generateUtils.troponinRule;
+
   const handleAgeRule = (e) => {
     setAgeRule({ ...ageRule, [e.target.name]: e.target.value });
+
+    if (e.target.name === "ageOne") {
+      tempAgeObj.ageOne = e.target.value;
+    } else {
+      tempAgeObj.ageTwo = e.target.value;
+    }
+
     saveAgeValues();
     props.getData(saveStateValues(), "generate");
   };
 
   const saveAgeValues = () => {
-    operatorOne.toLocaleLowerCase() === "between"
-      ? setAgeArr([ageRule.ageOne, ageRule.ageTwo])
-      : setAgeArr([ageRule.ageOne]);
+    // operatorOne.toLocaleLowerCase() === "between"
+    //   ? setAgeArr([ageRule.ageOne, ageRule.ageTwo])
+    //   : setAgeArr([ageRule.ageOne]);
+    // setAgeValues({ ...ageValues, values: ageArr, operator: operatorOne });
 
-    setAgeValues({ ...ageValues, values: ageArr, operator: operatorOne });
+    operatorOne.toLocaleLowerCase() === "between"
+      ? setAgeArr([tempAgeArr.ageOne, tempAgeArr.ageTwo])
+      : setAgeArr([tempAgeArr.ageOne]);
+
+    tempAgeArr = [tempAgeObj.ageOne, tempAgeObj.ageTwo];
+    if (operatorOne.toLocaleLowerCase() === "between") {
+      tempAgeArr = [tempAgeObj.ageOne, tempAgeObj.ageTwo];
+    } else {
+      tempAgeArr.pop();
+      tempAgeArr = [tempAgeObj.ageOne];
+    }
+    setAgeValues({ ...ageValues, values: tempAgeArr, operator: operatorOne });
+  };
+
+  const handleTroponinRule = (e) => {
+    setTroponinRule({ ...troponinRule, [e.target.name]: e.target.value });
+
+    if (e.target.name === "hstnlOne") {
+      tempHstnlObj.hstnlOne = e.target.value;
+    } else {
+      tempHstnlObj.hstnlTwo = e.target.value;
+    }
+
+    saveHstnlValues();
+    props.getData(saveStateValues(), "generate");
+  };
+
+  const saveHstnlValues = () => {
+    tempHstnlArr = [tempHstnlObj.hstnlOne, tempHstnlObj.hstnlTwo];
+
+    if (operatorTwo.toLocaleLowerCase() === "between") {
+      tempHstnlArr = [tempHstnlObj.hstnlOne, tempHstnlObj.hstnlTwo];
+    } else {
+      tempHstnlArr.pop();
+      tempHstnlArr = [tempHstnlObj.hstnlOne];
+    }
+    setAgeValues({ ...ageValues, values: tempHstnlArr, operator: operatorTwo });
   };
 
   const resetFields = () => {
@@ -66,18 +115,6 @@ const Generate = (props) => {
     setGenrateDefault(true);
 
     props.resetAck();
-  };
-
-  const handleTroponinRule = (e) => {
-    setTroponinRule({ ...troponinRule, [e.target.name]: e.target.value });
-
-    operatorTwo.toLocaleLowerCase() === "between"
-      ? setHstnlArr([troponinRule.hstnlOne, troponinRule.hstnlTwo])
-      : setHstnlArr([troponinRule.hstnlOne]);
-
-    sethstnlValues({ ...hstnlValues, values: hstnlArr, operator: operatorTwo });
-
-    props.getData(saveStateValues(), "generate");
   };
 
   const generateCheckbox = (event) => {
@@ -169,11 +206,13 @@ const Generate = (props) => {
               ) {
                 /**added age rule here */
                 categoryItem.operator = operatorOne;
-                categoryItem.values = ageArr;
+                // categoryItem.values = ageArr;
+                categoryItem.values = tempAgeArr;
               } else {
                 /**added troponin rule heere */
                 categoryItem.operator = operatorTwo;
-                categoryItem.values = hstnlArr;
+                // categoryItem.values = hstnlArr;
+                categoryItem.values = tempHstnlArr;
               }
             });
           } else {
