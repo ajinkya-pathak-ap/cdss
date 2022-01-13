@@ -28,7 +28,8 @@ export const EKGFindingsStyles = makeStyles((theme) => ({
   patientinfo: {
     color: "#fff",
     borderColor: "#7B1FA2",
-    backgroundColor: "red",
+    textIndent: "-20px",
+    // backgroundColor: "red",
   },
 
   formgrop: {

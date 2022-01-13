@@ -82,7 +82,7 @@ const AmiInput = (props) => {
               resetAck={resetAcknowledge}
             ></PatientHistory>
           </Grid>
-          <Grid container spacing={1} item md={7} xs={12}>
+          <Grid container spacing={0} item md={7} xs={12}>
             <Grid item md={12} xs={12} sm={6}>
               <EKGFindings result={data.result}></EKGFindings>
             </Grid>
