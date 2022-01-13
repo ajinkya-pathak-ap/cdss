@@ -22,8 +22,7 @@ const Calculatescore = (props) => {
             "&:hover": {
               backgroundColor: "#414BB2",
             },
-            paddingLeft: "25px",
-            paddingRight: "25px",
+
             textTransform: "none",
           }}
           className={classes.buttonColor}
