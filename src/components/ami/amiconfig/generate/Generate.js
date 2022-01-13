@@ -305,7 +305,6 @@ const Generate = (props) => {
             )}
           </Grid>
         </Grid>
-
         <Grid item xs={12} md={2} className={classes.spacingaboveand}>
           {operatorOne === "Between" ? (
             <h3 className={classes.andspacingifbetween1}>AND</h3>
@@ -313,7 +312,6 @@ const Generate = (props) => {
             <h3 className={classes.andspacingifbetween2}>AND</h3>
           )}
         </Grid>
-
         <Grid item xs={12} md={5}>
           <Grid container spacing={1} className={classes.spacingabovehstnl}>
             <Grid item xs={12} md={12}>
@@ -421,7 +419,7 @@ const Generate = (props) => {
                 <Checkbox
                   onChange={(e) => generateCheckbox(e)}
                   {...utils.properties.label}
-                  checked={generateDefault}
+                  checked={generateRS}
                   sx={{
                     color: "#fff",
                     "&.Mui-checked": {
@@ -432,11 +430,14 @@ const Generate = (props) => {
               }
               label="All ED admits > 18 years with at least one hsTnl test result  "
             />
+            <br />
+            <br />
             <Typography
               className={`${classes.headerText} ${classes.paddingLarge}`}
             >
               Or
             </Typography>
+            <br />
             <Typography
               className={`${classes.headerText} ${classes.leftAlignedText}`}
             >
