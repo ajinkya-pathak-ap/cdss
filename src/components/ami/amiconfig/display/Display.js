@@ -31,11 +31,13 @@ const Display = (props) => {
     displayUtils.defaultDisplay
   );
 
+  let tempDisplayObj = displayUtils.displayValues,
+    tempDefault = displayUtils.displayDefault;
+
   useEffect(() => {
     mapJsonResponse(configurations);
   }, []);
 
-  
   useEffect(() => {
     if (props.resetFlag) {
       resetFields();
@@ -54,8 +56,10 @@ const Display = (props) => {
 
   const handleDisplayRuleCheck = (event) => {
     const checkedValue = event.target.checked;
-    setDisplayRS(checkedValue);
-    setDisplayDefault(false);
+    // setDisplayRS(checkedValue);
+    setDisplayDefault(checkedValue);
+    tempDefault.default = checkedValue;
+
     checkedValue ? setApply(false) : setApply(true);
 
     props.getData(saveStateValues(), "display");
@@ -64,6 +68,12 @@ const Display = (props) => {
   const handleDisplayRule = (e) => {
     setRiskScoreRule({ ...riskScoreRule, [e.target.name]: e.target.value });
 
+    if (e.target.name === "displayOne") {
+      tempDisplayObj.displayOne = e.target.value;
+    } else {
+      tempDisplayObj.displayTwo = e.target.value;
+    }
+
     setDisplayArr([
       `${riskScoreRule.displayOne}%`.split("%")[0],
       `${riskScoreRule.displayTwo}%`.split("%")[0],
@@ -71,10 +81,15 @@ const Display = (props) => {
 
     setDisplayValues({
       ...displayValues,
-      values: displayArr,
+      // values: displayArr,
+      values: getDisplayArray(),
     });
 
     props.getData(saveStateValues(), "display");
+  };
+
+  const getDisplayArray = () => {
+    return [tempDisplayObj.displayOne, tempDisplayObj.displayTwo];
   };
 
   const mapJsonResponse = (_obj) => {
@@ -89,12 +104,16 @@ const Display = (props) => {
             /**declare default & checked */
             setDisplayDefault(ruleIteam.isDefault);
             setDisplayRS(ruleIteam.isChecked);
+            tempDefault.default = ruleIteam.isDefault;
+
             if (ruleIteam.categories.length > 0) {
               ruleIteam.categories.forEach((categoryItem, ind) => {
                 /**create values categories */
                 if (categoryItem.values.length > 0) {
                   /**non-empty values */
-                  setDisplayRS(false);
+                  // setDisplayRS(false);
+                  setDisplayDefault(false);
+                  tempDefault.isDefault = false;
                   setDisplayArr(categoryItem.values);
                   if (categoryItem.values.length > 1) {
                     setRiskScoreRule({
@@ -115,6 +134,11 @@ const Display = (props) => {
               });
             }
           });
+        } else {
+          /**empty rule */
+          setDisplayDefault(true);
+          tempDefault.isDefault = true;
+          setDisplayRS(true);
         }
       }
     });
@@ -124,14 +148,17 @@ const Display = (props) => {
     if (displayRule.rules.length > 0) {
       /** rules available already*/
       displayRule.rules.forEach((ruleItem) => {
-        if (displayRS === false) {
+        // if (displayDefault === false) {
+        if (tempDefault.default === false) {
           /***save the values if checkbox is not selected*/
-          ruleItem.isDefault = displayDefault;
+          // ruleItem.isDefault = displayDefault;
+          ruleItem.isDefault = tempDefault.default;
           ruleItem.isChecked = displayRS;
           if (ruleItem.categories.length > 0) {
             /*check for the multiple categories */
             ruleItem.categories.forEach((categoryItem) => {
-              categoryItem.values = displayArr;
+              // categoryItem.values = displayArr;
+              categoryItem.values = getDisplayArray();
             });
           } else {
             /**values doesnt exists for textfields */
@@ -142,27 +169,28 @@ const Display = (props) => {
            * send empty values when checkbox is checked
            */
           ruleItem.categories = [];
+          ruleItem.isDefault = tempDefault.default;
+          ruleItem.isChecked = displayRS;
         }
       });
     } else {
       /**no rules available */
-      if (displayRS === false) {
+      // if (displayDefault === false) {
+      if (tempDefault.default === false) {
         /**checkbox not selected */
         displayRule.rules.categories.push(displayValues);
-        displayRule.rules.isDefault = displayDefault;
+        // displayRule.rules.isDefault = displayDefault;
+        displayRule.rules.isDefault = tempDefault.default;
         displayRule.rules.isChecked = displayRS;
       } else {
         /**checkbox selected */
-        displayRule.rules.isDefault = displayDefault;
+        // displayRule.rules.isDefault = displayDefault;
+        displayRule.rules.isDefault = tempDefault.default;
         displayRule.rules.isChecked = displayRS;
         displayRule.rules.categories = [];
       }
     }
     return displayRule;
-  };
-
-  const displayValue = () => {
-    saveStateValues();
   };
 
   const createDisplayRule = () => {
@@ -184,17 +212,14 @@ const Display = (props) => {
             >
               <TextField
                 style={{
-                  // marginLeft: "28px",
-                  // height: "35px",
                   backgroundColor: "#fff",
                   width: "85px",
                   borderRadius: "4px",
                 }}
-                disabled={displayRS}
+                disabled={displayDefault}
                 id="rangeOne"
                 size="small"
                 name="displayOne"
-                // disabled={generateRS}
                 className={classes.hstnlelsevalue1}
                 onChange={handleDisplayRule}
                 type="number"
@@ -218,14 +243,12 @@ const Display = (props) => {
             <FormControl variant="standard">
               <TextField
                 style={{
-                  // marginLeft: "28px",
-                  // height: "35px",
                   marginLeft: "-24px",
                   backgroundColor: "#fff",
                   width: "85px",
                   borderRadius: "4px",
                 }}
-                disabled={displayRS}
+                disabled={displayDefault}
                 id="rangeTwo"
                 size="small"
                 name="displayTwo"
@@ -237,20 +260,6 @@ const Display = (props) => {
                   riskScoreRule.displayTwo ? riskScoreRule.displayTwo : "1%"
                 }
               />
-              {/* <BootstrapInput
-                style={{
-                  marginLeft: "-20px",
-                  width: "80px",
-                }}
-                disabled={displayRS}
-                id="rangeTwo"
-                name="displayTwo"
-                onChange={handleDisplayRule}
-                type="number"
-                value={
-                  riskScoreRule.displayTwo ? riskScoreRule.displayTwo : "1%"
-                }
-              /> */}
             </FormControl>
           </Grid>
           <Grid item xs={12} md={4}>
@@ -278,13 +287,14 @@ const Display = (props) => {
           <CardContent>
             <Typography className={classes.headerText}>
               Display Risk Score for only Patients meeting the following
+              criteria
             </Typography>
             <FormControlLabel
               control={
                 <Checkbox
-                  onChange={(e) => handleDisplayRuleCheck(e)}
+                  onChange={handleDisplayRuleCheck}
                   {...utils.properties.label}
-                  checked={displayRS}
+                  checked={displayDefault}
                   sx={{
                     color: "#fff",
                     "&.Mui-checked": {
@@ -293,12 +303,12 @@ const Display = (props) => {
                   }}
                 />
               }
-              label="Display All Risk Scores"
+              label="Display ALL Risk Scores"
             />
             <br />
             <br />
             <Typography
-              style={{ fontSize: "19px", paddingLeft: "10%" }}
+              style={{ fontSize: "19px", paddingLeft: "6%" }}
               className={classes.headerText}
             >
               Or
@@ -312,7 +322,6 @@ const Display = (props) => {
             >
               User Defined Range
             </Typography>
-            <br />
             <br />
             {createDisplayRule()}
             {/* <button onClick={displayValue}>Display Values</button> */}

@@ -1,9 +1,11 @@
 export const utils = {
   properties: {
     operators: [">", "<", ">=", "<=", "=", "Between"],
+
     label: {
       inputProps: {
         "aria-label": "Checkbox demo",
+        fontWeight: "bold",
       },
     },
 
@@ -26,6 +28,9 @@ export const utils = {
         operator: "",
         values: [],
       },
+      generateDefault: {
+        default: true,
+      },
     },
 
     displayRule: {
@@ -38,6 +43,9 @@ export const utils = {
         operator: "Between",
         values: [],
       },
+      displayDefault: {
+        default: true,
+      },
     },
 
     otherRule: {
@@ -45,6 +53,9 @@ export const utils = {
         categoryDefinition: "other",
         operator: "",
         values: [],
+      },
+      displayDefault: {
+        default: true,
       },
     },
   },

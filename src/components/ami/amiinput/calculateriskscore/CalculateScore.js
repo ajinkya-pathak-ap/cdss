@@ -2,7 +2,7 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Button from "@mui/material/Button";
 import { btnStyles } from "./CalculateScoreStyles";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Calculatescore = (props) => {
   const classes = btnStyles();

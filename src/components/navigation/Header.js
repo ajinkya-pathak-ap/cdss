@@ -14,12 +14,12 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Avatar from "@material-ui/core/Avatar";
 
-const Img = styled("img")({
-  margin: "auto",
-  display: "block",
-  maxWidth: "100%",
-  maxHeight: "100%",
-});
+// const Img = styled("img")({
+//   margin: "auto",
+//   display: "block",
+//   maxWidth: "100%",
+//   maxHeight: "100%",
+// });
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",

@@ -8,11 +8,6 @@ import Riskscore from "./riskscore/Riskscore";
 import RiskscoreContributors from "./riskcontributors/RiskscoreContributors";
 import { Acknowledge } from "./acknowledge/Acknowledge";
 
-const configData = {
-  MRN: "203710",
-  EncounterNumber: "2323",
-};
-
 export default function AMIOutput(props) {
   const classes = amiOutputStyles();
 
@@ -20,31 +15,19 @@ export default function AMIOutput(props) {
   const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
-    fetchRiskScore(configData);
+    fetchRiskScore();
   }, []);
 
-  const fetchRiskScore = (config) => {
-    if (props.localMode) {
-      riskScoreService.getRiskScoreLocal(config).then(
-        (response) => {
-          setRiskScore(response.data);
-          setIsFetching(false);
-        },
-        (error) => {
-          console.log("error", error);
-        }
-      );
-    } else {
-      riskScoreService.getRiskScore(config).then(
-        (response) => {
-          setRiskScore(response.data);
-          setIsFetching(false);
-        },
-        (error) => {
-          return;
-        }
-      );
-    }
+  const fetchRiskScore = () => {
+    riskScoreService.getRiskScore().then(
+      (response) => {
+        setRiskScore(response.data);
+        setIsFetching(false);
+      },
+      (error) => {
+        return;
+      }
+    );
   };
 
   if (isFetching) {

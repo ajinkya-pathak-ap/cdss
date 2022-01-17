@@ -38,6 +38,7 @@ const PatientHistory = (props) => {
     const {
       target: { value },
     } = event;
+
     setPresentingSysmptoms(
       typeof value === "string" ? value.split(",") : value
     );
@@ -83,7 +84,6 @@ const PatientHistory = (props) => {
       setGender(patientDetails.gender[0].description);
     } else {
     }
-
     patientDetails.race.length > 0 ? setRace("Select One") : setRace("");
   };
 
@@ -94,8 +94,6 @@ const PatientHistory = (props) => {
 
     props.resetAck();
   };
-
-  const displayVals = (_arr) => {};
 
   return (
     <>
@@ -148,11 +146,7 @@ const PatientHistory = (props) => {
               input={<OutlinedInput label="Name" />}
               MenuProps={mlInputUtils.menuProps()}
             >
-              {/* {patientDetails.gender.map((v) => (
-                <MenuItem style={mlInputUtils.getStyles(v.description, gender, theme)}> */}
               {genderValue()}
-              {/* </MenuItem>
-              ))} */}
             </Select>
           </FormControl>
 
@@ -176,7 +170,7 @@ const PatientHistory = (props) => {
             >
               {patientDetails.race.map((v) => (
                 <MenuItem
-                  key={v}
+                  key={v.description}
                   value={v.description}
                   style={mlInputUtils.getStyles(v.description, race, theme)}
                 >

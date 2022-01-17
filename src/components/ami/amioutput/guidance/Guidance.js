@@ -11,6 +11,7 @@ import { utils } from "../AmiOutputUtils";
 
 const Guidance = (props) => {
   const { guidance } = props.result;
+
   const guidanceTxt =
     "to view patient's position of your institution's Chest Pain Management Care Flowchart";
 

@@ -1,8 +1,11 @@
 import { axiosService } from "./generic-service";
-import { localUrl } from "../shared/urls/urls";
-import { urls as remoteUrl } from "../shared/urls/urls";
+import { localUrl, urls as remoteUrl } from "../shared/urls/urls";
+import { appConfiguration } from "../shared/config/Configurations";
 
 class PatientInfoService {
+  appMode = appConfiguration.localMode;
+  _ami = appConfiguration.ami;
+
   _config = {
     headers: {
       "Content-Type": "application/json; charset=utf-8",
@@ -10,14 +13,18 @@ class PatientInfoService {
     },
   };
 
-  getPatientInfo(config) {
-    const url = `${remoteUrl.baseUrl}${remoteUrl.patientInfo}`;
-    return axiosService.post(url, JSON.stringify(config), this._config);
-  }
-
-  getPatientInfoLocal(config) {
-    const url = `${localUrl.baseUrl}${localUrl.patientInfo}`;
-    return axiosService.get(url);
+  getPatientInfo() {
+    if (this.appMode) {
+      const url = `${localUrl.baseUrl}${localUrl.patientInfo}`;
+      return axiosService.get(url);
+    } else {
+      const url = `${remoteUrl.baseUrl}${remoteUrl.patientInfo}`;
+      return axiosService.post(
+        url,
+        JSON.stringify(this._ami.patientInfo),
+        this._config
+      );
+    }
   }
 }
 

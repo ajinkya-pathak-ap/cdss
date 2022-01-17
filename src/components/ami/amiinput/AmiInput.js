@@ -12,24 +12,10 @@ const AmiInput = (props) => {
   const classes = AmiInputStyles();
   const [data, setData] = useState({});
   const [isFetching, setIsFetching] = useState(true);
-  const [patientData, setPatientData] = useState({
-    age: "",
-    gender: "",
-    race: [],
-    presentingSymptoms: [],
-    timeSymptomsOnSet: [],
-    riskFactors: [],
-  });
-
   const [resetClick, setResetClick] = useState(false);
 
-  const configData = {
-    MRN: "203710",
-    EncounterNumber: "2323",
-  };
-
   useEffect(() => {
-    getPatientInfo(configData);
+    getPatientInfo();
   }, []);
 
   const resetBtnClick = () => {
@@ -40,28 +26,16 @@ const AmiInput = (props) => {
     setResetClick(false);
   };
 
-  const getPatientInfo = (config) => {
-    if (props.localMode) {
-      patientInfoService.getPatientInfoLocal(config).then(
-        (response) => {
-          setData(response.data);
-          setIsFetching(false);
-        },
-        (error) => {
-          return;
-        }
-      );
-    } else {
-      patientInfoService.getPatientInfo(config).then(
-        (response) => {
-          setData(response.data);
-          setIsFetching(false);
-        },
-        (error) => {
-          return;
-        }
-      );
-    }
+  const getPatientInfo = () => {
+    patientInfoService.getPatientInfo().then(
+      (response) => {
+        setData(response.data);
+        setIsFetching(false);
+      },
+      (error) => {
+        return;
+      }
+    );
   };
 
   if (isFetching) {

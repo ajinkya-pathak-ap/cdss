@@ -19,74 +19,37 @@ export default function Amiconfig(props) {
 
   const classes = AMIConfigStyles();
 
-  const fetchRequestObject = {
-    OganizationId: 1,
-    ModelId: 1,
-  };
-
   useEffect(() => {
-    fetchConfigData(fetchRequestObject);
+    fetchConfigData();
   }, []);
 
-  const fetchConfigData = (_config) => {
-    if (props.localMode) {
-      configurationService.getConfigurationLocal(_config).then(
-        (response) => {
-          setConfigData(response.data);
-          setConfigDataCopy(response.data);
-          setIsFetching(false);
-        },
-        (error) => {
-          return;
-          /**
-           * error boundry
-           */
-        }
-      );
-    } else {
-      configurationService.getConfiguration(_config).then(
-        (response) => {
-          setConfigData(response.data);
-          setConfigDataCopy(response.data);
-          setIsFetching(false);
-        },
-        (error) => {
-          return;
-          /**
-           * error boundry
-           */
-        }
-      );
-    }
+  const fetchConfigData = () => {
+    configurationService.getConfiguration().then(
+      (response) => {
+        setConfigData(response.data);
+        setConfigDataCopy(response.data);
+        setIsFetching(false);
+      },
+      (error) => {}
+    );
   };
 
   const saveConfigData = (_config) => {
-    // props.notify({
-    //   message: "Rules Applied Successfully...",
-    //   type: "success",
-    // });
-
-    if (props.localMode) {
-      // configurationService.saveConfigurationLocal(_config).then(
-      //   (response) => {},
-      //   (error) => {
-      //     return;
-      //   }
-      // );
-    } else {
-      configurationService.saveConfiguration(_config).then(
-        (response) => {
-          console.log(response);
-        },
-        (error) => {
-          return;
-        }
-      );
-    }
+    configurationService.saveConfiguration(_config).then(
+      (response) => {
+        props.notify({
+          message: "Rules Applied Successfully...",
+          type: "success",
+        });
+      },
+      (error) => {
+        return;
+      }
+    );
   };
 
   const addApplyFlag = () => {
-    console.log(configDataCopy.result.configurations[0]);
+    console.log(configDataCopy.result.configurations);
     saveConfigData(configDataCopy.result);
   };
 
@@ -107,11 +70,7 @@ export default function Amiconfig(props) {
         }
       }
     );
-
-    // console.log(`${_ruleName}...`, configDataCopy.result);
   };
-
-  /*************config api stuff***************/
 
   if (isFetching) {
     return <CircularIndeterminate />;

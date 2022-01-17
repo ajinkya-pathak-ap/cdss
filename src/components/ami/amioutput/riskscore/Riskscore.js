@@ -6,7 +6,7 @@ import { utils } from "../AmiOutputUtils";
 
 const Riskscore = (props) => {
   const classes = RiskScoreStyles();
-  const { riskScoreDetails, probabilityRange, score } = props.result;
+  const { riskScoreDetails, probabilityRange } = props.result;
 
   const details = riskScoreDetails.split("$");
 

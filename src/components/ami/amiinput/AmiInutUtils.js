@@ -40,4 +40,14 @@ export const mlInputUtils = {
       },
     };
   },
+
+  convertDate: (_date) => {
+    let dateTimeArr = _date.split("T");
+    let date = dateTimeArr[0];
+    date = date.replace("-", "/");
+    date = date.replace("-", "/");
+    let hrsTemp = dateTimeArr[1].split(":"),
+      hrs = `${hrsTemp[0]}:${hrsTemp[1]}`;
+    return `${date},${hrs}`;
+  },
 };

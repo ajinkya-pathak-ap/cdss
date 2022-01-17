@@ -28,58 +28,23 @@ function ShellComponent(props) {
     });
   };
 
-  const localMode = true;
-
   return (
-    <>
-      <div className="">
-        <Notification notify={notify} setNotify={setNotify} />
-        <React.Suspense fallback="Loading...">
-          <Routes>
-            <Route
-              exact
-              path="/"
-              element={
-                <LazyAmiOutput notify={snacksBar} localMode={localMode} />
-              }
-            />
-            <Route
-              path="/config"
-              element={
-                <LazyAmiConfig notify={snacksBar} localMode={localMode} />
-              }
-            />
-            <Route
-              path="/amioutput"
-              element={
-                <LazyAmiOutput notify={snacksBar} localMode={localMode} />
-              }
-            />
-            <Route
-              path="/contributors"
-              element={
-                <LazyAmiContriubutors
-                  notify={snacksBar}
-                  localMode={localMode}
-                />
-              }
-            />
-            <Route
-              path="/carepath"
-              element={
-                <LazyAmiChestCare notify={snacksBar} localMode={localMode} />
-              }
-            />
-            <Route
-              path="/amiinput"
-              element={
-                <LazyAmiInput notify={snacksBar} localMode={localMode} />
-              }
-            />
-          </Routes>
-        </React.Suspense>
-      </div>
-    </>
+    <div className="">
+      <Notification notify={notify} setNotify={setNotify} />
+      <React.Suspense fallback="Loading...">
+        <Routes>
+          <Route exact path="/" element={<LazyAmiOutput />} />
+          <Route
+            path="/config"
+            element={<LazyAmiConfig notify={snacksBar} />}
+          />
+          <Route path="/amioutput" element={<LazyAmiOutput />} />
+          <Route path="/contributors" element={<LazyAmiContriubutors />} />
+          <Route path="/carepath" element={<LazyAmiChestCare />} />
+          <Route path="/amiinput" element={<LazyAmiInput />} />
+        </Routes>
+      </React.Suspense>
+    </div>
   );
 }
 

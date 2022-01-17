@@ -1,6 +1,5 @@
-import { React, useState, useEffect } from "react";
+import { React } from "react";
 import {
-  Grid,
   Card,
   CardContent,
   Typography,
@@ -11,6 +10,7 @@ import { utils } from "../../AmiOutputUtils";
 
 const Contributors = (props) => {
   const classes = ContributorsStyles();
+
   return (
     <Card className={classes.gridcontainer}>
       <CardContent>

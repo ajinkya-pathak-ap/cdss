@@ -13,6 +13,7 @@ import { utils } from "../AmiConfigUtils";
 
 const Othersettings = (props) => {
   const classes = OtherSettingStyles();
+  let otherUtils = utils.properties.otherRule;
   const { configurations } = props.config;
 
   useEffect(() => {
@@ -29,9 +30,9 @@ const Othersettings = (props) => {
   const [otherDefault, setOtherDefault] = useState(true);
   const [otherArr, setOtherArr] = useState([]);
   const [otherRule, setOtherRule] = useState({});
-  const [otherValue, setOtherValue] = useState(
-    utils.properties.otherRule.otherValues
-  );
+  const [otherValue, setOtherValue] = useState(otherUtils.otherValues);
+
+  let tempDefault = otherUtils.displayDefault;
 
   const resetFields = () => {
     setOtherRS(true);
@@ -48,17 +49,20 @@ const Othersettings = (props) => {
           configurationsItem.rules.forEach((ruleItem) => {
             setOtherDefault(ruleItem.isDefault);
             setOtherRS(ruleItem.isChecked);
+            tempDefault.default = ruleItem.isDefault;
             if (ruleItem.categories.length > 0) {
               ruleItem.categories.forEach((categoryItem, ind) => {
                 /**create values categories */
                 setOtherArr(categoryItem);
               });
             } else {
+              /**empty category */
               ruleItem.categories = [];
             }
           });
         } else {
           setOtherDefault(true);
+          tempDefault.default = true;
           setOtherRS(true);
         }
       } else {
@@ -70,9 +74,11 @@ const Othersettings = (props) => {
     if (otherRule.rules.length > 0) {
       /** rules available already*/
       otherRule.rules.forEach((ruleItem) => {
-        if (otherRS === false) {
+        // if (otherRS === false) {
+        if (tempDefault.default === false) {
           /***save the values if checkbox is not selected*/
-          ruleItem.isDefault = otherDefault;
+          // ruleItem.isDefault = otherDefault;
+          ruleItem.isDefault = tempDefault.default;
           ruleItem.isChecked = otherRS;
           if (ruleItem.categories.length > 0) {
             /*check for the multiple categories */
@@ -88,18 +94,23 @@ const Othersettings = (props) => {
            * send empty values when checkbox is checked
            */
           ruleItem.categories = [];
+          ruleItem.isDefault = tempDefault.default;
+          ruleItem.isChecked = otherRS;
         }
       });
     } else {
       /**no rules available */
-      if (otherRS === false) {
+      // if (otherRS === false) {
+      if (tempDefault.default === false) {
         /**checkbox not selected */
         otherRule.rules.categories = [];
-        otherRule.rules.isDefault = otherDefault;
+        // otherRule.rules.isDefault = otherDefault;
+        otherRule.rules.isDefault = tempDefault.default;
         otherRule.rules.isChecked = otherRS;
       } else {
         /**checkbox selected */
-        otherRule.rules.isDefault = otherDefault;
+        // otherRule.rules.isDefault = otherDefault;
+        otherRule.rules.isDefault = tempDefault.default;
         otherRule.rules.isChecked = otherRS;
         otherRule.rules.categories = [];
       }
@@ -109,9 +120,9 @@ const Othersettings = (props) => {
 
   const otherCheckbox = (event) => {
     const checkedValue = event.target.checked;
-    setOtherRS(checkedValue);
-    setOtherDefault(false);
-
+    // setOtherRS(checkedValue);
+    setOtherDefault(checkedValue);
+    tempDefault.default = checkedValue;
     props.getData(saveStateValues(), "other");
   };
 
@@ -129,7 +140,7 @@ const Othersettings = (props) => {
               control={
                 <Checkbox
                   {...utils.properties.label}
-                  checked={otherRS}
+                  checked={otherDefault}
                   onChange={(e) => otherCheckbox(e)}
                   sx={{
                     color: "#fff",

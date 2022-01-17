@@ -21,7 +21,7 @@ export const GenerateStyles = makeStyles((theme) => ({
   },
 
   paddingLarge: {
-    paddingLeft: "10%",
+    paddingLeft: "6%",
   },
   leftAlignedText: {
     textAlign: "left",
@@ -102,7 +102,7 @@ export const GenerateStyles = makeStyles((theme) => ({
   },
 
   andspacingifbetween1: {
-    marginLeft: "3px",
+    marginLeft: "30px",
     marginTop: "83px",
   },
 

@@ -1,18 +1,20 @@
-import { React, useState, useEffect } from "react";
-import { Grid, Typography, Stack } from "../../../../shared/material/mui";
+import { React } from "react";
+import { Grid, Stack } from "../../../../shared/material/mui";
 import { useNavigate } from "react-router-dom";
 import {
   BootstrapButton,
   RiskContributorStyles,
 } from "./RiskscoreContributorStyles";
 import "../styles.css";
-import { utils } from "../AmiOutputUtils";
 import Contributors from "./contributors/Contributors";
 
 const RiskscoreContributors = (props) => {
   const classes = RiskContributorStyles();
+
   const { positiveContributors, negativeContributors } = props.result;
+
   const navigate = useNavigate();
+
   const loadMoreInfo = () => {
     navigate("/contributors");
   };

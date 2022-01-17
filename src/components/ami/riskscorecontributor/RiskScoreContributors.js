@@ -2,16 +2,11 @@ import React, { useState, useEffect } from "react";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { riskScoreService } from "../../../services/riskScore-service";
 import CircularIndeterminate from "../../../shared/preloder/Preloder";
 import { RiskContributorStyles } from "./RiskScoreContributorStyles";
 import Contributors from "../amioutput/riskcontributors/contributors/Contributors";
-
-const configData = {
-  MRN: "203710",
-  EncounterNumber: "2323",
-};
 
 export default function RiskScoreContributors(props) {
   const classes = RiskContributorStyles();
@@ -20,31 +15,19 @@ export default function RiskScoreContributors(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchRiskScoreContributors(configData);
+    fetchRiskScoreContributors();
   }, []);
 
-  const fetchRiskScoreContributors = (config) => {
-    if (props.localMode) {
-      riskScoreService.getRiskScoreLocal(config).then(
-        (response) => {
-          setRiskScore(response.data);
-          setIsFetching(false);
-        },
-        (error) => {
-          console.log("error", error);
-        }
-      );
-    } else {
-      riskScoreService.getRiskScore(config).then(
-        (response) => {
-          setRiskScore(response.data);
-          setIsFetching(false);
-        },
-        (error) => {
-          return;
-        }
-      );
-    }
+  const fetchRiskScoreContributors = () => {
+    riskScoreService.getRiskScore().then(
+      (response) => {
+        setRiskScore(response.data);
+        setIsFetching(false);
+      },
+      (error) => {
+        return;
+      }
+    );
   };
 
   const loadOutput = () => {

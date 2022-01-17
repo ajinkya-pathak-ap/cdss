@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import { ChestpainStyles } from "./ChestPainStyles";
@@ -9,20 +9,10 @@ export default function ChestPainFlow() {
   const classes = ChestpainStyles();
 
   return (
-    <Grid
-      container
-      className={classes.outsidecontainer}
-      // alignItems="center"
-      // justify="center"
-    >
+    <Grid container className={classes.outsidecontainer}>
       <Grid lg={12} md={12} xs={12} item>
         <Grid container justify="center">
-          <Grid
-            container
-            className={classes.insidecontainer}
-            //   alignItems="center"
-            //   justify="center"
-          >
+          <Grid container className={classes.insidecontainer}>
             <Grid lg={12} xs={12} item alignItems="center">
               <Typography className={classes.typoofhospitalhead}>
                 Hospital's Chest Pain Management Flow Chart
